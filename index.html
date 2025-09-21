@@ -12,31 +12,30 @@
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Webresto Solutions",
-    "image": "images/logo-wr.png",
     "slogan": "Des sites rapides, clairs et qui convertissent.",
+    "url": "https://webrest0.github.io/site-resto/",
     "telephone": "+33788589812",
     "email": "Smarttlelearning@gmail.com"
   }
   </script>
 </head>
 <body>
-  <header class="site-header" id="accueil">
+  <header class="site-header">
     <div class="container header-inner">
-      <a href="#accueil" class="brand" aria-label="Webresto Solutions">
-        <img src="images/logo-wr.png" alt="Logo Webresto Solutions" height="56" loading="lazy" decoding="async">
-        <span class="brand-fallback">Webresto Solutions</span>
+      <a href="#accueil" class="brand">
+        <img src="images/logo-wr.png" alt="Webresto Solutions" class="logo" height="56" width="160" loading="lazy" decoding="async">
+        <span class="sr-only brand-text">Webresto Solutions</span>
       </a>
       <button class="burger" type="button" aria-label="Basculer la navigation" aria-expanded="false" aria-controls="main-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
-      <nav id="main-nav">
+      <nav id="main-nav" aria-label="Navigation principale">
         <ul>
           <li><a href="#accueil">Accueil</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#packs">Packs</a></li>
-          <li><a href="#process">Process</a></li>
           <li><a href="#realisations">Réalisations</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -46,8 +45,8 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-overlay"></div>
+    <section id="accueil" class="hero">
+      <div class="hero-overlay" aria-hidden="true"></div>
       <div class="container hero-content">
         <p class="slogan">Des sites rapides, clairs et qui convertissent.</p>
         <h1>Création de sites pour restaurants &amp; fast-foods</h1>
@@ -65,45 +64,71 @@
         <div class="grid services-grid">
           <article class="card">
             <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation"><rect x="8" y="12" width="48" height="40" fill="none" stroke="currentColor" stroke-width="3"></rect><circle cx="32" cy="32" r="6" fill="currentColor"></circle></svg>
+              <svg viewBox="0 0 64 64" role="presentation">
+                <rect x="10" y="14" width="44" height="36" rx="6" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                <circle cx="32" cy="32" r="7" fill="currentColor"></circle>
+              </svg>
             </div>
             <h3>Site vitrine</h3>
-            <p>Présentez votre concept culinaire sur une interface claire et appétissante.</p>
+            <p>Présentez votre table en ligne avec un storytelling qui ouvre l’appétit.</p>
           </article>
           <article class="card">
             <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation"><path d="M20 16h24l6 12H14z" fill="none" stroke="currentColor" stroke-width="3"></path><path d="M18 28h28l-2 20H20z" fill="none" stroke="currentColor" stroke-width="3"></path><circle cx="24" cy="52" r="3" fill="currentColor"></circle><circle cx="40" cy="52" r="3" fill="currentColor"></circle></svg>
+              <svg viewBox="0 0 64 64" role="presentation">
+                <path d="M16 20h32l6 12H10z" fill="none" stroke="currentColor" stroke-width="3"></path>
+                <path d="M18 32h28l-2 18H20z" fill="none" stroke="currentColor" stroke-width="3"></path>
+                <circle cx="24" cy="52" r="3" fill="currentColor"></circle>
+                <circle cx="40" cy="52" r="3" fill="currentColor"></circle>
+              </svg>
             </div>
             <h3>E-commerce</h3>
-            <p>Commandes en ligne simplifiées pour la livraison ou le retrait.</p>
+            <p>Commandes en ligne fluides pour la livraison, le retrait ou les réservations.</p>
           </article>
           <article class="card">
             <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation"><rect x="12" y="16" width="40" height="32" fill="none" stroke="currentColor" stroke-width="3"></rect><path d="M20 24l12 12 12-12" fill="none" stroke="currentColor" stroke-width="3"></path></svg>
+              <svg viewBox="0 0 64 64" role="presentation">
+                <rect x="12" y="14" width="40" height="36" rx="6" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                <path d="M20 24l12 12 12-12" fill="none" stroke="currentColor" stroke-width="3"></path>
+              </svg>
             </div>
             <h3>Refonte &amp; migration</h3>
-            <p>Reprenez la main sur votre site avec une solution moderne et sécurisée.</p>
+            <p>Modernisation ou changement de plateforme sans couper votre service.</p>
           </article>
           <article class="card">
             <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation"><polyline points="10 46 22 30 32 42 44 24 54 36" fill="none" stroke="currentColor" stroke-width="3"></polyline><circle cx="12" cy="48" r="3" fill="currentColor"></circle><circle cx="22" cy="32" r="3" fill="currentColor"></circle><circle cx="32" cy="44" r="3" fill="currentColor"></circle><circle cx="44" cy="26" r="3" fill="currentColor"></circle><circle cx="54" cy="38" r="3" fill="currentColor"></circle></svg>
+              <svg viewBox="0 0 64 64" role="presentation">
+                <polyline points="12 46 24 30 34 42 46 24 54 36" fill="none" stroke="currentColor" stroke-width="3"></polyline>
+                <circle cx="12" cy="46" r="3" fill="currentColor"></circle>
+                <circle cx="24" cy="30" r="3" fill="currentColor"></circle>
+                <circle cx="34" cy="42" r="3" fill="currentColor"></circle>
+                <circle cx="46" cy="24" r="3" fill="currentColor"></circle>
+                <circle cx="54" cy="36" r="3" fill="currentColor"></circle>
+              </svg>
             </div>
             <h3>SEO local &amp; Google Business</h3>
-            <p>Optimisations locales pour attirer les gourmands près de chez vous.</p>
+            <p>Optimisations locales pour remonter dans les recherches de proximité.</p>
           </article>
           <article class="card">
             <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation"><path d="M20 14h24l8 14-20 22-20-22z" fill="none" stroke="currentColor" stroke-width="3"></path><circle cx="32" cy="24" r="6" fill="currentColor"></circle></svg>
+              <svg viewBox="0 0 64 64" role="presentation">
+                <path d="M20 12h24l10 18-22 24-22-24z" fill="none" stroke="currentColor" stroke-width="3"></path>
+                <circle cx="32" cy="24" r="6" fill="currentColor"></circle>
+              </svg>
             </div>
             <h3>Maintenance &amp; sécurité</h3>
-            <p>Surveillance, sauvegardes et mises à jour en continu.</p>
+            <p>Surveillance, sauvegardes automatiques et correctifs réguliers.</p>
           </article>
           <article class="card">
             <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation"><rect x="12" y="12" width="40" height="40" fill="none" stroke="currentColor" stroke-width="3"></rect><line x1="16" y1="20" x2="48" y2="20" stroke="currentColor" stroke-width="4"></line><line x1="20" y1="32" x2="44" y2="32" stroke="currentColor" stroke-width="4"></line><line x1="24" y1="44" x2="40" y2="44" stroke="currentColor" stroke-width="4"></line></svg>
+              <svg viewBox="0 0 64 64" role="presentation">
+                <rect x="12" y="12" width="40" height="40" rx="8" fill="none" stroke="currentColor" stroke-width="3"></rect>
+                <line x1="20" y1="24" x2="44" y2="24" stroke="currentColor" stroke-width="3"></line>
+                <line x1="24" y1="34" x2="40" y2="34" stroke="currentColor" stroke-width="3"></line>
+                <line x1="28" y1="44" x2="36" y2="44" stroke="currentColor" stroke-width="3"></line>
+              </svg>
             </div>
             <h3>Performance &amp; Core Web Vitals</h3>
-            <p>Tests et optimisation pour un site ultra-rapide.</p>
+            <p>Chargement express et scores Lighthouse qui rassurent Google.</p>
           </article>
         </div>
       </div>
@@ -119,7 +144,7 @@
             <ul>
               <li>Page vitrine immersive</li>
               <li>Menu PDF ou images intégrés</li>
-              <li>Mise en ligne en 10 jours</li>
+              <li>Mise en ligne sous 10 jours</li>
             </ul>
             <a class="btn primary" href="mailto:Smarttlelearning@gmail.com">Demander un devis</a>
           </article>
@@ -128,8 +153,8 @@
             <p class="price">0 €</p>
             <ul>
               <li>Site complet 3 à 4 pages</li>
-              <li>Galerie photos + avis clients</li>
-              <li>Formulaire de réservation</li>
+              <li>Galerie photos &amp; avis clients</li>
+              <li>Réservation ou prise de commande</li>
             </ul>
             <a class="btn primary" href="mailto:Smarttlelearning@gmail.com">Demander un devis</a>
           </article>
@@ -139,7 +164,7 @@
             <ul>
               <li>Commande en ligne &amp; paiement sécurisé</li>
               <li>Gestion des stocks simplifiée</li>
-              <li>Intégration livraison &amp; fidélité</li>
+              <li>Programme fidélité &amp; suivi des ventes</li>
             </ul>
             <a class="btn primary" href="mailto:Smarttlelearning@gmail.com">Demander un devis</a>
           </article>
@@ -154,22 +179,22 @@
           <article class="step">
             <div class="step-icon" aria-hidden="true">1</div>
             <h3>Brief</h3>
-            <p>Analyse de votre concept, de vos objectifs et des outils existants.</p>
+            <p>Diagnostic de votre concept, de votre zone de chalandise et des outils en place.</p>
           </article>
           <article class="step">
             <div class="step-icon" aria-hidden="true">2</div>
             <h3>Maquette</h3>
-            <p>Prototypage sur-mesure fidèle à votre identité culinaire.</p>
+            <p>Prototypage immersif pour valider l’expérience avant développement.</p>
           </article>
           <article class="step">
             <div class="step-icon" aria-hidden="true">3</div>
             <h3>Développement</h3>
-            <p>Intégration rapide, SEO technique et connecteurs utiles.</p>
+            <p>Intégration rapide, optimisation SEO technique et connexions métiers.</p>
           </article>
           <article class="step">
             <div class="step-icon" aria-hidden="true">4</div>
             <h3>Mise en ligne &amp; suivi</h3>
-            <p>Tests, formation et accompagnement pour vos évolutions.</p>
+            <p>Tests qualité, formation express et accompagnement post-lancement.</p>
           </article>
         </div>
       </div>
@@ -181,7 +206,7 @@
         <article class="card project-card">
           <h3>PIZZ’AMIGO</h3>
           <p>Site vitrine pour un food-truck de pizzas au feu de bois.</p>
-          <a class="btn secondary" href="https://webrest0.github.io/site" target="_blank" rel="noopener">Voir le site</a>
+          <a href="https://webrest0.github.io/site-resto/#hero" target="_blank" rel="noopener" class="btn secondary">Voir le site</a>
         </article>
       </div>
     </section>
@@ -192,27 +217,27 @@
         <div class="faq">
           <details>
             <summary>Combien de temps pour mettre un site en ligne&nbsp;?</summary>
-            <p>Entre 2 et 4 semaines selon le pack et la disponibilité de vos contenus.</p>
+            <p>Entre 2 et 4 semaines selon le pack choisi et la disponibilité de vos contenus.</p>
           </details>
           <details>
             <summary>Puis-je mettre à jour le menu moi-même&nbsp;?</summary>
-            <p>Oui, vous disposez d’un back-office simple accompagné d’une mini-formation.</p>
-          </details>
-          <details>
-            <summary>Proposez-vous la prise de photos&nbsp;?</summary>
-            <p>Nous pouvons vous orienter vers nos partenaires ou intégrer vos visuels existants.</p>
+            <p>Oui, vous disposez d’un back-office simplifié accompagné d’une mini-formation.</p>
           </details>
           <details>
             <summary>Le référencement local est-il inclus&nbsp;?</summary>
-            <p>Chaque pack inclut les optimisations Google Business et SEO local de base.</p>
+            <p>Chaque pack intègre les optimisations Google Business et SEO local de base.</p>
           </details>
           <details>
-            <summary>Que se passe-t-il après la mise en ligne&nbsp;?</summary>
-            <p>Vous bénéficiez d’un suivi post-lancement et d’options de maintenance.</p>
+            <summary>Proposez-vous la prise de photos&nbsp;?</summary>
+            <p>Nous pouvons intégrer vos visuels ou vous mettre en relation avec un photographe partenaire.</p>
           </details>
           <details>
-            <summary>Les sites sont-ils accessibles sur mobile&nbsp;?</summary>
-            <p>Nous concevons en mobile-first avec tests sur smartphones et tablettes.</p>
+            <summary>Offrez-vous la maintenance après lancement&nbsp;?</summary>
+            <p>Oui, des forfaits de maintenance &amp; sécurité assurent mises à jour et sauvegardes.</p>
+          </details>
+          <details>
+            <summary>Les sites sont-ils optimisés mobile&nbsp;?</summary>
+            <p>Chaque projet est conçu en mobile-first et testé sur smartphones et tablettes.</p>
           </details>
         </div>
       </div>
