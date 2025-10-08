@@ -1,265 +1,178 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webresto Solutions — Création de sites web pour restaurants &amp; fast-foods</title>
-  <meta name="description" content="Sites vitrines &amp; e-commerce rapides, clairs et optimisés SEO. Devis gratuit.">
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="app.js"></script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Webresto Solutions",
-    "slogan": "Des sites rapides, clairs et qui convertissent.",
-    "url": "https://webrest0.github.io/site-resto/",
-    "telephone": "+33788589812",
-    "email": "Smarttlelearning@gmail.com"
-  }
-  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Webrest0 — Offres & Tarifs</title>
+  <link rel="stylesheet" href="./css/tarifs.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#accueil" class="brand">
-        <img src="images/logo-wr.png" alt="Webresto Solutions" class="logo" height="56" width="160" loading="lazy" decoding="async">
-        <span class="sr-only brand-text">Webresto Solutions</span>
-      </a>
-      <button class="burger" type="button" aria-label="Basculer la navigation" aria-expanded="false" aria-controls="main-nav">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav id="main-nav" aria-label="Navigation principale">
-        <ul>
-          <li><a href="#accueil">Accueil</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#packs">Packs</a></li>
-          <li><a href="#realisations">Réalisations</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+  <header class="wr0-top">
+    <div class="wrap wr0-row">
+      <div class="wr0-brand">
+        <!-- Remplace src par ton logo -->
+        <img src="./images/webrest0-logo.png" alt="Webrest0" class="wr0-logo" />
+        <div class="wr0-title">
+          <strong>Webrest0</strong>
+          <span>Sites pros pour restaurants & food-trucks</span>
+        </div>
+      </div>
+      <div class="wr0-cta">
+        <a class="btn btn-primary" href="tel:+33600000000">📞 06 00 00 00 00</a>
+        <a class="btn" href="mailto:contact@webrest0.fr">✉️ contact@webrest0.fr</a>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section id="accueil" class="hero">
-      <div class="hero-overlay" aria-hidden="true"></div>
-      <div class="container hero-content">
-        <p class="slogan">Des sites rapides, clairs et qui convertissent.</p>
-        <h1>Création de sites pour restaurants &amp; fast-foods</h1>
-        <p class="subtitle">Vitrines, e-commerce, SEO &amp; performances.</p>
-        <div class="cta-group">
-          <a class="btn primary" href="tel:+33788589812">📞 Appeler</a>
-          <a class="btn secondary" href="mailto:Smarttlelearning@gmail.com">✉️ Demander un devis</a>
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero card">
+      <div class="hero-txt">
+        <h1>Des sites qui donnent faim 🍕</h1>
+        <p>Je conçois des sites <b>rapides, sécurisés et efficaces</b> pour restos & food-trucks.
+           Votre carte claire, vos photos qui claquent, et des clients qui appellent.</p>
+        <div class="hero-badges">
+          <span class="pill">HTTPS & sécurité intégrées</span>
+          <span class="pill">Optimisé mobile</span>
+          <span class="pill">Délais courts</span>
         </div>
       </div>
     </section>
 
-    <section id="services" class="section">
-      <div class="container">
-        <h2>Services pour booster votre restaurant</h2>
-        <div class="grid services-grid">
-          <article class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation">
-                <rect x="10" y="14" width="44" height="36" rx="6" fill="none" stroke="currentColor" stroke-width="3"></rect>
-                <circle cx="32" cy="32" r="7" fill="currentColor"></circle>
-              </svg>
-            </div>
-            <h3>Site vitrine</h3>
-            <p>Présentez votre table en ligne avec un storytelling qui ouvre l’appétit.</p>
-          </article>
-          <article class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation">
-                <path d="M16 20h32l6 12H10z" fill="none" stroke="currentColor" stroke-width="3"></path>
-                <path d="M18 32h28l-2 18H20z" fill="none" stroke="currentColor" stroke-width="3"></path>
-                <circle cx="24" cy="52" r="3" fill="currentColor"></circle>
-                <circle cx="40" cy="52" r="3" fill="currentColor"></circle>
-              </svg>
-            </div>
-            <h3>E-commerce</h3>
-            <p>Commandes en ligne fluides pour la livraison, le retrait ou les réservations.</p>
-          </article>
-          <article class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation">
-                <rect x="12" y="14" width="40" height="36" rx="6" fill="none" stroke="currentColor" stroke-width="3"></rect>
-                <path d="M20 24l12 12 12-12" fill="none" stroke="currentColor" stroke-width="3"></path>
-              </svg>
-            </div>
-            <h3>Refonte &amp; migration</h3>
-            <p>Modernisation ou changement de plateforme sans couper votre service.</p>
-          </article>
-          <article class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation">
-                <polyline points="12 46 24 30 34 42 46 24 54 36" fill="none" stroke="currentColor" stroke-width="3"></polyline>
-                <circle cx="12" cy="46" r="3" fill="currentColor"></circle>
-                <circle cx="24" cy="30" r="3" fill="currentColor"></circle>
-                <circle cx="34" cy="42" r="3" fill="currentColor"></circle>
-                <circle cx="46" cy="24" r="3" fill="currentColor"></circle>
-                <circle cx="54" cy="36" r="3" fill="currentColor"></circle>
-              </svg>
-            </div>
-            <h3>SEO local &amp; Google Business</h3>
-            <p>Optimisations locales pour remonter dans les recherches de proximité.</p>
-          </article>
-          <article class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation">
-                <path d="M20 12h24l10 18-22 24-22-24z" fill="none" stroke="currentColor" stroke-width="3"></path>
-                <circle cx="32" cy="24" r="6" fill="currentColor"></circle>
-              </svg>
-            </div>
-            <h3>Maintenance &amp; sécurité</h3>
-            <p>Surveillance, sauvegardes automatiques et correctifs réguliers.</p>
-          </article>
-          <article class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation">
-                <rect x="12" y="12" width="40" height="40" rx="8" fill="none" stroke="currentColor" stroke-width="3"></rect>
-                <line x1="20" y1="24" x2="44" y2="24" stroke="currentColor" stroke-width="3"></line>
-                <line x1="24" y1="34" x2="40" y2="34" stroke="currentColor" stroke-width="3"></line>
-                <line x1="28" y1="44" x2="36" y2="44" stroke="currentColor" stroke-width="3"></line>
-              </svg>
-            </div>
-            <h3>Performance &amp; Core Web Vitals</h3>
-            <p>Chargement express et scores Lighthouse qui rassurent Google.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+    <!-- OFFRES -->
+    <section class="offers">
+      <h2>Offres & tarifs</h2>
 
-    <section id="packs" class="section">
-      <div class="container">
-        <h2>Packs &amp; tarifs transparents</h2>
-        <div class="grid pricing-grid">
-          <article class="card pricing-card">
-            <h3>Starter</h3>
-            <p class="price">0 €</p>
-            <ul>
-              <li>Page vitrine immersive</li>
-              <li>Menu PDF ou images intégrés</li>
-              <li>Mise en ligne sous 10 jours</li>
-            </ul>
-            <a class="btn primary" href="mailto:Smarttlelearning@gmail.com">Demander un devis</a>
-          </article>
-          <article class="card pricing-card">
-            <h3>Menu Online</h3>
-            <p class="price">0 €</p>
-            <ul>
-              <li>Site complet 3 à 4 pages</li>
-              <li>Galerie photos &amp; avis clients</li>
-              <li>Réservation ou prise de commande</li>
-            </ul>
-            <a class="btn primary" href="mailto:Smarttlelearning@gmail.com">Demander un devis</a>
-          </article>
-          <article class="card pricing-card">
-            <h3>Click &amp; Collect</h3>
-            <p class="price">0 €</p>
-            <ul>
-              <li>Commande en ligne &amp; paiement sécurisé</li>
-              <li>Gestion des stocks simplifiée</li>
-              <li>Programme fidélité &amp; suivi des ventes</li>
-            </ul>
-            <a class="btn primary" href="mailto:Smarttlelearning@gmail.com">Demander un devis</a>
-          </article>
-        </div>
-      </div>
-    </section>
+      <div class="grid">
+        <!-- Pack Vitrine -->
+        <article class="offer card">
+          <div class="bubble italia"></div>
+          <h3>Pack Vitrine</h3>
+          <p class="subtitle">Votre présence pro, claire et rapide</p>
+          <div class="price"><span>299 €</span> TTC</div>
+          <ul class="features">
+            <li>1 page moderne (menu, photos, horaires, contact)</li>
+            <li>Design personnalisé, responsive</li>
+            <li>Hébergement gratuit possible (GitHub Pages)</li>
+            <li>HTTPS activé (site sécurisé)</li>
+            <li>Petites modifications incluses à la livraison</li>
+          </ul>
+          <a href="tel:+33600000000" class="btn btn-primary">Je lance mon site</a>
+          <div class="note">Nom de domaine <b>facultatif</b> pour cette offre (vous pouvez rester sur un hébergement gratuit).</div>
+        </article>
 
-    <section id="process" class="section">
-      <div class="container">
-        <h2>Un process clair en 4 étapes</h2>
-        <div class="process-steps">
-          <article class="step">
-            <div class="step-icon" aria-hidden="true">1</div>
-            <h3>Brief</h3>
-            <p>Diagnostic de votre concept, de votre zone de chalandise et des outils en place.</p>
-          </article>
-          <article class="step">
-            <div class="step-icon" aria-hidden="true">2</div>
-            <h3>Maquette</h3>
-            <p>Prototypage immersif pour valider l’expérience avant développement.</p>
-          </article>
-          <article class="step">
-            <div class="step-icon" aria-hidden="true">3</div>
-            <h3>Développement</h3>
-            <p>Intégration rapide, optimisation SEO technique et connexions métiers.</p>
-          </article>
-          <article class="step">
-            <div class="step-icon" aria-hidden="true">4</div>
-            <h3>Mise en ligne &amp; suivi</h3>
-            <p>Tests qualité, formation express et accompagnement post-lancement.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+        <!-- Pack Pro -->
+        <article class="offer card best">
+          <div class="bubble italia-strong"></div>
+          <div class="badge">Populaire</div>
+          <h3>Pack Pro</h3>
+          <p class="subtitle">Plus d’impact, plus de clients</p>
+          <div class="price"><span>499 €</span> TTC</div>
+          <ul class="features">
+            <li>Toutes les prestations du Pack Vitrine</li>
+            <li>Galerie/Carrousel optimisé</li>
+            <li>SEO local de base (titres, métas, vitesse)</li>
+            <li>Intégration Google Maps / itinéraires</li>
+            <li>Assistance 1 mois inclus (petits changements)</li>
+          </ul>
+          <a href="tel:+33600000000" class="btn btn-primary">Je veux le pack Pro</a>
+          <div class="note">
+            Recommandé avec un <b>nom de domaine</b> (ex : <i>votreresto.fr</i>).<br>
+            Je vous aide à l’acheter/configurer si vous le souhaitez.
+          </div>
+        </article>
 
-    <section id="realisations" class="section">
-      <div class="container">
-        <h2>Réalisations</h2>
-        <article class="card project-card">
-          <h3>PIZZ’AMIGO</h3>
-          <p>Site vitrine pour un food-truck de pizzas au feu de bois.</p>
-          <a href="https://webrest0.github.io/site-resto/#hero" target="_blank" rel="noopener" class="btn secondary">Voir le site</a>
+        <!-- Pack Dashboard -->
+        <article class="offer card">
+          <div class="bubble italia"></div>
+          <h3>Pack Dashboard</h3>
+          <p class="subtitle">Mettez à jour vous-même vos menus & horaires</p>
+          <div class="price"><span>799 €</span> TTC</div>
+          <ul class="features">
+            <li>Toutes les prestations du Pack Pro</li>
+            <li>Tableau de bord (menus, photos, horaires)</li>
+            <li>Accès sécurisé (mot de passe, rôles simples)</li>
+            <li>Guide d’utilisation + mini formation</li>
+            <li>Connexion sur un hébergeur adapté</li>
+          </ul>
+          <a href="tel:+33600000000" class="btn btn-primary">Je choisis le Dashboard</a>
+          <div class="note">Nécessite <b>un nom de domaine</b> et un hébergement adapté (je vous guide pour un coût minimal).</div>
         </article>
       </div>
     </section>
 
-    <section id="faq" class="section">
-      <div class="container">
-        <h2>FAQ</h2>
-        <div class="faq">
-          <details>
-            <summary>Combien de temps pour mettre un site en ligne&nbsp;?</summary>
-            <p>Entre 2 et 4 semaines selon le pack choisi et la disponibilité de vos contenus.</p>
-          </details>
-          <details>
-            <summary>Puis-je mettre à jour le menu moi-même&nbsp;?</summary>
-            <p>Oui, vous disposez d’un back-office simplifié accompagné d’une mini-formation.</p>
-          </details>
-          <details>
-            <summary>Le référencement local est-il inclus&nbsp;?</summary>
-            <p>Chaque pack intègre les optimisations Google Business et SEO local de base.</p>
-          </details>
-          <details>
-            <summary>Proposez-vous la prise de photos&nbsp;?</summary>
-            <p>Nous pouvons intégrer vos visuels ou vous mettre en relation avec un photographe partenaire.</p>
-          </details>
-          <details>
-            <summary>Offrez-vous la maintenance après lancement&nbsp;?</summary>
-            <p>Oui, des forfaits de maintenance &amp; sécurité assurent mises à jour et sauvegardes.</p>
-          </details>
-          <details>
-            <summary>Les sites sont-ils optimisés mobile&nbsp;?</summary>
-            <p>Chaque projet est conçu en mobile-first et testé sur smartphones et tablettes.</p>
-          </details>
+    <!-- ABONNEMENTS MAINTENANCE -->
+    <section class="subs card">
+      <h2>Maintenance & mises à jour</h2>
+      <p>Gardez un site <b>sécurisé</b>, <b>à jour</b>, et <b>rapide</b>. Je m’occupe de la technique pendant que vous cuisinez.</p>
+      <div class="sub-grid">
+        <div class="sub">
+          <h4>Essentiel</h4>
+          <div class="sub-price">19 € / mois</div>
+          <ul>
+            <li>Mises à jour mineures (texte/prix) – 1×/mois</li>
+            <li>Surveillance basique</li>
+            <li>Assistance email</li>
+          </ul>
         </div>
+        <div class="sub best">
+          <h4>Pro</h4>
+          <div class="sub-price">39 € / mois</div>
+          <ul>
+            <li>Mises à jour de contenu – 2×/mois</li>
+            <li>Vérifs perf/SEO basiques</li>
+            <li>Support prioritaire</li>
+          </ul>
+        </div>
+        <div class="sub">
+          <h4>Business</h4>
+          <div class="sub-price">79 € / mois</div>
+          <ul>
+            <li>Mises à jour illimitées raisonnables</li>
+            <li>Audit trimestriel (perf/SEO)</li>
+            <li>Assistance téléphone</li>
+          </ul>
+        </div>
+      </div>
+      <div class="subs-note">
+        Sans engagement. Vous pouvez passer d’une formule à l’autre quand vous voulez.
       </div>
     </section>
 
-    <section id="contact" class="section">
-      <div class="container contact">
-        <h2>Prêt à booster votre présence en ligne&nbsp;?</h2>
-        <p>Expliquez-nous votre concept, on s’occupe du reste.</p>
-        <div class="cta-group">
-          <a class="btn primary" href="tel:+33788589812">📞 07 88 58 98 12</a>
-          <a class="btn secondary" href="mailto:Smarttlelearning@gmail.com">✉️ Smarttlelearning@gmail.com</a>
-        </div>
-        <p class="muted">Réseaux sociaux à venir.</p>
+    <!-- SECURITE & HEBERGEMENT -->
+    <section class="guarantees card">
+      <h2>Sécurité & Hébergement</h2>
+      <ul class="ticks">
+        <li><b>HTTPS par défaut</b> : chiffrement des échanges pour protéger vos visiteurs</li>
+        <li><b>Mises à jour techniques</b> (selon pack) : correctifs & optimisations</li>
+        <li><b>Hébergement gratuit</b> possible (GitHub Pages) pour sites vitrines</li>
+        <li><b>Nom de domaine</b> conseillé pour un rendu pro (ex: <i>votreresto.fr</i>)</li>
+        <li><b>Dashboard</b> : accès avec mot de passe, règles de base durcies</li>
+      </ul>
+      <p class="muted">
+        <b>Nom de domaine :</b> environ 10–15 €/an chez un registrar (OVH, Gandi, Cloudflare…).<br>
+        <b>Hébergement :</b> vitrine → gratuit possible ; Dashboard → hébergement conseillé (je vous oriente au meilleur prix).
+      </p>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final card">
+      <h2>On démarre quand ?</h2>
+      <p>Envoyez-moi votre logo, vos photos et votre carte. Je m’occupe du reste.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary btn-lg" href="tel:+33600000000">Parler de votre projet</a>
+        <a class="btn btn-ghost btn-lg" href="mailto:contact@webrest0.fr">Recevoir un devis</a>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year"></span> Webresto Solutions — Site par Webrest0</p>
+  <footer class="wr0-foot">
+    <div class="wrap foot-col">
+      <div>© Webrest0 — Sites pour Restaurants & Food-trucks</div>
+      <div><a href="mailto:smarttlelearning@gmail.com">contact@webrest0.fr</a> · <a href="tel:+33788589812">06 00 00 00 00</a></div>
     </div>
   </footer>
+
+  <script src="./js/tarifs.js" defer></script>
 </body>
 </html>
