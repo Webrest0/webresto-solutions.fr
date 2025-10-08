@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Webrest0 — Sites pros simples & efficaces</title>
-  <meta name="description" content="Création de sites rapides, sécurisés et clairs pour restaurants, food-trucks, entreprises, groupes de musique et évènements.">
+  <title>Webrest0 — Sites qui convertissent (restaurants & pros)</title>
+  <meta name="description" content="Webrest0 crée des sites rapides, sécurisés et optimisés mobile qui génèrent des appels et des commandes. Vitrines, mini-dashboards, maintenance.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -13,15 +13,16 @@
 <body>
 
 <header class="topbar">
-  <div class="wrap row">
-    <a class="brand" href="#top">
-      <img src="images/wr-logo.png" alt="Webrest0 logo" width="28" height="28">
+  <div class="container row">
+    <a class="brand" href="#top" aria-label="Webrest0">
+      <img src="images/wr-logo.png" alt="Logo Webrest0" width="28" height="28">
       <span>Webrest0</span>
     </a>
     <nav class="nav">
       <a href="#offres">Offres</a>
-      <a href="#work">Réalisations</a>
+      <a href="#work">Réalisation</a>
       <a href="#process">Process</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact" class="btn small">Contact</a>
     </nav>
     <button id="burger" class="burger" aria-label="Ouvrir le menu">☰</button>
@@ -31,87 +32,103 @@
 <main id="top">
 
   <!-- HERO -->
-  <section class="section hero">
-    <div class="wrap">
-      <h1>Un site clair, rapide et qui donne envie</h1>
+  <section class="hero section">
+    <div class="container">
+      <h1>Des sites qui donnent faim<br class="br-md">…et qui font <span class="accent">sonner le téléphone</span></h1>
       <p class="lead">
-        Je crée des sites **simples à comprendre** et **faciles à utiliser**.  
-        Idéal pour restos, entreprises, groupes de musique, mariages, associations.
+        Je conçois des sites <b>rapides</b>, <b>sécurisés</b> (HTTPS) et <b>optimisés mobile</b> pour restaurants, entreprises, groupes de musique, mariages & évènements. 
+        <br>Objectif : <b>plus d’appels, plus de réservations, moins de blabla</b>.
       </p>
 
       <div class="cta-row">
-        <a class="btn primary" href="tel:+33788589812">📞 07 88 58 98 12</a>
-        <a class="btn" href="mailto:smarttlelearning@gmail.com">✉️ smarttlelearning@gmail.com</a>
+        <a class="btn primary" href="tel:+33788589812" aria-label="Appeler Webrest0">
+          <span class="ico">📞</span> 07 88 58 98 12
+        </a>
+        <a class="btn ghost" href="mailto:smarttlelearning@gmail.com?subject=Devis%20site%20Webrest0&body=Bonjour,%0AJe souhaite un devis pour...">
+          ✉️ Devis par e-mail
+        </a>
       </div>
 
       <ul class="trust">
-        <li>HTTPS (site sécurisé)</li>
-        <li>Optimisé mobile</li>
-        <li>Livraison rapide</li>
+        <li>HTTPS & sécurité</li>
+        <li>Chargement rapide</li>
+        <li>Design clair</li>
+        <li>Délais courts</li>
       </ul>
+    </div>
+  </section>
+
+  <!-- VALUE STRIP -->
+  <section class="strip">
+    <div class="container strip-grid">
+      <div><b>+ appels</b> grâce aux CTA visibles</div>
+      <div><b>+ crédibilité</b> avec un design propre</div>
+      <div><b>+ visibilité</b> (bases SEO & performance)</div>
+      <div><b>0 prise de tête</b> — je m’occupe du technique</div>
     </div>
   </section>
 
   <!-- OFFRES -->
   <section id="offres" class="section">
-    <div class="wrap">
-      <h2>Offres</h2>
-      <p class="sub">Tarifs simples. Ce qui est inclus est listé clairement ci-dessous.</p>
+    <div class="container">
+      <h2>Offres & tarifs</h2>
+      <p class="sub">Nom de domaine <b>facultatif</b> (hébergeur gratuit) ou <b>pro</b> en .fr/.com (~12–15 €/an). Sites livrés <b>sécurisés</b> (HTTPS) & <b>optimisés mobile</b>.</p>
 
-      <div class="cards">
+      <div class="grid-3">
         <article class="card">
           <h3>Vitrine</h3>
           <div class="price">349 €</div>
-          <ul>
-            <li>1 page moderne (photos, menu/infos, horaires, contact)</li>
-            <li>Design personnalisé & responsive</li>
+          <ul class="bullets">
+            <li>1 page moderne (infos, photos, horaires, contact)</li>
+            <li>Design personnalisé, responsive</li>
             <li>Hébergement gratuit possible (GitHub Pages)</li>
-            <li>HTTPS activé (sécurité)</li>
           </ul>
+          <a href="#contact" class="btn block">Démarrer</a>
         </article>
 
-        <article class="card">
+        <article class="card featured">
+          <div class="chip">Populaire</div>
           <h3>Vitrine +</h3>
-          <div class="price">499 €</div>
-          <ul>
-            <li>Sections supplémentaires + galerie</li>
+          <div class="price">599 €</div>
+          <ul class="bullets">
+            <li>Sections avancées + galerie</li>
             <li>Formulaire contact protégé</li>
-            <li>SEO de base (titres, metas, vitesse)</li>
+            <li>Bases SEO (titres, metas, vitesse)</li>
           </ul>
+          <a href="#contact" class="btn primary block">Je lance mon site</a>
         </article>
 
         <article class="card">
           <h3>Dashboard</h3>
-          <div class="price">899 €</div>
-          <ul>
-            <li>Petit back-office (ex : gérer la carte)</li>
+          <div class="price">999 €</div>
+          <ul class="bullets">
+            <li>Mini back-office (ex : carte, actus)</li>
             <li>Exports CSV / Google Sheets</li>
             <li>Auth basique & sauvegardes</li>
           </ul>
+          <a href="#contact" class="btn block">Parler du besoin</a>
         </article>
       </div>
 
       <div class="note">
-        Nom de domaine : <b>facultatif</b> (hébergeur gratuit) ou <b>pro</b> avec votre .fr/.com (~12–15 €/an).  
-        Maintenance : <b>19 €/mois</b> (sauvegardes & correctifs) ou <b>39 €/mois</b> (petites MAJ + prioritaire).
+        Maintenance & évolutions : <b>19 €/mois</b> (sauvegardes, correctifs) ou <b>39 €/mois</b> (petites MAJ + prioritaire).
       </div>
     </div>
   </section>
 
   <!-- RÉALISATION -->
   <section id="work" class="section">
-    <div class="wrap">
+    <div class="container">
       <h2>Réalisation</h2>
 
       <article class="work">
         <div class="work-media">
-          <!-- IMPORTANT : mets bien l’image dans /images avec ce nom -->
-          <img src="images/pizz-amigo-cover.jpg" alt="Site vitrine PIZZ’AMIGO — exemple de réalisation">
+          <img src="images/pizz-amigo-cover.jpg" alt="PIZZ’AMIGO — site vitrine sombre et clair" loading="lazy">
         </div>
         <div class="work-body">
           <h3>PIZZ’AMIGO — Montmerle-sur-Saône</h3>
-          <p class="muted">Vitrine sombre élégante. CTA “Appeler”. Hébergement gratuit sécurisé (HTTPS).</p>
-          <a class="btn" target="_blank" rel="noopener" href="https://webrest0.github.io/pizz-amigo.fr/">Voir le site</a>
+          <p class="muted">Vitrine sombre élégante, carte lisible, bouton “Appeler” visible. Hébergement gratuit sécurisé (HTTPS).</p>
+          <a class="btn ghost" target="_blank" rel="noopener" href="https://webrest0.github.io/pizz-amigo.fr/">Voir le site</a>
         </div>
       </article>
     </div>
@@ -119,25 +136,35 @@
 
   <!-- PROCESS -->
   <section id="process" class="section">
-    <div class="wrap">
+    <div class="container">
       <h2>Comment ça se passe ?</h2>
       <ol class="steps">
-        <li><b>1.</b> On discute 10 min de vos besoins</li>
-        <li><b>2.</b> Maquette rapide (look & couleurs)</li>
-        <li><b>3.</b> Je développe et j’intègre vos contenus</li>
-        <li><b>4.</b> Mise en ligne en HTTPS</li>
+        <li><b>Appel & besoin</b> — 10 min pour cadrer</li>
+        <li><b>Maquette rapide</b> — look & couleurs</li>
+        <li><b>Dév & contenus</b> — vous validez</li>
+        <li><b>Mise en ligne</b> — HTTPS & analytics</li>
       </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2>FAQ</h2>
+      <details class="faq"><summary>Faut-il acheter un nom de domaine ?</summary><div>Non, hébergeur gratuit possible. Pour un rendu plus pro, je peux connecter votre <b>.fr/.com</b> (~12–15 €/an).</div></details>
+      <details class="faq"><summary>Le site est-il sécurisé ?</summary><div>Oui. HTTPS par défaut, bonnes pratiques de perf & sécurité, formulaires protégés.</div></details>
+      <details class="faq"><summary>Et après la livraison ?</summary><div>Deux offres de maintenance : <b>19 €/mois</b> (sauvegardes, correctifs) ou <b>39 €/mois</b> (petites MAJ + prioritaire).</div></details>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact" class="section contact">
-    <div class="wrap">
-      <h2>Contact</h2>
-      <p class="sub">Une question, un devis rapide ? Je réponds vite.</p>
+    <div class="container">
+      <h2>Parlons de votre projet</h2>
+      <p class="sub">Un devis clair en quelques minutes.</p>
       <div class="cta-row">
         <a class="btn primary" href="tel:+33788589812">📞 07 88 58 98 12</a>
-        <a class="btn" href="mailto:smarttlelearning@gmail.com">✉️ smarttlelearning@gmail.com</a>
+        <a class="btn" href="mailto:smarttlelearning@gmail.com?subject=Devis%20site%20Webrest0&body=Bonjour,%0AJe souhaite un devis pour...">✉️ smarttlelearning@gmail.com</a>
       </div>
     </div>
   </section>
@@ -145,18 +172,18 @@
 </main>
 
 <footer class="footer">
-  <div class="wrap row">
+  <div class="container row">
     <div>© Webrest0 — 2025</div>
     <nav class="foot">
       <a href="#offres">Offres</a>
-      <a href="#work">Réalisations</a>
+      <a href="#work">Réalisation</a>
       <a href="#process">Process</a>
-      <a href="#contact">Contact</a>
+      <a href="#faq">FAQ</a>
     </nav>
   </div>
 </footer>
 
-<a class="fab" href="tel:+33788589812" aria-label="Appeler">📞</a>
+<a class="fab" href="tel:+33788589812" aria-label="Appeler Webrest0">📞</a>
 <script src="app.js"></script>
 </body>
 </html>
