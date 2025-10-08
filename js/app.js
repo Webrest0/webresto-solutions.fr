@@ -1,19 +1,32 @@
-// === Réglages contact ===
 const EMAIL = "smarttlelearning@gmail.com";
 const PHONE_E164 = "+33788589812";
 
-// === Lien Gmail compose ===
-function buildGmailUrl() {
-  const subject = "Demande de site vitrine";
-  const body = `Bonjour, je souhaite un site pour mon activité.\n\nMerci.`;
-  const p = new URLSearchParams({ view:"cm", fs:"1", to:EMAIL, su:subject, body });
-  return `https://mail.google.com/mail/?${p.toString()}`;
+function gmailDeepLink(to, subject, body) {
+  // Deep link Gmail (iOS/Android) + fallback mailto
+  const appUrl = `googlegmail:///co?to=${encodeURIComponent(to)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const mailtoUrl = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  // Essaye d'ouvrir l'app
+  const timeout = setTimeout(() => { window.location.href = mailtoUrl; }, 600);
+  window.location.href = appUrl;
+
+  // Si l'app s'ouvre, on annule le fallback (ça ne casse rien si ce n'est pas supporté)
+  setTimeout(() => clearTimeout(timeout), 1500);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   // Boutons contact
   const gmailBtn = document.getElementById("gmailBtn");
-  if (gmailBtn) gmailBtn.href = buildGmailUrl();
+  if (gmailBtn) {
+    gmailBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      gmailDeepLink(
+        EMAIL,
+        "Demande de site vitrine",
+        "Bonjour, je souhaite un site pour mon activité.\n\nMerci."
+      );
+    });
+  }
   const callTop = document.getElementById("callTop");
   if (callTop) callTop.href = `tel:${PHONE_E164}`;
   const callBtn = document.getElementById("callBtn");
@@ -54,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const slides = Array.from(track.children);
     let index = 0;
 
-    // Dots
     slides.forEach((_, i) => {
       const b = document.createElement("button");
       b.setAttribute("aria-label", `Aller à la diapositive ${i+1}`);
@@ -75,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     prev.addEventListener("click", () => goTo(index - 1));
     next.addEventListener("click", () => goTo(index + 1));
 
-    // swipe mobile
+    // Swipe mobile
     let startX = null;
     track.addEventListener("touchstart", (e) => startX = e.touches[0].clientX, {passive:true});
     track.addEventListener("touchmove", (e) => {
