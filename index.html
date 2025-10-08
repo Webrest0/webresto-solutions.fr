@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WebResto-Solution — Sites vitrines clairs et pro</title>
-  <meta name="description" content="Création de sites vitrines clairs et professionnels. Mariage, entreprise, association, artisan, restaurant, fast-food. Beau sur téléphone, simple à utiliser.">
-  <meta property="og:title" content="WebResto-Solution — Sites vitrines clairs et pro">
-  <meta property="og:description" content="Un site pro, clair, beau sur téléphone. Pour tous types d’activités.">
+  <title>WebResto-Solution — Création de sites modernes</title>
+  <meta name="description" content="Création de sites vitrines modernes, lisibles sur téléphone. Entreprises, artisans, mariages, restaurants, associations.">
+  <meta property="og:title" content="WebResto-Solution — Création de sites modernes">
+  <meta property="og:description" content="Sites clairs, rapides, et beaux sur mobile.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -17,78 +17,86 @@
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
-      <a href="#accueil" class="logo" aria-label="Aller à l’accueil">WebResto-Solution</a>
+      <a href="#accueil" class="brand" aria-label="Aller à l’accueil">
+        <img src="Images/wr-logo.png" alt="Logo WR" class="brand-logo" />
+        <span class="brand-name">WebResto-Solution</span>
+      </a>
 
-      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="main-nav" role="navigation" aria-label="Navigation principale">
-        <ul>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-list">
           <li><a href="#accueil" class="nav-link active">Accueil</a></li>
           <li><a href="#pourqui" class="nav-link">Pour qui ?</a></li>
           <li><a href="#services" class="nav-link">Services</a></li>
           <li><a href="#exemples" class="nav-link">Exemples</a></li>
           <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
-          <li><a href="#faq" class="nav-link">FAQ</a></li>
-          <li><a href="#contact" class="btn btn-primary">Demander mon site</a></li>
+          <li><a href="#contact" class="btn btn-primary">Demander un site</a></li>
         </ul>
       </nav>
+
+      <a class="header-phone" id="telTop" href="tel:+33788589812">07 88 58 98 12</a>
     </div>
   </header>
 
   <main id="accueil">
-    <!-- Hero -->
-    <section class="hero section">
+    <!-- HERO sombre -->
+    <section class="hero section dark">
       <div class="container hero-grid">
         <div class="hero-text">
-          <h1>Un site pro, clair, et beau sur téléphone.</h1>
-          <p>Mariage, entreprise, artisan, association, restaurant… je crée votre site vitrine rapidement. Lisible partout et simple à utiliser.</p>
+          <h1>Des sites modernes, visibles et sur mesure.</h1>
+          <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="https://webrest0.github.io/pizz-amigo.fr/" target="_blank" rel="noopener">Voir un exemple en direct</a>
-            <a class="btn btn-outline" href="#contact">Demander mon site</a>
+            <a class="btn btn-primary" href="https://webrest0.github.io/pizz-amigo.fr/" target="_blank" rel="noopener">Voir un exemple</a>
+            <a class="btn btn-ghost" href="#contact">Demander un site</a>
           </div>
         </div>
         <div class="hero-visual">
-          <img src="https://images.unsplash.com/photo-1529336953121-ad3c6bf8f06b?q=80&w=1600&auto=format&fit=crop" alt="Aperçu d’un site sur ordinateur et mobile" loading="eager">
+          <!-- Grande image sombre (pas de “case d’aperçu”) -->
+          <img src="https://images.unsplash.com/photo-1529336953121-ad3c6bf8f06b?q=80&w=2000&auto=format&fit=crop" alt="Ambiance web sombre et moderne" loading="eager">
         </div>
       </div>
     </section>
 
-    <!-- Pour qui -->
-    <section id="pourqui" class="section">
+    <!-- POUR QUI ? clair -->
+    <section id="pourqui" class="section light">
       <div class="container">
         <h2>Pour qui ?</h2>
-        <p class="section-lead">Je crée des sites clairs, rapides et faciles à lire. Parfait pour :</p>
-        <div class="cards-grid">
+        <p class="section-lead">Sites clairs et efficaces pour tous :</p>
+        <div class="cards-grid lg">
           <article class="card">
-            <h3>Mariages & évènements</h3>
-            <p>Page simple pour partager la date, le lieu et les infos avec vos invités.</p>
+            <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?q=80&w=1200&auto=format&fit=crop" alt="Décoration de mariage" loading="lazy">
+            <h3>Mariages / événements</h3>
+            <p>Page simple pour vos invités : date, lieux, programme.</p>
           </article>
           <article class="card">
-            <h3>Entreprises & artisans</h3>
-            <p>Présentez vos services et vos atouts, inspirez confiance en un coup d’œil.</p>
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Équipe en réunion" loading="lazy">
+            <h3>Entreprises / services</h3>
+            <p>Présentez vos services et votre savoir-faire clairement.</p>
           </article>
           <article class="card">
-            <h3>Associations</h3>
-            <p>Expliquez votre action, vos horaires, vos contacts et vos besoins.</p>
+            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1200&auto=format&fit=crop" alt="Atelier artisan" loading="lazy">
+            <h3>Artisans / ateliers</h3>
+            <p>Montrez vos réalisations, vos horaires et vos contacts.</p>
           </article>
           <article class="card">
-            <h3>Restaurants & fast-foods</h3>
-            <p>Affichez vos plats, vos horaires, le plan d’accès et, en option, la commande en ligne.</p>
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop" alt="Salle de restaurant" loading="lazy">
+            <h3>Restaurants / fast-foods</h3>
+            <p>Menu, photos, plan d’accès et option commande en ligne.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="section section-alt">
+    <!-- SERVICES gris foncé (mix) -->
+    <section id="services" class="section mid">
       <div class="container">
         <h2>Services</h2>
         <div class="features-grid">
           <div class="feature">
             <h3>Site vitrine complet</h3>
-            <p>Accueil, infos, photos, contact. Tout ce qu’il faut pour être clair et crédible.</p>
+            <p>Accueil, infos, photos, contact. Tout ce qu’il faut pour être crédible.</p>
           </div>
           <div class="feature">
             <h3>Mise en ligne comprise</h3>
@@ -100,25 +108,24 @@
           </div>
           <div class="feature">
             <h3>Commande en ligne (option)</h3>
-            <p>Je peux relier votre site à une solution de commande ou de réservation.</p>
+            <p>Connexion à une solution de commande ou de réservation.</p>
           </div>
           <div class="feature">
-            <h3>Mises à jour simples</h3>
+            <h3>Mises à jour</h3>
             <p>Après l’achat, <strong>20 € par modification</strong> (texte, photo, couleur, petite section).</p>
           </div>
           <div class="feature">
             <h3>Accompagnement</h3>
-            <p>Des réponses claires, sans jargon. Je reste dispo quand vous en avez besoin.</p>
+            <p>Des réponses simples et rapides, sans jargon.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Exemples -->
-    <section id="exemples" class="section">
+    <!-- EXEMPLES clair avec grandes images -->
+    <section id="exemples" class="section light">
       <div class="container">
         <h2>Exemples</h2>
-
         <div class="example highlight">
           <div class="example-text">
             <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
@@ -126,33 +133,33 @@
             <a class="btn btn-primary" target="_blank" rel="noopener" href="https://webrest0.github.io/pizz-amigo.fr/">Voir le site</a>
           </div>
           <div class="example-visual">
-            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1600&auto=format&fit=crop" alt="Exemple site de pizzeria" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2000&auto=format&fit=crop" alt="Exemple pizzeria" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-scroll" aria-label="Autres inspirations">
+        <div class="gallery-scroll xl" aria-label="Autres inspirations">
           <figure class="gallery-card">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop" alt="Entreprise moderne" loading="lazy">
-            <figcaption>Entreprise / services</figcaption>
+            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop" alt="Développement web sombre" loading="lazy">
+            <figcaption>Ambiance web</figcaption>
           </figure>
           <figure class="gallery-card">
-            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600&auto=format&fit=crop" alt="Atelier artisan" loading="lazy">
-            <figcaption>Artisan / atelier</figcaption>
+            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop" alt="Événement chic" loading="lazy">
+            <figcaption>Événement</figcaption>
           </figure>
           <figure class="gallery-card">
-            <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?q=80&w=1600&auto=format&fit=crop" alt="Décoration de mariage" loading="lazy">
-            <figcaption>Mariage / évènement</figcaption>
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop" alt="Bureau moderne" loading="lazy">
+            <figcaption>Entreprise</figcaption>
           </figure>
           <figure class="gallery-card">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Salle de restaurant" loading="lazy">
-            <figcaption>Restaurant / salle</figcaption>
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Restaurant" loading="lazy">
+            <figcaption>Restauration</figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <!-- Tarifs -->
-    <section id="tarifs" class="section section-alt">
+    <!-- TARIFS sombre -->
+    <section id="tarifs" class="section dark">
       <div class="container">
         <h2>Tarifs</h2>
         <p class="section-lead">Des offres claires. Vous choisissez, je m’occupe du reste.</p>
@@ -162,11 +169,11 @@
             <h3>Pack Vitrine</h3>
             <p class="price">200–299 €</p>
             <ul>
-              <li>Site vitrine complet (1 page avec sections)</li>
+              <li>Site vitrine 1 page (sections)</li>
               <li>Mise en ligne incluse</li>
-              <li>Adapté à tout type d’activité</li>
+              <li>Adapté à toute activité</li>
             </ul>
-            <a href="#contact" class="btn btn-outline">Choisir ce pack</a>
+            <a href="#contact" class="btn btn-ghost">Choisir ce pack</a>
           </article>
 
           <article class="price-card popular">
@@ -175,7 +182,7 @@
             <p class="price">499 €</p>
             <ul>
               <li>Plusieurs pages (services, galerie, contact…)</li>
-              <li>Personnalisation poussée</li>
+              <li>Design personnalisé</li>
               <li>Boutons d’action (appel, itinéraire, message)</li>
             </ul>
             <a href="#contact" class="btn btn-primary">Choisir ce pack</a>
@@ -187,9 +194,9 @@
             <ul>
               <li>Site complet + espace d’administration</li>
               <li>Gérez textes, images, menus, réservations…</li>
-              <li>Petite formation de prise en main</li>
+              <li>Mini-formation incluse</li>
             </ul>
-            <a href="#contact" class="btn btn-outline">Choisir ce pack</a>
+            <a href="#contact" class="btn btn-ghost">Choisir ce pack</a>
           </article>
         </div>
 
@@ -197,41 +204,12 @@
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="section">
-      <div class="container">
-        <h2>FAQ</h2>
-        <div class="faq-grid">
-          <details>
-            <summary>En combien de temps le site est prêt ?</summary>
-            <p>En général, en quelques jours après réception de vos informations (photos, textes, coordonnées).</p>
-          </details>
-          <details>
-            <summary>Est-ce lisible sur téléphone ?</summary>
-            <p>Oui. Tout est pensé pour les écrans de téléphone, tablette et ordinateur.</p>
-          </details>
-          <details>
-            <summary>Peut-on ajouter la commande en ligne plus tard ?</summary>
-            <p>Oui, c’est possible. Je relie votre site à une solution adaptée quand vous êtes prêt.</p>
-          </details>
-          <details>
-            <summary>Que veut dire “20 € par modification” ?</summary>
-            <p>C’est un petit changement demandé après la livraison (texte, photo, couleur, petite section).</p>
-          </details>
-          <details>
-            <summary>Qui s’occupe de la mise en ligne ?</summary>
-            <p>Je m’en occupe. Vous recevez un lien prêt à partager.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section section-alt">
+    <!-- CONTACT clair -->
+    <section id="contact" class="section light">
       <div class="container contact-grid">
         <div>
           <h2>Contact</h2>
-          <p>Discutons de votre site. Je réponds vite et clairement.</p>
+          <p>Parlons de votre site. Je réponds vite et clairement.</p>
           <ul class="contact-list">
             <li><a class="contact-link" id="telLink" href="tel:+33788589812">📞 07 88 58 98 12</a></li>
             <li><a class="contact-link" id="gmailBtn" href="#" target="_blank" rel="noopener">✉️ Écrire depuis Gmail</a></li>
