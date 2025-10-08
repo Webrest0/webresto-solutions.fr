@@ -1,17 +1,12 @@
+<!DOCTYPE html>
+<html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>WebResto-Solution</title>
   <meta name="description" content="Sites vitrines modernes pour entreprises, artisans, mariages, restaurants, associations. Visible sur téléphone.">
-
-  <!-- favicon -->
   <link rel="icon" type="image/png" href="Images/wr-logo-red.png">
-
-  <!-- CSS principal (respecte ta casse 'CSS/') -->
   <link rel="stylesheet" href="CSS/style.css?v=2025-01">
-
-  <!-- Secours si jamais ton dossier est en 'css/' (certains clones changent la casse) -->
-  <link rel="stylesheet" href="css/style.css?v=2025-01">
 </head>
 <body>
 
@@ -30,7 +25,7 @@
 
       <ul class="nav-list">
         <li><a href="#accueil">Accueil</a></li>
-        <li><a href="#exemples">Exemples</a></li>
+        <li><a href="#exemple">Exemple</a></li>
         <li><a href="#tarifs">Tarifs</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -44,13 +39,12 @@
         <h1>Des sites modernes, visibles et sur mesure.</h1>
         <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="#exemples">Voir un exemple</a>
+          <a class="btn btn-primary" href="#exemple">Voir un exemple</a>
           <a class="btn btn-ghost" href="#contact">Demander un site</a>
         </div>
       </div>
 
       <div class="hero-visual">
-        <!-- Image locale optionnelle + fallback en ligne -->
         <img
           src="Images/hero-dark-office.png"
           alt="Bureau sombre avec LED rouge"
@@ -60,45 +54,25 @@
 
     <hr class="divider">
 
-    <!-- EXEMPLES / CAROUSEL (images en ligne, rien à ajouter dans /Images) -->
-    <section id="exemples" class="section">
-      <h2>Quelques réalisations</h2>
+    <!-- EXEMPLE UNIQUE (Pizz Amigo) -->
+    <section id="exemple" class="section">
+      <h2>Exemple</h2>
 
-      <div class="carousel">
-        <button class="carousel-btn prev" aria-label="Précédent">‹</button>
-
-        <div class="carousel-viewport">
-          <div class="carousel-track">
-            <div class="slide">
-              <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop" alt="Entreprise moderne">
-              <div class="slide-caption">Entreprise</div>
-            </div>
-
-            <div class="slide">
-              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Restaurant chaleureux">
-              <div class="slide-caption">Restaurant</div>
-            </div>
-
-            <div class="slide">
-              <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?q=80&w=1600&auto=format&fit=crop" alt="Mariage élégant">
-              <div class="slide-caption">Mariage</div>
-            </div>
-
-            <div class="slide">
-              <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600&auto=format&fit=crop" alt="Artisan / atelier">
-              <div class="slide-caption">Artisan</div>
-            </div>
-          </div>
+      <div class="example example-dark">
+        <div class="example-text">
+          <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
+          <p>Site vitrine simple, propre et lisible sur téléphone.</p>
+          <a class="btn btn-primary" target="_blank" rel="noopener" href="https://webrest0.github.io/pizz-amigo.fr/">Voir le site</a>
         </div>
-
-        <button class="carousel-btn next" aria-label="Suivant">›</button>
-        <div class="carousel-dots" aria-hidden="true"></div>
+        <div class="example-visual">
+          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2000&auto=format&fit=crop" alt="Exemple pizzeria">
+        </div>
       </div>
     </section>
 
     <hr class="divider">
 
-    <!-- TARIFS -->
+    <!-- TARIFS (comme avant) -->
     <section id="tarifs" class="section">
       <h2>Tarifs</h2>
       <p class="section-lead">Des offres simples et transparentes : vous choisissez, je réalise.</p>
@@ -126,7 +100,7 @@
 
     <hr class="divider">
 
-    <!-- CONTACT (Gmail app + mailto fallback) -->
+    <!-- CONTACT (remplacé : un seul bouton “Écrire à smarttlelearning@gmail.com”) -->
     <section id="contact" class="section contact">
       <h2>Contact</h2>
       <p class="muted">Parlons de votre site. Réponse rapide et claire.</p>
@@ -135,7 +109,7 @@
         <div class="contact-panel">
           <div class="quick-actions">
             <a id="callBtn" class="qa-btn" href="tel:+33788589812">📞 Appeler</a>
-            <a id="gmailBtn" class="qa-btn" href="#">✉️ Écrire depuis Gmail</a>
+            <!-- seul bouton email -->
             <a id="gmailBtnAddress" class="qa-btn" href="#">📧 smarttlelearning@gmail.com</a>
           </div>
         </div>
@@ -160,7 +134,6 @@
     <div class="container">webresto-solution.fr - 2025</div>
   </footer>
 
-  <!-- IMPORTANT : dossier js en minuscule -->
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=2025-01"></script>
 </body>
 </html>
