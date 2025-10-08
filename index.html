@@ -6,8 +6,8 @@
   <title>WebResto-Solution</title>
   <meta name="description" content="Sites vitrines modernes pour entreprises, artisans, mariages, restaurants, associations. Visible sur téléphone.">
   <link rel="icon" type="image/png" href="Images/wr-logo-red.png">
-  <link rel="stylesheet" href="CSS/style.css?v=2025-01">
-  <link rel="stylesheet" href="css/style.css?v=2025-01">
+  <link rel="stylesheet" href="CSS/style.css?v=2025-02">
+  <link rel="stylesheet" href="css/style.css?v=2025-02"><!-- secours si casse -->
 </head>
 <body>
 
@@ -18,6 +18,8 @@
         <img class="brand-logo" src="Images/wr-logo-red.png" alt="Logo WebResto-Solution">
         <span class="brand-name">WebResto-<br>Solution</span>
       </a>
+
+      <div class="spacer"></div>
 
       <div class="header-actions">
         <a class="call-btn" href="tel:+33788589812">Appeler</a>
@@ -56,66 +58,43 @@
 
     <hr class="divider">
 
-    <!-- POUR QUI ? -->
+    <!-- POUR QUI ?  (carrousel ici) -->
     <section id="pourqui" class="section">
       <h2>Pour qui ?</h2>
       <p class="section-lead">Je crée pour tous les besoins :</p>
-      <div class="cards pq-grid">
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop" alt="Entreprise / services">
-          <h3>Entreprise / services</h3>
-          <p>Présentez vos offres, vos avis, vos coordonnées et un bouton d’appel clair.</p>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600&auto=format&fit=crop" alt="Artisan / atelier">
-          <h3>Artisan / atelier</h3>
-          <p>Mettez vos réalisations en avant, horaires et prise de contact simple.</p>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?q=80&w=1600&auto=format&fit=crop" alt="Mariage / événement">
-          <h3>Mariage / événement</h3>
-          <p>Page d’infos pour les invités : date, lieu, programme, photos.</p>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Restaurant / fast-food">
-          <h3>Restaurant / fast-food</h3>
-          <p>Menu, photos, plan d’accès et possibilité de commande en ligne.</p>
-        </article>
-      </div>
-    </section>
-
-    <hr class="divider">
-
-    <!-- EXEMPLE (carrousel + CTA vers Pizz'Amigo) -->
-    <section id="exemple" class="section">
-      <h2>Exemple</h2>
 
       <div class="carousel">
         <button class="carousel-btn prev" aria-label="Précédent">‹</button>
         <div class="carousel-viewport">
           <div class="carousel-track">
             <div class="slide">
-              <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop" alt="Entreprise">
-              <div class="slide-caption">Entreprise</div>
+              <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop" alt="Entreprise / services">
+              <div class="slide-caption">Entreprise / services</div>
             </div>
             <div class="slide">
-              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Restaurant">
-              <div class="slide-caption">Restaurant</div>
+              <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600&auto=format&fit=crop" alt="Artisan / atelier">
+              <div class="slide-caption">Artisan / atelier</div>
             </div>
             <div class="slide">
-              <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?q=80&w=1600&auto=format&fit=crop" alt="Mariage">
-              <div class="slide-caption">Mariage</div>
+              <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?q=80&w=1600&auto=format&fit=crop" alt="Mariage / événement">
+              <div class="slide-caption">Mariage / événement</div>
             </div>
             <div class="slide">
-              <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600&auto=format&fit=crop" alt="Artisan">
-              <div class="slide-caption">Artisan</div>
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Restaurant / fast-food">
+              <div class="slide-caption">Restaurant / fast-food</div>
             </div>
           </div>
         </div>
         <button class="carousel-btn next" aria-label="Suivant">›</button>
         <div class="carousel-dots" aria-hidden="true"></div>
       </div>
+    </section>
 
+    <hr class="divider">
+
+    <!-- EXEMPLE (sans carrousel) -->
+    <section id="exemple" class="section">
+      <h2>Exemple</h2>
       <div class="example example-dark">
         <div class="example-text">
           <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
@@ -130,7 +109,7 @@
 
     <hr class="divider">
 
-    <!-- TARIFS (badge + bouton choisir) -->
+    <!-- TARIFS : 3 packs de base -->
     <section id="tarifs" class="section">
       <h2>Tarifs</h2>
       <p class="section-lead">Des offres simples et transparentes : vous choisissez, je réalise.</p>
@@ -143,6 +122,13 @@
           <button class="btn btn-ghost select-plan" data-plan="Site vitrine (200–299€)">Choisir ce pack</button>
         </article>
 
+        <article class="card">
+          <h3>Site vitrine + commandes en ligne</h3>
+          <p class="price">Sur devis</p>
+          <p>Ajout d’un système de commande relié au site (resto, snack, boutique...).</p>
+          <button class="btn btn-ghost select-plan" data-plan="Site vitrine + commandes en ligne (sur devis)">Choisir ce pack</button>
+        </article>
+
         <article class="card popular">
           <div class="badge">Le plus choisi</div>
           <h3>Site avec dashboard</h3>
@@ -150,14 +136,9 @@
           <p>Tableau de bord pour gérer vos contenus et commandes.</p>
           <button class="btn btn-primary select-plan" data-plan="Site avec dashboard (899€)">Choisir ce pack</button>
         </article>
-
-        <article class="card">
-          <h3>Modification</h3>
-          <p class="price">20€ / changement</p>
-          <p>Texte, photo, couleur, petite section…</p>
-          <button class="btn btn-ghost select-plan" data-plan="Modification (20€ / changement)">Choisir ce pack</button>
-        </article>
       </div>
+
+      <p class="pricing-note">Modifications après achat : <strong>20€ / changement</strong> (texte, photo, couleur, petite section…)</p>
     </section>
 
     <hr class="divider">
@@ -195,6 +176,6 @@
     <div class="container">webresto-solution.fr - 2025</div>
   </footer>
 
-  <script src="js/app.js?v=2025-01"></script>
+  <script src="js/app.js?v=2025-02"></script>
 </body>
 </html>
