@@ -17,7 +17,7 @@ function gmailDeepLink(to, subject, body) {
   setTimeout(() => clearTimeout(t), 1500);
 }
 
-// === CAROUSEL ===
+// === CAROUSEL (Pour qui ?) ===
 let index = 0;
 function moveSlide(step) {
   const track = document.querySelector('.carousel-track');
@@ -33,11 +33,11 @@ function updateDots() {
 
 // === INIT ===
 document.addEventListener("DOMContentLoaded", () => {
-  // Appel
+  // Appeler
   document.querySelectorAll('[href^="tel:"], .call-btn')
     .forEach(btn => btn.setAttribute("href", `tel:${PHONE_E164}`));
 
-  // Bouton email (contact)
+  // Email unique
   const gmailAddressBtn = document.getElementById("gmailBtnAddress");
   if (gmailAddressBtn) {
     gmailAddressBtn.addEventListener("click", (e) => {
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Boutons "Choisir ce pack" → Gmail avec objet du plan
+  // Boutons “Choisir ce pack”
   document.querySelectorAll(".select-plan").forEach(btn => {
     btn.addEventListener("click", () => {
       const plan = btn.getAttribute("data-plan") || "Pack";
@@ -77,6 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     prev.addEventListener("click", () => { moveSlide(-1); updateDots(); });
     next.addEventListener("click", () => { moveSlide(1); updateDots(); });
+
+    // Swipe mobile
     let startX = null;
     track.addEventListener("touchstart", (e) => startX = e.touches[0].clientX, { passive: true });
     track.addEventListener("touchmove", (e) => {
