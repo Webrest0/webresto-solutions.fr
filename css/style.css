@@ -4,9 +4,9 @@
   --primary:#ff2d2d; --primary-weak:#ff2d2d22;
   --radius:16px; --shadow:0 16px 40px rgba(0,0,0,.45); --maxw:1200px;
 }
-*{box-sizing:border-box} html,body{margin:0;padding:0}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
 body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg-1);color:var(--text-1);line-height:1.6}
-
 .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 .section{padding:88px 0}
 .dark{background:linear-gradient(180deg,var(--bg-1),var(--bg-2))}
@@ -19,15 +19,10 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,s
 .header-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;height:72px;gap:14px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text-1)}
 .brand-name{font-weight:700}
-
-/* Logo sombre + masque (efface visuel blanc si ton PNG a un fond) */
 .logo-wrapper{position:relative;display:inline-block}
-.brand-logo{height:32px;width:auto;position:relative;z-index:2}
+.brand-logo{height:32px;width:auto;position:relative;z-index:2;display:block}
 .brand-logo--dark{filter:grayscale(45%) brightness(.82) drop-shadow(0 0 8px rgba(255,45,45,.35))}
-.logo-mask{position:absolute;inset:-4px;z-index:1;border-radius:10px;background:var(--bg-1)}
-.neon-glow{position:absolute;inset:-10px;z-index:0;border-radius:16px;pointer-events:none;
-  background:radial-gradient(circle at 20% 50%, rgba(255,45,45,.35) 0%, rgba(255,45,45,0) 70%);
-  animation:neonPulse 3s ease-in-out infinite}
+.neon-glow{position:absolute;inset:-10px;z-index:0;border-radius:16px;pointer-events:none;background:radial-gradient(circle at 20% 50%, rgba(255,45,45,.35) 0%, rgba(255,45,45,0) 70%);animation:neonPulse 3s ease-in-out infinite}
 @keyframes neonPulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:.75;transform:scale(1.06)}}
 
 .main-nav{justify-self:center}
@@ -61,7 +56,8 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,s
 @media (max-width:1100px){.cards-grid.lg{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.cards-grid.lg{grid-template-columns:1fr}}
 .card-dark{background:var(--bg-3);color:var(--text-1);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
-.card-dark img{width:100%;height:220px;object-fit:cover;display:block;filter:brightness(.92)}
+.card-media{width:100%;aspect-ratio:16/10;overflow:hidden}
+.card-media img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.92)}
 .card-dark h3{margin:12px 16px 6px}
 .card-dark p{margin:0 16px 18px;color:var(--text-2)}
 
@@ -72,15 +68,26 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,s
 @media (max-width:1000px){.features-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.features-grid{grid-template-columns:1fr}}
 
-/* EXEMPLES */
+/* EXEMPLES highlight */
 .example{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center;margin-bottom:26px}
 .example-dark{background:var(--bg-3);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px}
 .example-visual img{width:100%;border-radius:12px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
-.gallery-scroll{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,1fr);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
-.gallery-card-dark{scroll-snap-align:start;background:var(--bg-3);color:var(--text-1);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
-.gallery-card-dark img{width:100%;height:200px;object-fit:cover;display:block;filter:brightness(.92)}
-.gallery-card-dark figcaption{padding:12px;font-weight:700}
 @media (max-width:900px){.example{grid-template-columns:1fr}}
+
+/* CAROUSEL à flèches */
+.carousel{position:relative;margin-top:16px}
+.carousel-viewport{overflow:hidden;border-radius:18px;border:1px solid var(--line);background:var(--bg-3);box-shadow:var(--shadow)}
+.carousel-track{display:flex;transition:transform .45s ease}
+.slide{min-width:100%;position:relative;aspect-ratio:16/9}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.slide-caption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);padding:8px 12px;border-radius:999px;font-weight:700}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#0f1115;color:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:var(--shadow)}
+.carousel-btn:hover{background:#15161a}
+.carousel-btn.prev{left:10px}
+.carousel-btn.next{right:10px}
+.carousel-dots{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.carousel-dots button{width:8px;height:8px;border-radius:50%;border:0;background:#2f323a;opacity:.7;cursor:pointer}
+.carousel-dots button.active{background:var(--primary);opacity:1}
 
 /* TARIFS */
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -91,10 +98,14 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,s
 .note{margin-top:12px}.muted{color:var(--text-2)}
 @media (max-width:1000px){.pricing-grid{grid-template-columns:1fr}}
 
-/* CONTACT */
+/* CONTACT – interface améliorée */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.contact-list{list-style:none;padding:0;margin:14px 0;display:grid;gap:10px}
-.contact-link-dark{text-decoration:none;color:var(--text-1);background:var(--bg-3);padding:12px 14px;border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.contact-panel{background:var(--bg-3);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px}
+.quick-actions{display:grid;gap:10px;margin-top:10px}
+.qa-btn{display:flex;align-items:center;gap:10px;text-decoration:none;background:#0f1115;border:1px solid var(--line);padding:12px 14px;border-radius:12px;color:var(--text-1);box-shadow:var(--shadow)}
+.qa-btn:hover{background:#14161b}
+.qa-ico{font-size:18px;line-height:1}
+
 .contact-form-dark{background:var(--bg-3);padding:20px;border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow);display:grid;gap:12px}
 .contact-form-dark label{font-weight:600}
 .contact-form-dark input,.contact-form-dark textarea{width:100%;padding:12px;border:1px solid #24252b;border-radius:10px;font:inherit;background:#0f1115;color:var(--text-1);outline:2px solid transparent;transition:.15s}
