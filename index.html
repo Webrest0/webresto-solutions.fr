@@ -4,21 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>WebResto-Solution — Création de sites modernes</title>
-  <meta name="description" content="Création de sites vitrines modernes, lisibles sur téléphone. Entreprises, artisans, mariages, restaurants, associations.">
+  <meta name="description" content="Sites vitrines modernes, 100% sombre, lisibles sur téléphone. Entreprises, artisans, mariages, restaurants, associations.">
   <meta property="og:title" content="WebResto-Solution — Création de sites modernes">
-  <meta property="og:description" content="Sites clairs, rapides, et beaux sur mobile.">
+  <meta property="og:description" content="Sites clairs, rapides et beaux sur mobile.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="dark-all">
 
-  <!-- Header -->
+  <!-- Header (sombre) -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="#accueil" class="brand" aria-label="Aller à l’accueil">
-        <img src="Images/wr-logo.png" alt="Logo WR" class="brand-logo" />
+        <!-- Logo sombre -->
+        <img src="Images/wr-logo.png" alt="Logo WR" class="brand-logo brand-logo--dark" />
         <span class="brand-name">WebResto-Solution</span>
       </a>
 
@@ -32,11 +33,12 @@
           <li><a href="#services" class="nav-link">Services</a></li>
           <li><a href="#exemples" class="nav-link">Exemples</a></li>
           <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
-          <li><a href="#contact" class="btn btn-primary">Demander un site</a></li>
+          <li><a href="#contact" class="btn btn-ghost">Contact</a></li>
         </ul>
       </nav>
 
-      <a class="header-phone" id="telTop" href="tel:+33788589812">07 88 58 98 12</a>
+      <!-- Bouton Appeler (à la place du numéro) -->
+      <a class="header-call btn btn-primary" id="callTop" href="tel:+33788589812">Appeler</a>
     </div>
   </header>
 
@@ -53,34 +55,34 @@
           </div>
         </div>
         <div class="hero-visual">
-          <!-- Grande image sombre (pas de “case d’aperçu”) -->
-          <img src="https://images.unsplash.com/photo-1529336953121-ad3c6bf8f06b?q=80&w=2000&auto=format&fit=crop" alt="Ambiance web sombre et moderne" loading="eager">
+          <!-- Image “bureau sombre + néon” (tu peux remplacer par ton image locale dans /Images/) -->
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=2000&auto=format&fit=crop" alt="Bureau sombre avec LED néon" loading="eager">
         </div>
       </div>
     </section>
 
-    <!-- POUR QUI ? clair -->
-    <section id="pourqui" class="section light">
+    <!-- POUR QUI ? (sombre) -->
+    <section id="pourqui" class="section dark">
       <div class="container">
         <h2>Pour qui ?</h2>
-        <p class="section-lead">Sites clairs et efficaces pour tous :</p>
-        <div class="cards-grid lg">
-          <article class="card">
+        <p class="section-lead">Sites efficaces, pensés pour tous :</p>
+        <div class="cards-grid lg cards-dark">
+          <article class="card card-dark">
             <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?q=80&w=1200&auto=format&fit=crop" alt="Décoration de mariage" loading="lazy">
             <h3>Mariages / événements</h3>
             <p>Page simple pour vos invités : date, lieux, programme.</p>
           </article>
-          <article class="card">
+          <article class="card card-dark">
             <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Équipe en réunion" loading="lazy">
             <h3>Entreprises / services</h3>
             <p>Présentez vos services et votre savoir-faire clairement.</p>
           </article>
-          <article class="card">
+          <article class="card card-dark">
             <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1200&auto=format&fit=crop" alt="Atelier artisan" loading="lazy">
             <h3>Artisans / ateliers</h3>
             <p>Montrez vos réalisations, vos horaires et vos contacts.</p>
           </article>
-          <article class="card">
+          <article class="card card-dark">
             <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop" alt="Salle de restaurant" loading="lazy">
             <h3>Restaurants / fast-foods</h3>
             <p>Menu, photos, plan d’accès et option commande en ligne.</p>
@@ -89,32 +91,32 @@
       </div>
     </section>
 
-    <!-- SERVICES gris foncé (mix) -->
-    <section id="services" class="section mid">
+    <!-- SERVICES (sombre) -->
+    <section id="services" class="section dark deeper">
       <div class="container">
         <h2>Services</h2>
         <div class="features-grid">
-          <div class="feature">
+          <div class="feature feature-dark">
             <h3>Site vitrine complet</h3>
             <p>Accueil, infos, photos, contact. Tout ce qu’il faut pour être crédible.</p>
           </div>
-          <div class="feature">
+          <div class="feature feature-dark">
             <h3>Mise en ligne comprise</h3>
             <p>Je m’occupe de tout. Vous recevez un lien prêt à partager.</p>
           </div>
-          <div class="feature">
+          <div class="feature feature-dark">
             <h3>Lisible partout</h3>
             <p>Le site s’adapte aux téléphones, tablettes et ordinateurs.</p>
           </div>
-          <div class="feature">
+          <div class="feature feature-dark">
             <h3>Commande en ligne (option)</h3>
             <p>Connexion à une solution de commande ou de réservation.</p>
           </div>
-          <div class="feature">
+          <div class="feature feature-dark">
             <h3>Mises à jour</h3>
             <p>Après l’achat, <strong>20 € par modification</strong> (texte, photo, couleur, petite section).</p>
           </div>
-          <div class="feature">
+          <div class="feature feature-dark">
             <h3>Accompagnement</h3>
             <p>Des réponses simples et rapides, sans jargon.</p>
           </div>
@@ -122,11 +124,11 @@
       </div>
     </section>
 
-    <!-- EXEMPLES clair avec grandes images -->
-    <section id="exemples" class="section light">
+    <!-- EXEMPLES (sombre) -->
+    <section id="exemples" class="section dark">
       <div class="container">
         <h2>Exemples</h2>
-        <div class="example highlight">
+        <div class="example example-dark">
           <div class="example-text">
             <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
             <p>Site vitrine simple, propre et lisible sur téléphone.</p>
@@ -138,19 +140,19 @@
         </div>
 
         <div class="gallery-scroll xl" aria-label="Autres inspirations">
-          <figure class="gallery-card">
+          <figure class="gallery-card gallery-card-dark">
             <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop" alt="Développement web sombre" loading="lazy">
             <figcaption>Ambiance web</figcaption>
           </figure>
-          <figure class="gallery-card">
+          <figure class="gallery-card gallery-card-dark">
             <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop" alt="Événement chic" loading="lazy">
             <figcaption>Événement</figcaption>
           </figure>
-          <figure class="gallery-card">
+          <figure class="gallery-card gallery-card-dark">
             <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop" alt="Bureau moderne" loading="lazy">
             <figcaption>Entreprise</figcaption>
           </figure>
-          <figure class="gallery-card">
+          <figure class="gallery-card gallery-card-dark">
             <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Restaurant" loading="lazy">
             <figcaption>Restauration</figcaption>
           </figure>
@@ -158,14 +160,14 @@
       </div>
     </section>
 
-    <!-- TARIFS sombre -->
-    <section id="tarifs" class="section dark">
+    <!-- TARIFS (sombre) -->
+    <section id="tarifs" class="section dark deeper">
       <div class="container">
         <h2>Tarifs</h2>
         <p class="section-lead">Des offres claires. Vous choisissez, je m’occupe du reste.</p>
 
         <div class="pricing-grid">
-          <article class="price-card">
+          <article class="price-card price-card-dark">
             <h3>Pack Vitrine</h3>
             <p class="price">200–299 €</p>
             <ul>
@@ -176,7 +178,7 @@
             <a href="#contact" class="btn btn-ghost">Choisir ce pack</a>
           </article>
 
-          <article class="price-card popular">
+          <article class="price-card price-card-dark popular">
             <span class="badge">Le plus choisi</span>
             <h3>Pack Pro</h3>
             <p class="price">499 €</p>
@@ -188,7 +190,7 @@
             <a href="#contact" class="btn btn-primary">Choisir ce pack</a>
           </article>
 
-          <article class="price-card">
+          <article class="price-card price-card-dark">
             <h3>Pack Dashboard</h3>
             <p class="price">899 €</p>
             <ul>
@@ -204,19 +206,20 @@
       </div>
     </section>
 
-    <!-- CONTACT clair -->
-    <section id="contact" class="section light">
-      <div class="container contact-grid">
+    <!-- CONTACT (sombre + formulaire dark) -->
+    <section id="contact" class="section dark">
+      <div class="container contact-grid contact-dark">
         <div>
           <h2>Contact</h2>
-          <p>Parlons de votre site. Je réponds vite et clairement.</p>
-          <ul class="contact-list">
-            <li><a class="contact-link" id="telLink" href="tel:+33788589812">📞 07 88 58 98 12</a></li>
-            <li><a class="contact-link" id="gmailBtn" href="#" target="_blank" rel="noopener">✉️ Écrire depuis Gmail</a></li>
-            <li><a class="contact-link" id="mailLink" href="mailto:smarttlelearning@gmail.com">📧 smarttlelearning@gmail.com</a></li>
+          <p class="muted">Parlons de votre site. Réponse rapide et claire.</p>
+          <ul class="contact-list contact-list-dark">
+            <li><a class="contact-link contact-link-dark" id="callBtn" href="tel:+33788589812">📞 Appeler</a></li>
+            <li><a class="contact-link contact-link-dark" id="gmailBtn" href="#" target="_blank" rel="noopener">✉️ Écrire depuis Gmail</a></li>
+            <li><a class="contact-link contact-link-dark" id="mailLink" href="mailto:smarttlelearning@gmail.com">📧 smarttlelearning@gmail.com</a></li>
           </ul>
         </div>
-        <form class="contact-form" action="mailto:smarttlelearning@gmail.com" method="post" enctype="text/plain">
+
+        <form class="contact-form contact-form-dark" action="mailto:smarttlelearning@gmail.com" method="post" enctype="text/plain">
           <label>Nom
             <input type="text" name="nom" required>
           </label>
