@@ -4,8 +4,8 @@
   --primary:#ff2d2d; --primary-weak:#ff2d2d22;
   --radius:16px; --shadow:0 16px 40px rgba(0,0,0,.45); --maxw:1200px;
 }
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
+/* Base / header / hero / sections… (identique à ta dernière version) */
+*{box-sizing:border-box} html,body{margin:0;padding:0}
 body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg-1);color:var(--text-1);line-height:1.6}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 .section{padding:88px 0}
@@ -14,14 +14,14 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,s
 .section h2{margin:0 0 16px;font-size:clamp(26px,4vw,36px)}
 .section-lead{opacity:.9;max-width:820px}
 
-/* HEADER */
+/* Header + logo */
 .site-header{position:sticky;top:0;z-index:60;background:rgba(8,9,12,.6);backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid var(--line)}
 .header-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;height:72px;gap:14px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text-1)}
 .brand-name{font-weight:700}
 .logo-wrapper{position:relative;display:inline-block}
 .brand-logo{height:32px;width:auto;position:relative;z-index:2;display:block}
-.brand-logo--dark{filter:grayscale(45%) brightness(.82) drop-shadow(0 0 8px rgba(255,45,45,.35))}
+.brand-logo--dark{filter:drop-shadow(0 0 8px rgba(255,45,45,.35))}
 .neon-glow{position:absolute;inset:-10px;z-index:0;border-radius:16px;pointer-events:none;background:radial-gradient(circle at 20% 50%, rgba(255,45,45,.35) 0%, rgba(255,45,45,0) 70%);animation:neonPulse 3s ease-in-out infinite}
 @keyframes neonPulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:.75;transform:scale(1.06)}}
 
@@ -61,7 +61,7 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,s
 .card-dark h3{margin:12px 16px 6px}
 .card-dark p{margin:0 16px 18px;color:var(--text-2)}
 
-/* SERVICES */
+/* SERVICES (inchangé) */
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .feature-dark{background:var(--bg-3);padding:20px;border-radius:16px;box-shadow:var(--shadow);border:1px solid var(--line)}
 .feature-dark h3{margin:0 0 6px}.feature-dark p{margin:0;color:var(--text-2)}
@@ -74,7 +74,7 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,s
 .example-visual img{width:100%;border-radius:12px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
 @media (max-width:900px){.example{grid-template-columns:1fr}}
 
-/* CAROUSEL à flèches */
+/* CAROUSEL à flèches (images 100% contenues) */
 .carousel{position:relative;margin-top:16px}
 .carousel-viewport{overflow:hidden;border-radius:18px;border:1px solid var(--line);background:var(--bg-3);box-shadow:var(--shadow)}
 .carousel-track{display:flex;transition:transform .45s ease}
@@ -89,7 +89,7 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,s
 .carousel-dots button{width:8px;height:8px;border-radius:50%;border:0;background:#2f323a;opacity:.7;cursor:pointer}
 .carousel-dots button.active{background:var(--primary);opacity:1}
 
-/* TARIFS */
+/* TARIFS (inchangé) */
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .price-card-dark{background:var(--bg-3);padding:24px;border-radius:18px;box-shadow:var(--shadow);border:1px solid var(--line);position:relative}
 .price{font-size:30px;font-weight:800;margin:.25rem 0 1rem}
@@ -98,14 +98,13 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,s
 .note{margin-top:12px}.muted{color:var(--text-2)}
 @media (max-width:1000px){.pricing-grid{grid-template-columns:1fr}}
 
-/* CONTACT – interface améliorée */
+/* CONTACT – “case” plus clean */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .contact-panel{background:var(--bg-3);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px}
-.quick-actions{display:grid;gap:10px;margin-top:10px}
-.qa-btn{display:flex;align-items:center;gap:10px;text-decoration:none;background:#0f1115;border:1px solid var(--line);padding:12px 14px;border-radius:12px;color:var(--text-1);box-shadow:var(--shadow)}
+.quick-actions{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+.qa-btn{display:flex;align-items:center;gap:10px;text-decoration:none;background:#0f1115;border:1px solid var(--line);padding:14px 16px;border-radius:12px;color:var(--text-1);box-shadow:var(--shadow)}
 .qa-btn:hover{background:#14161b}
 .qa-ico{font-size:18px;line-height:1}
-
 .contact-form-dark{background:var(--bg-3);padding:20px;border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow);display:grid;gap:12px}
 .contact-form-dark label{font-weight:600}
 .contact-form-dark input,.contact-form-dark textarea{width:100%;padding:12px;border:1px solid #24252b;border-radius:10px;font:inherit;background:#0f1115;color:var(--text-1);outline:2px solid transparent;transition:.15s}
