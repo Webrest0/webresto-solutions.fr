@@ -1,194 +1,196 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Webrest0 — Sites pros qui amènent des clients</title>
-  <meta name="description" content="Sites clairs, rapides et sécurisés pour restaurants, entreprises, artistes et évènements.">
-  <link rel="preload" href="images/wr-logo.png" as="image">
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
 </head>
-
 <body>
-  <!-- Header -->
+
+  <!-- HEADER -->
   <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="#">
-        <img src="images/wr-logo.png" alt="Webrest0" class="brand-logo" />
+    <div class="container header-flex">
+      <a class="brand" href="#top">
+        <img src="images/wr-logo.png" alt="Webrest0" class="brand-logo" width="28" height="28" />
         <span class="brand-name">Webrest0</span>
       </a>
 
-      <nav class="nav">
+      <button class="menu-btn" aria-label="Menu" id="menuBtn">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
         <a href="#offres">Offres</a>
         <a href="#realisations">Réalisations</a>
         <a href="#process">Process</a>
         <a href="#faq">FAQ</a>
-        <a class="btn btn-contact" href="tel:+33788589812">07 88 58 98 12</a>
-        <a class="btn btn-ghost" href="mailto:smarttlelearning@gmail.com">Email</a>
       </nav>
-
-      <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
     </div>
   </header>
 
-  <main>
-    <!-- Hero -->
-    <section class="section hero">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <h1>Un site moderne, rapide<br class="br-md"> qui vous amène des clients</h1>
-          <p class="lead">
-            Je crée des sites simples à comprendre, sécurisés (HTTPS) et visibles.
-            C’est <strong>primordial</strong> : sans site clair, vos futurs clients partent chez la concurrence.
-          </p>
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="container">
+      <h1>Un site moderne, rapide<br>qui vous amène des clients</h1>
+      <p class="lead">
+        Je crée des sites simples à comprendre, sécurisés (HTTPS) et visibles.
+        Sans site clair, vos futurs clients partent chez la concurrence.
+      </p>
 
-          <ul class="bullets">
-            <li>Ouverture rapide du site</li>
-            <li>Sécurité incluse (HTTPS + sauvegardes)</li>
-            <li>Design lisible — surtout sur mobile</li>
+      <ul class="bullet-tags">
+        <li>Ouverture rapide du site</li>
+        <li>Sécurité incluse (HTTPS + sauvegardes)</li>
+        <li>Design lisible — surtout sur mobile</li>
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn btn-call" href="tel:+33788589812">07 88 58 98 12</a>
+        <a class="btn btn-mail" href="mailto:smarttlelearning@gmail.com">smarttlelearning@gmail.com</a>
+      </div>
+
+      <!-- Badge image (s'affiche) -->
+      <figure class="hero-badge">
+        <img src="images/pizz-amigo-cover.jpg" alt="Exemple de rendu (PIZZ’AMIGO)" loading="lazy">
+        <figcaption>HTTPS • Vitesse • Mobile</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- OFFRES -->
+  <section class="section" id="offres">
+    <div class="container">
+      <h2>Offres & prix</h2>
+      <p class="section-sub">Choisissez ce qui vous convient. Objectif : plus de clients, plus de contacts.</p>
+
+      <div class="cards">
+        <article class="card">
+          <h3>Pack Vitrine</h3>
+          <p class="price">349 €</p>
+          <ul>
+            <li>1 page moderne (photos, infos, horaires, contact)</li>
+            <li>Design personnalisé et responsive</li>
+            <li>Hébergement gratuit possible (GitHub Pages)</li>
+            <li>HTTPS activé (sécurité)</li>
           </ul>
-
-          <div class="cta-row">
-            <a class="btn btn-primary" href="tel:+33788589812">📞 07 88 58 98 12</a>
-            <a class="chip" href="mailto:smarttlelearning@gmail.com">✉️ smarttlelearning@gmail.com</a>
-          </div>
-        </div>
-
-        <figure class="hero-visual card">
-          <!-- image décorative (optionnelle) -->
-          <img src="images/couverture-pizz-amigo.jpg" alt="Exemple de site vitrine sombre et lisible" loading="lazy">
-          <figcaption class="tagline">HTTPS • Vitesse • Mobile</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- Offres -->
-    <section id="offres" class="section">
-      <div class="wrap">
-        <h2>Offres & prix</h2>
-        <p class="muted">Choisissez ce qui vous convient. Objectif : plus de clients, plus de contacts.</p>
-
-        <div class="cards-grid">
-          <article class="card plan">
-            <h3>Pack Vitrine</h3>
-            <p class="price">349 €</p>
-            <ul>
-              <li>1 page moderne (photos, infos, horaires, contact)</li>
-              <li>Design personnalisé & responsive</li>
-              <li>Hébergement gratuit possible (GitHub Pages)</li>
-              <li>HTTPS activé pour une sécurité maximale</li>
-            </ul>
-            <p class="note">Acompte possible : une partie au début, le reste à la validation.</p>
-            <a class="btn btn-secondary" href="mailto:smarttlelearning@gmail.com?subject=Devis%20Pack%20Vitrine">Demander un devis</a>
-          </article>
-
-          <article class="card plan plan-featured">
-            <div class="badge">Recommandé</div>
-            <h3>Vitrine +</h3>
-            <p class="price">499 €</p>
-            <ul>
-              <li>Pages supplémentaires + galerie photos</li>
-              <li>Formulaire de contact protégé anti-spam</li>
-              <li>Mises en place titres/desc. + vitesse (référencement simple)</li>
-            </ul>
-            <a class="btn btn-secondary" href="mailto:smarttlelearning@gmail.com?subject=Devis%20Pack%20Vitrine%20Plus">Demander un devis</a>
-          </article>
-
-          <article class="card plan">
-            <h3>Pack Gestion (avec tableau)</h3>
-            <p class="price">899 €</p>
-            <ul>
-              <li>Tableau privé protégé par mot de passe</li>
-              <li>Historique exportable (CSV / Google Sheets)</li>
-              <li>Alertes son personnalisables sur nouvelles demandes</li>
-              <li>Sauvegardes et accès sécurisé</li>
-            </ul>
-            <a class="btn btn-secondary" href="mailto:smarttlelearning@gmail.com?subject=Devis%20Pack%20Gestion">Parler du besoin</a>
-          </article>
-        </div>
-
-        <p class="muted small">
-          Nom de domaine : facultatif (hébergeur gratuit possible) ou .fr/.com (~12–15 €/an).<br>
-          Pas d’abonnement : les petites modifications se font <strong>à la demande</strong>.
-        </p>
-      </div>
-    </section>
-
-    <!-- Réalisations -->
-    <section id="realisations" class="section">
-      <div class="wrap">
-        <h2>Réalisations</h2>
-
-        <article class="card showcase">
-          <div class="showcase-media">
-            <img src="images/couverture-pizz-amigo.jpg" alt="PIZZ’AMIGO — vitrine sombre claire et efficace" loading="lazy">
-          </div>
-          <div class="showcase-copy">
-            <h3>PIZZ’AMIGO — Montmerle-sur-Saône</h3>
-            <p>Vitrine sombre, claire et efficace. Bouton “Appeler” bien visible.
-              Hébergement gratuit et sécurisé (HTTPS).</p>
-            <a class="btn btn-outline" href="https://webrest0.github.io/pizz-amigo.fr/" target="_blank" rel="noopener">Voir le site</a>
-          </div>
+          <a class="btn btn-ghost" href="mailto:smarttlelearning@gmail.com?subject=Devis%20Pack%20Vitrine">Demander un devis</a>
         </article>
 
-        <div class="audiences">
-          <div class="aud-card">Restaurants & food-trucks<br><span>Carte lisible, appel direct, horaires visibles.</span></div>
-          <div class="aud-card">Entreprises & services<br><span>Offres simples, contact rapide, image pro.</span></div>
-          <div class="aud-card">Groupes de musique<br><span>Dates, extraits, contact booking.</span></div>
-          <div class="aud-card">Mariages & évènements<br><span>Infos pratiques, RSVP, galerie.</span></div>
-        </div>
-      </div>
-    </section>
+        <article class="card">
+          <h3>Pack Vitrine +</h3>
+          <p class="price">499 €</p>
+          <ul>
+            <li>Pages/sections en plus + galerie photos</li>
+            <li>Formulaire protégé anti-spam</li>
+            <li>Réglages “trouvable sur Google”</li>
+          </ul>
+          <a class="btn btn-ghost" href="mailto:smarttlelearning@gmail.com?subject=Devis%20Pack%20Vitrine+">Demander un devis</a>
+        </article>
 
-    <!-- Process -->
-    <section id="process" class="section">
-      <div class="wrap">
-        <h2>Comment ça se passe ?</h2>
-        <div class="steps">
-          <div class="step"><span>1.</span> On échange sur vos besoins</div>
-          <div class="step"><span>2.</span> Maquette (couleurs, blocs) pour valider</div>
-          <div class="step"><span>3.</span> Je construis le site avec vos textes & photos</div>
-          <div class="step"><span>4.</span> Mise en ligne sécurisée • corrections • validation</div>
-        </div>
+        <article class="card">
+          <h3>Pack Gestion</h3>
+          <p class="price">899 €</p>
+          <ul>
+            <li>Espace protégé par mot de passe</li>
+            <li>Historique/exports (CSV / Google Sheets)</li>
+            <li>Son d’alerte personnalisable à chaque commande</li>
+          </ul>
+          <a class="btn btn-ghost" href="mailto:smarttlelearning@gmail.com?subject=Devis%20Pack%20Gestion">Parler du besoin</a>
+        </article>
       </div>
-    </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="section">
-      <div class="wrap">
-        <h2>Questions fréquentes</h2>
-        <details class="faq">
-          <summary>Faut-il acheter un nom de domaine ?</summary>
-          <p>Non, pas obligatoire. Hébergement gratuit possible (avec HTTPS). Un .fr/.com apporte plus de sérieux (~12–15 €/an).</p>
-        </details>
-        <details class="faq">
-          <summary>Le site est-il sécurisé ?</summary>
-          <p>Oui : HTTPS, sauvegardes, anti-spam. Je mets la vitesse et la clarté en priorité.</p>
-        </details>
-        <details class="faq">
-          <summary>Et après la création ?</summary>
-          <p>Pas d’abonnement imposé : les petites modifications sont facturées <em>à la demande</em>.</p>
-        </details>
+      <p class="note">
+        Nom de domaine : gratuit possible ou votre .fr/.com (~12–15 €/an).<br>
+        Modifications ultérieures : au besoin, au forfait (pas d’abonnement).
+      </p>
+    </div>
+  </section>
+
+  <!-- RÉALISATIONS -->
+  <section class="section" id="realisations">
+    <div class="container">
+      <h2>Réalisations</h2>
+
+      <!-- CARROUSEL horizontal (une seule ligne qui scrolle) -->
+      <div class="h-carousel" data-carousel>
+        <article class="h-card">
+          <img src="images/pizz-amigo-cover.jpg" alt="PIZZ’AMIGO — Montmerle-sur-Saône" loading="lazy">
+          <h3>PIZZ’AMIGO — Montmerle-sur-Saône</h3>
+          <p>Vitrine sombre, claire et efficace. Bouton “Appeler” très visible.</p>
+          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://webrest0.github.io/pizz-amigo.fr/">Voir le site</a>
+        </article>
+
+        <article class="h-card">
+          <img src="images/pizz-amigo-cover.jpg" alt="Restaurants & food-trucks" loading="lazy">
+          <h3>Restaurants & food-trucks</h3>
+          <p>Carte lisible, appel direct, horaires visibles.</p>
+        </article>
+
+        <article class="h-card">
+          <img src="images/pizz-amigo-cover.jpg" alt="Entreprises & services" loading="lazy">
+          <h3>Entreprises & services</h3>
+          <p>Offres simples, contact rapide, image pro.</p>
+        </article>
+
+        <article class="h-card">
+          <img src="images/pizz-amigo-cover.jpg" alt="Groupes de musique" loading="lazy">
+          <h3>Groupes de musique</h3>
+          <p>Dates, extraits, contact booking.</p>
+        </article>
+
+        <article class="h-card">
+          <img src="images/pizz-amigo-cover.jpg" alt="Mariages & évènements" loading="lazy">
+          <h3>Mariages & évènements</h3>
+          <p>Infos pratiques, RSVP, galerie photo.</p>
+        </article>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <!-- Footer -->
+  <!-- PROCESS -->
+  <section class="section" id="process">
+    <div class="container">
+      <h2>Comment ça se passe ?</h2>
+
+      <div class="steps-grid">
+        <div class="step"><span class="n">1.</span> On échange sur vos besoins</div>
+        <div class="step"><span class="n">2.</span> Maquette (couleurs, blocs) pour valider</div>
+        <div class="step"><span class="n">3.</span> Je construis le site avec vos textes & photos</div>
+        <div class="step"><span class="n">4.</span> Mise en ligne sécurisée • corrections • validation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <h2>Questions fréquentes</h2>
+
+      <details class="faq">
+        <summary>Faut-il acheter un nom de domaine ?</summary>
+        <p>Pas obligatoire : hébergement gratuit possible (HTTPS). Un .fr/.com apporte un plus pro (~12–15 €/an).</p>
+      </details>
+
+      <details class="faq">
+        <summary>Le site est-il sécurisé ?</summary>
+        <p>Oui : HTTPS, sauvegardes, anti-spam. Objectif vitesse + clarté, surtout sur mobile.</p>
+      </details>
+
+      <details class="faq">
+        <summary>Et après la création ?</summary>
+        <p>Modifs au besoin, au forfait. Paiement possible en 2 temps : acompte au début, solde à la validation.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <p>© <strong>webresto-solutions.fr</strong> — 2025</p>
-      <nav class="footer-nav">
-        <a href="#offres">Offres</a>
-        <a href="#realisations">Réalisations</a>
-        <a href="#process">Process</a>
-        <a href="#faq">FAQ</a>
-      </nav>
+    <div class="container">
+      <small>webrest0-solutions.fr — 2025</small>
     </div>
   </footer>
 
-  <!-- Bouton call flottant -->
-  <a href="tel:+33788589812" class="fab" aria-label="Appeler Webrest0">📞</a>
-
-  <script src="js/app.js" defer></script>
 </body>
 </html>
