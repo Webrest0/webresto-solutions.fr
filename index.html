@@ -1,26 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Webrest0 — Sites pros qui amènent des clients</title>
-  <link rel="preload" href="styles.css" as="style">
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="app.js"></script>
+
+  <!-- Lien vers les bons dossiers -->
+  <link rel="stylesheet" href="./css/style.css?v=3">
+  <script defer src="./js/app.js?v=3"></script>
 </head>
-<body>
+<body id="top">
 
   <!-- HEADER -->
   <header class="site-header">
     <div class="container header-flex">
       <a class="brand" href="#top">
-        <img src="images/wr-logo.png" alt="Webrest0" class="brand-logo" width="28" height="28" />
+        <img src="./images/wr-logo.png" alt="Webrest0" class="brand-logo" width="28" height="28">
         <span class="brand-name">Webrest0</span>
       </a>
 
-      <button class="menu-btn" aria-label="Menu" id="menuBtn">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="menu-btn" aria-label="Menu" id="menuBtn"><span></span><span></span><span></span></button>
 
       <nav class="main-nav" id="mainNav">
         <a href="#offres">Offres</a>
@@ -32,7 +31,7 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero" id="top">
+  <section class="hero">
     <div class="container">
       <h1>Un site moderne, rapide<br>qui vous amène des clients</h1>
       <p class="lead">
@@ -51,9 +50,8 @@
         <a class="btn btn-mail" href="mailto:smarttlelearning@gmail.com">smarttlelearning@gmail.com</a>
       </div>
 
-      <!-- Badge image (s'affiche) -->
       <figure class="hero-badge">
-        <img src="images/pizz-amigo-cover.jpg" alt="Exemple de rendu (PIZZ’AMIGO)" loading="lazy">
+        <img src="./images/pizz-amigo-cover.jpg" alt="Exemple (PIZZ’AMIGO)" loading="lazy">
         <figcaption>HTTPS • Vitesse • Mobile</figcaption>
       </figure>
     </div>
@@ -113,35 +111,34 @@
     <div class="container">
       <h2>Réalisations</h2>
 
-      <!-- CARROUSEL horizontal (une seule ligne qui scrolle) -->
       <div class="h-carousel" data-carousel>
         <article class="h-card">
-          <img src="images/pizz-amigo-cover.jpg" alt="PIZZ’AMIGO — Montmerle-sur-Saône" loading="lazy">
+          <img src="./images/pizz-amigo-cover.jpg" alt="PIZZ’AMIGO — Montmerle-sur-Saône" loading="lazy">
           <h3>PIZZ’AMIGO — Montmerle-sur-Saône</h3>
           <p>Vitrine sombre, claire et efficace. Bouton “Appeler” très visible.</p>
           <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://webrest0.github.io/pizz-amigo.fr/">Voir le site</a>
         </article>
 
         <article class="h-card">
-          <img src="images/pizz-amigo-cover.jpg" alt="Restaurants & food-trucks" loading="lazy">
+          <img src="./images/pizz-amigo-cover.jpg" alt="Restaurants & food-trucks" loading="lazy">
           <h3>Restaurants & food-trucks</h3>
           <p>Carte lisible, appel direct, horaires visibles.</p>
         </article>
 
         <article class="h-card">
-          <img src="images/pizz-amigo-cover.jpg" alt="Entreprises & services" loading="lazy">
+          <img src="./images/pizz-amigo-cover.jpg" alt="Entreprises & services" loading="lazy">
           <h3>Entreprises & services</h3>
           <p>Offres simples, contact rapide, image pro.</p>
         </article>
 
         <article class="h-card">
-          <img src="images/pizz-amigo-cover.jpg" alt="Groupes de musique" loading="lazy">
+          <img src="./images/pizz-amigo-cover.jpg" alt="Groupes de musique" loading="lazy">
           <h3>Groupes de musique</h3>
           <p>Dates, extraits, contact booking.</p>
         </article>
 
         <article class="h-card">
-          <img src="images/pizz-amigo-cover.jpg" alt="Mariages & évènements" loading="lazy">
+          <img src="./images/pizz-amigo-cover.jpg" alt="Mariages & évènements" loading="lazy">
           <h3>Mariages & évènements</h3>
           <p>Infos pratiques, RSVP, galerie photo.</p>
         </article>
@@ -153,7 +150,6 @@
   <section class="section" id="process">
     <div class="container">
       <h2>Comment ça se passe ?</h2>
-
       <div class="steps-grid">
         <div class="step"><span class="n">1.</span> On échange sur vos besoins</div>
         <div class="step"><span class="n">2.</span> Maquette (couleurs, blocs) pour valider</div>
@@ -167,29 +163,15 @@
   <section class="section" id="faq">
     <div class="container">
       <h2>Questions fréquentes</h2>
-
-      <details class="faq">
-        <summary>Faut-il acheter un nom de domaine ?</summary>
-        <p>Pas obligatoire : hébergement gratuit possible (HTTPS). Un .fr/.com apporte un plus pro (~12–15 €/an).</p>
-      </details>
-
-      <details class="faq">
-        <summary>Le site est-il sécurisé ?</summary>
-        <p>Oui : HTTPS, sauvegardes, anti-spam. Objectif vitesse + clarté, surtout sur mobile.</p>
-      </details>
-
-      <details class="faq">
-        <summary>Et après la création ?</summary>
-        <p>Modifs au besoin, au forfait. Paiement possible en 2 temps : acompte au début, solde à la validation.</p>
-      </details>
+      <details class="faq"><summary>Faut-il acheter un nom de domaine ?</summary><p>Pas obligatoire : hébergement gratuit possible (HTTPS). Un .fr/.com apporte un plus pro (~12–15 €/an).</p></details>
+      <details class="faq"><summary>Le site est-il sécurisé ?</summary><p>Oui : HTTPS, sauvegardes, anti-spam. Objectif vitesse + clarté, surtout sur mobile.</p></details>
+      <details class="faq"><summary>Et après la création ?</summary><p>Modifs au besoin, au forfait. Paiement possible en 2 temps : acompte au début, solde à la validation.</p></details>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="container">
-      <small>webrest0-solutions.fr — 2025</small>
-    </div>
+    <div class="container"><small>webrest0-solutions.fr — 2025</small></div>
   </footer>
 
 </body>
