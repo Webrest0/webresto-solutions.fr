@@ -3,175 +3,178 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Webrest0 — Sites pros pour restaurants & food-trucks</title>
-  <meta name="description" content="Création de sites vitrines & mini e-commerce rapides, sécurisés et optimisés pour restaurants et food-trucks.">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <title>Webrest0 — Sites pros pour restos & food-trucks</title>
+  <meta name="description" content="Création de sites vitrines et pro pour restaurants & food-trucks. Rapides, sécurisés (HTTPS), beaux et qui convertissent.">
+  <meta property="og:title" content="Webrest0 — Sites pros pour restos & food-trucks">
+  <meta property="og:description" content="Vitrines, e-commerce léger, réservation, SEO, hébergement.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2242%22 fill=%22%2326d07c%22/><text x=%2250%22 y=%2258%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22%230a0f16%22 font-family=%22Arial%22>W</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <!-- Fond animé -->
-  <div class="bg">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
-    <div class="grain"></div>
-  </div>
+  <!-- Barre d’action mobile -->
+  <a class="call-fab" href="tel:+33788589812" aria-label="Appeler Webrest0">📞</a>
 
-  <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="#top" aria-label="Webrest0 Accueil">
-        <!-- Logo SVG inline (aucun risque de 404) -->
-        <svg class="logo" width="28" height="28" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="g" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#25D366"/><stop offset="0.5" stop-color="#FFD43B"/><stop offset="1" stop-color="#F44336"/>
-            </linearGradient>
-          </defs>
-          <rect x="4" y="4" width="40" height="40" rx="10" fill="url(#g)"/>
-          <path d="M13 31l5.5-14h.9L27 31h-3l-1.2-3.2h-7.5L14 31h-1zM18.9 25h5.4L21.6 16 18.9 25zM33.5 17a2.5 2.5 0 112.5 2.5A2.5 2.5 0 0133.5 17z" fill="#0B0F14"/>
-        </svg>
-        <span>Webrest0</span>
-      </a>
-
-      <nav class="top-cta">
-        <a class="btn secondary" href="tel:+33788589812" aria-label="Appeler Webrest0">
-          <span class="i i-phone" aria-hidden="true"></span> 07 88 58 98 12
-        </a>
-        <a class="btn ghost" href="mailto:smarttlelearning@gmail.com">
-          <span class="i i-mail" aria-hidden="true"></span> smarttlelearning@gmail.com
-        </a>
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <div class="brand">
+        <div class="logo">⚡</div>
+        <div class="brand__text">
+          <div class="brand__name">Webrest0</div>
+          <div class="brand__tag">Sites pros pour restaurants & food-trucks</div>
+        </div>
+      </div>
+      <nav class="menu">
+        <a href="#offres">Offres</a>
+        <a href="#realisations">Réalisations</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn--small" href="mailto:smarttlelearning@gmail.com">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main id="top">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="wrap">
-        <p class="eyebrow">Sites pros pour restaurants & food-trucks</p>
-        <h1>Des sites <span class="accent">rapides</span>, <span class="accent">sécurisés</span> et <span class="accent">qui convertissent</span>.</h1>
-        <p class="sub">Carte claire, photos qui donnent faim, appels en un clic. HTTPS & sécurité intégrées, mobile first, délais courts.</p>
-        <div class="cta-row">
-          <a class="btn primary big" href="tel:+33788589812"><span class="i i-phone"></span> Appeler maintenant</a>
-          <a class="btn outline big" href="#tarifs"><span class="i i-rocket"></span> Voir les offres</a>
-        </div>
-        <ul class="benefits">
-          <li>Chargement ultra-rapide</li>
-          <li>Design sur-mesure</li>
-          <li>Hébergement gratuit possible</li>
-          <li>Maintenance en option</li>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="bg"></div>
+    <div class="wrap hero__inner">
+      <div class="hero__copy">
+        <h1>Des sites qui donnent faim 🍕</h1>
+        <p>Je crée des sites <b>rapides</b>, <b>sécurisés</b> (HTTPS) et <b>efficaces</b> pour restos & food-trucks : carte claire, photos qui claquent et appels qui tombent.</p>
+        <ul class="bullets">
+          <li>HTTPS & sécurité incluses</li>
+          <li>Optimisé mobile</li>
+          <li>Délais courts</li>
         </ul>
-      </div>
-    </section>
-
-    <!-- Section preuves rapides -->
-    <section class="proofs">
-      <div class="wrap cards">
-        <article class="card">
-          <h3>Optimisé mobile</h3>
-          <p>90% de vos visiteurs sont sur smartphone. J’optimise tout pour cliquer & appeler vite.</p>
-        </article>
-        <article class="card">
-          <h3>HTTPS & sécurité</h3>
-          <p>Certificat TLS, en-têtes de sécurité et déploiement propre. Confiance & SEO renforcés.</p>
-        </article>
-        <article class="card">
-          <h3>SEO local</h3>
-          <p>Mots-clés locaux, balises propres, Open Graph. Trouvable dès la mise en ligne.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Offres -->
-    <section id="tarifs" class="pricing">
-      <div class="wrap">
-        <h2>Offres & tarifs</h2>
-        <p class="note-domain">Nom de domaine <b>facultatif</b> : vous pouvez rester sur un hébergement gratuit (GitHub Pages). Pour un look 100% pro, je peux réserver/configurer votre domaine (.fr/.com).</p>
-
-        <div class="tiers">
-          <!-- Vitrine -->
-          <article class="tier">
-            <div class="badge">Populaire</div>
-            <h3>Pack Vitrine</h3>
-            <p class="price">349 € TTC</p>
-            <ul>
-              <li>1 page moderne (menu, photos, horaires, contact)</li>
-              <li>Design personnalisé & responsive</li>
-              <li>Hébergement gratuit possible (GitHub Pages)</li>
-              <li>HTTPS activé (site sécurisé)</li>
-              <li>Petites modifs incluses à la livraison</li>
-            </ul>
-            <a class="btn primary stretch" href="tel:+33788589812">Je lance mon site</a>
-          </article>
-
-          <!-- Carte interactive légère -->
-          <article class="tier">
-            <h3>Vitrine + Carte boostée</h3>
-            <p class="price">599 € TTC</p>
-            <ul>
-              <li>Pack Vitrine + carte structurée (prix, catégories)</li>
-              <li>Galerie photos & mise en avant promos</li>
-              <li>Formulaire “rappel” (envoi email)</li>
-              <li>Intégration Google Maps / itinéraire</li>
-              <li>Guide d’utilisation simple</li>
-            </ul>
-            <a class="btn outline stretch" href="mailto:smarttlelearning@gmail.com">Demander un devis</a>
-          </article>
-
-          <!-- Mini dashboard -->
-          <article class="tier">
-            <h3>Mini Dashboard</h3>
-            <p class="price">899 € TTC</p>
-            <ul>
-              <li>Vitrine + petit espace admin (modifier carte/prix)</li>
-              <li>Export CSV des produits</li>
-              <li>Auth simple + sauvegardes</li>
-              <li>Nom de domaine & mail pro (option)</li>
-              <li>Accompagnement au déploiement</li>
-            </ul>
-            <a class="btn outline stretch" href="mailto:smarttlelearning@gmail.com?subject=Devis%20Mini%20Dashboard">Demander un devis</a>
-          </article>
-        </div>
-
-        <div class="maintenance">
-          <h3>Maintenance & mises à jour</h3>
-          <div class="cols">
-            <div>
-              <p><b>Essentielle — 19 €/mois</b><br/>Hébergement & HTTPS, sauvegardes, petites corrections (textes/prix 1×/mois).</p>
-            </div>
-            <div>
-              <p><b>Pro — 39 €/mois</b><br/>Tout Essentielle + retouches visuelles, ajout d’images/sections (2×/mois) & support prioritaire.</p>
-            </div>
-          </div>
-          <p class="tiny">Sans engagement, résiliable à tout moment.</p>
+        <div class="cta">
+          <a class="btn" href="tel:+33788589812">📞 07 88 58 98 12</a>
+          <a class="btn ghost" href="mailto:smarttlelearning@gmail.com">✉️ smarttlelearning@gmail.com</a>
         </div>
       </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="contact">
-      <div class="wrap">
-        <h2>Parlons de votre projet</h2>
-        <p>Un appel de 5 minutes et on pose une date de mise en ligne.</p>
-        <div class="cta-row">
-          <a class="btn primary big" href="tel:+33788589812"><span class="i i-phone"></span> 07 88 58 98 12</a>
-          <a class="btn ghost big" href="mailto:smarttlelearning@gmail.com"><span class="i i-mail"></span> smarttlelearning@gmail.com</a>
+      <div class="hero__visual" aria-hidden="true">
+        <div class="glass-card">
+          <div class="pulse"></div>
+          <div class="lines"></div>
+          <div class="badge">HTTPS • SEO • Vitesse ⚡</div>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <p>© Webrest0 — Tous droits réservés</p>
-      <nav>
-        <a href="#tarifs">Tarifs</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  <!-- OFFRES & TARIFS -->
+  <section id="offres" class="wrap section">
+    <h2>Offres & tarifs</h2>
+    <p class="lead">Nom de domaine <b>facultatif</b> (hébergeur gratuit possible) ou <b>pro</b> avec votre .fr/.com. Sites livrés <b>sécurisés</b> (HTTPS) et <b>optimisés mobile</b>.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="card__title">Pack Vitrine</div>
+        <div class="price">349 € TTC</div>
+        <ul class="list">
+          <li>1 page moderne (menu, photos, horaires, contact)</li>
+          <li>Design personnalisé, responsive</li>
+          <li>Hébergement gratuit possible (GitHub Pages)</li>
+          <li>HTTPS activé</li>
+          <li>Petites modifs incluses à la livraison</li>
+        </ul>
+        <a class="btn block" href="mailto:smarttlelearning@gmail.com?subject=Devis%20Pack%20Vitrine">Demander un devis</a>
+      </div>
+
+      <div class="card card--pop">
+        <div class="card__title">Pack Pro</div>
+        <div class="price">599 € TTC</div>
+        <ul class="list">
+          <li>Jusqu’à 5 sections riches (galerie, avis, carte détaillée)</li>
+          <li>Animations légères & micro-interactions</li>
+          <li>Formulaire contact anti-spam</li>
+          <li>Hébergement gratuit ou domaine pro (option)</li>
+          <li>Intégration Google Maps / réseaux</li>
+        </ul>
+        <a class="btn block" href="mailto:smarttlelearning@gmail.com?subject=Devis%20Pack%20Pro">Demander un devis</a>
+      </div>
+
+      <div class="card">
+        <div class="card__title">Pack Dashboard</div>
+        <div class="price">899 € TTC <span class="muted">à partir de</span></div>
+        <ul class="list">
+          <li>Espace admin (gestion simple de contenu)</li>
+          <li>Export CSV / vues statistiques légères</li>
+          <li>Connexion sécurisée</li>
+          <li>Fonctions sur-mesure possibles</li>
+        </ul>
+        <a class="btn block" href="mailto:smarttlelearning@gmail.com?subject=Devis%20Pack%20Dashboard">Parler du besoin</a>
+      </div>
+    </div>
+
+    <div class="note">
+      Maintenance & évolutions : <b>19 €/mois</b> (Basique – sauvegardes, correctifs) ou <b>39 €/mois</b> (Pro – petites MAJ, prioritaire). Domaine pro .fr/.com : ~<b>12–15 €/an</b>.
+    </div>
+  </section>
+
+  <!-- RÉALISATIONS -->
+  <section id="realisations" class="wrap section">
+    <h2>Réalisations</h2>
+    <div class="card card--row">
+      <div class="card__media">
+        <div class="mock"></div>
+      </div>
+      <div class="card__content">
+        <div class="card__title">PIZZ’AMIGO — Montmerle-sur-Saône</div>
+        <p>Vitrine sombre élégante, carte claire, fond italien subtil, CTA “Appeler”. Hébergement gratuit sécurisé (HTTPS).</p>
+        <a class="btn ghost" target="_blank" rel="noopener" href="https://webrest0.github.io/pizz-amigo.fr/">Voir le site</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="wrap section">
+    <h2>Comment ça se passe ?</h2>
+    <div class="steps">
+      <div class="step"><span>1</span> Appel & besoins</div>
+      <div class="step"><span>2</span> Maquette rapide</div>
+      <div class="step"><span>3</span> Dév & contenu</div>
+      <div class="step"><span>4</span> Mise en ligne (HTTPS)</div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="wrap section">
+    <h2>FAQ</h2>
+    <details class="faq">
+      <summary>Faut-il acheter un nom de domaine&nbsp;?</summary>
+      <div>Pas obligatoire. On peut héberger gratuitement (GitHub Pages) avec HTTPS. Pour un rendu plus pro, je peux configurer <b>votre .fr/.com</b>.</div>
+    </details>
+    <details class="faq">
+      <summary>Le site est-il sécurisé&nbsp;?</summary>
+      <div>Oui, <b>HTTPS</b> activé par défaut, bonnes pratiques de performance et sécurité de base.</div>
+    </details>
+    <details class="faq">
+      <summary>Et après la livraison&nbsp;?</summary>
+      <div>Je propose la <b>maintenance</b> (19€/mois ou 39€/mois) pour mises à jour, sauvegardes et petites évolutions.</div>
+    </details>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="wrap section contact">
+    <h2>Parlons de votre projet</h2>
+    <div class="cta">
+      <a class="btn" href="tel:+33788589812">📞 07 88 58 98 12</a>
+      <a class="btn ghost" href="mailto:smarttlelearning@gmail.com">✉️ smarttlelearning@gmail.com</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap foot__inner">
+      <div class="foot__brand">© Webrest0 — 2025</div>
+      <div class="foot__links">
+        <a href="#offres">Offres</a>
+        <a href="#realisations">Réalisations</a>
+        <a href="#faq">FAQ</a>
+      </div>
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
