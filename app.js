@@ -1,5 +1,7 @@
-// ombre nav au scroll
-const nav = document.querySelector('.nav');
-window.addEventListener('scroll', () => {
-  nav.style.boxShadow = (window.scrollY > 8) ? '0 8px 24px rgba(0,0,0,.25)' : 'none';
+// menu mobile
+const burger = document.getElementById('burger');
+burger?.addEventListener('click', () => {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+  nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
 });
