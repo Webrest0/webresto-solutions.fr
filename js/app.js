@@ -1,53 +1,48 @@
 const EMAIL = "smarttlelearning@gmail.com";
 const PHONE_E164 = "+33788589812";
 
+// Ouvre l'app Gmail si possible, sinon bascule vers l'app mail par défaut
 function gmailDeepLink(to, subject, body) {
-  // Deep link Gmail (iOS/Android) + fallback mailto
   const appUrl = `googlegmail:///co?to=${encodeURIComponent(to)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   const mailtoUrl = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-  // Essaye d'ouvrir l'app
-  const timeout = setTimeout(() => { window.location.href = mailtoUrl; }, 600);
+  const t = setTimeout(() => { window.location.href = mailtoUrl; }, 600);
   window.location.href = appUrl;
-
-  // Si l'app s'ouvre, on annule le fallback (ça ne casse rien si ce n'est pas supporté)
-  setTimeout(() => clearTimeout(timeout), 1500);
+  setTimeout(() => clearTimeout(t), 1500);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Boutons contact
-  const gmailBtn = document.getElementById("gmailBtn");
-  if (gmailBtn) {
-    gmailBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      gmailDeepLink(
-        EMAIL,
-        "Demande de site vitrine",
-        "Bonjour, je souhaite un site pour mon activité.\n\nMerci."
-      );
-    });
-  }
+  // Liens d’action
   const callTop = document.getElementById("callTop");
   if (callTop) callTop.href = `tel:${PHONE_E164}`;
-  const callBtn = document.getElementById("callBtn");
-  if (callBtn) callBtn.href = `tel:${PHONE_E164}`;
+
+  // Ouvrir Gmail (bouton + adresse)
+  const gmailBtn = document.getElementById("gmailBtn");
+  const gmailBtnAddress = document.getElementById("gmailBtnAddress");
+  const subject = "Demande de site vitrine";
+  const body = "Bonjour, je souhaite un site pour mon activité.%0A%0AMerci.";
+  [gmailBtn, gmailBtnAddress].forEach(btn => {
+    if (!btn) return;
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      gmailDeepLink(EMAIL, subject, "Bonjour, je souhaite un site pour mon activité.\n\nMerci.");
+    });
+  });
 
   // Menu mobile
   const toggle = document.querySelector(".nav-toggle");
-  const list = document.querySelector(".nav-list");
-  if (toggle && list) {
+  const navList = document.querySelector(".nav-list");
+  if (toggle && navList) {
     toggle.addEventListener("click", () => {
-      const opened = list.classList.toggle("open");
+      const opened = navList.classList.toggle("open");
       toggle.setAttribute("aria-expanded", opened ? "true" : "false");
     });
-    list.querySelectorAll("a").forEach(a =>
-      a.addEventListener("click", () => list.classList.remove("open"))
+    navList.querySelectorAll("a").forEach(a =>
+      a.addEventListener("click", () => navList.classList.remove("open"))
     );
   }
 
-  // Scroll doux + lien actif
-  const links = document.querySelectorAll('a.nav-link, a[href^="#"]');
-  links.forEach(link => {
+  // Scroll doux
+  document.querySelectorAll('a.nav-link, a[href^="#"]').forEach(link => {
     link.addEventListener("click", e => {
       const href = link.getAttribute("href");
       if (href && href.startsWith("#")) {
