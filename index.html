@@ -15,11 +15,10 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="#accueil" class="brand" aria-label="Aller à l’accueil">
-        <!-- Logo sombre avec masque + glow -->
         <div class="logo-wrapper">
+          <!-- Si tu veux utiliser la version SVG transparente : Images/wr-logo-dark.svg -->
           <img src="Images/wr-logo.png" alt="Logo WR sombre" class="brand-logo brand-logo--dark" />
           <div class="neon-glow" aria-hidden="true"></div>
-          <div class="logo-mask" aria-hidden="true"></div>
         </div>
         <span class="brand-name">WebResto-Solution</span>
       </a>
@@ -72,22 +71,22 @@
         <p class="section-lead">Sites efficaces, pensés pour tous :</p>
         <div class="cards-grid lg">
           <article class="card card-dark">
-            <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?q=80&w=1200&auto=format&fit=crop" alt="Décoration de mariage" loading="lazy">
+            <div class="card-media"><img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?q=80&w=1600&auto=format&fit=crop" alt="Décoration de mariage" loading="lazy"></div>
             <h3>Mariages / événements</h3>
             <p>Page simple pour vos invités : date, lieux, programme.</p>
           </article>
           <article class="card card-dark">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Équipe en réunion" loading="lazy">
+            <div class="card-media"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop" alt="Équipe en réunion" loading="lazy"></div>
             <h3>Entreprises / services</h3>
             <p>Présentez vos services et votre savoir-faire clairement.</p>
           </article>
           <article class="card card-dark">
-            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1200&auto=format&fit=crop" alt="Atelier artisan" loading="lazy">
+            <div class="card-media"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600&auto=format&fit=crop" alt="Atelier artisan" loading="lazy"></div>
             <h3>Artisans / ateliers</h3>
             <p>Montrez vos réalisations, vos horaires et vos contacts.</p>
           </article>
           <article class="card card-dark">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop" alt="Salle de restaurant" loading="lazy">
+            <div class="card-media"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Salle de restaurant" loading="lazy"></div>
             <h3>Restaurants / fast-foods</h3>
             <p>Menu, photos, plan d’accès et option commande en ligne.</p>
           </article>
@@ -128,10 +127,11 @@
       </div>
     </section>
 
-    <!-- EXEMPLES -->
+    <!-- EXEMPLES : highlight + CAROUSEL à flèches -->
     <section id="exemples" class="section dark">
       <div class="container">
         <h2>Exemples</h2>
+
         <div class="example example-dark">
           <div class="example-text">
             <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
@@ -143,23 +143,31 @@
           </div>
         </div>
 
-        <div class="gallery-scroll xl" aria-label="Autres inspirations">
-          <figure class="gallery-card gallery-card-dark">
-            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop" alt="Développement web sombre" loading="lazy">
-            <figcaption>Ambiance web</figcaption>
-          </figure>
-          <figure class="gallery-card gallery-card-dark">
-            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop" alt="Événement chic" loading="lazy">
-            <figcaption>Événement</figcaption>
-          </figure>
-          <figure class="gallery-card gallery-card-dark">
-            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop" alt="Bureau moderne" loading="lazy">
-            <figcaption>Entreprise</figcaption>
-          </figure>
-          <figure class="gallery-card gallery-card-dark">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Restaurant" loading="lazy">
-            <figcaption>Restauration</figcaption>
-          </figure>
+        <!-- Carousel -->
+        <div class="carousel" role="region" aria-label="Galerie d’exemples">
+          <button class="carousel-btn prev" aria-label="Précédent">‹</button>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="slide">
+                <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop" alt="Ambiance web sombre" />
+                <div class="slide-caption">Ambiance web</div>
+              </div>
+              <div class="slide">
+                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop" alt="Événement chic" />
+                <div class="slide-caption">Événement</div>
+              </div>
+              <div class="slide">
+                <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop" alt="Bureau moderne" />
+                <div class="slide-caption">Entreprise</div>
+              </div>
+              <div class="slide">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Restaurant chaleureux" />
+                <div class="slide-caption">Restauration</div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn next" aria-label="Suivant">›</button>
+          <div class="carousel-dots" aria-hidden="true"></div>
         </div>
       </div>
     </section>
@@ -210,28 +218,35 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- CONTACT – interface améliorée -->
     <section id="contact" class="section dark">
       <div class="container contact-grid">
-        <div>
+        <div class="contact-panel">
           <h2>Contact</h2>
           <p class="muted">Parlons de votre site. Réponse rapide et claire.</p>
-          <ul class="contact-list">
-            <li><a class="contact-link contact-link-dark" id="callBtn" href="tel:+33788589812">📞 Appeler</a></li>
-            <li><a class="contact-link contact-link-dark" id="gmailBtn" href="#" target="_blank" rel="noopener">✉️ Écrire depuis Gmail</a></li>
-            <li><a class="contact-link contact-link-dark" id="mailLink" href="mailto:smarttlelearning@gmail.com">📧 smarttlelearning@gmail.com</a></li>
-          </ul>
+
+          <div class="quick-actions">
+            <a id="callBtn" class="qa-btn" href="tel:+33788589812" aria-label="Appeler">
+              <span class="qa-ico">📞</span> Appeler
+            </a>
+            <a id="gmailBtn" class="qa-btn" href="#" target="_blank" rel="noopener" aria-label="Écrire depuis Gmail">
+              <span class="qa-ico">✉️</span> Écrire depuis Gmail
+            </a>
+            <a id="mailLink" class="qa-btn" href="mailto:smarttlelearning@gmail.com" aria-label="Envoyer un email">
+              <span class="qa-ico">📧</span> smarttlelearning@gmail.com
+            </a>
+          </div>
         </div>
 
-        <form class="contact-form contact-form-dark" action="mailto:smarttlelearning@gmail.com" method="post" enctype="text/plain">
+        <form class="contact-form contact-form-dark" action="mailto:smarttlelearning@gmail.com" method="post" enctype="text/plain" novalidate>
           <label>Nom
-            <input type="text" name="nom" required>
+            <input type="text" name="nom" required placeholder="Votre nom">
           </label>
           <label>Email
-            <input type="email" name="email" required>
+            <input type="email" name="email" required placeholder="exemple@mail.com">
           </label>
           <label>Message
-            <textarea name="message" rows="5" required></textarea>
+            <textarea name="message" rows="5" required placeholder="Parlez-moi de votre projet…"></textarea>
           </label>
           <button class="btn btn-primary" type="submit">Envoyer</button>
         </form>
