@@ -1,25 +1,24 @@
 // === Réglages contact ===
 const EMAIL = "smarttlelearning@gmail.com";
-const PHONE_DISPLAY = "07 88 58 98 12";
 const PHONE_E164 = "+33788589812";
 
 // === Lien Gmail compose ===
 function buildGmailUrl() {
   const subject = "Demande de site vitrine";
-  const body = `Bonjour, je souhaite un site pour mon activité. Mon numéro : ${PHONE_DISPLAY}\n\nMerci.`;
+  const body = `Bonjour, je souhaite un site pour mon activité.\n\nMerci.`;
   const p = new URLSearchParams({ view:"cm", fs:"1", to:EMAIL, su:subject, body });
   return `https://mail.google.com/mail/?${p.toString()}`;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Bouton Gmail + liens tel
+  // Boutons contact
   const gmailBtn = document.getElementById("gmailBtn");
   if (gmailBtn) gmailBtn.href = buildGmailUrl();
 
-  const telTop = document.getElementById("telTop");
-  if (telTop) telTop.href = `tel:${PHONE_E164}`;
-  const telLink = document.getElementById("telLink");
-  if (telLink) telLink.href = `tel:${PHONE_E164}`;
+  const callTop = document.getElementById("callTop");
+  if (callTop) callTop.href = `tel:${PHONE_E164}`;
+  const callBtn = document.getElementById("callBtn");
+  if (callBtn) callBtn.href = `tel:${PHONE_E164}`;
 
   // Menu mobile
   const toggle = document.querySelector(".nav-toggle");
@@ -46,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
   const sections = document.querySelectorAll("main section[id]");
   const navLinks = document.querySelectorAll(".nav-link");
   const map = {};
