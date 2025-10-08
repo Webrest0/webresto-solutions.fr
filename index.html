@@ -3,176 +3,197 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Webrest0 — Offres & Tarifs</title>
-  <link rel="stylesheet" href="./css/tarifs.css" />
+  <title>Webrest0 Solutions — Sites pros pour restaurants & food-trucks</title>
+  <meta name="description" content="Création de sites rapides, sécurisés et qui convertissent pour restaurants & food-trucks. Vitrines, e-commerce léger, SEO, hébergement, maintenance.">
+  <link rel="preload" href="style.css" as="style">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="app.js" as="script">
 </head>
 <body>
-  <header class="wr0-top">
-    <div class="wrap wr0-row">
-      <div class="wr0-brand">
-        <!-- Remplace src par ton logo -->
-        <img src="./images/webrest0-logo.png" alt="Webrest0" class="wr0-logo" />
-        <div class="wr0-title">
-          <strong>Webrest0</strong>
-          <span>Sites pros pour restaurants & food-trucks</span>
-        </div>
-      </div>
-      <div class="wr0-cta">
-        <a class="btn btn-primary" href="tel:+33600000000">📞 06 00 00 00 00</a>
-        <a class="btn" href="mailto:contact@webrest0.fr">✉️ contact@webrest0.fr</a>
-      </div>
+  <!-- Background décor -->
+  <div class="bg">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="grid"></div>
+  </div>
+
+  <!-- Barre -->
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#accueil" aria-label="Webrest0 Solutions">
+        <img src="images/logo.svg" alt="" class="logo" />
+        <span class="brand-name">Webrest0 <span class="thin">Solutions</span></span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#contact">Contact</a>
+        <a class="cta small" href="tel:+33788589812" aria-label="Appeler Webrest0">📞 07 88 58 98 12</a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
     </div>
   </header>
 
-  <main class="wrap">
-    <!-- HERO -->
-    <section class="hero card">
-      <div class="hero-txt">
-        <h1>Des sites qui donnent faim 🍕</h1>
-        <p>Je conçois des sites <b>rapides, sécurisés et efficaces</b> pour restos & food-trucks.
-           Votre carte claire, vos photos qui claquent, et des clients qui appellent.</p>
-        <div class="hero-badges">
-          <span class="pill">HTTPS & sécurité intégrées</span>
-          <span class="pill">Optimisé mobile</span>
-          <span class="pill">Délais courts</span>
+  <!-- Hero -->
+  <main id="accueil" class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-left">
+        <p class="eyebrow">Agenc﻿e web pour restos & food-trucks</p>
+        <h1>Des sites qui donnent faim<span class="accent">.</span></h1>
+        <p class="sub">
+          Je conçois des sites <b>rapides</b>, <b>sécurisés</b> et <b>efficaces</b> :
+          carte lisible, belles photos, boutons d’appel clairs, et résultats.
+        </p>
+        <div class="badges">
+          <span class="chip">HTTPS & sécurité</span>
+          <span class="chip">Optimisé mobile</span>
+          <span class="chip">Délais rapides</span>
         </div>
-      </div>
-    </section>
-
-    <!-- OFFRES -->
-    <section class="offers">
-      <h2>Offres & tarifs</h2>
-
-      <div class="grid">
-        <!-- Pack Vitrine -->
-        <article class="offer card">
-          <div class="bubble italia"></div>
-          <h3>Pack Vitrine</h3>
-          <p class="subtitle">Votre présence pro, claire et rapide</p>
-          <div class="price"><span>299 €</span> TTC</div>
-          <ul class="features">
-            <li>1 page moderne (menu, photos, horaires, contact)</li>
-            <li>Design personnalisé, responsive</li>
-            <li>Hébergement gratuit possible (GitHub Pages)</li>
-            <li>HTTPS activé (site sécurisé)</li>
-            <li>Petites modifications incluses à la livraison</li>
-          </ul>
-          <a href="tel:+33600000000" class="btn btn-primary">Je lance mon site</a>
-          <div class="note">Nom de domaine <b>facultatif</b> pour cette offre (vous pouvez rester sur un hébergement gratuit).</div>
-        </article>
-
-        <!-- Pack Pro -->
-        <article class="offer card best">
-          <div class="bubble italia-strong"></div>
-          <div class="badge">Populaire</div>
-          <h3>Pack Pro</h3>
-          <p class="subtitle">Plus d’impact, plus de clients</p>
-          <div class="price"><span>499 €</span> TTC</div>
-          <ul class="features">
-            <li>Toutes les prestations du Pack Vitrine</li>
-            <li>Galerie/Carrousel optimisé</li>
-            <li>SEO local de base (titres, métas, vitesse)</li>
-            <li>Intégration Google Maps / itinéraires</li>
-            <li>Assistance 1 mois inclus (petits changements)</li>
-          </ul>
-          <a href="tel:+33600000000" class="btn btn-primary">Je veux le pack Pro</a>
-          <div class="note">
-            Recommandé avec un <b>nom de domaine</b> (ex : <i>votreresto.fr</i>).<br>
-            Je vous aide à l’acheter/configurer si vous le souhaitez.
-          </div>
-        </article>
-
-        <!-- Pack Dashboard -->
-        <article class="offer card">
-          <div class="bubble italia"></div>
-          <h3>Pack Dashboard</h3>
-          <p class="subtitle">Mettez à jour vous-même vos menus & horaires</p>
-          <div class="price"><span>799 €</span> TTC</div>
-          <ul class="features">
-            <li>Toutes les prestations du Pack Pro</li>
-            <li>Tableau de bord (menus, photos, horaires)</li>
-            <li>Accès sécurisé (mot de passe, rôles simples)</li>
-            <li>Guide d’utilisation + mini formation</li>
-            <li>Connexion sur un hébergeur adapté</li>
-          </ul>
-          <a href="tel:+33600000000" class="btn btn-primary">Je choisis le Dashboard</a>
-          <div class="note">Nécessite <b>un nom de domaine</b> et un hébergement adapté (je vous guide pour un coût minimal).</div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ABONNEMENTS MAINTENANCE -->
-    <section class="subs card">
-      <h2>Maintenance & mises à jour</h2>
-      <p>Gardez un site <b>sécurisé</b>, <b>à jour</b>, et <b>rapide</b>. Je m’occupe de la technique pendant que vous cuisinez.</p>
-      <div class="sub-grid">
-        <div class="sub">
-          <h4>Essentiel</h4>
-          <div class="sub-price">19 € / mois</div>
-          <ul>
-            <li>Mises à jour mineures (texte/prix) – 1×/mois</li>
-            <li>Surveillance basique</li>
-            <li>Assistance email</li>
-          </ul>
+        <div class="ctas">
+          <a class="cta primary" href="tel:+33788589812">📞 Appeler</a>
+          <a class="cta ghost" href="mailto:smarttlelearning@gmail.com?subject=Projet site restaurant">✉️ Me contacter</a>
         </div>
-        <div class="sub best">
-          <h4>Pro</h4>
-          <div class="sub-price">39 € / mois</div>
-          <ul>
-            <li>Mises à jour de contenu – 2×/mois</li>
-            <li>Vérifs perf/SEO basiques</li>
-            <li>Support prioritaire</li>
-          </ul>
-        </div>
-        <div class="sub">
-          <h4>Business</h4>
-          <div class="sub-price">79 € / mois</div>
-          <ul>
-            <li>Mises à jour illimitées raisonnables</li>
-            <li>Audit trimestriel (perf/SEO)</li>
-            <li>Assistance téléphone</li>
-          </ul>
-        </div>
+        <p class="meta">Tel : <a href="tel:+33788589812">07 88 58 98 12</a> · Mail : <a href="mailto:smarttlelearning@gmail.com">smarttlelearning@gmail.com</a></p>
       </div>
-      <div class="subs-note">
-        Sans engagement. Vous pouvez passer d’une formule à l’autre quand vous voulez.
+      <div class="hero-right card">
+        <picture>
+          <!-- mets une image réelle ici -->
+          <img src="images/hero-restaurant.jpg" alt="Maquette de site restaurant moderne" loading="eager">
+        </picture>
       </div>
-    </section>
-
-    <!-- SECURITE & HEBERGEMENT -->
-    <section class="guarantees card">
-      <h2>Sécurité & Hébergement</h2>
-      <ul class="ticks">
-        <li><b>HTTPS par défaut</b> : chiffrement des échanges pour protéger vos visiteurs</li>
-        <li><b>Mises à jour techniques</b> (selon pack) : correctifs & optimisations</li>
-        <li><b>Hébergement gratuit</b> possible (GitHub Pages) pour sites vitrines</li>
-        <li><b>Nom de domaine</b> conseillé pour un rendu pro (ex: <i>votreresto.fr</i>)</li>
-        <li><b>Dashboard</b> : accès avec mot de passe, règles de base durcies</li>
-      </ul>
-      <p class="muted">
-        <b>Nom de domaine :</b> environ 10–15 €/an chez un registrar (OVH, Gandi, Cloudflare…).<br>
-        <b>Hébergement :</b> vitrine → gratuit possible ; Dashboard → hébergement conseillé (je vous oriente au meilleur prix).
-      </p>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section class="cta-final card">
-      <h2>On démarre quand ?</h2>
-      <p>Envoyez-moi votre logo, vos photos et votre carte. Je m’occupe du reste.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary btn-lg" href="tel:+33600000000">Parler de votre projet</a>
-        <a class="btn btn-ghost btn-lg" href="mailto:contact@webrest0.fr">Recevoir un devis</a>
-      </div>
-    </section>
+    </div>
   </main>
 
-  <footer class="wr0-foot">
-    <div class="wrap foot-col">
-      <div>© Webrest0 — Sites pour Restaurants & Food-trucks</div>
-      <div><a href="mailto:smarttlelearning@gmail.com">contact@webrest0.fr</a> · <a href="tel:+33788589812">06 00 00 00 00</a></div>
+  <!-- Preuves rapides -->
+  <section class="proof wrap">
+    <div class="proof-item">
+      <h3>Performance</h3>
+      <p>Chargement éclair ⚡️ — score mobile optimisé, code léger.</p>
+    </div>
+    <div class="proof-item">
+      <h3>Sécurité</h3>
+      <p>HTTPS, headers, formulaires protégés, hébergeurs fiables.</p>
+    </div>
+    <div class="proof-item">
+      <h3>Conversion</h3>
+      <p>Boutons d’appel & WhatsApp, ancrages, structure claire.</p>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="wrap section">
+    <h2>Portfolio</h2>
+    <div class="cards">
+      <article class="card site">
+        <img src="images/pizza-amigo-cover.jpg" alt="PIZZ’AMIGO – site vitrine" loading="lazy">
+        <div class="site-body">
+          <h3>PIZZ’AMIGO — vitrine sombre premium</h3>
+          <p>Carte lisible, galerie, horaires intelligents, CTA “Appeler”.</p>
+          <div class="row">
+            <a class="cta tiny" target="_blank" rel="noopener" href="https://webrest0.github.io/pizz-amigo.fr/">Voir le site</a>
+            <span class="tag">Vitrine</span>
+          </div>
+        </div>
+      </article>
+      <!-- Ajoute d’autres projets ici au besoin -->
+    </div>
+  </section>
+
+  <!-- Tarifs -->
+  <section id="tarifs" class="wrap section">
+    <h2>Offres & tarifs</h2>
+
+    <div class="pricing">
+      <article class="price card">
+        <h3>Pack Vitrine</h3>
+        <div class="big">349 € TTC</div>
+        <ul>
+          <li>1 page moderne (menu, photos, horaires, contact)</li>
+          <li>Design personnalisé, responsive</li>
+          <li>Hébergement gratuit possible (GitHub Pages)</li>
+          <li>HTTPS activé (site sécurisé)</li>
+          <li>Petites modifs incluses à la livraison</li>
+        </ul>
+        <a class="cta primary block" href="#contact">Commander</a>
+      </article>
+
+      <article class="price card">
+        <h3>Pack Pro (Multipages)</h3>
+        <div class="big">649 € TTC</div>
+        <ul>
+          <li>4–6 pages (Accueil, Menu, Galerie, Contact, À propos…)</li>
+          <li>SEO de base (titres, métas, balisage)</li>
+          <li>Formulaire contact + ancrages CTA</li>
+          <li>Domain﻿e personnalisé <b>(recommandé)</b></li>
+          <li>Intégration Google Analytics</li>
+        </ul>
+        <a class="cta primary block" href="#contact">Demander un devis</a>
+      </article>
+
+      <article class="price card">
+        <h3>Pack Business (Dashboard léger)</h3>
+        <div class="big">1 090 € TTC</div>
+        <ul>
+          <li>Espace admin simplifié (gestion carte/actu)</li>
+          <li>Exports CSV / sauvegardes</li>
+          <li>Hébergement + pipeline déploiement</li>
+          <li>Domain﻿e personnalisé & sécurité renforcée</li>
+          <li>2h de formation incluse</li>
+        </ul>
+        <a class="cta primary block" href="#contact">Parler du besoin</a>
+      </article>
+    </div>
+
+    <div class="maintenance">
+      <div class="card">
+        <h3>Maintenance & mises à jour</h3>
+        <p>
+          Vos sites restent à jour et sécurisés. Corrections mineures, petites évolutions, et
+          surveillance basique incluses selon l’offre choisie.
+        </p>
+        <ul class="cols">
+          <li><b>Essentiel</b> — 19 €/mois : sauvegardes & correctifs</li>
+          <li><b>Standard</b> — 39 €/mois : + petites MAJ contenu</li>
+          <li><b>Plus</b> — 69 €/mois : + évolutions visuelles</li>
+        </ul>
+        <p class="hint">Nom de domaine (ex : <i>votresite.fr</i>) en sus ~ 10–15 €/an, si vous ne restez pas sur l’hébergement gratuit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="wrap section">
+    <h2>Contact</h2>
+    <div class="contact card">
+      <div class="contact-left">
+        <p><b>Parlons de votre projet.</b> Un premier brief gratuit pour cadrer votre besoin, délais & budget.</p>
+        <ul class="contact-list">
+          <li>📞 <a href="tel:+33788589812">07 88 58 98 12</a></li>
+          <li>✉️ <a href="mailto:smarttlelearning@gmail.com">smarttlelearning@gmail.com</a></li>
+        </ul>
+        <div class="ctas">
+          <a class="cta primary" href="tel:+33788589812">Appeler maintenant</a>
+          <a class="cta ghost" href="mailto:smarttlelearning@gmail.com?subject=Demande de devis — Webrest0 Solutions">Demander un devis</a>
+        </div>
+      </div>
+      <form class="contact-form" action="https://formsubmit.co/smarttlelearning@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Nouveau message Webrest0 Solutions">
+        <label>Nom*<input required name="nom" placeholder="Votre nom"></label>
+        <label>Téléphone<input name="tel" placeholder="07…"></label>
+        <label>Email*<input required type="email" name="email" placeholder="vous@exemple.fr"></label>
+        <label>Message*<textarea required name="message" placeholder="Décrivez votre besoin…"></textarea></label>
+        <button class="cta primary block" type="submit">Envoyer</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p>© <span id="year"></span> Webrest0 Solutions — sites web pour restaurants & food-trucks.</p>
     </div>
   </footer>
 
-  <script src="./js/tarifs.js" defer></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
