@@ -19,11 +19,11 @@ function gmailDeepLink(to, subject, body) {
 
 // === INIT ===
 document.addEventListener("DOMContentLoaded", () => {
-  // Appel
+  // Met à jour tous les liens d’appel
   document.querySelectorAll('[href^="tel:"], .call-btn')
     .forEach(btn => btn.setAttribute("href", `tel:${PHONE_E164}`));
 
-  // Seul bouton email (libellé : Écrire à smarttlelearning@gmail.com)
+  // Un seul bouton email
   const gmailAddressBtn = document.getElementById("gmailBtnAddress");
   if (gmailAddressBtn) {
     gmailAddressBtn.addEventListener("click", (e) => {
