@@ -1,6 +1,8 @@
+// === Réglages contact ===
 const EMAIL = "smarttlelearning@gmail.com";
 const PHONE_E164 = "+33788589812";
 
+// === Lien Gmail compose ===
 function buildGmailUrl() {
   const subject = "Demande de site vitrine";
   const body = `Bonjour, je souhaite un site pour mon activité.\n\nMerci.`;
@@ -43,22 +45,46 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const sections = document.querySelectorAll("main section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
-  const map = {};
-  navLinks.forEach(l => { map[l.getAttribute("href")] = l; });
+  // === CAROUSEL ===
+  const track = document.querySelector(".carousel-track");
+  const prev = document.querySelector(".carousel-btn.prev");
+  const next = document.querySelector(".carousel-btn.next");
+  const dotsWrap = document.querySelector(".carousel-dots");
+  if (track && prev && next && dotsWrap) {
+    const slides = Array.from(track.children);
+    let index = 0;
 
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const id = `#${entry.target.id}`;
-      const link = map[id];
-      if (!link) return;
-      if (entry.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove("active"));
-        link.classList.add("active");
-      }
+    // Dots
+    slides.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.setAttribute("aria-label", `Aller à la diapositive ${i+1}`);
+      if (i === 0) b.classList.add("active");
+      b.addEventListener("click", () => goTo(i));
+      dotsWrap.appendChild(b);
     });
-  }, { rootMargin: "-42% 0px -52% 0px", threshold: 0.01 });
+    const dots = Array.from(dotsWrap.children);
 
-  sections.forEach(s => obs.observe(s));
+    function update() {
+      track.style.transform = `translateX(${-index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle("active", i === index));
+    }
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      update();
+    }
+    prev.addEventListener("click", () => goTo(index - 1));
+    next.addEventListener("click", () => goTo(index + 1));
+
+    // swipe mobile
+    let startX = null;
+    track.addEventListener("touchstart", (e) => startX = e.touches[0].clientX, {passive:true});
+    track.addEventListener("touchmove", (e) => {
+      if (startX === null) return;
+      const dx = e.touches[0].clientX - startX;
+      if (Math.abs(dx) > 50) {
+        goTo(index + (dx < 0 ? 1 : -1));
+        startX = null;
+      }
+    }, {passive:true});
+  }
 });
