@@ -14,19 +14,27 @@
   <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
+      <!-- Marque -->
       <a href="#accueil" class="brand" aria-label="Aller à l’accueil">
         <div class="logo-wrapper">
-          <!-- utilise le SVG/PNG transparent sombre -->
-          <img src="Images/wr-logo-dark.svg" alt="Logo WR sombre" class="brand-logo brand-logo--dark" />
+          <!-- Ton logo rouge avec glow -->
+          <img src="Images/wr-logo-red.png" onerror="this.src='Images/wr-logo-dark.svg';"
+               alt="Logo WR sombre" class="brand-logo brand-logo--dark" />
           <div class="neon-glow" aria-hidden="true"></div>
         </div>
         <span class="brand-name">WebResto-Solution</span>
       </a>
 
-      <nav class="main-nav" aria-label="Navigation principale">
+      <!-- Groupe actions droites : Appeler + Menu -->
+      <div class="header-actions">
+        <a class="header-call btn btn-primary" id="callTop" href="tel:+33788589812">Appeler</a>
         <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="main-nav" aria-label="Navigation principale">
         <ul class="nav-list">
           <li><a href="#accueil" class="nav-link active">Accueil</a></li>
           <li><a href="#pourqui" class="nav-link">Pour qui ?</a></li>
@@ -36,8 +44,6 @@
           <li><a href="#contact" class="btn btn-ghost">Contact</a></li>
         </ul>
       </nav>
-
-      <a class="header-call btn btn-primary" id="callTop" href="tel:+33788589812">Appeler</a>
     </div>
   </header>
 
@@ -94,7 +100,7 @@
     </section>
 
     <!-- SERVICES -->
-    <section id="services" class="section dark deeper">
+    <section id="services" class="section dark">
       <div class="container">
         <h2>Services</h2>
         <div class="features-grid">
@@ -141,7 +147,7 @@
     </section>
 
     <!-- TARIFS -->
-    <section id="tarifs" class="section dark deeper">
+    <section id="tarifs" class="section dark">
       <div class="container">
         <h2>Tarifs</h2>
         <p class="section-lead">Des offres claires. Vous choisissez, je m’occupe du reste.</p>
@@ -154,7 +160,7 @@
       </div>
     </section>
 
-    <!-- CONTACT – interface améliorée -->
+    <!-- CONTACT -->
     <section id="contact" class="section dark">
       <div class="container contact-grid">
         <div class="contact-panel">
@@ -165,10 +171,10 @@
             <a id="callBtn" class="qa-btn" href="tel:+33788589812" aria-label="Appeler">
               <span class="qa-ico">📞</span> Appeler
             </a>
-            <a id="gmailBtn" class="qa-btn" href="#" target="_blank" rel="noopener" aria-label="Écrire depuis Gmail">
+            <a id="gmailBtn" class="qa-btn" href="#" aria-label="Écrire depuis Gmail">
               <span class="qa-ico">✉️</span> Écrire depuis Gmail
             </a>
-            <a id="mailLink" class="qa-btn" href="mailto:smarttlelearning@gmail.com" aria-label="Envoyer un email">
+            <a id="gmailBtnAddress" class="qa-btn" href="#" aria-label="Écrire à smarttlelearning@gmail.com">
               <span class="qa-ico">📧</span> smarttlelearning@gmail.com
             </a>
           </div>
