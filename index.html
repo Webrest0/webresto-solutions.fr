@@ -1,181 +1,204 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>WebResto-Solution</title>
-  <meta name="description" content="Sites vitrines modernes pour entreprises, artisans, mariages, restaurants, associations. Visible sur téléphone.">
-  <link rel="icon" type="image/png" href="Images/wr-logo-red.png">
-  <link rel="stylesheet" href="CSS/style.css?v=2025-02">
-  <link rel="stylesheet" href="css/style.css?v=2025-02"><!-- secours si casse -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Webrest0 — Sites rapides & lisibles</title>
+  <meta name="description" content="Sites modernes, sécurisés et lisibles — restaurants, entreprises, artistes & évènements.">
+  <link rel="preload" href="images/wr-logo.png" as="image">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <nav class="navbar">
-      <a href="#accueil" class="brand">
-        <img class="brand-logo" src="Images/wr-logo-red.png" alt="Logo WebResto-Solution">
-        <span class="brand-name">WebResto-<br>Solution</span>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-row">
+      <a href="#" class="brand">
+        <img src="images/wr-logo.png" alt="Webrest0" class="brand-logo">
+        <span class="brand-name">Webrest0</span>
       </a>
 
-      <div class="spacer"></div>
+      <nav class="nav" id="nav">
+        <a href="#offers">Offres</a>
+        <a href="#work">Réalisations</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
+      </nav>
 
-      <div class="header-actions">
-        <a class="call-btn" href="tel:+33788589812">Appeler</a>
-        <button class="menu-toggle" aria-label="Ouvrir le menu" onclick="toggleMenu()">☰</button>
+      <div class="cta-row">
+        <a class="btn btn-danger" href="tel:+33788589812">Appeler</a>
+        <button class="burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-
-      <ul class="nav-list">
-        <li><a href="#accueil">Accueil</a></li>
-        <li><a href="#pourqui">Pour qui ?</a></li>
-        <li><a href="#exemple">Exemple</a></li>
-        <li><a href="#tarifs">Tarifs</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    </div>
   </header>
 
-  <main id="accueil">
-    <!-- HERO -->
-    <section class="section hero">
-      <div class="hero-text">
-        <h1>Des sites modernes, visibles et sur mesure.</h1>
-        <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#exemple">Voir un exemple</a>
-          <a class="btn btn-ghost" href="#contact">Demander un site</a>
-        </div>
+  <!-- Hero -->
+  <section id="hero" class="section-hero">
+    <div class="container">
+      <h1>Un site moderne, rapide<br>qui vous amène des clients</h1>
+      <p class="lead">
+        Je crée des sites simples à comprendre, <strong>sécurisés (HTTPS)</strong> et visibles.
+        C’est <strong>primordial</strong> : sans site clair, vos futurs clients partent chez la concurrence.
+      </p>
+
+      <ul class="compact hero-bullets">
+        <li>Ouverture rapide du site</li>
+        <li>Sécurité incluse (HTTPS + sauvegardes)</li>
+        <li>Design lisible — surtout sur mobile</li>
+      </ul>
+
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-lg" href="tel:+33788589812">07 88 58 98 12</a>
+        <a class="btn btn-ghost btn-lg" href="mailto:smarttlelearning@gmail.com">smarttlelearning@gmail.com</a>
       </div>
 
-      <div class="hero-visual">
-        <img
-          src="Images/hero-dark-office.png"
-          alt="Bureau sombre avec LED rouge"
-          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop';">
-      </div>
-    </section>
+      <figure class="figure hero-figure">
+        <img src="images/pizz-amigo-cover.jpg" alt="Exemple de site Webrest0">
+        <figcaption class="chip">HTTPS • Vitesse • Mobile</figcaption>
+      </figure>
+    </div>
+  </section>
 
-    <hr class="divider">
+  <!-- Offres & prix -->
+  <section id="offers" class="section section-after-hero">
+    <div class="container">
+      <h2>Offres & prix</h2>
+      <p class="muted">Choisissez ce qui vous convient. Objectif : plus de clients, plus de contacts.</p>
 
-    <!-- POUR QUI ?  (carrousel ici) -->
-    <section id="pourqui" class="section">
-      <h2>Pour qui ?</h2>
-      <p class="section-lead">Je crée pour tous les besoins :</p>
-
-      <div class="carousel">
-        <button class="carousel-btn prev" aria-label="Précédent">‹</button>
-        <div class="carousel-viewport">
-          <div class="carousel-track">
-            <div class="slide">
-              <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop" alt="Entreprise / services">
-              <div class="slide-caption">Entreprise / services</div>
-            </div>
-            <div class="slide">
-              <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600&auto=format&fit=crop" alt="Artisan / atelier">
-              <div class="slide-caption">Artisan / atelier</div>
-            </div>
-            <div class="slide">
-              <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?q=80&w=1600&auto=format&fit=crop" alt="Mariage / événement">
-              <div class="slide-caption">Mariage / événement</div>
-            </div>
-            <div class="slide">
-              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Restaurant / fast-food">
-              <div class="slide-caption">Restaurant / fast-food</div>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-btn next" aria-label="Suivant">›</button>
-        <div class="carousel-dots" aria-hidden="true"></div>
-      </div>
-    </section>
-
-    <hr class="divider">
-
-    <!-- EXEMPLE (sans carrousel) -->
-    <section id="exemple" class="section">
-      <h2>Exemple</h2>
-      <div class="example example-dark">
-        <div class="example-text">
-          <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
-          <p>Site vitrine simple, propre et lisible sur téléphone.</p>
-          <a class="btn btn-primary" target="_blank" rel="noopener" href="https://webrest0.github.io/pizz-amigo.fr/">Voir le site</a>
-        </div>
-        <div class="example-visual">
-          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2000&auto=format&fit=crop" alt="Exemple pizzeria">
-        </div>
-      </div>
-    </section>
-
-    <hr class="divider">
-
-    <!-- TARIFS : 3 packs de base -->
-    <section id="tarifs" class="section">
-      <h2>Tarifs</h2>
-      <p class="section-lead">Des offres simples et transparentes : vous choisissez, je réalise.</p>
-
-      <div class="cards">
+      <div class="grid cols-2">
         <article class="card">
-          <h3>Site vitrine</h3>
-          <p class="price">200 à 299€</p>
-          <p>Site moderne, clair et adapté à tous les écrans.</p>
-          <button class="btn btn-ghost select-plan" data-plan="Site vitrine (200–299€)">Choisir ce pack</button>
+          <h3>Pack Vitrine</h3>
+          <p class="price">349 €</p>
+          <ul class="compact">
+            <li>1 page moderne (photos, infos, horaires, contact)</li>
+            <li>Design personnalisé et responsive</li>
+            <li>Hébergement gratuit possible (GitHub Pages)</li>
+            <li>HTTPS activé pour une sécurité maximale</li>
+          </ul>
+          <a class="btn btn-primary" href="#contact">Demander un devis</a>
         </article>
 
         <article class="card">
-          <h3>Site vitrine + commandes en ligne</h3>
-          <p class="price">Sur devis</p>
-          <p>Ajout d’un système de commande relié au site (resto, snack, boutique...).</p>
-          <button class="btn btn-ghost select-plan" data-plan="Site vitrine + commandes en ligne (sur devis)">Choisir ce pack</button>
+          <h3>Pack Vitrine +</h3>
+          <p class="price">499 €</p>
+          <ul class="compact">
+            <li>Sections supplémentaires + galerie</li>
+            <li>Formulaire de contact protégé anti-spam</li>
+            <li>Référencement de base (titres, vitesse, description)</li>
+          </ul>
+          <a class="btn btn-primary" href="#contact">Demander un devis</a>
         </article>
 
-        <article class="card popular">
-          <div class="badge">Le plus choisi</div>
-          <h3>Site avec dashboard</h3>
-          <p class="price">899€</p>
-          <p>Tableau de bord pour gérer vos contenus et commandes.</p>
-          <button class="btn btn-primary select-plan" data-plan="Site avec dashboard (899€)">Choisir ce pack</button>
+        <article class="card">
+          <h3>Pack Gestion (Dashboard)</h3>
+          <p class="price">899 €</p>
+          <ul class="compact">
+            <li>Espace sécurisé par mot de passe</li>
+            <li>Modifier des contenus (ex : carte/menu)</li>
+            <li>Historique des commandes & exports CSV/Sheets</li>
+            <li>Alerte sonore personnalisable à chaque commande</li>
+          </ul>
+          <a class="btn btn-primary" href="#contact">Parler du besoin</a>
+        </article>
+
+        <article class="card">
+          <h3>Infos pratiques</h3>
+          <ul class="compact">
+            <li>Nom de domaine : facultatif (hébergeur gratuit) ou .fr/.com (~12–15 € / an)</li>
+            <li><strong>Après publication</strong> : toute demande de modification est <strong>payante</strong>, à <strong>partir de 29 €</strong> par demande (texte, photos, couleurs, petite section…)</li>
+            <li>Livraison sécurisée (HTTPS) & optimisation mobile</li>
+          </ul>
+          <a class="btn btn-ghost" href="#faq">Voir la FAQ</a>
         </article>
       </div>
+    </div>
+  </section>
 
-      <p class="pricing-note">Modifications après achat : <strong>20€ / changement</strong> (texte, photo, couleur, petite section…)</p>
-    </section>
+  <!-- Réalisations -->
+  <section id="work" class="section">
+    <div class="container">
+      <h2>Réalisations</h2>
 
-    <hr class="divider">
-
-    <!-- CONTACT -->
-    <section id="contact" class="section contact">
-      <h2>Contact</h2>
-      <p class="muted">Parlons de votre site. Réponse rapide et claire.</p>
-
-      <div class="contact-grid">
-        <div class="contact-panel">
-          <div class="quick-actions">
-            <a id="callBtn" class="qa-btn" href="tel:+33788589812">📞 Appeler</a>
-            <a id="gmailBtnAddress" class="qa-btn" href="#">📧 Écrire à smarttlelearning@gmail.com</a>
-          </div>
+      <article class="card project">
+        <div class="project-media">
+          <figure class="figure">
+            <img src="images/pizz-amigo-cover.jpg" alt="PIZZ'AMIGO — Montmerle-sur-Saône">
+          </figure>
         </div>
+        <div class="project-body">
+          <h3>PIZZ’AMIGO — Montmerle-sur-Saône</h3>
+          <p class="muted">Vitrine sombre, claire et efficace. Bouton “Appeler” bien visible. Hébergement gratuit et sécurisé (HTTPS).</p>
+          <a class="btn btn-primary" href="https://pizz-amigo.netlify.app" target="_blank" rel="noopener">Voir le site</a>
+        </div>
+      </article>
 
-        <form class="contact-form" action="mailto:smarttlelearning@gmail.com" method="post" enctype="text/plain" novalidate>
-          <label>Nom
-            <input type="text" name="nom" placeholder="Votre nom" required>
-          </label>
-          <label>Email
-            <input type="email" name="email" placeholder="exemple@mail.com" required>
-          </label>
-          <label>Message
-            <textarea name="message" rows="5" placeholder="Parlez-moi de votre projet…" required></textarea>
-          </label>
-          <button class="btn btn-primary" type="submit">Envoyer</button>
-        </form>
+      <!-- Exemples de domaines -->
+      <div class="chips">
+        <span class="chip">Restaurants & food-trucks</span>
+        <span class="chip">Entreprises & services</span>
+        <span class="chip">Groupes de musique</span>
+        <span class="chip">Mariages & évènements</span>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer class="site-footer">
-    <div class="container">webresto-solution.fr - 2025</div>
-  </footer>
+  <!-- Process -->
+  <section id="process" class="section-tight">
+    <div class="container">
+      <h2>Comment ça se passe ?</h2>
+      <div class="grid cols-2">
+        <div class="card step"><b>1.</b> On échange sur vos besoins</div>
+        <div class="card step"><b>2.</b> Maquette (couleurs, blocs) pour valider</div>
+        <div class="card step"><b>3.</b> Je construis le site avec vos textes & photos</div>
+        <div class="card step"><b>4.</b> Mise en ligne sécurisée • corrections • validation</div>
+      </div>
+    </div>
+  </section>
 
-  <script src="js/app.js?v=2025-02"></script>
+  <!-- FAQ -->
+  <section id="faq" class="section-tight">
+    <div class="container">
+      <h2>Questions fréquentes</h2>
+
+      <details class="card">
+        <summary>Faut-il acheter un nom de domaine ?</summary>
+        <div class="answer">
+          Non, ce n’est pas obligatoire : on peut héberger gratuitement avec HTTPS.
+          Mais un .fr/.com apporte plus de sérieux (environ 12–15 € par an).
+          Si vous voulez un bon prix d’entrée, <a href="https://www.ionos.fr/" target="_blank" rel="noopener">IONOS</a> a souvent une offre de bienvenue.
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>Le site est-il sécurisé ?</summary>
+        <div class="answer">
+          Oui : HTTPS activé, sauvegardes, anti-spam. Je privilégie la vitesse et la lisibilité.
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>Et après la création ?</summary>
+        <div class="answer">
+          Les <strong>modifications demandées après publication</strong> sont facturées
+          <strong>à partir de 29 €</strong> par demande (ajout/retouche de texte, image, couleur ou petite section).
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- Contact “ancre” pour les boutons -->
+  <section id="contact" class="section-tight">
+    <div class="container contact-cards">
+      <a class="card contact" href="tel:+33788589812">📞 Appeler</a>
+      <a class="card contact" href="mailto:smarttlelearning@gmail.com">✉️ smarttlelearning@gmail.com</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-line">© webrest0-solutions.fr — 2025</footer>
+
+  <script src="js/app.js" defer></script>
 </body>
 </html>
