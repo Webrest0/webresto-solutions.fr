@@ -1,132 +1,31 @@
-/* Base */
-:root{
-  --bg:#0d0f12;
-  --panel:#12151a;
-  --muted:#aab1bb;
-  --text:#e8ecf1;
-  --accent:#ef4444;        /* rouge */
-  --accent-2:#16a34a;      /* vert phone */
-  --card:#0f1318;
-  --ring:rgba(255,255,255,.08);
-  --radius:16px;
-  --shadow:0 10px 30px rgba(0,0,0,.35);
+// Menu mobile
+const btn = document.querySelector('.hamburger');
+const nav = document.querySelector('#nav');
+if (btn && nav) {
+  btn.addEventListener('click', () => {
+    const open = nav.hasAttribute('hidden') ? false : true;
+    if (open) { nav.setAttribute('hidden', ''); btn.setAttribute('aria-expanded', 'false'); }
+    else { nav.removeAttribute('hidden'); btn.setAttribute('aria-expanded', 'true'); }
+  });
+  // refermer au clic sur un lien
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.setAttribute('hidden',''); btn.setAttribute('aria-expanded','false');
+  }));
 }
 
-*{box-sizing:border-box}
-html,body{margin:0}
-body{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
-  color:var(--text);
-  background: radial-gradient(1200px 600px at 70% 10%, rgba(239,68,68,.08), transparent 60%),
-              radial-gradient(1000px 600px at 10% 90%, rgba(239,68,68,.08), transparent 60%),
-              var(--bg);
-  line-height:1.55;
-}
+// Améliore les ancres (scroll doux)
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const id=a.getAttribute('href');
+    if(id.length>1){
+      e.preventDefault();
+      const el=document.querySelector(id);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
+});
 
-/* Header */
-.header{
-  position:sticky; top:0; z-index:50;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:10px 16px; background:rgba(13,15,18,.75); backdrop-filter:saturate(140%) blur(10px);
-  border-bottom:1px solid var(--ring);
-}
-.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text)}
-.brand__logo{width:28px; height:28px; object-fit:contain; border-radius:6px; background:#1b1f26; padding:2px}
-.brand__name{font-weight:700}
-
-.header__actions{display:flex; align-items:center; gap:10px}
-.btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; border-radius:999px; padding:12px 18px; text-decoration:none; font-weight:700; border:1px solid transparent; box-shadow:var(--shadow)}
-.btn--call{background:var(--accent); color:#fff;}
-.btn--primary{background:var(--accent); color:#fff;}
-.btn--ghost{background:transparent; color:var(--text); border-color:var(--ring)}
-
-.hamburger{width:42px; height:42px; display:inline-grid; place-items:center; background:#1a1e24; border:1px solid var(--ring); border-radius:10px}
-.hamburger span{width:18px; height:2px; background:var(--text); display:block}
-.hamburger span+span{margin-top:3px}
-
-/* Mobile nav panel */
-.nav{
-  position:fixed; right:12px; top:66px; width:220px; background:var(--panel);
-  border:1px solid var(--ring); border-radius:14px; padding:10px; box-shadow:var(--shadow);
-}
-.nav a{display:block; padding:10px 12px; border-radius:10px; color:var(--text); text-decoration:none}
-.nav a:hover{background:#171b21}
-
-/* Sections */
-.section{padding:48px 16px}
-.section h2{margin:0 0 16px}
-.section__lead{color:var(--muted); margin:0 0 22px}
-
-/* HERO */
-.hero{display:grid; gap:22px; padding:26px 16px 8px}
-.hero__text h1{margin:8px 0 12px; font-size:clamp(26px, 4.8vw, 44px); line-height:1.15}
-.hero__text p{color:var(--muted); margin:0 0 16px}
-.hero__ctas{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:10px}
-
-.contact-chips{display:flex; gap:10px; flex-wrap:wrap}
-.chip{display:inline-flex; align-items:center; padding:10px 14px; border-radius:14px; text-decoration:none; border:1px solid var(--ring); color:var(--text); background:#141820}
-.chip--phone{background:var(--accent-2); color:#04110a; font-weight:800; letter-spacing:.3px}
-.chip--mail{background:#141820}
-
-.hero__media{
-  position:relative; overflow:hidden; border-radius:22px; background:
-    radial-gradient(800px 340px at 50% 0%, rgba(239,68,68,.25), transparent 60%),
-    linear-gradient(180deg, #101419, #0b0e12);
-  border:1px solid var(--ring);
-}
-.hero__media img{display:block; width:100%; height:auto; object-fit:cover}
-.hero__media.fallback{min-height:240px}
-.hero__badge{
-  position:absolute; left:14px; bottom:14px;
-  background:#141820; border:1px solid var(--ring); color:#d5dbe4;
-  padding:8px 12px; border-radius:999px; font-weight:700; box-shadow:var(--shadow)
-}
-
-/* Cards (Offres) */
-.cards{display:grid; gap:16px}
-.card{
-  background:linear-gradient(180deg, #11151b, #0e1217);
-  border:1px solid var(--ring); border-radius:20px; padding:18px; box-shadow:var(--shadow)
-}
-.card h3{margin:0 0 6px}
-.price{font-weight:900; margin:0 0 10px}
-.list{margin:0 0 16px; padding-left:18px}
-.list li{margin:8px 0 0}
-
-/* Réalisation */
-.work{
-  display:grid; gap:14px; grid-template-columns:1fr; background:#0f1318; border:1px solid var(--ring);
-  border-radius:20px; padding:14px;
-}
-.work__media img{display:block; width:100%; height:auto; border-radius:14px}
-
-/* Carrousel simple */
-.carousel{overflow:hidden}
-.carousel__track{display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:6px}
-.pill{
-  scroll-snap-align:start;
-  white-space:nowrap; padding:12px 16px; border-radius:999px;
-  background:#141820; border:1px solid var(--ring); box-shadow:var(--shadow)
-}
-
-/* Steps */
-.steps{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-.step{background:#11161c; border:1px solid var(--ring); border-radius:16px; padding:14px; line-height:1.35}
-.step span{color:#7ae67a; font-weight:900}
-
-/* FAQ */
-.faq{background:#11161c; border:1px solid var(--ring); border-radius:14px; padding:12px; margin:10px 0}
-.faq > summary{cursor:pointer; font-weight:700}
-.faq[open]{background:#0f141a}
-
-/* Footer */
-.footer{padding:28px 16px; color:#9aa3ae; text-align:center; border-top:1px solid var(--ring)}
-
-/* Desktop tweaks */
-@media (min-width:960px){
-  .hero{grid-template-columns:1.05fr .95fr; align-items:center; padding-top:42px}
-  .section{padding:64px 32px}
-  .cards{grid-template-columns:repeat(3,1fr)}
-  .work{grid-template-columns:1fr 1.1fr; align-items:center}
-  .steps{grid-template-columns:repeat(4,1fr)}
-}
+// Sécurité : forcer target _blank à ouvrir en noopener
+document.querySelectorAll('a[target="_blank"]').forEach(a=>{
+  a.rel = 'noopener';
+});
