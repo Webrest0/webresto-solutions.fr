@@ -3,38 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WebResto</title>
+  <title>WebResto — Solutions web modernes</title>
   <link rel="stylesheet" href="css/style.css" />
   <script defer src="js/app.js"></script>
 </head>
-<body>
-  <!-- HEADER -->
+<body class="led-red">
+
+  <!-- HEADER (sticky) -->
   <header class="navbar">
-    <div class="logo">
-      <img src="images/wr-logo-red.png" alt="WebResto logo" />
-      <span>WebResto</span>
+    <div class="nav-left">
+      <a class="brand" href="#">
+        <img class="brand-logo" src="Images/wr-logo-red.png" alt="WebResto" />
+        <span class="brand-name">WebResto</span>
+      </a>
     </div>
-    <div class="nav-actions">
-      <a class="btn-call" href="tel:+33788589812">Appeler</a>
-      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+
+    <div class="nav-right">
+      <a class="btn btn-primary call-btn" href="tel:+33788589812">Appeler</a>
+      <button id="menuToggle" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
 
-    <nav class="nav-drawer" aria-hidden="true">
+    <nav id="navMenu" class="nav-menu" aria-hidden="true">
       <a href="#exemple">Exemple</a>
       <a href="#pour-qui">Pour qui ?</a>
-      <a href="#offres">Offres & tarifs</a>
+      <a href="#tarifs">Offres & tarifs</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-inner">
+    <!-- fond image : ton bureau sombre LED rouge -->
+    <div class="hero-bg" style="--hero:url('Images/hero-dark-office.png')"></div>
+    <div class="hero-content container">
       <h1>Des sites modernes,<br/> visibles et sur mesure.</h1>
-      <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
-      <div class="hero-buttons">
+      <p>
+        Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.
+      </p>
+      <div class="hero-actions">
         <a href="#exemple" class="btn btn-primary">Voir un exemple</a>
         <a href="#contact" class="btn btn-ghost">Demander un site</a>
       </div>
@@ -42,156 +50,148 @@
   </section>
 
   <!-- EXEMPLE -->
-  <section id="exemple" class="section">
+  <section id="exemple" class="section container">
     <h2>Exemple</h2>
 
-    <article class="card project pizz">
-      <div class="card-content">
+    <!-- Carte PIZZ'AMIGO (fond = Webpizza.png) -->
+    <article class="card card-hero reveal">
+      <div class="card-bg" style="--bg:url('Images/Webpizza.png')"></div>
+      <div class="card-body">
         <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
-        <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture), <strong>adresse & contact</strong>.</p>
-        <a class="btn btn-primary" target="_blank" rel="noopener"
-           href="https://pizz-amigo.netlify.app">Voir le site</a>
+        <p>
+          Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture), <strong>adresse & contact</strong>.
+        </p>
+        <a class="btn btn-primary" target="_blank" rel="noopener" href="https://pizz-amigo.netlify.app">Voir le site</a>
       </div>
     </article>
   </section>
 
-  <!-- POUR QUI -->
-  <section id="pour-qui" class="section">
+  <!-- POUR QUI : CARROUSEL -->
+  <section id="pour-qui" class="section container">
     <h2>Pour qui ?</h2>
-    <p class="sub">Je crée pour tous les besoins :</p>
+    <p class="muted">Je crée pour tous les besoins :</p>
 
     <div class="carousel">
-      <button class="car-arrow left" aria-label="Précédent">‹</button>
-      <div class="car-track">
-        <div class="car-slide" data-label="Restaurants / Food-trucks"
-             style="--bg:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1400&auto=format&fit=crop');"></div>
-
-        <div class="car-slide" data-label="Entreprises & services"
-             style="--bg:url('https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?q=80&w=1400&auto=format&fit=crop');"></div>
-
-        <div class="car-slide" data-label="Groupes de musique"
-             style="--bg:url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1400&auto=format&fit=crop');"></div>
-
-        <div class="car-slide" data-label="Mariages & évènements"
-             style="--bg:url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1400&auto=format&fit=crop');"></div>
+      <button class="carousel-btn left" aria-label="Précédent">‹</button>
+      <div class="carousel-track">
+        <!-- slides injectées par JS -->
       </div>
-      <button class="car-arrow right" aria-label="Suivant">›</button>
-      <div class="car-dots" aria-label="Pagination du carrousel"></div>
+      <button class="carousel-btn right" aria-label="Suivant">›</button>
+      <div class="carousel-dots" role="tablist" aria-label="Choisir une diapositive"></div>
     </div>
   </section>
 
-  <!-- OFFRES -->
-  <section id="offres" class="section">
+  <!-- OFFRES & TARIFS -->
+  <section id="tarifs" class="section container">
     <h2>Offres & tarifs</h2>
 
-    <div class="packs">
-      <article class="pack">
-        <h3>Site vitrine</h3>
-        <p class="price">200 à 299€</p>
-        <ul>
-          <li>Page moderne (photos, infos, horaires, contact)</li>
-          <li>Design personnalisé et responsive</li>
-          <li>Nom de domaine inclus la 1<sup>re</sup> année</li>
-          <li>HTTPS sécurisé (hébergement possible)</li>
-        </ul>
-        <a href="#contact" class="btn btn-ghost choose-pack" data-pack="Site vitrine">Choisir ce pack</a>
+    <div class="grid-cards">
+
+      <!-- Pack 1 -->
+      <article class="card">
+        <div class="card-body">
+          <h3>Site vitrine</h3>
+          <p class="price">200 à 299€</p>
+          <ul class="list">
+            <li>Page moderne (photos, infos, horaires, contact)</li>
+            <li>Design personnalisé et responsive</li>
+            <li>Nom de domaine inclus la 1<sup>re</sup> année</li>
+            <li>HTTPS sécurisé (hébergement possible)</li>
+          </ul>
+          <button class="btn btn-ghost" data-pack="Site vitrine">Choisir ce pack</button>
+        </div>
       </article>
 
-      <article class="pack">
-        <div class="badge">Le plus choisi</div>
-        <h3>Site vitrine + commandes en ligne</h3>
-        <p class="price">500€</p>
-        <ul>
-          <li>Formulaires (commande / contact) personnalisés</li>
-          <li>Intégration <strong>lien de paiement</strong> (Stripe/…)</li>
-          <li>Historique basique via e-mail/export</li>
-        </ul>
-        <a href="#contact" class="btn btn-ghost choose-pack" data-pack="Vitrine + commandes">Choisir ce pack</a>
+      <!-- Pack 2 (Le plus choisi) -->
+      <article class="card">
+        <div class="badge pulse" aria-hidden="true">Le plus choisi</div>
+        <div class="card-body">
+          <h3>Site vitrine + commandes en ligne</h3>
+          <p class="price">500€</p>
+          <ul class="list">
+            <li>Formulaires (commande / contact) personnalisés</li>
+            <li>Intégration <strong>lien de paiement</strong> (Stripe/…)</li>
+            <li>Historique basique via e-mail/export</li>
+          </ul>
+          <button class="btn btn-ghost" data-pack="Site vitrine + commandes">Choisir ce pack</button>
+        </div>
       </article>
 
-      <article class="pack">
-        <h3>Site avec dashboard</h3>
-        <p class="price">899€</p>
-        <ul>
-          <li>Tout le pack “Vitrine + commandes”</li>
-          <li>Système de commande avec notifications</li>
-          <li>Historique & fiches clients (formulaires du site)</li>
-        </ul>
-        <a href="#contact" class="btn btn-ghost choose-pack" data-pack="Dashboard">Choisir ce pack</a>
+      <!-- Pack 3 -->
+      <article class="card">
+        <div class="card-body">
+          <h3>Site avec dashboard</h3>
+          <p class="price">899€</p>
+          <ul class="list">
+            <li>Tout le pack “Vitrine +”</li>
+            <li>Système de commande relié (notif, suivi)</li>
+            <li>Historique commandes & infos clients (formulaires)</li>
+          </ul>
+          <button class="btn btn-ghost" data-pack="Site avec dashboard">Choisir ce pack</button>
+        </div>
       </article>
     </div>
 
-    <p class="note">Délai standard : <strong>2 semaines</strong> pour un projet finalisé (souvent terminé plus tôt).</p>
+    <p class="muted delay">
+      Délai standard : <strong>2 semaines</strong> pour un projet finalisé (souvent plus rapide selon la complexité).
+    </p>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="section">
+  <section id="contact" class="section container">
     <h2>Contact</h2>
 
-    <a id="gmailAddress" class="btn btn-ghost"
-       href="#" data-to="smarttlelearning@gmail.com">Écrire à smarttlelearning@gmail.com</a>
+    <div class="contact-actions">
+      <a id="gmailDirect" class="btn btn-ghost" href="#" role="button">Écrire à smarttlearning@gmail.com</a>
+    </div>
 
     <form id="contactForm" class="form">
-      <div class="grid">
-        <label>Nom
-          <input type="text" name="nom" placeholder="Votre nom" required>
-        </label>
-
-        <label>Email
-          <input type="email" name="email" placeholder="exemple@mail.com" required>
-        </label>
-
-        <label>Téléphone
-          <input type="tel" name="tel" placeholder="+33..." required>
-        </label>
-
-        <label>Thème du site
-          <select name="theme" required>
-            <option value="Restaurant / Food-truck">Restaurant / Food-truck</option>
-            <option value="Entreprise / Services">Entreprise / Services</option>
-            <option value="Groupe de musique">Groupe de musique</option>
-            <option value="Mariage / Évènement">Mariage / Évènement</option>
-            <option value="Autre">Autre</option>
-          </select>
-        </label>
-
-        <label>Couleurs souhaitées
-          <input type="text" name="couleurs" placeholder="Ex : rouge/noir, beige/or">
-        </label>
-
-        <label>Nom de domaine souhaité
-          <input type="text" name="domaine" placeholder="ex : mon-restaurant.fr">
-        </label>
-
-        <label>Pages / sections
-          <input type="text" name="sections" placeholder="Accueil, Menu, Galerie, Contact…">
-        </label>
-
-        <label>Lien de paiement (si besoin)
-          <input type="text" name="paiement" placeholder="Ex : Stripe, SumUp, autre…">
-        </label>
-
-        <label>Contact à afficher
-          <input type="text" name="contactPublic" placeholder="Téléphone ou e-mail public">
-        </label>
-
-        <label>Horaires (si restaurant)
-          <input type="text" name="horaires" placeholder="Ex : Mar–Sam 11h30–14h / 18h–22h">
-        </label>
-
-        <label>Logo / photos (lien cloud optionnel)
-          <input type="text" name="assets" placeholder="Drive, Dropbox, liens…">
-        </label>
-
-        <label>Détaillez votre demande
-          <textarea name="message" rows="5" placeholder="Détaillez votre demande…"></textarea>
-        </label>
+      <div class="row">
+        <input type="text" id="name" placeholder="Nom" required />
+        <input type="email" id="email" placeholder="Email" required />
       </div>
+
+      <div class="row">
+        <select id="theme">
+          <option value="" disabled selected>Thème du site (restaurant, mariage, etc.)</option>
+          <option>Restaurant / Food-truck</option>
+          <option>Entreprise & services</option>
+          <option>Groupe de musique</option>
+          <option>Mariage / Événement</option>
+          <option>Autre</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <input type="text" id="colors" placeholder="Couleurs souhaitées (ex : rouge/noir)" />
+      </div>
+
+      <div class="row">
+        <input type="text" id="domain" placeholder="Nom de domaine souhaité (ex : monsite.fr)" />
+      </div>
+
+      <div class="row">
+        <input type="text" id="publicContact" placeholder="Contact à afficher (téléphone ou e-mail)" />
+      </div>
+
+      <fieldset class="checks">
+        <legend>Fonctionnalités à intégrer</legend>
+        <label><input type="checkbox" value="Carte/menu" checked /> Carte / menu</label>
+        <label><input type="checkbox" value="Horaires (ouverture/fermeture)" checked /> Horaires</label>
+        <label><input type="checkbox" value="Lien de paiement" /> Lien de paiement</label>
+        <label><input type="checkbox" value="Commande en ligne" /> Commande en ligne</label>
+        <label><input type="checkbox" value="Galerie photos" /> Galerie photos</label>
+        <label><input type="checkbox" value="Google Maps" /> Google Maps</label>
+      </fieldset>
+
+      <textarea id="message" rows="5" placeholder="Détaillez votre demande… (pages, idées, références)"></textarea>
 
       <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>
   </section>
 
-  <footer class="footer">© 2025 WebResto — Tous droits réservés</footer>
+  <footer class="footer">
+    © 2025 WebResto — Tous droits réservés
+  </footer>
 </body>
 </html>
