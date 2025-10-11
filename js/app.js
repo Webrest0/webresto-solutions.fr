@@ -1,31 +1,39 @@
-// Menu burger (mobile)
-const menuBtn = document.getElementById('menuBtn');
-const nav = document.getElementById('nav');
-if (menuBtn && nav) {
-  menuBtn.addEventListener('click', () => {
-    const opened = nav.style.display === 'flex';
-    nav.style.display = opened ? 'none' : 'flex';
+// Menu burger
+const burger = document.getElementById('burger');
+const nav = document.getElementById('navLinks');
+
+if (burger) {
+  burger.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) {
+      nav.style.display = 'flex';
+      nav.style.flexDirection = 'column';
+      nav.style.gap = '12px';
+      nav.style.position = 'absolute';
+      nav.style.top = '64px';
+      nav.style.right = '12px';
+      nav.style.background = '#0f1216';
+      nav.style.padding = '12px';
+      nav.style.border = '1px solid #ffffff22';
+      nav.style.borderRadius = '12px';
+      nav.style.boxShadow = '0 20px 50px #00000080';
+    } else {
+      nav.removeAttribute('style');
+    }
   });
 }
 
-// Scroll doux pour les ancres
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href').substring(1);
-    const el = document.getElementById(id);
-    if (el) { e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+// Scroll fluide
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const id = a.getAttribute('href');
+    if (id && id.length > 1) {
+      const el = document.querySelector(id);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    }
   });
-});
-
-// Sélecteur horizontal accessible (drag to scroll)
-document.querySelectorAll('.carousel, .scroller').forEach(scroller => {
-  let isDown = false, startX = 0, scrollLeft = 0;
-  scroller.addEventListener('pointerdown', e => {
-    isDown = true; startX = e.pageX; scrollLeft = scroller.scrollLeft; scroller.setPointerCapture(e.pointerId);
-  });
-  scroller.addEventListener('pointermove', e => {
-    if (!isDown) return;
-    scroller.scrollLeft = scrollLeft - (e.pageX - startX);
-  });
-  scroller.addEventListener('pointerup', () => { isDown = false; });
 });
