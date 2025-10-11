@@ -1,133 +1,141 @@
-// === CONFIG ===
+// ====== CONFIG ======
 const EMAIL = "smarttlelearning@gmail.com";
 const PHONE_E164 = "+33788589812";
 
-// === MENU ===
-const menuBtn = document.querySelector(".menu-toggle");
-const drawer  = document.querySelector(".nav-drawer");
+// ====== MENU (drawer) ======
+const drawer = document.querySelector(".nav-drawer");
+const toggleBtn = document.querySelector(".menu-toggle");
 
-function closeDrawer(){ drawer.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); }
-function openDrawer(){ drawer.classList.add("open"); drawer.setAttribute("aria-hidden","false"); }
-
-menuBtn?.addEventListener("click", (e)=>{
-  e.stopPropagation();
-  drawer.classList.contains("open") ? closeDrawer() : openDrawer();
-});
-
-// Fermeture si clic à l'extérieur
-document.addEventListener("click", (e)=>{
-  if (!drawer.contains(e.target) && !menuBtn.contains(e.target)){
-    closeDrawer();
-  }
-});
-
-// Fermeture si on clique un lien du menu
-drawer.querySelectorAll("a").forEach(a=>a.addEventListener("click", closeDrawer));
-
-// === CAROUSEL ===
-(function initCarousel(){
-  const track = document.querySelector(".c-track");
-  if(!track) return;
-
-  const slides = [...track.children];
-  const prev = document.querySelector(".c-prev");
-  const next = document.querySelector(".c-next");
-  const dots = [...document.querySelectorAll(".dot")];
-  let index = 0;
-
-  function go(i){
-    index = (i+slides.length)%slides.length;
-    track.style.transform = `translateX(-${index*100}%)`;
-    dots.forEach((d,k)=>d.classList.toggle("is-active", k===index));
-  }
-
-  prev.addEventListener("click", ()=>go(index-1));
-  next.addEventListener("click", ()=>go(index+1));
-  dots.forEach((d,k)=>d.addEventListener("click", ()=>go(k)));
-
-  // Auto-play léger
-  let timer = setInterval(()=>go(index+1), 6000);
-  [prev,next,track].forEach(el=>{
-    el.addEventListener("pointerenter", ()=>clearInterval(timer));
-    el.addEventListener("pointerleave", ()=>timer = setInterval(()=>go(index+1), 6000));
-  });
-})();
-
-// === MAIL / GMAIL INTENT ===
-function composeEmail({subject, body, to = EMAIL}){
-  const encodedSubject = encodeURIComponent(subject);
-  const encodedBody = encodeURIComponent(body);
-
-  // 1) mailto (ouvre l'app mail par défaut / Gmail si configuré)
-  const mailto = `mailto:${to}?subject=${encodedSubject}&body=${encodedBody}`;
-  window.location.href = mailto;
-
-  // 2) Secours Gmail web (si l’app ne s’ouvre pas)
-  setTimeout(()=>{
-    const gmailWeb = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodedSubject}&body=${encodedBody}`;
-    window.open(gmailWeb, "_blank","noopener");
-  }, 800);
+function closeDrawer() {
+  drawer.classList.remove("open");
+  toggleBtn.setAttribute("aria-expanded", "false");
+  drawer.setAttribute("aria-hidden", "true");
 }
 
-// Lien mail direct au-dessus du formulaire
-document.getElementById("mailtoDirect")?.addEventListener("click", (e)=>{
-  e.preventDefault();
-  composeEmail({
-    subject: "Commande",
-    body: "Détaillez votre demande :\n\n"
+function openDrawer() {
+  drawer.classList.add("open");
+  toggleBtn.setAttribute("aria-expanded", "true");
+  drawer.setAttribute("aria-hidden", "false");
+}
+
+if (toggleBtn) {
+  toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    drawer.classList.contains("open") ? closeDrawer() : openDrawer();
   });
+}
+document.addEventListener("click", (e) => {
+  if (!drawer.contains(e.target) && !toggleBtn.contains(e.target)) closeDrawer();
 });
 
-// Boutons “Choisir ce pack”
-document.querySelectorAll(".mail-intent").forEach(btn=>{
-  btn.addEventListener("click", ()=>{
-    const pack = btn.dataset.pack || "Pack";
-    const body =
-`Détaillez votre demande :
-
-• Pack choisi : ${pack}
-• Thème (restaurant, mariage, musique, etc.) :
-• Couleurs souhaitées :
-• Fonctionnalités à intégrer (ex : carte/menu, horaires, lien de paiement, réservation, Maps, galerie, commandes+dashboard) :
-• Nom de domaine souhaité :
-• Téléphone / email à afficher :
-• Budget estimé :
-• Échéance :
-• Contenus fournis ? (textes / photos / logo) :
-• Lien(s) d’inspiration (optionnel) :
-• Remarques :`;
-
-    composeEmail({subject:"Commande", body});
-  });
+// ====== CALL BUTTON (normalize tel:) ======
+document.querySelectorAll("a[href^='tel:']").forEach((a) => {
+  a.setAttribute("href", `tel:${PHONE_E164}`);
 });
 
-// === FORMULAIRE ===
-const form = document.getElementById("projectForm");
+// ====== CAROUSEL ======
+(function initCarousel(){
+  const root = document.querySelector(".carousel");
+  if(!root) return;
+
+  const track = root.querySelector(".car-track");
+  const slides = Array.from(root.querySelectorAll(".car-slide"));
+  const btnPrev = root.querySelector(".car-arrow.left");
+  const btnNext = root.querySelector(".car-arrow.right");
+  const dotsWrap = root.querySelector(".car-dots");
+
+  // set background images from CSS var
+  slides.forEach(s => {
+    const bg = getComputedStyle(s).getPropertyValue("--bg");
+    if(bg) s.style.backgroundImage = bg.trim();
+  });
+
+  let index = 0;
+  function goto(i){
+    index = (i + slides.length) % slides.length;
+    track.scrollTo({left: index * track.clientWidth, behavior:"smooth"});
+    Array.from(dotsWrap.children).forEach((d,di)=>d.classList.toggle("active", di===index));
+  }
+  slides.forEach((_,i)=>{
+    const b=document.createElement("button");
+    b.addEventListener("click",()=>goto(i));
+    dotsWrap.appendChild(b);
+  });
+  goto(0);
+
+  btnPrev.addEventListener("click", ()=>goto(index-1));
+  btnNext.addEventListener("click", ()=>goto(index+1));
+  window.addEventListener("resize", ()=>goto(index));
+})();
+
+// ====== PREFER GMAIL, FALLBACK mailto / web Gmail ======
+function gmailDeepLink(to, subject, body){
+  // 1) Try Gmail app (iOS/Android)
+  const gmailApp = `googlegmail:///co?to=${encodeURIComponent(to)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  // 2) Fallback to default mail app
+  const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  // 3) Fallback web Gmail
+  const gmailWeb = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  // Try to open Gmail app first with a short timeout, then fallbacks
+  const start = Date.now();
+  const t = setTimeout(()=>{
+    if (Date.now() - start < 1200) {
+      // user likely doesn't have Gmail scheme handled -> try mailto
+      const win = window.open(mailto, "_self");
+      setTimeout(()=>{ if(!win || win.closed) window.open(gmailWeb, "_blank"); }, 600);
+    }
+  }, 800);
+  window.location.href = gmailApp;
+  setTimeout(()=>clearTimeout(t), 1800);
+}
+
+// “Écrire à …” button
+const gmailAddressBtn = document.getElementById("gmailAddress");
+if (gmailAddressBtn) {
+  gmailAddressBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    gmailDeepLink(
+      EMAIL,
+      "Commande",
+      "Détaillez votre demande :\n\n"
+    );
+  });
+}
+
+// ====== FORM ======
+const form = document.getElementById("contactForm");
 form?.addEventListener("submit", (e)=>{
   e.preventDefault();
-  const fd = new FormData(form);
+  const data = new FormData(form);
+  const pack = document.querySelector(".choose-pack.active")?.dataset.pack || "";
+  const body = [
+    "Détaillez votre demande :",
+    "",
+    `Nom : ${data.get("nom") || ""}`,
+    `Email : ${data.get("email") || ""}`,
+    `Téléphone : ${data.get("tel") || ""}`,
+    `Pack : ${pack}`,
+    `Thème : ${data.get("theme") || ""}`,
+    `Couleurs : ${data.get("couleurs") || ""}`,
+    `Nom de domaine souhaité : ${data.get("domaine") || ""}`,
+    `Pages/sections : ${data.get("sections") || ""}`,
+    `Lien de paiement : ${data.get("paiement") || ""}`,
+    `Contact public (tel/mail) : ${data.get("contactPublic") || ""}`,
+    `Horaires : ${data.get("horaires") || ""}`,
+    `Logo/Photos : ${data.get("assets") || ""}`,
+    "",
+    `Message complémentaire :`,
+    `${data.get("message") || ""}`,
+  ].join("\n");
 
-  const feats = fd.getAll("feat").join(", ");
-  const body =
-`Détaillez votre demande :
-
-• Nom : ${fd.get("name")}
-• Email : ${fd.get("email")}
-• Thème : ${fd.get("theme")}
-• Couleurs : ${fd.get("colors")||""}
-• Nom de domaine : ${fd.get("domain")||""}
-• Téléphone à afficher : ${fd.get("phone")||""}
-• Fonctionnalités : ${feats||"—"}
-• Budget : ${fd.get("budget")||""}
-• Échéance : ${fd.get("deadline")||""}
-
-Message :
-${fd.get("message")||""}`;
-
-  composeEmail({ subject:"Commande", body });
+  gmailDeepLink(EMAIL, "Commande", body);
 });
 
-// === Appeler: correct tel: sur tous les éléments .btn-call ===
-document.querySelectorAll('.btn-call').forEach(a=>{
-  a.setAttribute('href', `tel:${PHONE_E164}`);
+// remember chosen pack to include in email
+document.querySelectorAll(".choose-pack").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll(".choose-pack").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+  });
 });
