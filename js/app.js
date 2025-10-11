@@ -1,126 +1,137 @@
-// ================== PARAMÈTRES ==================
+// === CONFIG ===
 const EMAIL = "smarttlelearning@gmail.com";
 const PHONE_E164 = "+33788589812";
-// Remplace ici si besoin :
-const SITE_PIZZ_URL = "https://pizzamigo.netlify.app/";
+// Lien public du site Pizz'Amigo :
+const PIZZ_LINK = "pizz-amigo.netlify.app"; // ← remplace par l’URL réelle si besoin
 
-// ================== MENU ==================
-function toggleMenu(){
-  document.querySelector('.drawer').classList.toggle('open');
+// === NAV (hamburger) ===
+const menuBtn = document.querySelector(".menu-toggle");
+const menu = document.querySelector(".menu");
+const actions = document.querySelector(".actions");
+
+function closeMenu(){
+  if(menu.classList.contains("open")){
+    menu.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded","false");
+    menu.setAttribute("aria-hidden","true");
+  }
 }
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector('.menu-toggle')?.addEventListener('click', toggleMenu);
+function openMenu(){
+  menu.classList.add("open");
+  menuBtn.setAttribute("aria-expanded","true");
+  menu.setAttribute("aria-hidden","false");
+}
 
-  // Exemple: lien Pizz'Amigo
-  const pizz = document.getElementById('pizzLink');
-  if (pizz) pizz.href = SITE_PIZZ_URL;
+menuBtn?.addEventListener("click", (e)=>{
+  e.stopPropagation();
+  menu.classList.toggle("open");
+  const opened = menu.classList.contains("open");
+  menuBtn.setAttribute("aria-expanded", opened ? "true":"false");
+  menu.setAttribute("aria-hidden", opened ? "false":"true");
+});
 
-  // Carrousel
-  initCarousel();
+// Fermer en cliquant ailleurs
+document.addEventListener("click", (e)=>{
+  if(!menu.contains(e.target) && !menuBtn.contains(e.target)) closeMenu();
+});
+// Fermer via Echap
+document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeMenu(); });
 
-  // Boutons "Choisir ce pack"
-  document.querySelectorAll('.choose-pack').forEach(btn=>{
-    btn.addEventListener('click', () => {
-      composeEmail(EMAIL, `Demande — ${btn.dataset.pack}`, `Bonjour,\n\nJe souhaite le pack: ${btn.dataset.pack}.\n\nMerci !`);
-    });
+// === HERO buttons (raccourcis) ===
+document.querySelectorAll('a[href^="tel:"]').forEach(a=>a.setAttribute("href",`tel:${PHONE_E164}`));
+
+// === Exemple (lien Pizz) ===
+const pizzBtn = document.getElementById("btn-pizz");
+if(pizzBtn){ pizzBtn.href = PIZZ_LINK; }
+
+// === CAROUSEL “Pour qui ?” ===
+(function initCarousel(){
+  const root = document.querySelector(".carousel");
+  if(!root) return;
+  const track = root.querySelector(".track");
+  const slides = [...root.querySelectorAll(".slide")];
+  const prev = root.querySelector(".prev");
+  const next = root.querySelector(".next");
+  const dots = root.querySelector(".dots");
+
+  let index = 0;
+  function go(i){
+    index = (i + slides.length) % slides.length;
+    track.style.transform = `translateX(${-index*100}%)`;
+    [...dots.children].forEach((d,k)=>d.classList.toggle("active", k===index));
+  }
+  // dots
+  slides.forEach((_,i)=>{
+    const b=document.createElement("button");
+    b.type="button"; b.setAttribute("aria-label",`Aller à la diapo ${i+1}`);
+    b.addEventListener("click", ()=>go(i));
+    dots.appendChild(b);
   });
+  go(0);
 
-  // Contact: email unique
-  document.getElementById('emailUnique')?.addEventListener('click', () => {
-    composeEmail(EMAIL, "Demande de site", "Bonjour,\n\nParlez-moi de votre projet :\n");
-  });
+  prev.addEventListener("click", ()=>go(index-1));
+  next.addEventListener("click", ()=>go(index+1));
+})();
 
-  // Mini formulaire (envoi via email compose)
-  document.getElementById('quickForm')?.addEventListener('submit', (e)=>{
+// === MAIL helpers ===
+function gmailDeepLink(to, subject, body){
+  // Tentative Gmail web/app
+  const url = new URL("https://mail.google.com/mail/");
+  url.searchParams.set("view","cm");
+  url.searchParams.set("fs","1");
+  url.searchParams.set("to", to);
+  url.searchParams.set("su", subject);
+  url.searchParams.set("body", body);
+  // Fallback mailto
+  const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  // essaie Gmail, puis fallback
+  const w = window.open(url.toString(), "_blank");
+  const t = setTimeout(()=>{
+    try{ if(!w || w.closed) window.location.href = mailto; }
+    catch{ window.location.href = mailto; }
+  }, 1200);
+
+  // si l’onglet s’ouvre bien, on nettoie le timer
+  const clear = ()=>clearTimeout(t);
+  window.addEventListener("focus", clear, {once:true});
+}
+
+// Lien “Écrire …”
+document.getElementById("btn-gmail")?.addEventListener("click", (e)=>{
+  e.preventDefault();
+  gmailDeepLink(
+    EMAIL,
+    "Commande",
+    "Détaillez votre demande :\n\n"
+  );
+});
+
+// Boutons “Choisir ce pack” -> pré-remplissage
+document.querySelectorAll(".btn-mail").forEach(btn=>{
+  btn.addEventListener("click",(e)=>{
     e.preventDefault();
-    const name = (document.getElementById('qName').value || "").trim();
-    const mail = (document.getElementById('qEmail').value || "").trim();
-    const msg  = (document.getElementById('qMsg').value || "").trim();
-    const subject = `Contact rapide — ${name || "Sans nom"}`;
-    const body = `Nom: ${name}\nEmail: ${mail}\n\nMessage:\n${msg}`;
-    composeEmail(EMAIL, subject, body);
+    const pack = btn.dataset.pack || "Pack";
+    const body = `Détaillez votre demande :\n\nPack choisi : ${pack}\n\nNom : \nEmail : \nTéléphone : \nAutres infos : \n`;
+    gmailDeepLink(EMAIL, "Commande", body);
   });
 });
 
-// ================== COMPOSE EMAIL (Gmail deep link avec fallback) ==================
-function composeEmail(to, subject="", body=""){
-  const enc = s => encodeURIComponent(s || "");
-  const ua = navigator.userAgent.toLowerCase();
-  const isAndroid = ua.includes("android");
-  const isIOS = /iphone|ipad|ipod/.test(ua);
+// Formulaire -> Gmail + fallback, Objet=Commande
+document.getElementById("sendBtn")?.addEventListener("click", ()=>{
+  const name = document.getElementById("fname").value.trim();
+  const mail = document.getElementById("fmail").value.trim();
+  const msg  = document.getElementById("fmsg").value.trim();
 
-  // 1) Essai Gmail app
-  let appUrl = "";
-  if (isAndroid) appUrl = `gmail://co?to=${enc(to)}&subject=${enc(subject)}&body=${enc(body)}`;
-  if (isIOS)     appUrl = `googlegmail:///co?to=${enc(to)}&subject=${enc(subject)}&body=${enc(body)}`;
+  const body =
+`Détaillez votre demande :
 
-  // 2) Fallback web Gmail
-  const webGmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${enc(to)}&su=${enc(subject)}&body=${enc(body)}`;
-  // 3) Fallback mailto
-  const mailto = `mailto:${to}?subject=${enc(subject)}&body=${enc(body)}`;
+Nom : ${name}
+Email : ${mail}
 
-  // Tentative d'ouverture Gmail app, sinon bascule
-  let tried = false;
-  const t = setTimeout(()=>{
-    if (tried) return;
-    // Si Gmail web est accessible (et souvent connecté), on teste d'abord
-    window.location.href = webGmail;
-    setTimeout(()=>{ window.location.href = mailto; }, 800);
-  }, 900);
+Message :
+${msg}
+`;
 
-  if (appUrl){
-    tried = true;
-    window.location.href = appUrl;
-  } else {
-    // pas de schéma app possible → web puis mailto
-    window.location.href = webGmail;
-    setTimeout(()=>{ window.location.href = mailto; }, 800);
-  }
-  setTimeout(()=>clearTimeout(t), 3000);
-}
-
-// ================== CAROUSEL ==================
-function initCarousel(){
-  const track = document.querySelector('.c-track');
-  const slides = [...document.querySelectorAll('.c-slide')];
-  const prev = document.querySelector('.c-prev');
-  const next = document.querySelector('.c-next');
-  const dotsWrap = document.querySelector('.c-dots');
-  if (!track || slides.length === 0) return;
-
-  // Dots
-  slides.forEach((_, i)=>{
-    const b = document.createElement('button');
-    b.setAttribute('aria-label', `Aller au slide ${i+1}`);
-    if (i===0) b.classList.add('active');
-    b.addEventListener('click', ()=>goTo(i));
-    dotsWrap.appendChild(b);
-  });
-  const dots = [...dotsWrap.children];
-
-  let index = 0;
-  const max = slides.length - 1;
-  function goTo(i){
-    index = Math.max(0, Math.min(max, i));
-    const x = slides[index].offsetLeft - (track.clientWidth - slides[index].clientWidth)/2;
-    track.scrollTo({ left: x, behavior: 'smooth' });
-    dots.forEach(d=>d.classList.remove('active'));
-    dots[index].classList.add('active');
-  }
-  function step(dir){ goTo(index + dir); }
-
-  prev?.addEventListener('click', ()=>step(-1));
-  next?.addEventListener('click', ()=>step(1));
-
-  // Mise à jour à la main au scroll (au cas où)
-  track.addEventListener('scroll', ()=>{
-    const mid = track.scrollLeft + track.clientWidth/2;
-    let nearest = 0; let best = Infinity;
-    slides.forEach((s,i)=>{
-      const center = s.offsetLeft + s.clientWidth/2;
-      const d = Math.abs(center - mid);
-      if (d < best){ best = d; nearest = i; }
-    });
-    if (nearest !== index){ index = nearest; dots.forEach(d=>d.classList.remove('active')); dots[index].classList.add('active'); }
-  }, {passive:true});
-}
+  gmailDeepLink(EMAIL, "Commande", body);
+});
