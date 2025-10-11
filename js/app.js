@@ -1,41 +1,31 @@
-// Burger menu
-const burger = document.getElementById('burger');
-const navLinks = document.getElementById('navLinks');
-
-burger?.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  if (navLinks.classList.contains('open')) {
-    navLinks.style.display = 'flex';
-    navLinks.style.flexDirection = 'column';
-    navLinks.style.position = 'absolute';
-    navLinks.style.right = '16px';
-    navLinks.style.top = '64px';
-    navLinks.style.padding = '12px';
-    navLinks.style.background = '#0f1419';
-    navLinks.style.border = '1px solid #202731';
-    navLinks.style.borderRadius = '14px';
-    navLinks.style.gap = '10px';
-  } else {
-    navLinks.removeAttribute('style');
-  }
-});
-
-// Pour-qui carousel dots
-const car = document.getElementById('pqCarousel');
-const dotsWrap = document.getElementById('pqDots');
-
-if (car && dotsWrap) {
-  const items = [...car.children];
-  items.forEach((_, i) => {
-    const d = document.createElement('i');
-    if (i === 0) d.classList.add('active');
-    dotsWrap.appendChild(d);
-  });
-
-  const dots = [...dotsWrap.children];
-  car.addEventListener('scroll', () => {
-    const w = car.getBoundingClientRect().width;
-    const idx = Math.round(car.scrollLeft / (w * 0.75)); // approx index
-    dots.forEach((d,i)=> d.classList.toggle('active', i===idx));
+// Menu burger (mobile)
+const menuBtn = document.getElementById('menuBtn');
+const nav = document.getElementById('nav');
+if (menuBtn && nav) {
+  menuBtn.addEventListener('click', () => {
+    const opened = nav.style.display === 'flex';
+    nav.style.display = opened ? 'none' : 'flex';
   });
 }
+
+// Scroll doux pour les ancres
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').substring(1);
+    const el = document.getElementById(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+
+// Sélecteur horizontal accessible (drag to scroll)
+document.querySelectorAll('.carousel, .scroller').forEach(scroller => {
+  let isDown = false, startX = 0, scrollLeft = 0;
+  scroller.addEventListener('pointerdown', e => {
+    isDown = true; startX = e.pageX; scrollLeft = scroller.scrollLeft; scroller.setPointerCapture(e.pointerId);
+  });
+  scroller.addEventListener('pointermove', e => {
+    if (!isDown) return;
+    scroller.scrollLeft = scrollLeft - (e.pageX - startX);
+  });
+  scroller.addEventListener('pointerup', () => { isDown = false; });
+});
