@@ -1,137 +1,133 @@
 // === CONFIG ===
 const EMAIL = "smarttlelearning@gmail.com";
 const PHONE_E164 = "+33788589812";
-// Lien public du site Pizz'Amigo :
-const PIZZ_LINK = "pizz-amigo.netlify.app"; // ← remplace par l’URL réelle si besoin
 
-// === NAV (hamburger) ===
+// === MENU ===
 const menuBtn = document.querySelector(".menu-toggle");
-const menu = document.querySelector(".menu");
-const actions = document.querySelector(".actions");
+const drawer  = document.querySelector(".nav-drawer");
 
-function closeMenu(){
-  if(menu.classList.contains("open")){
-    menu.classList.remove("open");
-    menuBtn.setAttribute("aria-expanded","false");
-    menu.setAttribute("aria-hidden","true");
-  }
-}
-function openMenu(){
-  menu.classList.add("open");
-  menuBtn.setAttribute("aria-expanded","true");
-  menu.setAttribute("aria-hidden","false");
-}
+function closeDrawer(){ drawer.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); }
+function openDrawer(){ drawer.classList.add("open"); drawer.setAttribute("aria-hidden","false"); }
 
 menuBtn?.addEventListener("click", (e)=>{
   e.stopPropagation();
-  menu.classList.toggle("open");
-  const opened = menu.classList.contains("open");
-  menuBtn.setAttribute("aria-expanded", opened ? "true":"false");
-  menu.setAttribute("aria-hidden", opened ? "false":"true");
+  drawer.classList.contains("open") ? closeDrawer() : openDrawer();
 });
 
-// Fermer en cliquant ailleurs
+// Fermeture si clic à l'extérieur
 document.addEventListener("click", (e)=>{
-  if(!menu.contains(e.target) && !menuBtn.contains(e.target)) closeMenu();
-});
-// Fermer via Echap
-document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeMenu(); });
-
-// === HERO buttons (raccourcis) ===
-document.querySelectorAll('a[href^="tel:"]').forEach(a=>a.setAttribute("href",`tel:${PHONE_E164}`));
-
-// === Exemple (lien Pizz) ===
-const pizzBtn = document.getElementById("btn-pizz");
-if(pizzBtn){ pizzBtn.href = PIZZ_LINK; }
-
-// === CAROUSEL “Pour qui ?” ===
-(function initCarousel(){
-  const root = document.querySelector(".carousel");
-  if(!root) return;
-  const track = root.querySelector(".track");
-  const slides = [...root.querySelectorAll(".slide")];
-  const prev = root.querySelector(".prev");
-  const next = root.querySelector(".next");
-  const dots = root.querySelector(".dots");
-
-  let index = 0;
-  function go(i){
-    index = (i + slides.length) % slides.length;
-    track.style.transform = `translateX(${-index*100}%)`;
-    [...dots.children].forEach((d,k)=>d.classList.toggle("active", k===index));
+  if (!drawer.contains(e.target) && !menuBtn.contains(e.target)){
+    closeDrawer();
   }
-  // dots
-  slides.forEach((_,i)=>{
-    const b=document.createElement("button");
-    b.type="button"; b.setAttribute("aria-label",`Aller à la diapo ${i+1}`);
-    b.addEventListener("click", ()=>go(i));
-    dots.appendChild(b);
-  });
-  go(0);
+});
+
+// Fermeture si on clique un lien du menu
+drawer.querySelectorAll("a").forEach(a=>a.addEventListener("click", closeDrawer));
+
+// === CAROUSEL ===
+(function initCarousel(){
+  const track = document.querySelector(".c-track");
+  if(!track) return;
+
+  const slides = [...track.children];
+  const prev = document.querySelector(".c-prev");
+  const next = document.querySelector(".c-next");
+  const dots = [...document.querySelectorAll(".dot")];
+  let index = 0;
+
+  function go(i){
+    index = (i+slides.length)%slides.length;
+    track.style.transform = `translateX(-${index*100}%)`;
+    dots.forEach((d,k)=>d.classList.toggle("is-active", k===index));
+  }
 
   prev.addEventListener("click", ()=>go(index-1));
   next.addEventListener("click", ()=>go(index+1));
+  dots.forEach((d,k)=>d.addEventListener("click", ()=>go(k)));
+
+  // Auto-play léger
+  let timer = setInterval(()=>go(index+1), 6000);
+  [prev,next,track].forEach(el=>{
+    el.addEventListener("pointerenter", ()=>clearInterval(timer));
+    el.addEventListener("pointerleave", ()=>timer = setInterval(()=>go(index+1), 6000));
+  });
 })();
 
-// === MAIL helpers ===
-function gmailDeepLink(to, subject, body){
-  // Tentative Gmail web/app
-  const url = new URL("https://mail.google.com/mail/");
-  url.searchParams.set("view","cm");
-  url.searchParams.set("fs","1");
-  url.searchParams.set("to", to);
-  url.searchParams.set("su", subject);
-  url.searchParams.set("body", body);
-  // Fallback mailto
-  const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+// === MAIL / GMAIL INTENT ===
+function composeEmail({subject, body, to = EMAIL}){
+  const encodedSubject = encodeURIComponent(subject);
+  const encodedBody = encodeURIComponent(body);
 
-  // essaie Gmail, puis fallback
-  const w = window.open(url.toString(), "_blank");
-  const t = setTimeout(()=>{
-    try{ if(!w || w.closed) window.location.href = mailto; }
-    catch{ window.location.href = mailto; }
-  }, 1200);
+  // 1) mailto (ouvre l'app mail par défaut / Gmail si configuré)
+  const mailto = `mailto:${to}?subject=${encodedSubject}&body=${encodedBody}`;
+  window.location.href = mailto;
 
-  // si l’onglet s’ouvre bien, on nettoie le timer
-  const clear = ()=>clearTimeout(t);
-  window.addEventListener("focus", clear, {once:true});
+  // 2) Secours Gmail web (si l’app ne s’ouvre pas)
+  setTimeout(()=>{
+    const gmailWeb = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodedSubject}&body=${encodedBody}`;
+    window.open(gmailWeb, "_blank","noopener");
+  }, 800);
 }
 
-// Lien “Écrire …”
-document.getElementById("btn-gmail")?.addEventListener("click", (e)=>{
+// Lien mail direct au-dessus du formulaire
+document.getElementById("mailtoDirect")?.addEventListener("click", (e)=>{
   e.preventDefault();
-  gmailDeepLink(
-    EMAIL,
-    "Commande",
-    "Détaillez votre demande :\n\n"
-  );
-});
-
-// Boutons “Choisir ce pack” -> pré-remplissage
-document.querySelectorAll(".btn-mail").forEach(btn=>{
-  btn.addEventListener("click",(e)=>{
-    e.preventDefault();
-    const pack = btn.dataset.pack || "Pack";
-    const body = `Détaillez votre demande :\n\nPack choisi : ${pack}\n\nNom : \nEmail : \nTéléphone : \nAutres infos : \n`;
-    gmailDeepLink(EMAIL, "Commande", body);
+  composeEmail({
+    subject: "Commande",
+    body: "Détaillez votre demande :\n\n"
   });
 });
 
-// Formulaire -> Gmail + fallback, Objet=Commande
-document.getElementById("sendBtn")?.addEventListener("click", ()=>{
-  const name = document.getElementById("fname").value.trim();
-  const mail = document.getElementById("fmail").value.trim();
-  const msg  = document.getElementById("fmsg").value.trim();
+// Boutons “Choisir ce pack”
+document.querySelectorAll(".mail-intent").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const pack = btn.dataset.pack || "Pack";
+    const body =
+`Détaillez votre demande :
 
+• Pack choisi : ${pack}
+• Thème (restaurant, mariage, musique, etc.) :
+• Couleurs souhaitées :
+• Fonctionnalités à intégrer (ex : carte/menu, horaires, lien de paiement, réservation, Maps, galerie, commandes+dashboard) :
+• Nom de domaine souhaité :
+• Téléphone / email à afficher :
+• Budget estimé :
+• Échéance :
+• Contenus fournis ? (textes / photos / logo) :
+• Lien(s) d’inspiration (optionnel) :
+• Remarques :`;
+
+    composeEmail({subject:"Commande", body});
+  });
+});
+
+// === FORMULAIRE ===
+const form = document.getElementById("projectForm");
+form?.addEventListener("submit", (e)=>{
+  e.preventDefault();
+  const fd = new FormData(form);
+
+  const feats = fd.getAll("feat").join(", ");
   const body =
 `Détaillez votre demande :
 
-Nom : ${name}
-Email : ${mail}
+• Nom : ${fd.get("name")}
+• Email : ${fd.get("email")}
+• Thème : ${fd.get("theme")}
+• Couleurs : ${fd.get("colors")||""}
+• Nom de domaine : ${fd.get("domain")||""}
+• Téléphone à afficher : ${fd.get("phone")||""}
+• Fonctionnalités : ${feats||"—"}
+• Budget : ${fd.get("budget")||""}
+• Échéance : ${fd.get("deadline")||""}
 
 Message :
-${msg}
-`;
+${fd.get("message")||""}`;
 
-  gmailDeepLink(EMAIL, "Commande", body);
+  composeEmail({ subject:"Commande", body });
+});
+
+// === Appeler: correct tel: sur tous les éléments .btn-call ===
+document.querySelectorAll('.btn-call').forEach(a=>{
+  a.setAttribute('href', `tel:${PHONE_E164}`);
 });
