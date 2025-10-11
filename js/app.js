@@ -1,67 +1,68 @@
-// === Réglages contact ===
-const EMAIL = "smarttlelearning@gmail.com";
-const PHONE_E164 = "+33788589812";
+:root{
+  --bg-1:#0b0b0c; --bg-2:#101113; --box:#15161a; --line:#1f2025;
+  --text:#e9eaee; --muted:#bfc2cc; --primary:#ff2d2d; --primary-weak:#ff2d2d22;
+  --radius:16px; --shadow:0 16px 40px rgba(0,0,0,.45); --maxw:1200px;
+}
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg-1);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:none}
 
-// === Lien Gmail compose ===
-function buildGmailUrl() {
-  const subject = "Demande de site vitrine";
-  const body = `Bonjour, je souhaite un site pour mon activité.\n\nMerci.`;
-  const p = new URLSearchParams({ view:"cm", fs:"1", to:EMAIL, su:subject, body });
-  return `https://mail.google.com/mail/?${p.toString()}`;
+/* header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(8,9,12,.6);backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid var(--line)}
+.navbar{max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-logo{height:36px}
+.brand-name{font-weight:800}
+.header-actions{display:flex;gap:10px;align-items:center}
+.call-btn{background:var(--primary);color:#fff;border:0;border-radius:12px;padding:10px 16px;font-weight:800;cursor:pointer;box-shadow:0 8px 28px rgba(255,45,45,.25)}
+.menu-toggle{background:transparent;border:1px solid var(--line);border-radius:12px;padding:8px 12px;color:#fff;cursor:pointer}
+.nav-list{list-style:none;margin:0;padding:0;display:flex;gap:14px}
+.nav-list a{padding:8px 10px;border-radius:10px}
+.nav-list a:hover{background:var(--primary-weak)}
+@media (max-width:920px){
+  .nav-list{position:fixed;left:16px;right:16px;top:64px;background:#0f1115;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:14px;flex-direction:column;gap:10px;transform:translateY(-140%);transition:.25s}
+  .navbar.open .nav-list{transform:translateY(0)}
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Boutons contact
-  const gmailBtn = document.getElementById("gmailBtn");
-  if (gmailBtn) gmailBtn.href = buildGmailUrl();
+/* sections + séparateurs */
+.section{max-width:var(--maxw);margin:0 auto;padding:70px 20px}
+.divider{border:0;border-top:1px solid var(--line);margin:40px auto;max-width:var(--maxw)}
 
-  const callTop = document.getElementById("callTop");
-  if (callTop) callTop.href = `tel:${PHONE_E164}`;
-  const callBtn = document.getElementById("callBtn");
-  if (callBtn) callBtn.href = `tel:${PHONE_E164}`;
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center}
+.hero h1{font-size:clamp(28px,4vw,44px);margin:0}
+.hero p{color:var(--muted);margin:.5rem 0 1rem}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-block;border:1px solid transparent;border-radius:12px;padding:12px 16px;font-weight:800}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 8px 28px rgba(255,45,45,.25)}
+.btn-ghost{background:transparent;color:var(--primary);border-color:var(--primary)}
+.hero-visual img{width:100%;border-radius:16px;box-shadow:0 20px 70px rgba(255,45,45,.12),var(--shadow);object-fit:cover}
+@media (max-width:920px){.hero{grid-template-columns:1fr}}
 
-  // Menu mobile
-  const toggle = document.querySelector(".nav-toggle");
-  const list = document.querySelector(".nav-list");
-  if (toggle && list) {
-    toggle.addEventListener("click", () => {
-      const opened = list.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", opened ? "true" : "false");
-    });
-    list.querySelectorAll("a").forEach(a =>
-      a.addEventListener("click", () => list.classList.remove("open"))
-    );
-  }
+/* exemple */
+.example{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center;margin-bottom:26px}
+.example-dark{background:var(--box);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px}
+.example-visual img{width:100%;border-radius:12px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
+@media (max-width:900px){.example{grid-template-columns:1fr}}
 
-  // Scroll doux + lien actif
-  const links = document.querySelectorAll('a.nav-link, a[href^="#"]');
-  links.forEach(link => {
-    link.addEventListener("click", e => {
-      const href = link.getAttribute("href");
-      if (href && href.startsWith("#")) {
-        e.preventDefault();
-        const el = document.querySelector(href);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  });
+/* tarifs */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--box);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:22px}
+.card h3{margin:0 0 6px}
+.price{color:var(--primary);font-weight:900}
+@media (max-width:920px){.cards{grid-template-columns:1fr}}
 
-  const sections = document.querySelectorAll("main section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
-  const map = {};
-  navLinks.forEach(l => { map[l.getAttribute("href")] = l; });
+/* contact */
+.contact .muted{color:var(--muted)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+.contact-panel,.contact-form{background:var(--box);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:18px}
+.quick-actions{display:grid;gap:10px}
+.qa-btn{display:flex;align-items:center;gap:10px;background:#0f1115;border:1px solid var(--line);padding:12px 14px;border-radius:10px}
+.qa-btn:hover{background:#15161a}
+.contact-form label{font-weight:700}
+.contact-form input,.contact-form textarea{width:100%;padding:12px;border:1px solid #24252b;border-radius:10px;background:#0f1115;color:var(--text);outline:2px solid transparent}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#3b3d46;outline:2px solid var(--primary)}
+@media (max-width:920px){.contact-grid{grid-template-columns:1fr}}
 
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const id = `#${entry.target.id}`;
-      const link = map[id];
-      if (!link) return;
-      if (entry.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove("active"));
-        link.classList.add("active");
-      }
-    });
-  }, { rootMargin: "-42% 0px -52% 0px", threshold: 0.01 });
-
-  sections.forEach(s => obs.observe(s));
-});
+/* footer */
+.site-footer{border-top:1px solid var(--line);padding:26px 20px;text-align:center;color:#9aa0ad}
