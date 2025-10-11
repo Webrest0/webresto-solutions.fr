@@ -1,18 +1,38 @@
-// === COORDONNÉES ===
-const EMAIL = "smarttlelearning@gmail.com";
-const PHONE_E164 = "+33788589812";
+// Carousel "Pour qui ?"
+const track = document.querySelector('.carousel-track');
+const slides = Array.from(track.children);
+const nextBtn = document.querySelector('.next');
+const prevBtn = document.querySelector('.prev');
+const dotsNav = document.querySelector('.carousel-dots');
 
-// === MENU MOBILE ===
-function toggleMenu() {
-  const nav = document.querySelector('.navbar');
-  nav.classList.toggle('open');
+slides.forEach((_, i) => {
+  const dot = document.createElement('button');
+  if (i === 0) dot.classList.add('active');
+  dotsNav.appendChild(dot);
+});
+
+const dots = Array.from(dotsNav.children);
+let currentSlide = 0;
+
+function updateCarousel() {
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  dots.forEach(d => d.classList.remove('active'));
+  dots[currentSlide].classList.add('active');
 }
-document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
 
-// === SMOOTH SCROLL ===
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+nextBtn.addEventListener('click', () => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  updateCarousel();
+});
+
+prevBtn.addEventListener('click', () => {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  updateCarousel();
+});
+
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    currentSlide = i;
+    updateCarousel();
   });
 });
