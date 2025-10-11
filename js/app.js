@@ -1,35 +1,97 @@
-// Burger menu
-const burger = document.getElementById('burger');
-const nav = document.getElementById('nav');
-if (burger) {
-  burger.addEventListener('click', () => {
-    nav.classList.toggle('open');
-    if (nav.classList.contains('open')) {
-      nav.style.display = 'flex';
-      nav.style.flexDirection = 'column';
-      nav.style.gap = '10px';
-      nav.style.position = 'absolute';
-      nav.style.right = '12px';
-      nav.style.top = '58px';
-      nav.style.background = 'rgba(12,16,20,.98)';
-      nav.style.border = '1px solid rgba(255,255,255,.08)';
-      nav.style.borderRadius = '12px';
-      nav.style.padding = '10px 12px';
-    } else {
-      nav.removeAttribute('style');
-    }
-  });
+const EMAIL = "smarttlelearning@gmail.com";
+const PHONE_E164 = "+33788589812";
+
+// Ouvre l'app Gmail si possible, sinon bascule vers l'app mail par défaut
+function gmailDeepLink(to, subject, body) {
+  const appUrl = `googlegmail:///co?to=${encodeURIComponent(to)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const mailtoUrl = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const t = setTimeout(() => { window.location.href = mailtoUrl; }, 600);
+  window.location.href = appUrl;
+  setTimeout(() => clearTimeout(t), 1500);
 }
 
-// Smooth scroll (ancres)
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click', e=>{
-    const id = a.getAttribute('href');
-    if (id.length > 1) {
+document.addEventListener("DOMContentLoaded", () => {
+  // Liens d’action
+  const callTop = document.getElementById("callTop");
+  if (callTop) callTop.href = `tel:${PHONE_E164}`;
+
+  // Ouvrir Gmail (bouton + adresse)
+  const gmailBtn = document.getElementById("gmailBtn");
+  const gmailBtnAddress = document.getElementById("gmailBtnAddress");
+  const subject = "Demande de site vitrine";
+  const body = "Bonjour, je souhaite un site pour mon activité.%0A%0AMerci.";
+  [gmailBtn, gmailBtnAddress].forEach(btn => {
+    if (!btn) return;
+    btn.addEventListener("click", (e) => {
       e.preventDefault();
-      document.querySelector(id)?.scrollIntoView({behavior:'smooth',block:'start'});
-      // referme le menu mobile
-      if (nav.classList.contains('open')) { burger.click(); }
-    }
+      gmailDeepLink(EMAIL, subject, "Bonjour, je souhaite un site pour mon activité.\n\nMerci.");
+    });
   });
+
+  // Menu mobile
+  const toggle = document.querySelector(".nav-toggle");
+  const navList = document.querySelector(".nav-list");
+  if (toggle && navList) {
+    toggle.addEventListener("click", () => {
+      const opened = navList.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", opened ? "true" : "false");
+    });
+    navList.querySelectorAll("a").forEach(a =>
+      a.addEventListener("click", () => navList.classList.remove("open"))
+    );
+  }
+
+  // Scroll doux
+  document.querySelectorAll('a.nav-link, a[href^="#"]').forEach(link => {
+    link.addEventListener("click", e => {
+      const href = link.getAttribute("href");
+      if (href && href.startsWith("#")) {
+        e.preventDefault();
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+
+  // === CAROUSEL ===
+  const track = document.querySelector(".carousel-track");
+  const prev = document.querySelector(".carousel-btn.prev");
+  const next = document.querySelector(".carousel-btn.next");
+  const dotsWrap = document.querySelector(".carousel-dots");
+  if (track && prev && next && dotsWrap) {
+    const slides = Array.from(track.children);
+    let index = 0;
+
+    slides.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.setAttribute("aria-label", `Aller à la diapositive ${i+1}`);
+      if (i === 0) b.classList.add("active");
+      b.addEventListener("click", () => goTo(i));
+      dotsWrap.appendChild(b);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function update() {
+      track.style.transform = `translateX(${-index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle("active", i === index));
+    }
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      update();
+    }
+    prev.addEventListener("click", () => goTo(index - 1));
+    next.addEventListener("click", () => goTo(index + 1));
+
+    // Swipe mobile
+    let startX = null;
+    track.addEventListener("touchstart", (e) => startX = e.touches[0].clientX, {passive:true});
+    track.addEventListener("touchmove", (e) => {
+      if (startX === null) return;
+      const dx = e.touches[0].clientX - startX;
+      if (Math.abs(dx) > 50) {
+        goTo(index + (dx < 0 ? 1 : -1));
+        startX = null;
+      }
+    }, {passive:true});
+  }
 });
