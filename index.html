@@ -2,121 +2,175 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WebResto</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WebResto — Sites modernes, visibles et sur mesure</title>
   <link rel="stylesheet" href="css/style.css" />
   <script defer src="js/app.js"></script>
 </head>
-
 <body>
+  <!-- Backdrop LED -->
+  <div class="led-backdrop" aria-hidden="true"></div>
+
   <!-- HEADER -->
   <header class="navbar">
     <div class="logo">
-      <img src="images/wr-logo-red.png" alt="Logo WebResto" />
-      <span>WebResto</span>
+      <img src="images/wr-logo-red.png" alt="Logo WebResto" width="28" height="28" />
+      <span class="brand">WebResto</span>
     </div>
+
     <div class="nav-actions">
-      <a href="tel:+33788589812" class="call-btn">Appeler</a>
-      <button class="menu-toggle">☰</button>
+      <a href="tel:+33788589812" class="btn btn-call">Appeler</a>
+      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="menu-icon"></span>
+      </button>
     </div>
+
+    <!-- Menu latéral -->
+    <nav class="drawer" aria-label="Navigation">
+      <button class="drawer-close" aria-label="Fermer le menu">×</button>
+      <a href="#exemple" class="drawer-link">Exemple</a>
+      <a href="#pour-qui" class="drawer-link">Pour qui ?</a>
+      <a href="#tarifs" class="drawer-link">Offres & tarifs</a>
+      <a href="#contact" class="drawer-link">Contact</a>
+    </nav>
+    <div class="drawer-mask" tabindex="-1"></div>
   </header>
 
   <!-- HERO -->
-  <section class="hero" style="background-image:url('images/hero-dark-office.png')">
+  <section class="hero" id="hero" style="--hero:url('images/hero-dark-office.png')">
     <div class="hero-content">
       <h1>Des sites modernes, visibles et sur mesure.</h1>
-      <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
+      <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site
+        clair, rapide et beau sur téléphone.</p>
       <div class="hero-buttons">
-        <a href="#exemple" class="btn-primary">Voir un exemple</a>
-        <a href="#contact" class="btn-secondaire">Demander un site</a>
+        <a href="#exemple" class="btn btn-primary">Voir un exemple</a>
+        <a href="#contact" class="btn btn-ghost">Demander un site</a>
       </div>
     </div>
   </section>
 
   <!-- EXEMPLE -->
-  <section id="exemple">
-    <h2>Exemple</h2>
-    <div class="exemple-card">
-      <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
-      <p>Site vitrine simple, propre et lisible sur téléphone.</p>
-      <img src="https://images.unsplash.com/photo-1601924579440-5168052b05d5?auto=format&fit=crop&w=900&q=80" alt="Pizza PizzAmigo" />
-      <a href="https://webrest0.github.io/pizz-amigo.fr/" class="btn-primary">Voir le site</a>
-    </div>
+  <section class="section" id="exemple" aria-labelledby="exemple-title">
+    <h2 class="section-title" id="exemple-title">Exemple</h2>
+
+    <article class="card example-card">
+      <header class="card-head">
+        <h3 class="card-title">PIZZ’AMIGO — Food truck au feu de bois</h3>
+        <p class="card-sub">Site vitrine simple, propre et lisible sur téléphone.</p>
+      </header>
+
+      <figure class="media">
+        <img
+          id="pizza-img"
+          src="https://images.unsplash.com/photo-1548365328-8b8490a0be42?auto=format&fit=crop&w=1600&q=70"
+          alt="Pizza au feu de bois"
+          loading="lazy"
+          onerror="this.onerror=null; this.src='images/pizz-amigo-cover.jpg';"
+        />
+      </figure>
+
+      <footer class="card-foot">
+        <a id="btn-view-site" class="btn btn-primary" href="#" target="_blank" rel="noopener">Voir le site</a>
+      </footer>
+    </article>
   </section>
 
-  <!-- POUR QUI -->
-  <section id="pour-qui" class="carousel-section">
-    <h2>Pour qui ?</h2>
-    <p>Je crée pour tous les besoins :</p>
+  <!-- POUR QUI (CARROUSEL) -->
+  <section class="section" id="pour-qui" aria-labelledby="pour-qui-title">
+    <h2 class="section-title" id="pour-qui-title">Pour qui ?</h2>
+    <p class="section-sub">Je crée pour tous les besoins :</p>
 
-    <div class="carousel">
+    <div class="carousel" data-carousel>
+      <button class="carousel-arrow prev" aria-label="Précédent">‹</button>
       <div class="carousel-track">
-        <div class="carousel-slide">
-          <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=900&q=80" alt="Restaurant / fast-food">
-          <span>Restaurant / fast-food</span>
-        </div>
-        <div class="carousel-slide">
-          <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=900&q=80" alt="Entreprise / services">
-          <span>Entreprise / services</span>
-        </div>
-        <div class="carousel-slide">
-          <img src="https://images.unsplash.com/photo-1583337130417-3346a1afdd0a?auto=format&fit=crop&w=900&q=80" alt="Groupe de musique">
-          <span>Groupe de musique</span>
-        </div>
-        <div class="carousel-slide">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Mariage / événement">
-          <span>Mariage / événement</span>
-        </div>
+        <article class="slide">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=60"
+               alt="Restaurant / fast-food" loading="lazy" />
+          <div class="slide-badge">Restaurant / fast-food</div>
+        </article>
+        <article class="slide">
+          <img src="https://images.unsplash.com/photo-1529336953121-ad3a22c62e86?auto=format&fit=crop&w=1600&q=60"
+               alt="Entreprises & services" loading="lazy" />
+          <div class="slide-badge">Entreprises & services</div>
+        </article>
+        <article class="slide">
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1600&q=60"
+               alt="Groupes de musique" loading="lazy" />
+          <div class="slide-badge">Groupes de musique</div>
+        </article>
+        <article class="slide">
+          <img src="https://images.unsplash.com/photo-1520974735194-8d95e46ed511?auto=format&fit=crop&w=1600&q=60"
+               alt="Mariages & événements" loading="lazy" />
+          <div class="slide-badge">Mariages & événements</div>
+        </article>
       </div>
-
-      <button class="carousel-btn prev">‹</button>
-      <button class="carousel-btn next">›</button>
-
-      <div class="carousel-dots"></div>
+      <button class="carousel-arrow next" aria-label="Suivant">›</button>
+      <div class="carousel-dots" aria-label="Pagination"></div>
     </div>
   </section>
 
   <!-- TARIFS -->
-  <section id="tarifs">
-    <h2>Offres & tarifs</h2>
+  <section class="section" id="tarifs" aria-labelledby="tarifs-title">
+    <h2 class="section-title" id="tarifs-title">Offres & tarifs</h2>
 
-    <div class="pack">
-      <h3>Site vitrine</h3>
-      <p class="prix">200 à 299€</p>
-      <p>Site moderne, clair et adapté à tous les écrans.</p>
-      <a href="mailto:smarttlelearning@gmail.com?subject=Demande de site vitrine" class="btn-secondaire">Choisir ce pack</a>
-    </div>
+    <div class="pricing">
+      <article class="price-card">
+        <h3>Site vitrine</h3>
+        <div class="price">200 à 299€</div>
+        <ul class="features">
+          <li>Site moderne, clair et adapté à tous les écrans.</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Choisir ce pack</a>
+      </article>
 
-    <div class="pack">
-      <h3>Site vitrine + commandes en ligne</h3>
-      <span class="badge">Le plus choisi</span>
-      <p class="prix">Sur devis</p>
-      <p>Ajout d’un système de commande relié au site (resto, snack, boutique...).</p>
-      <a href="mailto:smarttlelearning@gmail.com?subject=Site vitrine + commandes en ligne" class="btn-secondaire">Choisir ce pack</a>
-    </div>
+      <article class="price-card highlight">
+        <div class="badge">Le plus choisi</div>
+        <h3>Site vitrine +</h3>
+        <div class="price">500€</div>
+        <ul class="features">
+          <li>Formulaire(s) personnalisés (prise de contact, demandes, etc.).</li>
+          <li>Lien de paiement (Stripe / PayPal) pour régler facilement.</li>
+          <li>Sélection d’options (ex : choix de produits, tailles, extras…)</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Choisir ce pack</a>
+      </article>
 
-    <div class="pack">
-      <h3>Site avec dashboard</h3>
-      <p class="prix">899€</p>
-      <p>Tableau de bord pour gérer vos contenus et commandes.</p>
-      <a href="mailto:smarttlelearning@gmail.com?subject=Site avec dashboard" class="btn-secondaire">Choisir ce pack</a>
+      <article class="price-card">
+        <h3>Site avec dashboard</h3>
+        <div class="price">899€</div>
+        <ul class="features">
+          <li>Tout le contenu du “Site vitrine +”.</li>
+          <li>Système de commande relié au site avec notifications.</li>
+          <li>Historique des commandes et suivi.</li>
+          <li>Informations client collectées via formulaire.</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Choisir ce pack</a>
+      </article>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <a href="mailto:smarttlelearning@gmail.com" class="mail-link">📧 Écrire à smarttlelearning@gmail.com</a>
-    <form>
-      <input type="text" placeholder="Nom" required />
-      <input type="email" placeholder="Email" required />
-      <textarea placeholder="Parlez-moi de votre projet..." required></textarea>
-      <button type="submit" class="btn-primary">Envoyer</button>
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <h2 class="section-title" id="contact-title">Contact</h2>
+
+    <div class="contact-actions">
+      <button id="btn-gmail" class="btn btn-ghost">
+        ✉️ Écrire à smarttlelearning@gmail.com
+      </button>
+    </div>
+
+    <!-- Le submit ouvre GMAIL avec message prérempli -->
+    <form class="contact-form" id="contactForm">
+      <input type="text" id="name" placeholder="Nom" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <textarea id="message" rows="4" placeholder="Parlez-moi de votre projet…" required></textarea>
+      <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>
   </section>
 
-  <footer>
-    <p>© 2025 WebResto — Tous droits réservés</p>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <small>webresto-solution.fr — 2025</small>
   </footer>
 </body>
 </html>
