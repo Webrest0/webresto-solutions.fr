@@ -2,175 +2,147 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WebResto — Sites modernes, visibles et sur mesure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WebResto — Solutions web</title>
   <link rel="stylesheet" href="css/style.css" />
   <script defer src="js/app.js"></script>
 </head>
 <body>
-  <!-- Backdrop LED -->
-  <div class="led-backdrop" aria-hidden="true"></div>
-
   <!-- HEADER -->
   <header class="navbar">
     <div class="logo">
-      <img src="images/wr-logo-red.png" alt="Logo WebResto" width="28" height="28" />
-      <span class="brand">WebResto</span>
+      <img src="Images/wr-logo-red.png" alt="WebResto logo" />
+      <span>WebResto</span>
     </div>
-
     <div class="nav-actions">
-      <a href="tel:+33788589812" class="btn btn-call">Appeler</a>
-      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span class="menu-icon"></span>
-      </button>
+      <a href="tel:+33788589812" class="call-btn">Appeler</a>
+      <button class="menu-toggle" aria-label="Ouvrir le menu" title="Menu"></button>
+      <nav class="drawer">
+        <a href="#exemple">Exemple</a>
+        <a href="#pour-qui">Pour qui</a>
+        <a href="#offres">Offres & tarifs</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-
-    <!-- Menu latéral -->
-    <nav class="drawer" aria-label="Navigation">
-      <button class="drawer-close" aria-label="Fermer le menu">×</button>
-      <a href="#exemple" class="drawer-link">Exemple</a>
-      <a href="#pour-qui" class="drawer-link">Pour qui ?</a>
-      <a href="#tarifs" class="drawer-link">Offres & tarifs</a>
-      <a href="#contact" class="drawer-link">Contact</a>
-    </nav>
-    <div class="drawer-mask" tabindex="-1"></div>
   </header>
 
   <!-- HERO -->
-  <section class="hero" id="hero" style="--hero:url('images/hero-dark-office.png')">
+  <section class="hero">
     <div class="hero-content">
       <h1>Des sites modernes, visibles et sur mesure.</h1>
-      <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site
-        clair, rapide et beau sur téléphone.</p>
+      <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
       <div class="hero-buttons">
-        <a href="#exemple" class="btn btn-primary">Voir un exemple</a>
-        <a href="#contact" class="btn btn-ghost">Demander un site</a>
+        <a href="#exemple" class="btn-primary">Voir un exemple</a>
+        <a href="#contact" class="btn-ghost">Demander un site</a>
       </div>
     </div>
   </section>
 
   <!-- EXEMPLE -->
-  <section class="section" id="exemple" aria-labelledby="exemple-title">
-    <h2 class="section-title" id="exemple-title">Exemple</h2>
-
-    <article class="card example-card">
+  <section id="exemple" class="section">
+    <h2>Exemple</h2>
+    <article class="card">
       <header class="card-head">
-        <h3 class="card-title">PIZZ’AMIGO — Food truck au feu de bois</h3>
-        <p class="card-sub">Site vitrine simple, propre et lisible sur téléphone.</p>
+        <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
+        <p>Site vitrine simple, propre et lisible sur téléphone.</p>
       </header>
 
-      <figure class="media">
+      <!-- Image libre de droits (aperçu pizza) -->
+      <figure class="card-media">
         <img
-          id="pizza-img"
-          src="https://images.unsplash.com/photo-1548365328-8b8490a0be42?auto=format&fit=crop&w=1600&q=70"
-          alt="Pizza au feu de bois"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='images/pizz-amigo-cover.jpg';"
-        />
+          src="https://images.unsplash.com/photo-1548366086-7a5b0a6f10c5?q=80&w=1400&auto=format&fit=crop"
+          alt="Pizza rustique sur planche, aperçu du site Pizz'Amigo" loading="lazy">
+        <figcaption>Pizza PizzAmigo</figcaption>
       </figure>
 
-      <footer class="card-foot">
-        <a id="btn-view-site" class="btn btn-primary" href="#" target="_blank" rel="noopener">Voir le site</a>
+      <footer class="card-actions">
+        <a id="pizzLink" class="btn-primary" target="_blank" rel="noopener">Voir le site</a>
       </footer>
     </article>
   </section>
 
   <!-- POUR QUI (CARROUSEL) -->
-  <section class="section" id="pour-qui" aria-labelledby="pour-qui-title">
-    <h2 class="section-title" id="pour-qui-title">Pour qui ?</h2>
-    <p class="section-sub">Je crée pour tous les besoins :</p>
+  <section id="pour-qui" class="section">
+    <h2>Pour qui ?</h2>
+    <p class="sub">Je crée pour tous les besoins :</p>
 
-    <div class="carousel" data-carousel>
-      <button class="carousel-arrow prev" aria-label="Précédent">‹</button>
-      <div class="carousel-track">
-        <article class="slide">
-          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1600&q=60"
-               alt="Restaurant / fast-food" loading="lazy" />
-          <div class="slide-badge">Restaurant / fast-food</div>
-        </article>
-        <article class="slide">
-          <img src="https://images.unsplash.com/photo-1529336953121-ad3a22c62e86?auto=format&fit=crop&w=1600&q=60"
-               alt="Entreprises & services" loading="lazy" />
-          <div class="slide-badge">Entreprises & services</div>
-        </article>
-        <article class="slide">
-          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1600&q=60"
-               alt="Groupes de musique" loading="lazy" />
-          <div class="slide-badge">Groupes de musique</div>
-        </article>
-        <article class="slide">
-          <img src="https://images.unsplash.com/photo-1520974735194-8d95e46ed511?auto=format&fit=crop&w=1600&q=60"
-               alt="Mariages & événements" loading="lazy" />
-          <div class="slide-badge">Mariages & événements</div>
-        </article>
+    <div class="carousel" aria-label="Secteurs">
+      <button class="c-arrow c-prev" aria-label="Précédent">‹</button>
+      <div class="c-track">
+        <div class="c-slide">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200&auto=format&fit=crop" alt="Restaurant / fast-food" />
+          <span class="c-chip">Restaurant / fast-food</span>
+        </div>
+        <div class="c-slide">
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop" alt="Entreprises & services" />
+          <span class="c-chip">Entreprises & services</span>
+        </div>
+        <div class="c-slide">
+          <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1200&auto=format&fit=crop" alt="Groupes de musique" />
+          <span class="c-chip">Groupes de musique</span>
+        </div>
+        <div class="c-slide">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop" alt="Mariages & événements" />
+          <span class="c-chip">Mariages & événements</span>
+        </div>
       </div>
-      <button class="carousel-arrow next" aria-label="Suivant">›</button>
-      <div class="carousel-dots" aria-label="Pagination"></div>
+      <button class="c-arrow c-next" aria-label="Suivant">›</button>
+      <div class="c-dots" role="tablist" aria-label="Pagination"></div>
     </div>
   </section>
 
-  <!-- TARIFS -->
-  <section class="section" id="tarifs" aria-labelledby="tarifs-title">
-    <h2 class="section-title" id="tarifs-title">Offres & tarifs</h2>
+  <!-- OFFRES -->
+  <section id="offres" class="section">
+    <h2>Offres & tarifs</h2>
 
-    <div class="pricing">
-      <article class="price-card">
-        <h3>Site vitrine</h3>
-        <div class="price">200 à 299€</div>
-        <ul class="features">
-          <li>Site moderne, clair et adapté à tous les écrans.</li>
-        </ul>
-        <a href="#contact" class="btn btn-ghost">Choisir ce pack</a>
-      </article>
+    <article class="price-card">
+      <h3>Site vitrine</h3>
+      <div class="price">200 à 299€</div>
+      <ul>
+        <li>Site moderne, clair et adapté à tous les écrans.</li>
+      </ul>
+      <button class="btn-outline choose-pack" data-pack="Site vitrine">Choisir ce pack</button>
+    </article>
 
-      <article class="price-card highlight">
-        <div class="badge">Le plus choisi</div>
-        <h3>Site vitrine +</h3>
-        <div class="price">500€</div>
-        <ul class="features">
-          <li>Formulaire(s) personnalisés (prise de contact, demandes, etc.).</li>
-          <li>Lien de paiement (Stripe / PayPal) pour régler facilement.</li>
-          <li>Sélection d’options (ex : choix de produits, tailles, extras…)</li>
-        </ul>
-        <a href="#contact" class="btn btn-ghost">Choisir ce pack</a>
-      </article>
+    <article class="price-card featured">
+      <div class="badge">Le plus choisi</div>
+      <h3>Site vitrine +</h3>
+      <div class="price">500€</div>
+      <ul>
+        <li>Toutes les bases + formulaires personnalisés.</li>
+        <li>Possibilité d’ajouter un lien de paiement.</li>
+      </ul>
+      <button class="btn-outline choose-pack" data-pack="Site vitrine +">Choisir ce pack</button>
+    </article>
 
-      <article class="price-card">
-        <h3>Site avec dashboard</h3>
-        <div class="price">899€</div>
-        <ul class="features">
-          <li>Tout le contenu du “Site vitrine +”.</li>
-          <li>Système de commande relié au site avec notifications.</li>
-          <li>Historique des commandes et suivi.</li>
-          <li>Informations client collectées via formulaire.</li>
-        </ul>
-        <a href="#contact" class="btn btn-ghost">Choisir ce pack</a>
-      </article>
-    </div>
+    <article class="price-card">
+      <h3>Site avec dashboard</h3>
+      <div class="price">899€</div>
+      <ul>
+        <li>Toute l’offre “vitrine +”.</li>
+        <li>Système de commande relié au site (notif + historique).</li>
+        <li>Fiches clients auto depuis les formulaires.</li>
+      </ul>
+      <button class="btn-outline choose-pack" data-pack="Site avec dashboard">Choisir ce pack</button>
+    </article>
   </section>
 
   <!-- CONTACT -->
-  <section class="section" id="contact" aria-labelledby="contact-title">
-    <h2 class="section-title" id="contact-title">Contact</h2>
+  <section id="contact" class="section">
+    <h2>Contact</h2>
 
     <div class="contact-actions">
-      <button id="btn-gmail" class="btn btn-ghost">
-        ✉️ Écrire à smarttlelearning@gmail.com
-      </button>
+      <button id="emailUnique" class="btn-ghost">Écrire à smarttlelearning@gmail.com</button>
     </div>
 
-    <!-- Le submit ouvre GMAIL avec message prérempli -->
-    <form class="contact-form" id="contactForm">
-      <input type="text" id="name" placeholder="Nom" required />
-      <input type="email" id="email" placeholder="Email" required />
-      <textarea id="message" rows="4" placeholder="Parlez-moi de votre projet…" required></textarea>
-      <button type="submit" class="btn btn-primary">Envoyer</button>
+    <form id="quickForm" class="contact-form">
+      <input type="text" id="qName" placeholder="Nom" autocomplete="name" />
+      <input type="email" id="qEmail" placeholder="Email" autocomplete="email" />
+      <textarea id="qMsg" rows="3" placeholder="Parlez-moi de votre projet…"></textarea>
+      <button type="submit" class="btn-primary">Envoyer</button>
     </form>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <small>webresto-solution.fr — 2025</small>
-  </footer>
+  <footer class="foot">© 2025 WebResto — Tous droits réservés</footer>
 </body>
 </html>
