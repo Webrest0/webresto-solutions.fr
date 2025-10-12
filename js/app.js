@@ -1,53 +1,51 @@
-// === Drawer ===
-const drawer = document.getElementById('drawer');
-const menuBtn = document.getElementById('menuBtn');
-const drawerClose = document.getElementById('drawerClose');
-const backdrop = document.getElementById('backdrop');
+/* === Verrou global (ne rien modifier visuellement en dehors de ce qui suit) === */
 
-function openDrawer() {
-  drawer.classList.add('open');
-  backdrop.hidden = false;
-  menuBtn.setAttribute('aria-expanded', 'true');
+/* Burger menu */
+const burgerBtn = document.getElementById('burgerBtn');
+const mobileNav = document.getElementById('mobileNav');
+const closeNav = document.getElementById('closeNav');
+
+if (burgerBtn && mobileNav){
+  burgerBtn.addEventListener('click', () => {
+    mobileNav.classList.add('open');
+    mobileNav.setAttribute('aria-hidden','false');
+  });
 }
-function closeDrawer() {
-  drawer.classList.remove('open');
-  backdrop.hidden = true;
-  menuBtn.setAttribute('aria-expanded', 'false');
+if (closeNav){
+  closeNav.addEventListener('click', () => {
+    mobileNav.classList.remove('open');
+    mobileNav.setAttribute('aria-hidden','true');
+  });
 }
 
-menuBtn?.addEventListener('click', () => {
-  if (drawer.classList.contains('open')) closeDrawer(); else openDrawer();
-});
-drawerClose?.addEventListener('click', closeDrawer);
-backdrop?.addEventListener('click', closeDrawer);
-drawer.querySelectorAll('.drawer-link').forEach(a => a.addEventListener('click', closeDrawer));
-
-// === Call modal ===
+/* Call modal (verrouillé) */
 const callBtn = document.getElementById('callBtn');
 const callModal = document.getElementById('callModal');
 const closeCall = document.getElementById('closeCall');
 
-callBtn?.addEventListener('click', () => callModal.showModal());
-closeCall?.addEventListener('click', () => callModal.close());
-
-// === Carousel (verrouillé au niveau contenu) ===
-const slides = [...document.querySelectorAll('#forWhoCarousel .slide')];
-const prev = document.getElementById('cPrev');
-const next = document.getElementById('cNext');
-let idx = 0;
-
-function show(i){
-  slides.forEach((s,k)=> s.classList.toggle('active', k===i));
+if (callBtn && callModal){
+  callBtn.addEventListener('click', () => callModal.showModal());
 }
-prev?.addEventListener('click', ()=>{ idx = (idx - 1 + slides.length) % slides.length; show(idx); });
-next?.addEventListener('click', ()=>{ idx = (idx + 1) % slides.length; show(idx); });
+if (closeCall && callModal){
+  closeCall.addEventListener('click', () => callModal.close());
+}
 
-// (Optionnel) glissement tactile
-let startX=null;
-document.getElementById('forWhoCarousel')?.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
-document.getElementById('forWhoCarousel')?.addEventListener('touchend',e=>{
-  if(startX==null) return;
-  const dx = e.changedTouches[0].clientX - startX;
-  if(Math.abs(dx)>40){ dx>0 ? prev.click() : next.click(); }
-  startX=null;
-},{passive:true});
+/* Carousel (verrouillé) – boutons prev/next */
+document.querySelectorAll('.carousel').forEach(carousel=>{
+  const prev = carousel.querySelector('.prev');
+  const next = carousel.querySelector('.next');
+  const step = () => carousel.clientWidth * 0.9;
+
+  prev?.addEventListener('click', ()=> carousel.scrollBy({left:-step(),behavior:'smooth'}));
+  next?.addEventListener('click', ()=> carousel.scrollBy({left: step(),behavior:'smooth'}));
+});
+
+/* “Choisir ce pack” -> pré-remplissage (respecte le verrouillage du formulaire) */
+document.querySelectorAll('.choose-pack').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    // Ici on n’ouvre/édite rien puisque le formulaire est verrouillé.
+    // On affiche juste un petit feedback discret.
+    btn.classList.add('chosen');
+    setTimeout(()=>btn.classList.remove('chosen'),700);
+  });
+});
