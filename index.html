@@ -19,13 +19,23 @@
     </a>
     <div class="nav-actions">
       <button id="callBtn" class="btn btn-primary">Appeler</button>
-      <button id="menuBtn" class="hamburger" aria-label="Menu">
+      <button id="menuBtn" class="hamburger" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- HERO (fond inchangé) -->
+  <!-- MENU SLIDE -->
+  <aside id="sideMenu" class="side">
+    <nav class="side-nav">
+      <a href="#accueil" class="side-link">Accueil</a>
+      <a href="#exemple" class="side-link">Exemple</a>
+      <a href="#offres" class="side-link">Offres & tarifs</a>
+      <a href="#formulaire" class="side-link">Demander un site</a>
+    </nav>
+  </aside>
+
+  <!-- HERO (inchangé) -->
   <section class="hero" id="accueil" role="img" aria-label="Bureau éclairage rouge">
     <div class="hero-inner">
       <h1>Des sites modernes,<br> visibles et sur mesure.</h1>
@@ -37,7 +47,7 @@
     </div>
   </section>
 
-  <!-- CARROUSEL -->
+  <!-- CARROUSEL “Pour qui ?” (inchangé) -->
   <section class="wrap" id="pour-qui">
     <h2>Pour qui ?</h2>
     <div class="carousel">
@@ -55,9 +65,8 @@
   <!-- EXEMPLE -->
   <section class="wrap" id="exemple">
     <h2>Exemple</h2>
-
-    <!-- Image plein fond derrière le texte -->
-    <article class="example-card" style="--img:url('Images/webresto.png')">
+    <!-- Image fond derrière le texte -->
+    <article class="example-card" style="--img:url('../Images/webresto.png')">
       <div class="example-body">
         <h3>Site réalisé par nous :<br>PIZZ’AMIGO — Food truck au feu de bois</h3>
         <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture), <strong>adresse &amp; contact</strong>.</p>
@@ -66,12 +75,55 @@
     </article>
   </section>
 
-  <!-- OFFRES & TARIFS (inchangé) -->
+  <!-- OFFRES & TARIFS (remises) -->
   <section class="wrap" id="offres">
-    <!-- Colle ici ton bloc “Offres & tarifs” existant. Je n’y touche pas. -->
+    <h2>Offres & tarifs</h2>
+
+    <div class="offers">
+      <!-- Pack 1 -->
+      <article class="offer">
+        <h3>Site vitrine</h3>
+        <div class="price">200 à 299€</div>
+        <ul>
+          <li>Page moderne (photos, infos, horaires, contact)</li>
+          <li>Design personnalisé et responsive</li>
+          <li>Nom de domaine inclus la 1<sup>re</sup> année</li>
+          <li>HTTPS sécurisé (hébergement possible)</li>
+          <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
+        </ul>
+        <a href="#formulaire" class="btn btn-ghost">Choisir ce pack</a>
+      </article>
+
+      <!-- Pack 2 -->
+      <article class="offer">
+        <h3>Site vitrine + commandes en ligne</h3>
+        <div class="price">500€</div>
+        <ul>
+          <li>Formulaires (commande / contact) personnalisés</li>
+          <li>Intégration <strong>lien de paiement</strong> (Stripe/...)</li>
+          <li>Historique basique via e-mail/export</li>
+          <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
+        </ul>
+        <div class="chip">Le plus choisi</div>
+        <a href="#formulaire" class="btn btn-ghost">Choisir ce pack</a>
+      </article>
+
+      <!-- Pack 3 -->
+      <article class="offer">
+        <h3>Site avec dashboard</h3>
+        <div class="price price-alt">Sur devis</div>
+        <ul>
+          <li>Vitrine + système de commande</li>
+          <li>Tableau de bord (gestion des commandes & contenu)</li>
+          <li><strong>Login renforcé</strong> & données stockées en base</li>
+          <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
+        </ul>
+        <a href="#formulaire" class="btn btn-ghost">Choisir ce pack</a>
+      </article>
+    </div>
   </section>
 
-  <!-- FORMULAIRE (ré-affiché; UI simple) -->
+  <!-- FORMULAIRE (sélection “comme le thème” → select multiple) -->
   <section class="wrap" id="formulaire">
     <h2>Demander un site</h2>
     <form id="orderForm" class="form">
@@ -101,23 +153,27 @@
             <option>Autre…</option>
           </select>
         </label>
+
+        <!-- >>> ICI : même mode que “thème” = select, mais multiple -->
+        <label>Fonctionnalités à intégrer <small>(plusieurs choix)</small>
+          <select name="features" multiple size="5">
+            <option>Carte/menu</option>
+            <option>Formulaire commande</option>
+            <option>Paiement (Stripe)</option>
+            <option>Horaires dynamiques</option>
+            <option>Google Maps</option>
+            <option>Galerie photos</option>
+            <option>Newsletter</option>
+            <option>SEO local</option>
+            <option>Décide pour moi</option>
+          </select>
+        </label>
+        <!-- <<< -->
+
         <label>Couleurs souhaitées
           <input type="text" name="colors" placeholder="ex : rouge & noir">
         </label>
       </div>
-
-      <fieldset class="feat">
-        <legend>Fonctionnalités à intégrer <small>(plusieurs choix)</small></legend>
-        <label><input type="checkbox" name="features" value="Carte/menu"> Carte/menu</label>
-        <label><input type="checkbox" name="features" value="Formulaire commande"> Formulaire commande</label>
-        <label><input type="checkbox" name="features" value="Paiement (Stripe)"> Paiement (Stripe)</label>
-        <label><input type="checkbox" name="features" value="Horaires dynamiques"> Horaires dynamiques</label>
-        <label><input type="checkbox" name="features" value="Google Maps"> Google Maps</label>
-        <label><input type="checkbox" name="features" value="Galerie photos"> Galerie photos</label>
-        <label><input type="checkbox" name="features" value="Newsletter"> Newsletter</label>
-        <label><input type="checkbox" name="features" value="SEO local"> SEO local</label>
-        <label><input type="checkbox" name="features" value="Décide pour moi"> Décide pour moi</label>
-      </fieldset>
 
       <div class="grid">
         <label>Nom de domaine souhaité
