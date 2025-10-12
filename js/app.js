@@ -1,154 +1,99 @@
-// ====== Config EmailJS (envoi direct vers Gmail, sans app) ======
-const EMAILJS_PUBLIC_KEY   = "REMPLACE_PAR_TA_PUBLIC_KEY";
-const EMAILJS_SERVICE_ID   = "REMPLACE_PAR_TON_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID  = "REMPLACE_PAR_TON_TEMPLATE_ID";
+// ------ Drawer (menu 3 traits)
+const drawer = document.getElementById('drawer');
+const toggle = document.getElementById('menuToggle');
 
-// Charger EmailJS si clé fournie
-(function loadEmailJS(){
-  if(!EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY.startsWith("REMPLACE")) return;
-  const s = document.createElement('script');
-  s.src = "https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js";
-  s.onload = () => emailjs.init(EMAILJS_PUBLIC_KEY);
-  document.head.appendChild(s);
-})();
+function closeDrawer(){ drawer.setAttribute('aria-hidden', 'true'); }
+function openDrawer(){ drawer.setAttribute('aria-hidden', 'false'); }
 
-// ====== Bloquer le zoom (iOS/Android) ======
-document.addEventListener('gesturestart', e => e.preventDefault());
-document.addEventListener('dblclick', e => e.preventDefault());
-
-// ====== Menu burger ======
-const toggleBtn = document.querySelector('.menu-toggle');
-const drawer = document.querySelector('.drawer');
-toggleBtn?.addEventListener('click', () => {
-  const open = drawer.classList.toggle('open');
-  toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+toggle?.addEventListener('click', () => {
+  const hidden = drawer.getAttribute('aria-hidden') !== 'false';
+  hidden ? openDrawer() : closeDrawer();
 });
-drawer?.querySelectorAll('.nav-link').forEach(link=>{
-  link.addEventListener('click', ()=> {
-    drawer.classList.remove('open');
-    toggleBtn.setAttribute('aria-expanded','false');
-    drawer.setAttribute('aria-hidden','true');
-  });
-});
-
-// ====== Carousel simple ======
-const car = document.querySelector('.carousel');
-if(car){
-  const track = car.querySelector('.car-track');
-  const items = [...car.querySelectorAll('.car-item')];
-  const left = car.querySelector('.left');
-  const right = car.querySelector('.right');
-  const dotsWrap = car.querySelector('.car-dots');
-  let index = 0;
-
-  items.forEach((_,i)=>{
-    const b = document.createElement('button');
-    if(i===0) b.classList.add('active');
-    b.addEventListener('click', ()=>go(i));
-    dotsWrap.appendChild(b);
-  });
-  const dots = [...dotsWrap.children];
-
-  function go(i){
-    index = (i+items.length)%items.length;
-    track.scrollTo({left: items[index].offsetLeft, behavior:'smooth'});
-    dots.forEach(d=>d.classList.remove('active'));
-    dots[index].classList.add('active');
+document.addEventListener('click', (e) => {
+  if (!drawer.contains(e.target) && e.target !== toggle && drawer.getAttribute('aria-hidden') === 'false') {
+    closeDrawer();
   }
-  left.addEventListener('click', ()=>go(index-1));
-  right.addEventListener('click', ()=>go(index+1));
-}
-
-// ====== Pré-sélection du pack depuis les cartes ======
-document.querySelectorAll('.choose-pack').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const v = btn.dataset.pack;
-    const select = document.getElementById('packSelect');
-    if(select){ select.value = v; }
-  });
+});
+// Fermer quand on clique un lien
+document.querySelectorAll('.navlink').forEach(a => {
+  a.addEventListener('click', closeDrawer);
 });
 
-// ====== Formulaire : envoi via EmailJS + reset + message ======
+// ------ Appel (modal 2 numéros)
+const callBtn = document.getElementById('callBtn');
+const callModal = document.getElementById('callModal');
+const closeEls = document.querySelectorAll('[data-close-modal]');
+
+callBtn?.addEventListener('click', ()=> callModal.setAttribute('aria-hidden','false'));
+closeEls.forEach(el => el.addEventListener('click', ()=> callModal.setAttribute('aria-hidden','true')));
+
+// ------ EmailJS : envoi du formulaire
 const form = document.getElementById('orderForm');
 const statusEl = document.getElementById('formStatus');
 
+function collectFeatures(){
+  const checked = [...document.querySelectorAll('input[name="features"]:checked')].map(i=>i.value);
+  const otherChk = document.getElementById('otherFeatChk');
+  const otherVal = document.getElementById('otherFeat')?.value?.trim();
+  if (otherChk?.checked && otherVal) checked.push(`Autre: ${otherVal}`);
+  return checked.join(', ');
+}
+
+// activer champ "Autre…" quand coché
+const otherChk = document.getElementById('otherFeatChk');
+const otherBox = document.getElementById('otherFeatBox');
+otherChk?.addEventListener('change', ()=> {
+  otherBox.hidden = !otherChk.checked;
+});
+
 form?.addEventListener('submit', async (e)=>{
   e.preventDefault();
-  statusEl.textContent = '';
+  statusEl.textContent = 'Envoi en cours…';
 
-  // Validation simple
-  const requiredFields = [...form.querySelectorAll('[required]')];
-  const invalid = requiredFields.filter(f=>!f.value.trim());
-  if(invalid.length){
-    statusEl.style.color = '#ff9b9b';
-    statusEl.textContent = "Merci de remplir tous les champs obligatoires.";
-    invalid[0].focus();
+  const data = new FormData(form);
+
+  // Vérifs simples (nom, email, phone requis)
+  if(!data.get('name') || !data.get('email') || !data.get('phone')){
+    statusEl.textContent = '⚠️ Merci de remplir les champs obligatoires (nom, e-mail, téléphone).';
     return;
   }
 
-  // Récupération des valeurs
-  const fd = new FormData(form);
-  const features = [...form.querySelectorAll('input[name="features"]:checked')].map(i=>i.value);
-  const payload = {
-    name: fd.get('name'),
-    email: fd.get('email'),
-    phone: fd.get('phone'),
-    pack: fd.get('pack'),
-    theme: fd.get('theme'),
-    colors: fd.get('colors') || '-',
-    features: features.concat(fd.get('features_other') ? ["Autre: "+fd.get('features_other')] : []).join(', '),
-    domain: fd.get('domain') || '-',
-    public_contact: fd.get('public_contact'),
-    message: fd.get('message') || '-'
+  const templateParams = {
+    // Ces clés doivent correspondre à ton modèle EmailJS
+    user_name: data.get('name'),
+    user_email: data.get('email'),
+    user_phone: data.get('phone'),
+    pack: data.get('pack'),
+    theme: data.get('theme'),
+    colors: data.get('colors'),
+    features: collectFeatures(),
+    domain: data.get('domain'),
+    public_contact: data.get('public_contact'),
+    message: data.get('message') || '',
+    subject: 'Commande' // objet
   };
 
-  // Si EmailJS configuré → envoi direct sans app mail
-  if(window.emailjs && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID){
-    try{
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, payload);
-      statusEl.style.color = '#9fe39f';
-      statusEl.textContent = "Votre commande a bien été envoyée !";
-      form.reset();
-      // décocher la case "Autre"
-      form.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-    }catch(err){
-      statusEl.style.color = '#ff9b9b';
-      statusEl.textContent = "Échec d’envoi. Réessayez plus tard.";
-      console.error(err);
-    }
-    return;
-  }
-
-  // Fallback mailto (si EmailJS pas configuré)
-  const lines = [
-    "Détaillez votre demande :",
-    "",
-    `Nom / Société : ${payload.name}`,
-    `E-mail : ${payload.email}`,
-    `Téléphone : ${payload.phone}`,
-    "",
-    `Pack souhaité : ${payload.pack}`,
-    `Thème du site : ${payload.theme}`,
-    `Couleurs souhaitées : ${payload.colors}`,
-    "",
-    `Fonctionnalités à intégrer : ${payload.features}`,
-    "",
-    `Nom de domaine souhaité : ${payload.domain}`,
-    `Contact à afficher : ${payload.public_contact}`,
-    "",
-    `Message :`,
-    `${payload.message}`
-  ].join('%0D%0A');
-
-  const mailto = `mailto:smarttlelearning@gmail.com?subject=Commande&body=${lines}`;
   try{
-    window.location.href = mailto;
-    statusEl.style.color = '#9fe39f';
-    statusEl.textContent = "Votre commande a bien été préparée dans votre messagerie.";
+    await emailjs.send('service_8bw61yj','template_9ok4wz8', templateParams);
+    statusEl.textContent = '✅ Demande envoyée. Merci !';
     form.reset();
-  }catch{
-    statusEl.style.color = '#ff9b9b';
-    statusEl.textContent = "Impossible d’ouvrir la messagerie.";
+    otherBox.hidden = true;
+  }catch(err){
+    console.error(err);
+    statusEl.textContent = '❌ Échec de l’envoi. Réessaie plus tard.';
   }
 });
+
+// ------ Carrousel (garde ton contenu, nav simple)
+const track = document.getElementById('carouselTrack');
+const prev = document.querySelector('.carousel .prev');
+const next = document.querySelector('.carousel .next');
+function scrollBySlide(dir){
+  if(!track) return;
+  const slide = track.querySelector('.slide');
+  if(!slide) return;
+  const w = slide.getBoundingClientRect().width + 16;
+  track.scrollBy({left: dir*w, behavior:'smooth'});
+}
+prev?.addEventListener('click', ()=> scrollBySlide(-1));
+next?.addEventListener('click', ()=> scrollBySlide(1));
