@@ -2,36 +2,33 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
   <title>WebResto</title>
-
-  <!-- Fonts + CSS -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- NAV -->
   <header class="nav">
     <a href="#accueil" class="brand">
-      <img src="Images/wr-logo-red.png" alt="Logo WebResto" class="logo">
+      <img class="logo" src="Images/wr-logo-red.png" alt="WebResto">
       <span>WebResto</span>
     </a>
-
     <div class="nav-actions">
-      <!-- Appeler en premier, puis les 3 traits tout à droite -->
       <button id="callBtn" class="btn btn-primary">Appeler</button>
-      <button id="menuBtn" class="hamburger" aria-label="Ouvrir le menu">
+      <button id="menuBtn" class="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO (fond inchangé) -->
   <section class="hero" id="accueil" role="img" aria-label="Bureau éclairage rouge">
     <div class="hero-inner">
-      <h1>Des sites modernes, <br>visibles et sur mesure.</h1>
+      <h1>Des sites modernes,<br> visibles et sur mesure.</h1>
       <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
       <div class="hero-cta">
         <a href="#exemple" class="btn btn-primary-outline">Voir un exemple</a>
@@ -40,26 +37,16 @@
     </div>
   </section>
 
-  <!-- CARROUSEL "POUR QUI ?" -->
+  <!-- CARROUSEL -->
   <section class="wrap" id="pour-qui">
-    <h2>Pour qui&nbsp;?</h2>
-
+    <h2>Pour qui ?</h2>
     <div class="carousel">
       <button class="car-btn left" aria-label="Précédent">&#8249;</button>
       <div class="car-track" id="carTrack">
-        <!-- Images libres (Unsplash). Tu peux les remplacer par tes propres fichiers. -->
-        <a class="card" href="#formulaire" style="--bg:url('https://images.unsplash.com/photo-1600891965050-d7f54b0616f0?q=80&w=1600&auto=format&fit=crop')">
-          <span class="badge">Restaurant</span>
-        </a>
-        <a class="card" href="#formulaire" style="--bg:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop')">
-          <span class="badge">Mariage</span>
-        </a>
-        <a class="card" href="#formulaire" style="--bg:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop')">
-          <span class="badge">Association</span>
-        </a>
-        <a class="card" href="#formulaire" style="--bg:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop')">
-          <span class="badge">Entreprise</span>
-        </a>
+        <a class="card" href="#formulaire" style="--bg:url('https://images.unsplash.com/photo-1600891965050-d7f54b0616f0?q=80&w=1600&auto=format&fit=crop')"><span class="badge">Restaurant</span></a>
+        <a class="card" href="#formulaire" style="--bg:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop')"><span class="badge">Mariage</span></a>
+        <a class="card" href="#formulaire" style="--bg:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop')"><span class="badge">Association</span></a>
+        <a class="card" href="#formulaire" style="--bg:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop')"><span class="badge">Entreprise</span></a>
       </div>
       <button class="car-btn right" aria-label="Suivant">&#8250;</button>
     </div>
@@ -69,28 +56,87 @@
   <section class="wrap" id="exemple">
     <h2>Exemple</h2>
 
-    <article class="example-card">
-      <!-- L’image prend toute la bulle et passe derrière le texte -->
-      <div class="example-media" style="--img:url('Images/webresto.png');"></div>
+    <!-- Image plein fond derrière le texte -->
+    <article class="example-card" style="--img:url('Images/webresto.png')">
       <div class="example-body">
         <h3>Site réalisé par nous :<br>PIZZ’AMIGO — Food truck au feu de bois</h3>
         <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture), <strong>adresse &amp; contact</strong>.</p>
-        <!-- Redirection (nouvel onglet) -->
         <a class="btn btn-primary" href="https://pizzamigo974.github.io" target="_blank" rel="noopener">Voir le site</a>
       </div>
     </article>
   </section>
 
-  <!-- OFFRES & TARIFS (NE PAS MODIFIER) -->
+  <!-- OFFRES & TARIFS (inchangé) -->
   <section class="wrap" id="offres">
-    <!-- 🔒 COLLE ICI TON BLOC "Offres & tarifs" EXACT ET COMPLET (inchangé).
-         Je n’y touche pas. -->
+    <!-- Colle ici ton bloc “Offres & tarifs” existant. Je n’y touche pas. -->
   </section>
 
-  <!-- FORMULAIRE (NE PAS MODIFIER L'INTERFACE) -->
+  <!-- FORMULAIRE (ré-affiché; UI simple) -->
   <section class="wrap" id="formulaire">
-    <!-- 🔒 COLLE ICI TON FORMULAIRE EXACT (inchangé).
-         Si tu veux, je brancherai EmailJS avec tes IDs sans modifier l’UI. -->
+    <h2>Demander un site</h2>
+    <form id="orderForm" class="form">
+      <div class="grid">
+        <label>Nom / Société <span class="req">*</span>
+          <input type="text" name="name" required placeholder="Votre nom">
+        </label>
+        <label>E-mail <span class="req">*</span>
+          <input type="email" name="email" required placeholder="exemple@mail.com">
+        </label>
+        <label>Téléphone <span class="req">*</span>
+          <input type="tel" name="phone" required placeholder="+33 ...">
+        </label>
+        <label>Pack souhaité
+          <select name="pack">
+            <option>Site vitrine</option>
+            <option>Site vitrine + commandes</option>
+            <option>Site avec dashboard</option>
+          </select>
+        </label>
+        <label>Thème du site
+          <select name="theme">
+            <option>Restaurant / Food-truck</option>
+            <option>Mariage</option>
+            <option>Association</option>
+            <option>Entreprise</option>
+            <option>Autre…</option>
+          </select>
+        </label>
+        <label>Couleurs souhaitées
+          <input type="text" name="colors" placeholder="ex : rouge & noir">
+        </label>
+      </div>
+
+      <fieldset class="feat">
+        <legend>Fonctionnalités à intégrer <small>(plusieurs choix)</small></legend>
+        <label><input type="checkbox" name="features" value="Carte/menu"> Carte/menu</label>
+        <label><input type="checkbox" name="features" value="Formulaire commande"> Formulaire commande</label>
+        <label><input type="checkbox" name="features" value="Paiement (Stripe)"> Paiement (Stripe)</label>
+        <label><input type="checkbox" name="features" value="Horaires dynamiques"> Horaires dynamiques</label>
+        <label><input type="checkbox" name="features" value="Google Maps"> Google Maps</label>
+        <label><input type="checkbox" name="features" value="Galerie photos"> Galerie photos</label>
+        <label><input type="checkbox" name="features" value="Newsletter"> Newsletter</label>
+        <label><input type="checkbox" name="features" value="SEO local"> SEO local</label>
+        <label><input type="checkbox" name="features" value="Décide pour moi"> Décide pour moi</label>
+      </fieldset>
+
+      <div class="grid">
+        <label>Nom de domaine souhaité
+          <input type="text" name="domain" placeholder="ex : mon-restaurant.fr">
+        </label>
+        <label>Contact à afficher (tél ou e-mail)
+          <input type="text" name="display" placeholder="+33 ... ou mail">
+        </label>
+      </div>
+
+      <label>Message (détails utiles)
+        <textarea name="message" rows="5" placeholder="Détaillez votre demande…"></textarea>
+      </label>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+        <span id="formMsg" class="form-msg" aria-live="polite"></span>
+      </div>
+    </form>
   </section>
 
   <!-- FOOTER -->
