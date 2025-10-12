@@ -12,8 +12,8 @@
   <!-- ===== HEADER ===== -->
   <header class="navbar" id="top">
     <div class="logo">
-      <img src="images/wr-logo-red.png" alt="WebResto logo" />
-      <span>WebResto</span>
+      <img src="Images/wr-logo-red.png" alt="WebResto" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'"/>
+      <span class="logo-fallback" style="display:none">WebResto</span>
     </div>
 
     <div class="nav-actions">
@@ -27,7 +27,7 @@
       <a href="#exemple" class="drawer-link">Exemple</a>
       <a href="#pour-qui" class="drawer-link">Pour qui ?</a>
       <a href="#tarifs" class="drawer-link">Offres & tarifs</a>
-      <a href="#contact" class="drawer-link">Contact</a>
+      <a href="#commande" class="drawer-link">Formulaire de commande</a>
     </nav>
     <div id="drawer-backdrop" class="drawer-backdrop" tabindex="-1" aria-hidden="true"></div>
   </header>
@@ -40,7 +40,7 @@
 
       <div class="hero-buttons">
         <a href="#exemple" class="btn btn-primary">Voir un exemple</a>
-        <a href="#contact" class="btn btn-ghost">Demander un site</a>
+        <a href="#commande" class="btn btn-ghost">Demander un site</a>
       </div>
     </div>
   </section>
@@ -50,7 +50,7 @@
     <h2>Exemple</h2>
 
     <article class="card showcase">
-      <div class="card-bg" style="--bg:url('images/Webpizza.png');"></div>
+      <div class="card-bg" style="--bg:url('Images/Webpizza.png');"></div>
 
       <div class="card-body">
         <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
@@ -71,9 +71,7 @@
 
     <div class="carousel">
       <button class="car-arrow left" aria-label="Précédent">‹</button>
-      <div class="car-track" id="car-track">
-        <!-- Slides remplis par JS -->
-      </div>
+      <div class="car-track" id="car-track"></div>
       <button class="car-arrow right" aria-label="Suivant">›</button>
       <div class="car-dots" id="car-dots"></div>
     </div>
@@ -134,9 +132,9 @@
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" class="container">
-    <h2>Contact</h2>
+  <!-- ===== FORMULAIRE DE COMMANDE ===== -->
+  <section id="commande" class="container">
+    <h2>Formulaire de commande</h2>
 
     <div class="contact-actions">
       <button id="writeEmail" class="btn btn-ghost">✉️ Écrire par e-mail</button>
@@ -150,14 +148,18 @@
         <label>Email <input type="email" name="email" required /></label>
         <label>Téléphone <input type="tel" name="phone" /></label>
 
+        <!-- Thème avec “Autre” -->
         <label>Thème du site
-          <select name="theme" required>
+          <select name="theme" id="themeSelect" required>
             <option value="Restaurant / Food-truck">Restaurant / Food-truck</option>
             <option value="Entreprise & services">Entreprise & services</option>
             <option value="Mariage / Événement">Mariage / Événement</option>
             <option value="Groupe de musique">Groupe de musique</option>
-            <option value="Autre">Autre</option>
+            <option value="Autre">Autre (précisez)</option>
           </select>
+        </label>
+        <label id="themeOtherWrap" class="hidden">Précisez le thème
+          <input type="text" id="themeOther" placeholder="Votre thème" />
         </label>
 
         <label>Couleurs souhaitées
@@ -172,14 +174,26 @@
           <input type="text" name="publicContact" placeholder="Téléphone ou e-mail public" />
         </label>
 
+        <!-- Fonctionnalités avec suggestions + Autre -->
         <label>Fonctionnalités à intégrer
-          <textarea name="features" rows="3"
-            placeholder="Ex : menu/carte, paiement, réservation, horaires, carte Google, réseaux sociaux…"></textarea>
+          <select id="featuresSelect" multiple size="6">
+            <option value="Carte/Menu">Carte / Menu</option>
+            <option value="Horaires & ouverture/fermeture">Horaires & ouverture/fermeture</option>
+            <option value="Paiement (lien Stripe/…)">Paiement (lien Stripe/…)</option>
+            <option value="Réservation / formulaire de commande">Réservation / formulaire de commande</option>
+            <option value="Carte Google & adresse">Carte Google & adresse</option>
+            <option value="Réseaux sociaux">Réseaux sociaux</option>
+            <option value="Mentions légales / Allergènes">Mentions légales / Allergènes</option>
+            <option value="Autre">Autre (précisez)</option>
+          </select>
+        </label>
+        <label id="featuresOtherWrap" class="hidden">Autres fonctionnalités
+          <input type="text" id="featuresOther" placeholder="Ex : multi-langues, newsletter…" />
         </label>
 
         <label>Contenus & contraintes
           <textarea name="content" rows="3"
-            placeholder="Logos, photos disponibles, style visuel, sites de référence, obligations légales (mentions, alcool, allergènes)…"></textarea>
+            placeholder="Logos, photos disponibles, style visuel, exemples que vous aimez, obligations (alcool, allergènes)…"></textarea>
         </label>
 
         <label>Message libre
