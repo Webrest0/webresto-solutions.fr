@@ -4,12 +4,10 @@
   <meta charset="utf-8" />
   <title>WebResto — Sites modernes pour restos & food-trucks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <link rel="preload" href="css/styles.css" as="style">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" href="Images/wr-logo-red.png">
 </head>
 <body>
-  <!-- Barre du haut (on ne touche pas le visuel) -->
   <header class="topbar">
     <div class="brand">
       <img src="Images/wr-logo-red.png" alt="WebResto" class="logo">
@@ -30,7 +28,7 @@
     </nav>
   </header>
 
-  <!-- HÉRO (conservé) -->
+  <!-- HÉRO (on conserve le visuel) -->
   <section id="accueil" class="hero">
     <div class="hero-bg" style="--bg:url('Images/hero-dark-office.png');"></div>
     <div class="hero-content container">
@@ -48,10 +46,10 @@
     <h2>Exemple</h2>
 
     <article class="card example-card">
-      <!-- Image plein fond derrière le contenu -->
+      <!-- Image plein fond derrière le texte -->
       <div class="card-bg" style="--bg:url('Images/webresto.png');"></div>
 
-      <!-- Badge “Le plus choisi” (en bas à droite) -->
+      <!-- Badge en bas à droite -->
       <div class="badge-most">Le plus choisi</div>
 
       <div class="card-body">
@@ -60,13 +58,13 @@
           Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture),
           <strong>adresse & contact</strong>.
         </p>
-        <!-- Ouvre en overlay, sans quitter la page -->
+        <!-- Aperçu dans un modal (on ne quitte pas la page) -->
         <button class="btn btn-primary" data-preview="https://pizz-amigo.netlify.app">Voir le site</button>
       </div>
     </article>
   </section>
 
-  <!-- OFFRES (contenu intact, juste badge animé en bas-droite) -->
+  <!-- OFFRES (contenu intact, badge animé en bas-droite) -->
   <section id="offres" class="section container">
     <h2>Offres & tarifs</h2>
 
@@ -103,7 +101,7 @@
         <ul>
           <li>Vitrine + système de commande</li>
           <li>Dashboard simple (produits, commandes, horaires)</li>
-          <li><strong>Connexion sécurisée</strong> (login) & données stockées en base</li>
+          <li><strong>Connexion sécurisée</strong> (login) & données en base</li>
           <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
         </ul>
         <button class="btn btn-ghost">Choisir ce pack</button>
@@ -111,7 +109,7 @@
     </div>
   </section>
 
-  <!-- DEMANDE (conserve l’interface actuelle) -->
+  <!-- FORMULAIRE (même interface, “Fonctionnalités” en <select multiple>) -->
   <section id="demander" class="section container">
     <h2>Demander un site</h2>
 
@@ -150,13 +148,21 @@
         </label>
       </div>
 
-      <!-- Fonctionnalités : même UX que “Thème” (multi-select stylé) -->
-      <fieldset class="features">
-        <legend>Fonctionnalités à intégrer <small>(plusieurs choix)</small></legend>
-        <div class="chips" id="featuresChips" aria-label="Fonctionnalités">
-          <!-- rendu par JS pour garder la même interface visuelle que le reste -->
-        </div>
-      </fieldset>
+      <!-- ICI : même “mode de sélection” que le thème, mais MULTIPLE -->
+      <label>Fonctionnalités à intégrer <small>(plusieurs choix)</small>
+        <select id="featuresSelect" name="features" multiple size="6">
+          <option value="Carte/menu">Carte/menu</option>
+          <option value="Formulaire commande">Formulaire commande</option>
+          <option value="Paiement (Stripe)">Paiement (Stripe)</option>
+          <option value="Horaires dynamiques">Horaires dynamiques</option>
+          <option value="Google Maps">Google Maps</option>
+          <option value="Galerie photos">Galerie photos</option>
+          <option value="Newsletter">Newsletter</option>
+          <option value="SEO local">SEO local</option>
+          <option value="Décide pour moi">Décide pour moi</option>
+          <option value="Autre">Autre…</option>
+        </select>
+      </label>
 
       <div class="grid">
         <label>Nom de domaine souhaité
