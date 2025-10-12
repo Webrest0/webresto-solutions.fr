@@ -1,212 +1,232 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WebResto — Solutions</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>WebResto — Sites modernes, visibles et sur mesure</title>
+
+  <!-- Mobile / anti-zoom -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+  <link rel="preload" href="Images/hero-dark-office.png" as="image">
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-  <!-- HEADER (inchangé, sauf classes du burger pour meilleur rendu) -->
-  <header class="site-header">
-    <div class="container header-row">
-      <a class="brand" href="#top">
-        <img src="Images/wr-logo-red.png" alt="WebResto" class="brand-logo" />
-        <span class="brand-text">WebResto</span>
-      </a>
+  <!-- Header (NE PAS TOUCHER le logo / image hero ; juste placement boutons) -->
+  <header class="wr-header">
+    <a class="wr-brand" href="#top">
+      <img src="Images/wr-logo-red.png" alt="WebResto" class="wr-logo">
+      <span>WebResto</span>
+    </a>
 
-      <button class="call-btn" id="callBtn">Appeler</button>
+    <div class="wr-actions">
+      <button id="callBtn" class="btn btn-primary">Appeler</button>
 
-      <!-- BURGER uniquement aspect -->
-      <button class="burger-btn" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
-        <span class="burger-bar"></span>
-        <span class="burger-bar"></span>
-        <span class="burger-bar"></span>
+      <!-- Menu burger aligné à droite -->
+      <button id="menuBtn" class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="wr-menu">
+        <span></span><span></span><span></span>
       </button>
     </div>
 
-    <nav id="mainNav" class="drawer" hidden>
-      <button class="drawer-close" id="drawerClose" aria-label="Fermer le menu">✕</button>
-      <a href="#example" class="drawer-link">Exemple</a>
-      <a href="#offers"  class="drawer-link">Offres &amp; tarifs</a>
-      <a href="#order"   class="drawer-link">Demander un site</a>
+    <!-- Aperçu menu (nouveau style, propre et ferme au clic) -->
+    <nav id="wr-menu" class="menu-sheet" hidden>
+      <ul>
+        <li><a href="#exemple" class="menu-link">Exemple</a></li>
+        <li><a href="#offres" class="menu-link">Offres &amp; tarifs</a></li>
+        <li><a href="#form" class="menu-link">Demander un site</a></li>
+      </ul>
+      <button class="menu-close" id="menuClose" aria-label="Fermer">×</button>
     </nav>
   </header>
 
-  <!-- HERO (inchangé) -->
-  <section class="hero" id="top" aria-label="Présentation">
-    <div class="hero-inner container">
-      <h1>Des sites modernes,<br/> visibles et sur mesure.</h1>
-      <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#example">Voir un exemple</a>
-        <a class="btn btn-ghost"   href="#order">Demander un site</a>
+  <!-- Modale "Appeler" (style propre + 2 numéros) -->
+  <dialog id="callDialog" class="call-dialog">
+    <h3>Appeler</h3>
+    <a class="btn btn-primary block" href="tel:+33784674767">Appeler le +33 7 84 67 47 67</a>
+    <div class="alt-note">Si pas de réponse :</div>
+    <a class="btn btn-ghost block" href="tel:0788589812">Appeler le 07 88 58 98 12</a>
+    <button class="menu-close" id="callClose" aria-label="Fermer">×</button>
+  </dialog>
+
+  <!-- Hero (image de fond inchangée) -->
+  <section id="top" class="hero" style="--hero:url('Images/hero-dark-office.png')">
+    <div class="hero-inner">
+      <h1>Des sites modernes,<br/>visibles et sur mesure.</h1>
+      <p>Entreprises, artisans, mariages, restaurants, associations... je crée un site clair, rapide et beau sur téléphone.</p>
+
+      <div class="hero-cta">
+        <a href="#exemple" class="btn btn-primary">Voir un exemple</a>
+        <a href="#form" class="btn btn-outline">Demander un site</a>
       </div>
     </div>
-    <div class="hero-bg"></div>
   </section>
 
-  <!-- EXEMPLE -->
-  <section class="section container" id="example" aria-label="Exemple">
-    <h2 class="section-title">Exemple</h2>
+  <!-- Exemple (image de fond dans la bulle + bon lien) -->
+  <section id="exemple" class="wrap">
+    <h2>Exemple</h2>
 
-    <article class="example-card">
-      <!-- image de fond couvrante + texte au dessus -->
-      <div class="example-media" role="img" aria-label="PIZZ’AMIGO — Food truck au feu de bois"></div>
-
-      <div class="example-body">
-        <h3 class="example-title">Site réalisé par nous :<br/> PIZZ’AMIGO — Food truck au feu de bois</h3>
-        <p class="example-text">
-          Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture),
-          <strong>adresse &amp; contact</strong>.
-        </p>
-
-        <!-- LIEN ACTIF vers le site (mets la bonne URL si différente) -->
-        <a class="btn btn-primary" href="https://pizzamigo974.github.io/" target="_blank" rel="noopener">Voir le site</a>
+    <article class="card example-card with-cover" style="--cover:url('Images/webresto.png')">
+      <div class="card-body overlay">
+        <h3>Site réalisé par nous :<br/>PIZZ’AMIGO — Food truck au feu de bois</h3>
+        <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture), <strong>adresse &amp; contact</strong>.</p>
+        <a class="btn btn-primary" href="https://pizz-amigo.netlify.app/" target="_blank" rel="noopener">Voir le site</a>
       </div>
     </article>
   </section>
 
-  <!-- OFFRES & TARIFS (contenu intact). Ajout : badge “le plus choisi” en bas-droite via CSS) -->
-  <section class="section container" id="offers" aria-label="Offres et tarifs">
-    <h2 class="section-title">Offres &amp; tarifs</h2>
+  <!-- Carrousel “Pour qui ?” (au-dessus des offres) -->
+  <section class="wrap" id="pour-qui">
+    <div class="section-head">
+      <h2>Pour qui ?</h2>
+      <p>Je crée pour restaurants, artisans, mariages, associations…</p>
+    </div>
 
-    <div class="offers-grid">
-      <!-- Carte 1 — inchangée -->
-      <article class="offer-card">
-        <h3 class="offer-title">Site vitrine</h3>
-        <p class="offer-price">200 à 299€</p>
-        <ul class="offer-list">
+    <div class="carousel" data-carousel>
+      <button class="c-arrow left" data-prev aria-label="Précédent">‹</button>
+      <div class="c-track" data-track>
+        <!-- Utilise tes images libres de droit si tu en ajoutes dans /Images/ ; ces 4 éléments fonctionnent déjà -->
+        <div class="c-item"><img src="Images/webresto.png" alt="Restauration"></div>
+        <div class="c-item"><img src="Images/hero-dark-office.png" alt="Artisans / pros"></div>
+        <div class="c-item"><img src="Images/pizz-amigo-cover.jpg" alt="Événements"></div>
+        <div class="c-item"><img src="Images/wr-logo-red.png" alt="Associations"></div>
+      </div>
+      <button class="c-arrow right" data-next aria-label="Suivant">›</button>
+    </div>
+  </section>
+
+  <!-- Offres (NE PAS TOUCHER le contenu ; juste badge en bas-droite et retrait du texte “Sur devis”) -->
+  <section id="offres" class="wrap">
+    <h2>Offres &amp; tarifs</h2>
+
+    <div class="offers">
+      <!-- Carte 1 (inchangée) -->
+      <article class="card offer">
+        <h3>Site vitrine</h3>
+        <div class="price">200 à 299€</div>
+        <ul>
           <li>Page moderne (photos, infos, horaires, contact)</li>
           <li>Design personnalisé et responsive</li>
           <li>Nom de domaine inclus la 1<sup>re</sup> année</li>
           <li>HTTPS sécurisé (hébergement possible)</li>
           <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
         </ul>
-        <a class="btn btn-outline" href="#order">Choisir ce pack</a>
+        <a href="#form" class="btn btn-outline">Choisir ce pack</a>
       </article>
 
-      <!-- Carte 2 — ajout du badge “le plus choisi” en bas-droite (classe .most-chosen) -->
-      <article class="offer-card most-chosen">
-        <h3 class="offer-title">Site vitrine + commandes en ligne</h3>
-        <p class="offer-price">500€</p>
-        <ul class="offer-list">
+      <!-- Carte 2 (badge déplacé en bas-droite) -->
+      <article class="card offer">
+        <span class="badge badge-bottom">Le plus choisi</span>
+        <h3>Site vitrine + commandes en ligne</h3>
+        <div class="price">500€</div>
+        <ul>
           <li>Formulaires (commande / contact) personnalisés</li>
           <li>Intégration <strong>lien de paiement</strong> (Stripe/...)</li>
           <li>Historique basique via e-mail/export</li>
           <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
         </ul>
-        <a class="btn btn-outline" href="#order">Choisir ce pack</a>
-        <!-- badge rendu par CSS via ::after -->
+        <a href="#form" class="btn btn-outline">Choisir ce pack</a>
       </article>
 
-      <!-- Carte 3 — “Sur devis” retiré (étiquette), rien d’autre -->
-      <article class="offer-card">
-        <h3 class="offer-title">Site avec dashboard</h3>
-        <ul class="offer-list">
+      <!-- Carte 3 (texte “Sur devis” retiré, contenu conservé) -->
+      <article class="card offer">
+        <h3>Site avec dashboard</h3>
+        <ul>
           <li>Vitrine + système de commande</li>
           <li>Tableau de bord (gestion des commandes &amp; contenu)</li>
           <li><strong>Login renforcé</strong> &amp; données stockées en base</li>
           <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
         </ul>
-        <a class="btn btn-outline" href="#order">Choisir ce pack</a>
+        <a href="#form" class="btn btn-outline">Choisir ce pack</a>
       </article>
     </div>
   </section>
 
-  <!-- FORMULAIRE (interface inchangée; seulement la hauteur perçue de la zone “fonctionnalités”) -->
-  <section class="section container" id="order" aria-label="Demander un site">
-    <h2 class="section-title">Demander un site</h2>
+  <!-- Formulaire (interface conservée ; case “Fonctionnalités” compacte) -->
+  <section id="form" class="wrap">
+    <h2>Demander un site</h2>
 
-    <form id="orderForm" class="order-form" novalidate>
-      <!-- (champs existants inchangés) -->
-      <div class="form-row">
-        <label for="name">Nom / Société <span class="req">*</span></label>
-        <input id="name" name="name" type="text" placeholder="votre nom…" required>
-      </div>
+    <form id="orderForm" class="form">
+      <div class="grid">
+        <label>Nom / Société <span class="req">*</span>
+          <input name="client_name" required placeholder="votre nom ou celui de l’enseigne">
+        </label>
 
-      <div class="form-row">
-        <label for="email">E-mail <span class="req">*</span></label>
-        <input id="email" name="email" type="email" placeholder="ex : exemple@mail.com" required>
-      </div>
+        <label>E-mail <span class="req">*</span>
+          <input name="client_email" type="email" required placeholder="exemple@mail.com">
+        </label>
 
-      <div class="form-row">
-        <label for="phone">Téléphone <span class="req">*</span></label>
-        <input id="phone" name="phone" type="tel" placeholder="+33 …" required>
-      </div>
+        <label>Téléphone
+          <input name="client_phone" type="tel" placeholder="+33 ...">
+        </label>
 
-      <div class="form-row">
-        <label for="pack">Pack souhaité</label>
-        <select id="pack" name="pack">
-          <option>Site vitrine</option>
-          <option>Site vitrine + commandes en ligne</option>
-          <option>Site avec dashboard</option>
-        </select>
-      </div>
+        <label>Pack souhaité
+          <select name="pack">
+            <option>Site vitrine</option>
+            <option>Site vitrine + commandes en ligne</option>
+            <option>Site avec dashboard</option>
+          </select>
+        </label>
 
-      <div class="form-row">
-        <label for="theme">Thème du site</label>
-        <select id="theme" name="theme">
-          <option>Restaurant / Food-truck</option>
-          <option>Entreprise / artisan</option>
-          <option>Mariage / évènement</option>
-          <option>Association</option>
-          <option>Autre…</option>
-        </select>
-      </div>
+        <label>Thème du site
+          <select name="theme">
+            <option>Restaurant / Food-truck</option>
+            <option>Artisan / Commerce</option>
+            <option>Événement / Mariage</option>
+            <option>Association</option>
+            <option>Autre…</option>
+          </select>
+        </label>
 
-      <!-- ZONE FONCTIONNALITÉS : même interface. Taille visuelle réduite via classes -->
-      <fieldset class="features-box">
-        <legend>Fonctionnalités à intégrer <small>(plusieurs choix)</small></legend>
+        <!-- Fonctionnalités : même interface (pills) mais zone plus compacte -->
+        <fieldset class="features">
+          <legend>Fonctionnalités à intégrer <small>(plusieurs choix)</small></legend>
+          <div class="pills">
+            <label class="pill"><input type="checkbox" name="features" value="Carte/menu"> <span>Carte/menu</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Formulaire commande"> <span>Formulaire commande</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Paiement (Stripe)"> <span>Paiement (Stripe)</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Horaires dynamiques"> <span>Horaires dynamiques</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Google Maps"> <span>Google Maps</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Galerie photos"> <span>Galerie photos</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Newsletter"> <span>Newsletter</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="SEO local"> <span>SEO local</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Décide pour moi"> <span>Décide pour moi</span></label>
+            <label class="pill pill-other">
+              <input type="checkbox" name="features" value="Autre">
+              <span>Autre…</span>
+              <input type="text" name="features_other" placeholder="précisez…" class="other-input">
+            </label>
+          </div>
+        </fieldset>
 
-        <div class="features-grid compact">
-          <label class="chip"><input type="checkbox" name="feat" value="Carte/menu"><span>Carte/menu</span></label>
-          <label class="chip"><input type="checkbox" name="feat" value="Formulaire commande"><span>Formulaire commande</span></label>
-          <label class="chip"><input type="checkbox" name="feat" value="Paiement (Stripe)"><span>Paiement (Stripe)</span></label>
-          <label class="chip"><input type="checkbox" name="feat" value="Horaires dynamiques"><span>Horaires dynamiques</span></label>
-          <label class="chip"><input type="checkbox" name="feat" value="Google Maps"><span>Google Maps</span></label>
-          <label class="chip"><input type="checkbox" name="feat" value="Galerie photos"><span>Galerie photos</span></label>
-          <label class="chip"><input type="checkbox" name="feat" value="Newsletter"><span>Newsletter</span></label>
-          <label class="chip"><input type="checkbox" name="feat" value="SEO local"><span>SEO local</span></label>
-          <label class="chip"><input type="checkbox" name="feat" value="Décide pour moi"><span>Décide pour moi</span></label>
-          <label class="chip"><input type="checkbox" name="feat" value="Autre"><span>Autre…</span></label>
-        </div>
-      </fieldset>
+        <label>Couleurs souhaitées
+          <input name="colors" placeholder="ex : rouge & noir">
+        </label>
 
-      <div class="form-row">
-        <label for="colors">Couleurs souhaitées</label>
-        <input id="colors" name="colors" type="text" placeholder="ex : rouge & noir">
-      </div>
+        <label>Nom de domaine souhaité
+          <input name="domain" placeholder="ex : mon-restaurant.fr">
+        </label>
 
-      <div class="form-row">
-        <label for="domain">Nom de domaine souhaité</label>
-        <input id="domain" name="domain" type="text" placeholder="ex : mon-restaurant.fr">
-      </div>
+        <label>Contact à afficher (tél ou e-mail)
+          <input name="display_contact" placeholder="+33 ... ou mail">
+        </label>
 
-      <div class="form-row">
-        <label for="contact">Contact à afficher (tél ou e-mail)</label>
-        <input id="contact" name="contact" type="text" placeholder="+33 … ou mail">
-      </div>
-
-      <div class="form-row">
-        <label for="message">Message (détails utiles)</label>
-        <textarea id="message" name="message" placeholder="Détaillez votre demande…"></textarea>
+        <label class="full">Message (détails utiles)
+          <textarea name="message" rows="4" placeholder="Détaillez votre demande…"></textarea>
+        </label>
       </div>
 
       <div class="form-actions">
         <button class="btn btn-primary" type="submit">Envoyer</button>
-        <span id="formStatus" aria-live="polite"></span>
+        <span id="formStatus" class="form-status" aria-live="polite"></span>
       </div>
     </form>
   </section>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> WebResto — Tous droits réservés</p>
-    </div>
+  <footer class="footer">
+    <p>© 2025 WebResto — Tous droits réservés</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
