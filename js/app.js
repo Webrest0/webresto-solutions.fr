@@ -1,162 +1,153 @@
-// ===== Drawer (menu)
-const drawer = document.getElementById('nav-drawer');
-const toggleBtn = document.getElementById('menu-toggle');
-const backdrop = document.getElementById('drawer-backdrop');
+// === Config ===
+const EMAIL = "smarttlelearning@gmail.com";
+const PHONE_E164 = "+33788589812";
 
-function openDrawer() {
-  drawer.classList.add('open');
-  drawer.setAttribute('aria-hidden', 'false');
-  backdrop.classList.add('show');
-}
-function closeDrawer() {
-  drawer.classList.remove('open');
-  drawer.setAttribute('aria-hidden', 'true');
-  backdrop.classList.remove('show');
-}
-toggleBtn?.addEventListener('click', (e) => {
-  e.stopPropagation();
-  if (drawer.classList.contains('open')) closeDrawer();
-  else openDrawer();
-});
-backdrop?.addEventListener('click', closeDrawer);
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
-document.querySelectorAll('.drawer-link').forEach(a => a.addEventListener('click', closeDrawer));
+// === Menu mobile ===
+const toggleBtn = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.menu');
 
-// ===== Carousel (Pour qui ?)
-const slides = [
-  {
-    title: 'Restaurant / Food-truck',
-    img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1480&auto=format&fit=crop'
-  },
-  {
-    title: 'Entreprise & services',
-    img: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1480&auto=format&fit=crop'
-  },
-  {
-    title: 'Mariage / Événement',
-    img: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1480&auto=format&fit=crop'
-  },
-  {
-    title: 'Groupes de musique',
-    img: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1480&auto=format&fit=crop'
+if (toggleBtn && menu) {
+  const toggle = () => {
+    const open = menu.classList.toggle('open');
+    toggleBtn.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-hidden', String(!open));
+  };
+  toggleBtn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
+  document.addEventListener('click', (e) => {
+    if (menu.classList.contains('open') && !menu.contains(e.target) && e.target !== toggleBtn) {
+      menu.classList.remove('open');
+      toggleBtn.setAttribute('aria-expanded', "false");
+      menu.setAttribute('aria-hidden', "true");
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      toggleBtn.setAttribute('aria-expanded', "false");
+      menu.setAttribute('aria-hidden', "true");
+    }
+  });
+}
+
+// === Carousel ===
+(function setupCarousel(){
+  const root = document.querySelector('.carousel');
+  if(!root) return;
+  const track = root.querySelector('.track');
+  const slides = [...root.querySelectorAll('.slide')];
+  const prev = root.querySelector('.prev');
+  const next = root.querySelector('.next');
+  const dots = root.querySelector('.dots');
+  if(!slides.length) return;
+
+  let index = 0;
+  const makeDots = () => {
+    dots.innerHTML = '';
+    slides.forEach((_,i)=>{
+      const b = document.createElement('button');
+      b.addEventListener('click', ()=>go(i));
+      dots.appendChild(b);
+    });
+  };
+  const update = () => {
+    track.style.transform = `translateX(${index * -100}%)`;
+    [...dots.children].forEach((d,i)=>d.classList.toggle('active', i===index));
+  };
+  const go = (i) => {
+    index = (i + slides.length) % slides.length;
+    update();
+  };
+  prev.addEventListener('click', ()=>go(index-1));
+  next.addEventListener('click', ()=>go(index+1));
+  makeDots(); update();
+})();
+
+// === Gmail deep link (Android) + mailto fallback ===
+function openEmail(to, subject, body) {
+  const enc = (s)=>encodeURIComponent(s || "");
+  const intent = `intent://send/${enc(to)}#Intent;scheme=mailto;package=com.google.android.gm;S.browser_fallback_url=${enc('mailto:'+to+'?subject='+enc(subject)+'&body='+enc(body))};end`;
+  // Heuristique Android
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  if (isAndroid) {
+    window.location.href = intent;
+  } else {
+    window.location.href = `mailto:${to}?subject=${enc(subject)}&body=${enc(body)}`;
   }
-];
-
-const track = document.getElementById('car-track');
-const dotsWrap = document.getElementById('car-dots');
-let index = 0;
-
-function renderSlides() {
-  track.innerHTML = slides.map(s => `
-    <div class="slide" style="background-image:url('${s.img}')">
-      <div class="label">${s.title}</div>
-    </div>
-  `).join('');
-  dotsWrap.innerHTML = slides.map((_,i)=>`<button data-i="${i}" aria-label="Aller au slide ${i+1}"></button>`).join('');
-  update();
-}
-function update() {
-  track.style.transform = `translateX(${-index*100}%)`;
-  [...dotsWrap.children].forEach((d,i)=> d.classList.toggle('active', i===index));
-}
-function move(step){ index=(index+step+slides.length)%slides.length; update(); }
-
-document.querySelector('.car-arrow.left')?.addEventListener('click', ()=>move(-1));
-document.querySelector('.car-arrow.right')?.addEventListener('click', ()=>move(1));
-dotsWrap?.addEventListener('click', (e)=>{
-  if(e.target.tagName==='BUTTON'){ index=parseInt(e.target.dataset.i,10); update(); }
-});
-renderSlides();
-
-// ===== Email deep link (Gmail d’abord, fallback Mailto)
-const EMAIL = 'smarttlelearning@gmail.com';
-function openEmail(subject, body) {
-  const gmailApp = `googlegmail://co?to=${encodeURIComponent(EMAIL)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  const gmailWeb = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-  const win = window.open(gmailApp, '_blank');
-  setTimeout(() => {
-    try { if (!win || win.closed || typeof win.closed === 'undefined') { window.open(gmailWeb, '_blank'); } }
-    catch { window.location.href = mailto; }
-  }, 350);
 }
 
-// Bouton “écrire”
-document.getElementById('writeEmail')?.addEventListener('click', () => {
-  openEmail('Commande', 'Détaillez votre demande…');
-});
-
-// ===== “Choisir ce pack” → ouvre e-mail prérempli
+// === Boutons "Choisir ce pack" -> email prérempli ===
 document.querySelectorAll('.choose-pack').forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    const pack = btn.dataset.pack || 'Site';
-    const tmpl =
+    const pack = btn.dataset.pack || "";
+    const subject = "Commande";
+    const body =
 `Détaillez votre demande :
 
-• Thème du site : (restaurant, mariage, entreprise, musique, autre…)
-• Couleurs voulues :
-• Nom de domaine souhaité :
-• Contact public (tel ou e-mail) :
-• Fonctionnalités à intégrer (carte/menu, paiement, réservations, horaires, Google Maps, réseaux sociaux, mentions…) :
-• Contenus fournis (logo, photos, textes) :
-• Exemples de sites que vous aimez :
-• Contraintes / remarques :
+Pack choisi : ${pack}
 
-⚑ Délai indicatif : minimum 2 semaines (souvent plus rapide).`;
-    openEmail(`Commande — ${pack}`, tmpl);
+Thème du site : (Restaurant / Entreprise / Musique / Mariage / Décide pour moi / Autre : …)
+
+Couleurs souhaitées : …
+
+Fonctionnalités à intégrer (plusieurs possibles) :
+- Carte/menu
+- Formulaire de commande
+- Lien de paiement (Stripe)
+- Horaires dynamiques
+- Google Maps / adresse
+- Galerie photos
+- Décide pour moi
+- Autre : …
+
+Nom de domaine souhaité : …
+Contact à afficher (tel ou e-mail) : …
+
+Autres précisions : …`;
+    openEmail(EMAIL, subject, body);
   });
 });
 
-// ===== Form → e-mail prérempli (objet = Commande)
-const brief = document.getElementById('briefForm');
-const themeSelect = document.getElementById('themeSelect');
-const themeOtherWrap = document.getElementById('themeOtherWrap');
-const themeOther = document.getElementById('themeOther');
+// === Formulaire -> email "Commande" ===
+const form = document.getElementById('order-form');
+if(form){
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const data = new FormData(form);
+    const getAll = (name)=>{
+      // Récupère checkboxes multiples
+      const values = [];
+      form.querySelectorAll(`[name="${name}"]`).forEach(el=>{
+        if (el.type === 'checkbox' && el.checked) values.push(el.value);
+      });
+      if(values.length) return values;
+      const v = data.get(name);
+      return v ? [v] : [];
+    };
 
-const featuresSelect = document.getElementById('featuresSelect');
-const featuresOtherWrap = document.getElementById('featuresOtherWrap');
-const featuresOther = document.getElementById('featuresOther');
-
-themeSelect?.addEventListener('change', ()=>{
-  themeOtherWrap.classList.toggle('hidden', themeSelect.value !== 'Autre');
-});
-featuresSelect?.addEventListener('change', ()=>{
-  const values = [...featuresSelect.selectedOptions].map(o=>o.value);
-  featuresOtherWrap.classList.toggle('hidden', !values.includes('Autre'));
-});
-
-brief?.addEventListener('submit', (e)=>{
-  e.preventDefault();
-  const fd = new FormData(brief);
-  let themeVal = fd.get('theme');
-  if (themeVal === 'Autre') themeVal = themeOther.value || 'Autre';
-
-  const features = [...featuresSelect.selectedOptions].map(o=>o.value).filter(v=>v!=='Autre');
-  if (featuresOther.value) features.push(featuresOther.value);
-
-  const data = Object.fromEntries(fd.entries());
-  const subject = 'Commande';
-  const body =
+    const subject = "Commande";
+    const features = getAll('features');
+    const body =
 `Détaillez votre demande :
 
-Nom : ${data.name || ''}
-Email : ${data.email || ''}
-Téléphone : ${data.phone || ''}
+Nom / Société : ${data.get('name') || ''}
+E-mail : ${data.get('email') || ''}
+Téléphone : ${data.get('phone') || ''}
 
-Thème : ${themeVal}
-Couleurs : ${data.colors || ''}
+Pack souhaité : ${data.get('pack') || ''}
+Thème du site : ${data.get('theme') || ''}${data.get('theme_custom') ? ' — '+data.get('theme_custom'): ''}
 
-Nom de domaine : ${data.domain || ''}
-Contact public : ${data.publicContact || ''}
+Couleurs souhaitées : ${data.get('colors') || ''}
 
-Fonctionnalités : ${features.join(', ') || ''}
-Contenus/contraintes : ${data.content || ''}
+Fonctionnalités à intégrer : ${features.join(', ')}${data.get('features_custom') ? ' — '+data.get('features_custom'): ''}
+
+Nom de domaine souhaité : ${data.get('domain') || ''}
+Contact à afficher : ${data.get('contact') || ''}
 
 Message :
-${data.message || ''}
+${data.get('message') || ''}
 
-⚑ Délai indicatif : minimum 2 semaines (souvent plus rapide).`;
+(PS : délai indicatif communiqué après votre validation du cahier des charges.)`;
 
-  openEmail(subject, body);
-});
+    openEmail(EMAIL, subject, body);
+  });
+}
