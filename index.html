@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title>WebResto — Sites modernes pour restos & food-trucks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="Images/wr-logo-red.png">
 </head>
 <body>
@@ -28,7 +28,7 @@
     </nav>
   </header>
 
-  <!-- HÉRO (on conserve le visuel) -->
+  <!-- HÉRO -->
   <section id="accueil" class="hero">
     <div class="hero-bg" style="--bg:url('Images/hero-dark-office.png');"></div>
     <div class="hero-content container">
@@ -46,25 +46,20 @@
     <h2>Exemple</h2>
 
     <article class="card example-card">
-      <!-- Image plein fond derrière le texte -->
       <div class="card-bg" style="--bg:url('Images/webresto.png');"></div>
-
-      <!-- Badge en bas à droite -->
       <div class="badge-most">Le plus choisi</div>
-
       <div class="card-body">
         <h3 class="card-title">Site réalisé par nous :<br> PIZZ’AMIGO — Food truck au feu de bois</h3>
         <p class="card-text">
           Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture),
           <strong>adresse & contact</strong>.
         </p>
-        <!-- Aperçu dans un modal (on ne quitte pas la page) -->
         <button class="btn btn-primary" data-preview="https://pizz-amigo.netlify.app">Voir le site</button>
       </div>
     </article>
   </section>
 
-  <!-- OFFRES (contenu intact, badge animé en bas-droite) -->
+  <!-- OFFRES -->
   <section id="offres" class="section container">
     <h2>Offres & tarifs</h2>
 
@@ -109,7 +104,7 @@
     </div>
   </section>
 
-  <!-- FORMULAIRE (même interface, “Fonctionnalités” en <select multiple>) -->
+  <!-- FORMULAIRE -->
   <section id="demander" class="section container">
     <h2>Demander un site</h2>
 
@@ -148,7 +143,6 @@
         </label>
       </div>
 
-      <!-- ICI : même “mode de sélection” que le thème, mais MULTIPLE -->
       <label>Fonctionnalités à intégrer <small>(plusieurs choix)</small>
         <select id="featuresSelect" name="features" multiple size="6">
           <option value="Carte/menu">Carte/menu</option>
@@ -179,7 +173,7 @@
 
       <div class="form-actions">
         <button type="submit" class="btn btn-primary" id="sendBtn">Envoyer</button>
-        <span id="formStatus" class="form-status" role="status" aria-live="polite"></span>
+        <span id="formStatus" class="form-status"></span>
       </div>
     </form>
   </section>
@@ -188,10 +182,10 @@
     © <span id="year"></span> WebResto — Tous droits réservés
   </footer>
 
-  <!-- Modals -->
+  <!-- MODALES -->
   <dialog id="callModal" class="modal">
     <div class="modal-card">
-      <button class="modal-close" data-close aria-label="Fermer">×</button>
+      <button class="modal-close" data-close>×</button>
       <h3>Appeler</h3>
       <a class="btn btn-primary btn-call" href="tel:+33784674767">Appeler le +33 7 84 67 47 67</a>
       <div class="alt-call">
@@ -203,8 +197,8 @@
 
   <dialog id="previewModal" class="modal modal-large">
     <div class="modal-card">
-      <button class="modal-close" data-close aria-label="Fermer">×</button>
-      <iframe id="previewFrame" title="Aperçu du site" loading="lazy" referrerpolicy="no-referrer"></iframe>
+      <button class="modal-close" data-close>×</button>
+      <iframe id="previewFrame" title="Aperçu du site"></iframe>
     </div>
   </dialog>
 
