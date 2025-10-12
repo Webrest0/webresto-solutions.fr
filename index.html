@@ -4,29 +4,32 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
   <title>WebResto</title>
+
+  <!-- Fonts + CSS -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Navbar -->
+  <!-- NAVBAR -->
   <header class="nav">
-    <a href="#" class="brand">
-      <img src="Images/wr-logo-red.png" alt="WebResto" class="logo">
+    <a href="#accueil" class="brand">
+      <img src="Images/wr-logo-red.png" alt="Logo WebResto" class="logo">
       <span>WebResto</span>
     </a>
 
     <div class="nav-actions">
+      <!-- Appeler en premier, puis les 3 traits tout à droite -->
+      <button id="callBtn" class="btn btn-primary">Appeler</button>
       <button id="menuBtn" class="hamburger" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
       </button>
-      <button id="callBtn" class="btn btn-primary">Appeler</button>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" id="accueil" role="img" aria-label="Bureau avec éclairage rouge">
+  <!-- HERO -->
+  <section class="hero" id="accueil" role="img" aria-label="Bureau éclairage rouge">
     <div class="hero-inner">
       <h1>Des sites modernes, <br>visibles et sur mesure.</h1>
       <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
@@ -37,13 +40,14 @@
     </div>
   </section>
 
-  <!-- Carrousel - Pour qui ? -->
+  <!-- CARROUSEL "POUR QUI ?" -->
   <section class="wrap" id="pour-qui">
     <h2>Pour qui&nbsp;?</h2>
 
     <div class="carousel">
       <button class="car-btn left" aria-label="Précédent">&#8249;</button>
       <div class="car-track" id="carTrack">
+        <!-- Images libres (Unsplash). Tu peux les remplacer par tes propres fichiers. -->
         <a class="card" href="#formulaire" style="--bg:url('https://images.unsplash.com/photo-1600891965050-d7f54b0616f0?q=80&w=1600&auto=format&fit=crop')">
           <span class="badge">Restaurant</span>
         </a>
@@ -61,36 +65,40 @@
     </div>
   </section>
 
-  <!-- Exemple -->
+  <!-- EXEMPLE -->
   <section class="wrap" id="exemple">
     <h2>Exemple</h2>
 
     <article class="example-card">
+      <!-- L’image prend toute la bulle et passe derrière le texte -->
       <div class="example-media" style="--img:url('Images/webresto.png');"></div>
       <div class="example-body">
         <h3>Site réalisé par nous :<br>PIZZ’AMIGO — Food truck au feu de bois</h3>
         <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture), <strong>adresse &amp; contact</strong>.</p>
+        <!-- Redirection (nouvel onglet) -->
         <a class="btn btn-primary" href="https://pizzamigo974.github.io" target="_blank" rel="noopener">Voir le site</a>
       </div>
     </article>
   </section>
 
-  <!-- Offres & tarifs (inchangé) -->
+  <!-- OFFRES & TARIFS (NE PAS MODIFIER) -->
   <section class="wrap" id="offres">
-    <!-- ❗️Tu gardes ton HTML actuel ici. Aucun changement appliqué par mes corrections. -->
+    <!-- 🔒 COLLE ICI TON BLOC "Offres & tarifs" EXACT ET COMPLET (inchangé).
+         Je n’y touche pas. -->
   </section>
 
-  <!-- Formulaire (inchangé de ton côté) -->
+  <!-- FORMULAIRE (NE PAS MODIFIER L'INTERFACE) -->
   <section class="wrap" id="formulaire">
-    <!-- ❗️Garde ton interface actuelle. Rien modifié ici. -->
+    <!-- 🔒 COLLE ICI TON FORMULAIRE EXACT (inchangé).
+         Si tu veux, je brancherai EmailJS avec tes IDs sans modifier l’UI. -->
   </section>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="footer">
     <p>© 2025 WebResto — Tous droits réservés</p>
   </footer>
 
-  <!-- Modale Appeler -->
+  <!-- MODALE APPELER -->
   <dialog id="callModal" class="modal">
     <form method="dialog" class="modal-card">
       <div class="modal-head">
