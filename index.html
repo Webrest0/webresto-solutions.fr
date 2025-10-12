@@ -2,8 +2,11 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-  <title>WebResto — Solutions Web</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+/>
+  <title>WebResto — Solutions</title>
   <link rel="stylesheet" href="css/style.css" />
   <script defer src="js/app.js"></script>
 </head>
@@ -12,28 +15,34 @@
   <!-- HEADER -->
   <header class="navbar">
     <div class="brand">
-      <img src="Images/wr-logo-red.png" alt="WebResto" class="brand-logo" />
-      <span class="brand-name">WebResto</span>
+      <img src="images/wr-logo-red.png" alt="WebResto" class="logo" />
+      <span class="brand-text">WebResto</span>
     </div>
+
     <div class="nav-actions">
-      <a class="btn-call" href="tel:+33788589812">Appeler</a>
+      <a class="btn-call" href="tel:+33784674767">Appeler</a>
       <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <nav class="menu" aria-hidden="true">
-        <a href="#exemple">Exemple</a>
-        <a href="#pour-qui">Pour qui ?</a>
-        <a href="#offres">Offres & tarifs</a>
-        <a href="#commande">Formulaire de commande</a>
+      <nav class="drawer" aria-hidden="true">
+        <ul>
+          <li><a href="#exemple">Exemple</a></li>
+          <li><a href="#pourqui">Pour qui ?</a></li>
+          <li><a href="#offres">Offres & tarifs</a></li>
+          <li><a href="#commande">Formulaire de commande</a></li>
+        </ul>
+        <div class="drawer-note">
+          Si aucune réponse : <a href="tel:+33788589812">07 88 58 98 12</a>
+        </div>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO (ton image d’accueil conservée) -->
   <section class="hero">
     <div class="hero-overlay"></div>
-    <div class="hero-content container">
-      <h1>Des sites modernes,<br/>visibles et sur mesure.</h1>
+    <div class="hero-content">
+      <h1>Des sites modernes, visibles et sur mesure.</h1>
       <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
       <div class="hero-buttons">
         <a href="#exemple" class="btn btn-primary">Voir un exemple</a>
@@ -43,42 +52,38 @@
   </section>
 
   <!-- EXEMPLE -->
-  <section id="exemple" class="section container">
+  <section id="exemple" class="section">
     <h2>Exemple</h2>
 
-    <article class="card example">
-      <div class="example-media" style="--bg:url('Images/Webpizza.png')"></div>
-      <div class="example-body">
+    <article class="card example-card with-bg">
+      <div class="example-bg" style="background-image:url('images/Webpizza.png');"></div>
+      <div class="card-body">
         <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
         <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture), <strong>adresse & contact</strong>.</p>
-        <a href="https://pizz-amigo.netlify.app" class="btn btn-primary" target="_blank" rel="noopener">Voir le site</a>
+        <a class="btn btn-primary" href="https://pizz-amigo.netlify.app" target="_blank" rel="noopener">Voir le site</a>
       </div>
     </article>
   </section>
 
   <!-- POUR QUI -->
-  <section id="pour-qui" class="section container">
+  <section id="pourqui" class="section">
     <h2>Pour qui ?</h2>
-    <p class="muted">Je crée pour tous les besoins :</p>
+    <p class="sub">Je crée pour tous les besoins :</p>
 
     <div class="carousel">
       <button class="nav prev" aria-label="Précédent">‹</button>
       <div class="track">
-        <div class="slide" data-label="Restaurants / Food-trucks">
-          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1400&auto=format&fit=crop" alt="Restaurants / Food-trucks">
-          <span class="chip">Restaurants / Food-trucks</span>
+        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1200&auto=format&fit=crop');">
+          <span class="slide-label">Restaurants / Food-trucks</span>
         </div>
-        <div class="slide" data-label="Entreprises & services">
-          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop" alt="Entreprises et services">
-          <span class="chip">Entreprises & services</span>
+        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop');">
+          <span class="slide-label">Entreprises & services</span>
         </div>
-        <div class="slide" data-label="Groupes de musique">
-          <img src="https://images.unsplash.com/photo-1507878866276-a947ef722fee?q=80&w=1400&auto=format&fit=crop" alt="Groupes de musique">
-          <span class="chip">Groupes de musique</span>
+        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1200&auto=format&fit=crop');">
+          <span class="slide-label">Groupes de musique</span>
         </div>
-        <div class="slide" data-label="Mariages / Événements">
-          <img src="https://images.unsplash.com/photo-1464347744102-11db6282f854?q=80&w=1400&auto=format&fit=crop" alt="Mariages / Événements">
-          <span class="chip">Mariages / Événements</span>
+        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200&auto=format&fit=crop');">
+          <span class="slide-label">Mariages / Événements</span>
         </div>
       </div>
       <button class="nav next" aria-label="Suivant">›</button>
@@ -86,138 +91,135 @@
     </div>
   </section>
 
-  <!-- OFFRES & TARIFS -->
-  <section id="offres" class="section container">
+  <!-- OFFRES -->
+  <section id="offres" class="section">
     <h2>Offres & tarifs</h2>
 
-    <div class="grid">
-      <!-- VITRINE -->
-      <article class="card price">
+    <article class="card">
+      <div class="card-body">
         <h3>Site vitrine</h3>
-        <p class="price-tag">200 à 299€</p>
-        <ul>
+        <div class="price">200 à 299€</div>
+        <ul class="list">
           <li>Page moderne (photos, infos, horaires, contact)</li>
           <li>Design personnalisé et responsive</li>
           <li>Nom de domaine inclus la 1<sup>re</sup> année</li>
           <li>HTTPS sécurisé (hébergement possible)</li>
         </ul>
-        <button class="btn btn-ghost choose-pack" data-pack="Vitrine">Choisir ce pack</button>
-      </article>
+        <a class="btn btn-ghost send-mail" data-pack="Site vitrine">Choisir ce pack</a>
+      </div>
+    </article>
 
-      <!-- VITRINE + COMMANDES -->
-      <article class="card price highlight">
+    <article class="card">
+      <span class="badge pulse">Le plus choisi</span>
+      <div class="card-body">
         <h3>Site vitrine + commandes en ligne</h3>
-        <span class="badge hot">Le plus choisi</span>
-        <p class="price-tag">500€</p>
-        <ul>
+        <div class="price">500€</div>
+        <ul class="list">
           <li>Formulaires (commande / contact) personnalisés</li>
           <li>Intégration <strong>lien de paiement</strong> (Stripe/…)</li>
           <li>Historique basique via e-mail/export</li>
         </ul>
-        <button class="btn btn-ghost choose-pack" data-pack="Vitrine + Commandes">Choisir ce pack</button>
-      </article>
+        <a class="btn btn-ghost send-mail" data-pack="Vitrine + commandes">Choisir ce pack</a>
+      </div>
+    </article>
 
-      <!-- DASHBOARD -->
-      <article class="card price">
+    <article class="card">
+      <div class="card-body">
         <h3>Site avec dashboard</h3>
-        <p class="price-tag">899€</p>
-        <ul>
-          <li>Toutes les options “Vitrine + Commandes”</li>
-          <li>Système de commande relié (notif + historique)</li>
-          <li>Fiches clients via formulaires du site</li>
+        <div class="price">899€</div>
+        <ul class="list">
+          <li>Espace sécurisé (mot de passe)</li>
+          <li>Tout le “Vitrine + commandes” relié à un système de commande</li>
+          <li>Notifications, historique des commandes</li>
+          <li>Données clients via formulaires</li>
         </ul>
-        <button class="btn btn-ghost choose-pack" data-pack="Dashboard">Choisir ce pack</button>
-      </article>
-    </div>
+        <a class="btn btn-ghost send-mail" data-pack="Dashboard">Choisir ce pack</a>
+      </div>
+    </article>
   </section>
 
   <!-- FORMULAIRE DE COMMANDE -->
-  <section id="commande" class="section container">
+  <section id="commande" class="section">
     <h2>Formulaire de commande</h2>
-    <form id="order-form" class="form">
-      <div class="form-row">
-        <label>Nom / Société</label>
-        <input type="text" name="name" placeholder="Votre nom" required />
-      </div>
 
-      <div class="form-row">
-        <label>E-mail</label>
-        <input type="email" name="email" placeholder="exemple@mail.com" required />
-      </div>
+    <form id="orderForm" class="form">
+      <div class="grid">
+        <label>Nom / Société
+          <input type="text" name="name" placeholder="Votre nom ou celui de l’entreprise" required>
+        </label>
 
-      <div class="form-row">
-        <label>Téléphone</label>
-        <input type="tel" name="phone" placeholder="+33…" />
-      </div>
+        <label>E-mail
+          <input type="email" name="email" placeholder="exemple@mail.com">
+        </label>
 
-      <div class="form-row">
-        <label>Pack souhaité</label>
-        <select name="pack" required>
-          <option value="Vitrine">Site vitrine</option>
-          <option value="Vitrine + Commandes">Site vitrine + commandes en ligne</option>
-          <option value="Dashboard">Site avec dashboard</option>
-          <option value="Décide pour moi">Décide pour moi</option>
-        </select>
-      </div>
+        <label>Téléphone
+          <input type="tel" name="phone" placeholder="+33 ...">
+        </label>
 
-      <div class="form-row">
-        <label>Thème du site</label>
-        <select name="theme">
-          <option value="Restaurant / Food-truck">Restaurant / Food-truck</option>
-          <option value="Entreprise & services">Entreprise & services</option>
-          <option value="Groupe de musique">Groupe de musique</option>
-          <option value="Mariage / Événement">Mariage / Événement</option>
-          <option value="Décide pour moi">Décide pour moi</option>
-          <option value="Autre">Autre (préciser ci-dessous)</option>
-        </select>
-        <input type="text" name="theme_custom" placeholder="Précisez si autre…" />
-      </div>
+        <label>Pack souhaité
+          <select name="pack" required>
+            <option value="Site vitrine">Site vitrine</option>
+            <option value="Vitrine + commandes">Site vitrine + commandes</option>
+            <option value="Dashboard">Site avec dashboard</option>
+            <option value="Décide pour moi">Décide pour moi (recommandé)</option>
+          </select>
+        </label>
 
-      <div class="form-row">
-        <label>Couleurs souhaitées</label>
-        <input type="text" name="colors" placeholder="Ex : rouge/noir, or/blanc…" />
-      </div>
+        <label>Thème du site
+          <select name="theme" id="themeSelect">
+            <option>Restaurant / Food-truck</option>
+            <option>Entreprise & services</option>
+            <option>Groupe de musique</option>
+            <option>Mariage / Événement</option>
+            <option value="autre">Autre (préciser)</option>
+          </select>
+        </label>
 
-      <div class="form-row">
-        <label>Fonctionnalités à intégrer (multi-choix)</label>
-        <div class="checks">
-          <label><input type="checkbox" name="features" value="Carte/menu"> Carte / menu</label>
-          <label><input type="checkbox" name="features" value="Formulaire commande"> Formulaire de commande</label>
-          <label><input type="checkbox" name="features" value="Paiement (Stripe)"> Lien de paiement (Stripe)</label>
-          <label><input type="checkbox" name="features" value="Horaires dynamiques"> Horaires dynamiques</label>
-          <label><input type="checkbox" name="features" value="Google Maps"> Google Maps / adresse</label>
-          <label><input type="checkbox" name="features" value="Galerie photos"> Galerie photos</label>
-          <label><input type="checkbox" name="features" value="Décide pour moi"> Décide pour moi</label>
-        </div>
-        <input type="text" name="features_custom" placeholder="Autre (préciser)…" />
-      </div>
+        <label id="themeOtherWrap" class="hidden">Précisez le thème
+          <input type="text" name="theme_autre" placeholder="Ex : coiffeur, coaching, ...">
+        </label>
 
-      <div class="form-row">
-        <label>Nom de domaine souhaité</label>
-        <input type="text" name="domain" placeholder="ex : mon-site.fr" />
-      </div>
+        <label>Couleurs souhaitées
+          <input type="text" name="colors" placeholder="Ex : rouge & noir">
+        </label>
 
-      <div class="form-row">
-        <label>Contact à afficher</label>
-        <input type="text" name="contact" placeholder="Numéro ou e-mail pour la page Contact" />
-      </div>
+        <fieldset class="full">
+          <legend>Fonctionnalités à intégrer (plusieurs choix)</legend>
+          <div class="chips">
+            <label><input type="checkbox" name="features" value="Carte/menu"> Carte/menu</label>
+            <label><input type="checkbox" name="features" value="Formulaire commande"> Formulaire commande</label>
+            <label><input type="checkbox" name="features" value="Paiement (Stripe)"> Paiement (Stripe)</label>
+            <label><input type="checkbox" name="features" value="Horaires dynamiques"> Horaires dynamiques</label>
+            <label><input type="checkbox" name="features" value="Google Maps"> Google Maps</label>
+            <label><input type="checkbox" name="features" value="Galerie photos"> Galerie photos</label>
+            <label><input type="checkbox" name="features" value="Newsletter"> Newsletter</label>
+            <label><input type="checkbox" name="features" value="SEO local"> SEO local</label>
+            <label><input type="checkbox" name="features" value="autre" id="featOther"> Autre…</label>
+          </div>
+          <div id="featOtherWrap" class="hidden">
+            <input type="text" name="features_autre" placeholder="Précisez vos fonctionnalités…">
+          </div>
+        </fieldset>
 
-      <div class="form-row">
-        <label>Détaillez votre demande</label>
-        <textarea name="message" rows="4" placeholder="Pages, sections, inspirations…"></textarea>
+        <label>Nom de domaine souhaité
+          <input type="text" name="domain" placeholder="Ex : mon-restaurant.fr">
+        </label>
+
+        <label>Contact à afficher (tél ou e-mail)
+          <input type="text" name="public_contact" placeholder="+33 ... ou mail">
+        </label>
+
+        <label class="full">Message
+          <textarea name="message" rows="4" placeholder="Détaillez votre demande…"></textarea>
+        </label>
       </div>
 
       <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>
   </section>
 
-  <footer class="footer">
+  <footer class="foot">
     © 2025 WebResto — Tous droits réservés
   </footer>
-
-  <script>
-    // Évite le pinch zoom iOS
-    window.addEventListener('gesturestart', e => e.preventDefault());
-  </script>
 </body>
 </html>
