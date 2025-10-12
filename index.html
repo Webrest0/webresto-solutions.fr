@@ -2,14 +2,15 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bloque le zoom sur mobile + empêche le zoom sur focus -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
   <title>WebResto – Sites modernes & visibles</title>
   <link rel="icon" href="Images/wr-logo-red.png" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- 🔒 HEADER (verrouillé) -->
   <header class="site-header">
     <div class="brand">
       <img src="Images/wr-logo-red.png" alt="WebResto" class="logo">
@@ -24,7 +25,7 @@
     </div>
   </header>
 
-  <!-- Slide menu (3 traits) -->
+  <!-- 🔒 MENU LATERAL (3 traits) -->
   <aside id="sideMenu" class="side-menu" aria-hidden="true">
     <div class="side-menu__top">
       <div class="brand brand--sm">
@@ -41,7 +42,7 @@
   </aside>
   <div id="menuBackdrop" class="backdrop"></div>
 
-  <!-- Call modal -->
+  <!-- 🔒 MODAL APPELER -->
   <div id="callModal" class="modal" aria-hidden="true">
     <div class="modal__dialog">
       <button class="modal__close" id="closeCall" aria-label="Fermer">✕</button>
@@ -53,9 +54,10 @@
   </div>
   <div id="callBackdrop" class="backdrop"></div>
 
-  <!-- Hero (image de PC en fond — NE PAS MODIFIER) -->
+  <!-- 🔒 HERO (PC rouge) — luminosité augmentée -->
   <section class="hero">
     <div class="hero__bg" style="background-image:url('Images/hero-dark-office.png')"></div>
+    <div class="hero__glow"></div>
     <div class="hero__content wrapper">
       <h1>Des sites modernes,<br/>visibles et sur mesure.</h1>
       <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
@@ -66,10 +68,9 @@
     </div>
   </section>
 
-  <!-- Exemple -->
+  <!-- 🔒 EXEMPLE (verrouillé) -->
   <section id="example" class="wrapper section">
     <h2>Exemple</h2>
-
     <article class="card example-card">
       <div class="example-card__media" style="background-image:url('Images/webresto.png');"></div>
       <div class="example-card__body">
@@ -80,7 +81,7 @@
     </article>
   </section>
 
-  <!-- Carrousel (verrouillé) -->
+  <!-- 🔒 CARROUSEL (verrouillé) -->
   <section class="wrapper section" aria-label="Pour qui ?">
     <h2>Pour qui ?</h2>
     <p class="muted">Je crée pour restaurants, artisans, mariages, associations…</p>
@@ -96,15 +97,15 @@
     </div>
   </section>
 
-  <!-- Offres & tarifs (verrouillé sauf badge + action) -->
+  <!-- 🔒 OFFRES (prix modifiés, “Sur devis” supprimé) -->
   <section id="pricing" class="wrapper section">
     <h2>Offres & tarifs</h2>
 
     <div class="pricing-grid">
-      <!-- Pack 1 -->
+      <!-- Vitrine -->
       <article class="pricing-card">
         <h3>Site vitrine</h3>
-        <div class="price">200 à 299€</div>
+        <div class="price">299,99 €</div>
         <ul class="features">
           <li>Page moderne (photos, infos, horaires, contact)</li>
           <li>Design personnalisé et responsive</li>
@@ -115,26 +116,25 @@
         <button class="btn btn-outline choose-pack" data-pack="Site vitrine">Choisir ce pack</button>
       </article>
 
-      <!-- Pack 2 (le plus choisi) -->
+      <!-- Vitrine + commandes -->
       <article class="pricing-card">
         <h3>Site vitrine + commandes en ligne</h3>
-        <div class="price">500€</div>
+        <div class="price">499,99 €</div>
         <ul class="features">
           <li>Formulaires (commande / contact) personnalisés</li>
-          <li>Intégration <strong>lien de paiement</strong> (Stripe/...)</li>
+          <li>Intégration <strong>système de paiement</strong> (préciser dans détails)</li>
           <li>Historique basique via e-mail/export</li>
           <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
         </ul>
         <button class="btn btn-outline choose-pack" data-pack="Site vitrine + commandes">Choisir ce pack</button>
-
-        <!-- Badge animé en bas à droite -->
+        <!-- Badge animé -->
         <div class="badge-pop">Le plus choisi</div>
       </article>
 
-      <!-- Pack 3 -->
+      <!-- Dashboard -->
       <article class="pricing-card">
         <h3>Site avec dashboard</h3>
-        <div class="price">Sur devis</div>
+        <div class="price">799,99 €</div>
         <ul class="features">
           <li>Vitrine + système de commande</li>
           <li>Tableau de bord (gestion des commandes & contenu)</li>
@@ -146,11 +146,11 @@
     </div>
   </section>
 
-  <!-- Formulaire (verrouillé sauf “Fonctionnalités”) -->
+  <!-- 🔒 FORMULAIRE (verrouillé, sauf “Fonctionnalités”) -->
   <section id="contact" class="wrapper section">
     <h2>Demander un site</h2>
 
-    <form id="orderForm" class="form">
+    <form id="orderForm" class="form" novalidate>
       <div class="grid two">
         <div class="field">
           <label>Nom / Société <span class="req">*</span></label>
@@ -189,26 +189,22 @@
           </select>
         </div>
 
-        <!-- FONCTIONNALITÉS = seul bloc modifiable -->
+        <!-- 👉 Seule section modifiable : “Fonctionnalités” -->
         <div class="field">
           <label>Fonctionnalités à intégrer <span class="muted">(plusieurs choix)</span></label>
 
-          <!-- Sélecteur type “comme thème” -->
           <div class="select-like" id="featuresSelect">
             <button type="button" class="select-like__button" aria-expanded="false">
               <span class="select-like__label">Aucun élément</span>
               <span class="chevron">▾</span>
             </button>
             <div class="select-like__panel" role="listbox" aria-hidden="true">
-              <!-- chaque case a une data-value -->
               <label class="option"><input type="checkbox" value="Carte/menu"> Carte/menu</label>
               <label class="option"><input type="checkbox" value="Formulaire commande"> Formulaire commande</label>
-              <label class="option"><input type="checkbox" value="Paiement (Stripe)"> Paiement (Stripe)</label>
+              <label class="option"><input type="checkbox" value="Système de paiement (préciser dans détails)"> Système de paiement (préciser dans détails)</label>
               <label class="option"><input type="checkbox" value="Horaires dynamiques"> Horaires dynamiques</label>
               <label class="option"><input type="checkbox" value="Google Maps"> Google Maps</label>
               <label class="option"><input type="checkbox" value="Galerie photos"> Galerie photos</label>
-              <label class="option"><input type="checkbox" value="Newsletter"> Newsletter</label>
-              <label class="option"><input type="checkbox" value="SEO local"> SEO local</label>
               <label class="option"><input type="checkbox" value="Décide pour moi"> Décide pour moi</label>
               <label class="option option--other">
                 <input type="checkbox" value="Autre…"> Autre…
@@ -246,13 +242,13 @@
     </form>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="wrapper">
       © <span id="year"></span> WebResto — Tous droits réservés
     </div>
   </footer>
 
+  <!-- EmailJS (envoi direct, sans ouvrir Mail/Gmail) -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script src="js/app.js"></script>
 </body>
