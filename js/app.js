@@ -1,17 +1,11 @@
-/* ===== EmailJS (envoi direct sans ouvrir l’appli Mail) =====
-   Identifiants d’après tes captures :
-   - Service ID     : service_8bw61yj
-   - Template ID    : template_9ok4wz8
-   - Public Key     : XgRSTv-domSnc8RgY
-   (Tu peux modifier facilement ici si besoin)
-*/
+/* ===== EmailJS (envoi direct sans ouvrir Mail/Gmail) ===== */
 const EMAILJS_PUBLIC_KEY = 'XgRSTv-domSnc8RgY';
 const EMAILJS_SERVICE_ID = 'service_8bw61yj';
 const EMAILJS_TEMPLATE_ID = 'template_9ok4wz8';
 
 (function(){ try { emailjs.init(EMAILJS_PUBLIC_KEY); } catch(e){} })();
 
-/* ====== Header interactions ====== */
+/* ===== Header / Menu ===== */
 const burgerBtn   = document.getElementById('burgerBtn');
 const sideMenu    = document.getElementById('sideMenu');
 const closeMenu   = document.getElementById('closeMenu');
@@ -25,7 +19,7 @@ closeMenu.addEventListener('click', closeMenuFn);
 menuBackdrop.addEventListener('click', closeMenuFn);
 document.querySelectorAll('.side-link').forEach(a=>a.addEventListener('click', closeMenuFn));
 
-/* ====== Call modal ====== */
+/* ===== Call modal ===== */
 const callBtn       = document.getElementById('callBtn');
 const callModal     = document.getElementById('callModal');
 const callBackdrop  = document.getElementById('callBackdrop');
@@ -38,10 +32,10 @@ callBtn.addEventListener('click', openCall);
 closeCall.addEventListener('click', closeCallFn);
 callBackdrop.addEventListener('click', closeCallFn);
 
-/* ====== Hero year ====== */
+/* ===== Year ===== */
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ====== Carousel (verrouillé – simple slide) ====== */
+/* ===== Carousel (verrouillé) ===== */
 (function(){
   const track = document.querySelector('#portfolioCarousel .carousel__track');
   const prev = document.querySelector('#portfolioCarousel .prev');
@@ -52,19 +46,17 @@ document.getElementById('year').textContent = new Date().getFullYear();
   next.addEventListener('click', ()=> track.scrollBy({left: scrollBy(),behavior:'smooth'}));
 })();
 
-/* ====== Pricing badge (animé) & choix pack -> remplit le formulaire ====== */
+/* ===== Offres : “Choisir ce pack” -> remplit le formulaire ===== */
 document.querySelectorAll('.choose-pack').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     const val = btn.getAttribute('data-pack');
-    const select = document.getElementById('packSelect');
-    select.value = val;
-
-    // scroll au formulaire
+    const sel = document.getElementById('packSelect');
+    if(sel) sel.value = val;
     document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
   });
 });
 
-/* ====== Sélecteur “Fonctionnalités à intégrer” (seul bloc modifiable) ====== */
+/* ===== Sélecteur “Fonctionnalités à intégrer” (modifié selon tes règles) ===== */
 (function(){
   const root = document.getElementById('featuresSelect');
   const button = root.querySelector('.select-like__button');
@@ -96,7 +88,7 @@ document.querySelectorAll('.choose-pack').forEach(btn=>{
   });
 })();
 
-/* ====== Envoi du formulaire via EmailJS ====== */
+/* ===== Envoi du formulaire par EmailJS (sans application Mail) ===== */
 const form = document.getElementById('orderForm');
 const feedback = document.getElementById('formFeedback');
 const sendBtn = document.getElementById('sendBtn');
@@ -104,13 +96,12 @@ const sendBtn = document.getElementById('sendBtn');
 form.addEventListener('submit', async (e)=>{
   e.preventDefault();
 
-  // (rappel champs obligatoires)
+  // validation minimale
   if(!form.name.value.trim()){ feedback.textContent = "Nom : obligatoire."; return; }
   if(!form.email.value.trim()){ feedback.textContent = "E-mail : obligatoire."; return; }
 
   sendBtn.disabled = true; feedback.textContent = "Envoi en cours…";
 
-  // Construction des données pour le template EmailJS
   const data = {
     name: form.name.value.trim(),
     email: form.email.value.trim(),
@@ -128,7 +119,7 @@ form.addEventListener('submit', async (e)=>{
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, data);
     feedback.textContent = "✅ Mail envoyé. Merci !";
     form.reset();
-    // remettre le label du sélecteur
+    // reset sélecteur “Fonctionnalités”
     document.getElementById('featuresField').value = "";
     document.querySelector('#featuresSelect .select-like__label').textContent = "Aucun élément";
   }catch(err){
