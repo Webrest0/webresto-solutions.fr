@@ -1,134 +1,155 @@
-// ===== EmailJS init =====
-emailjs.init('XgRStV-domSnc8RgY'); // Public Key
+/* ===========================
+   EmailJS – Config
+   Remplace si besoin par tes valeurs
+   =========================== */
+const EMAILJS_PUBLIC_KEY = "XgRSTv-domSnc8RgY";     // clé publique (Account > Général)
+const EMAILJS_SERVICE_ID  = "service_8bw61yj";      // ID service (Gmail connecté)
+const EMAILJS_TEMPLATE_ID = "template_9ok4wz8";     // ID du template “Contactez-nous”
 
-// ===== Drawer =====
-const burgerBtn = document.getElementById('burgerBtn');
-const drawer = document.getElementById('drawer');
-const drawerBackdrop = document.getElementById('drawerBackdrop');
+emailjs.init(EMAILJS_PUBLIC_KEY);
 
-function closeDrawer(){
-  drawer.classList.remove('open');
-  drawerBackdrop.classList.remove('show');
-  burgerBtn.setAttribute('aria-expanded','false');
-}
-burgerBtn.addEventListener('click', () => {
-  drawer.classList.toggle('open');
-  drawerBackdrop.classList.toggle('show');
-  burgerBtn.setAttribute('aria-expanded', drawer.classList.contains('open'));
+/* ===========================
+   Menu burger (ouvre/ferme + clic extérieur)
+   =========================== */
+const menuBtn  = document.getElementById('menuBtn');
+const sideMenu = document.getElementById('sideMenu');
+const scrim    = document.getElementById('scrim');
+
+function closeMenu(){ sideMenu.classList.remove('open'); sideMenu.setAttribute('aria-hidden','true'); scrim.hidden = true; }
+function openMenu(){ sideMenu.classList.add('open'); sideMenu.setAttribute('aria-hidden','false'); scrim.hidden = false; }
+
+menuBtn.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  if (sideMenu.classList.contains('open')) closeMenu(); else openMenu();
 });
-drawerBackdrop.addEventListener('click', closeDrawer);
-document.querySelectorAll('.drawer-link').forEach(a=>{
-  a.addEventListener('click', closeDrawer);
+
+// fermer au clic en dehors + sur un lien
+scrim.addEventListener('click', closeMenu);
+sideMenu.querySelectorAll('.menu-link').forEach(a=>a.addEventListener('click', closeMenu));
+
+/* ===========================
+   Appeler – modal avec 2 numéros
+   =========================== */
+const callBtn    = document.getElementById('callBtn');
+const callDialog = document.getElementById('callDialog');
+callBtn.addEventListener('click', ()=> callDialog.showModal());
+callDialog.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click', ()=>callDialog.close()));
+
+/* ===========================
+   Exemple – ouvrir l’aperçu en modal
+   =========================== */
+const seePizzAmigo = document.getElementById('seePizzAmigo');
+const siteDialog   = document.getElementById('siteDialog');
+seePizzAmigo.addEventListener('click', ()=> siteDialog.showModal());
+siteDialog.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click', ()=>siteDialog.close()));
+
+/* ===========================
+   Formulaire – logique champs “Autre…”
+   =========================== */
+const theme       = document.getElementById('theme');
+const themeOther  = document.getElementById('themeOther');
+const featuresSel = document.getElementById('featuresSelect');
+const featuresOther = document.getElementById('featuresOther');
+
+theme.addEventListener('change', ()=>{
+  if (theme.value === 'Autre…'){ themeOther.classList.remove('hide'); themeOther.focus(); }
+  else { themeOther.classList.add('hide'); themeOther.value=''; }
 });
 
-// ===== Call modal =====
-const callBtn = document.getElementById('callBtn');
-const callModal = document.getElementById('callModal');
-const modalBackdrop = document.getElementById('modalBackdrop');
+featuresSel.addEventListener('change', ()=>{
+  const values = Array.from(featuresSel.selectedOptions).map(o=>o.value);
+  if (values.includes('Autre…')){ featuresOther.classList.remove('hide'); featuresOther.focus(); }
+  else { featuresOther.classList.add('hide'); featuresOther.value=''; }
+});
 
-function openModal(el){ el.classList.add('show'); modalBackdrop.classList.add('show'); }
-function closeAnyModal(){ 
-  document.querySelectorAll('.modal').forEach(m=>m.classList.remove('show')); 
-  modalBackdrop.classList.remove('show'); 
-}
-callBtn.addEventListener('click', ()=> openModal(callModal));
-modalBackdrop.addEventListener('click', closeAnyModal);
-document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click', closeAnyModal));
-
-// ===== Preview PIZZ’AMIGO in modal (iframe) =====
-const previewBtn = document.getElementById('previewBtn');
-const previewModal = document.getElementById('previewModal');
-const previewFrame = document.getElementById('previewFrame');
-if (previewBtn){
-  previewBtn.addEventListener('click', ()=>{
-    previewFrame.src = 'https://pizz-amigo.netlify.app/';
-    openModal(previewModal);
-  });
-}
-
-// ===== Form logic =====
+/* ===========================
+   Formulaire – Envoi EmailJS
+   =========================== */
 const orderForm = document.getElementById('orderForm');
-const statusEl = document.getElementById('formStatus');
+const formStatus = document.getElementById('formStatus');
+const sendBtn = document.getElementById('sendBtn');
 
-// Theme "Autre"
-const themeSelect = document.getElementById('themeSelect');
-const themeOther = document.getElementById('themeOther');
-themeSelect.addEventListener('change', ()=>{
-  if(themeSelect.value === 'Autre'){
-    themeOther.classList.remove('hide');
-    themeOther.required = true;
-  } else{
-    themeOther.classList.add('hide');
-    themeOther.required = false;
-    themeOther.value = '';
-  }
-});
-
-// Features "Autre"
-const featOtherChk = document.getElementById('featOtherChk');
-const featOtherInput = document.getElementById('featOtherInput');
-featOtherChk.addEventListener('change', ()=>{
-  if(featOtherChk.checked){
-    featOtherInput.classList.remove('hide');
-    featOtherInput.focus();
-  } else{
-    featOtherInput.classList.add('hide');
-    featOtherInput.value = '';
-  }
-});
-
-// Submit to EmailJS
 orderForm.addEventListener('submit', async (e)=>{
   e.preventDefault();
-  statusEl.className = 'form-status';
-  statusEl.textContent = '';
+  formStatus.textContent = '';
+  formStatus.className = 'form-status';
 
-  if(!orderForm.reportValidity()){
-    return;
+  // validations simples (obligatoires)
+  const name    = document.getElementById('name');
+  const email   = document.getElementById('email');
+  const phone   = document.getElementById('phone');
+  const pack    = document.getElementById('pack');
+  const colors  = document.getElementById('colors');
+  const domain  = document.getElementById('domain');
+  const display = document.getElementById('display');
+  const message = document.getElementById('message');
+
+  const required = [name,email,phone,pack,colors,domain,display];
+  for (const f of required){
+    if (!f.value.trim()){
+      f.focus();
+      formStatus.textContent = 'Veuillez remplir tous les champs obligatoires.';
+      formStatus.classList.add('err');
+      return;
+    }
   }
 
-  // Collect data
-  const formData = new FormData(orderForm);
-  // Build features (checkboxes)
-  const features = Array.from(orderForm.querySelectorAll('input[name="features"]:checked'))
-    .map(i=>i.value);
-  if (featOtherChk.checked && featOtherInput.value.trim()){
-    features.push('Autre: ' + featOtherInput.value.trim());
+  // thème (avec "Autre…")
+  const themeValue = (theme.value === 'Autre…' && themeOther.value.trim())
+    ? `Autre: ${themeOther.value.trim()}`
+    : theme.value;
+
+  // fonctionnalités (select multiple + "Autre…")
+  const selected = Array.from(featuresSel.selectedOptions).map(o=>o.value);
+  const idx = selected.indexOf('Autre…');
+  if (idx > -1){
+    selected.splice(idx,1);
+    if (featuresOther.value.trim()) selected.push('Autre: ' + featuresOther.value.trim());
   }
+  const features = selected.join(', ');
 
-  const themeValue = (themeSelect.value === 'Autre' && themeOther.value.trim())
-    ? themeOther.value.trim()
-    : themeSelect.value;
-
-  // Map to EmailJS template variables
-  const payload = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    phone: formData.get('phone'),
-    pack: formData.get('pack'),
+  // params pour EmailJS
+  const params = {
+    subject: 'Commande',
+    name: name.value.trim(),
+    email: email.value.trim(),
+    phone: phone.value.trim(),
+    pack: pack.value,
     theme: themeValue,
-    colors: formData.get('colors') || '',
-    features: features.join(', '),
-    domain: formData.get('domain') || '',
-    public_contact: formData.get('public_contact'),
-    message: formData.get('message') || ''
+    colors: colors.value.trim(),
+    features,
+    domain: domain.value.trim(),
+    display: display.value.trim(),
+    message: message.value.trim()
   };
 
-  document.getElementById('sendBtn').disabled = true;
-
+  // envoyer
+  sendBtn.disabled = true;
+  sendBtn.textContent = 'Envoi…';
   try{
-    await emailjs.send('service_8bw61yj', 'template_9ok4wz8', payload);
-    statusEl.textContent = '✅ Formulaire envoyé avec succès.';
-    statusEl.classList.add('ok');
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+    formStatus.textContent = '✅ Mail envoyé !';
+    formStatus.classList.add('ok');
     orderForm.reset();
-    // Reset dynamic fields
-    themeOther.classList.add('hide');
-    featOtherInput.classList.add('hide');
-    document.getElementById('sendBtn').disabled = false;
+    // cacher champs “Autre…”
+    themeOther.classList.add('hide'); themeOther.value='';
+    featuresOther.classList.add('hide'); featuresOther.value='';
   }catch(err){
-    statusEl.textContent = '❌ Échec de l’envoi. Réessaie plus tard.';
-    statusEl.classList.add('err');
-    document.getElementById('sendBtn').disabled = false;
     console.error(err);
+    formStatus.textContent = '❌ Échec de l’envoi. Réessaie plus tard.';
+    formStatus.classList.add('err');
+  }finally{
+    sendBtn.disabled = false;
+    sendBtn.textContent = 'Envoyer';
   }
+});
+
+/* ===========================
+   Fermeture des modals au ESC et clic extérieur
+   =========================== */
+document.querySelectorAll('dialog').forEach(dlg=>{
+  dlg.addEventListener('click', e=>{
+    const card = dlg.querySelector('.modal-card');
+    if (!card.contains(e.target)) dlg.close();
+  });
 });
