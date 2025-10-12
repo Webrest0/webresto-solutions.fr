@@ -2,29 +2,31 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>WebResto — Sites modernes et sur mesure</title>
+  <!-- Mobile + anti-zoom -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
-  <link rel="stylesheet" href="css/style.css?v=3" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 <body>
 
   <!-- HEADER -->
   <header class="wr-header">
     <a class="wr-brand" href="#top">
-      <img src="Images/wr-logo-red.png" alt="WebResto" class="wr-logo">
+      <img src="Images/wr-logo-red.png" class="wr-logo" alt="WebResto">
       <span>WebResto</span>
     </a>
 
     <div class="wr-actions">
       <button id="callBtn" class="btn btn-primary">Appeler</button>
-      <button id="menuBtn" class="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+      <!-- Burger à DROITE -->
+      <button id="menuBtn" class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="wr-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
 
-    <!-- MENU -->
-    <nav id="menu" class="menu-sheet" hidden>
+    <!-- Panneau menu (fermeture au clic lien/extérieur/ESC) -->
+    <nav id="wr-menu" class="menu-sheet" hidden>
       <ul>
         <li><a href="#exemple" class="menu-link">Exemple</a></li>
         <li><a href="#offres" class="menu-link">Offres & tarifs</a></li>
@@ -34,7 +36,7 @@
     </nav>
   </header>
 
-  <!-- DIALOG APPEL -->
+  <!-- MODALE APPELER (2 numéros, fluide) -->
   <dialog id="callDialog" class="call-dialog">
     <h3>Appeler</h3>
     <a class="btn btn-primary block" href="tel:+33784674767">Appeler le +33 7 84 67 47 67</a>
@@ -43,11 +45,11 @@
     <button class="menu-close" id="callClose" aria-label="Fermer">×</button>
   </dialog>
 
-  <!-- HERO -->
+  <!-- HERO (IMAGE D’ACCUEIL) -->
   <section id="top" class="hero" style="--hero:url('Images/hero-dark-office.png')">
     <div class="hero-inner">
-      <h1>Des sites modernes,<br>visibles et sur mesure.</h1>
-      <p>Entreprises, artisans, mariages, restaurants, associations... je crée un site clair, rapide et beau sur téléphone.</p>
+      <h1>Des sites modernes,<br/>visibles et sur mesure.</h1>
+      <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
       <div class="hero-cta">
         <a href="#exemple" class="btn btn-primary">Voir un exemple</a>
         <a href="#form" class="btn btn-outline">Demander un site</a>
@@ -55,145 +57,160 @@
     </div>
   </section>
 
-  <!-- EXEMPLE -->
-  <section id="exemple" class="wrap">
-    <h2>Exemple</h2>
-    <article class="card example-card with-cover" style="--cover:url('Images/webresto.png')">
-      <div class="card-body overlay">
-        <h3>Site réalisé par nous :<br>PIZZ’AMIGO — Food truck au feu de bois</h3>
-        <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture), <strong>adresse & contact</strong>.</p>
-        <a class="btn btn-primary" href="https://pizz-amigo.netlify.app/" target="_blank" rel="noopener">Voir le site</a>
-      </div>
-    </article>
-  </section>
+  <main>
 
-  <!-- POUR QUI -->
-  <section id="pour-qui" class="wrap">
-    <h2>Pour qui ?</h2>
-    <p>Je crée pour restaurants, artisans, mariages, associations...</p>
-    <div class="carousel" data-carousel>
-      <button class="c-arrow left" data-prev aria-label="Précédent">‹</button>
-      <div class="c-track" data-track>
-        <div class="c-item"><img src="Images/webresto.png" alt="Restauration"></div>
-        <div class="c-item"><img src="Images/hero-dark-office.png" alt="Professionnels"></div>
-        <div class="c-item"><img src="Images/pizz-amigo-cover.jpg" alt="Mariages"></div>
-        <div class="c-item"><img src="Images/wr-logo-red.png" alt="Associations"></div>
-      </div>
-      <button class="c-arrow right" data-next aria-label="Suivant">›</button>
-    </div>
-  </section>
+    <!-- 🔒 SECTION VERROUILLÉE - CARROUSEL (NE PAS MODIFIER) -->
+    <section id="pour-qui" class="wrap">
+      <h2>Pour qui ?</h2>
+      <p>Je crée pour restaurants, artisans, mariages, associations…</p>
 
-  <!-- OFFRES -->
-  <section id="offres" class="wrap">
-    <h2>Offres & tarifs</h2>
-    <div class="offers">
-      <article class="card offer">
-        <h3>Site vitrine</h3>
-        <div class="price">200 à 299€</div>
-        <ul>
-          <li>Page moderne (photos, infos, horaires, contact)</li>
-          <li>Design personnalisé et responsive</li>
-          <li>Nom de domaine inclus la 1re année</li>
-          <li>HTTPS sécurisé (hébergement possible)</li>
-          <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
-        </ul>
-        <a href="#form" class="btn btn-outline">Choisir ce pack</a>
-      </article>
-
-      <article class="card offer">
-        <span class="badge badge-bottom">Le plus choisi</span>
-        <h3>Site vitrine + commandes en ligne</h3>
-        <div class="price">500€</div>
-        <ul>
-          <li>Formulaires (commande / contact) personnalisés</li>
-          <li>Intégration <strong>lien de paiement</strong> (Stripe/...)</li>
-          <li>Historique basique via e-mail/export</li>
-          <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
-        </ul>
-        <a href="#form" class="btn btn-outline">Choisir ce pack</a>
-      </article>
-
-      <article class="card offer">
-        <h3>Site avec dashboard</h3>
-        <ul>
-          <li>Vitrine + système de commande</li>
-          <li>Tableau de bord (gestion des commandes & contenu)</li>
-          <li><strong>Login renforcé</strong> & données stockées</li>
-          <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
-        </ul>
-        <a href="#form" class="btn btn-outline">Choisir ce pack</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- FORMULAIRE -->
-  <section id="form" class="wrap">
-    <h2>Demander un site</h2>
-    <form id="orderForm" class="form">
-      <label>Nom / Société <span class="req">*</span>
-        <input name="client_name" required placeholder="votre nom ou enseigne">
-      </label>
-      <label>Email <span class="req">*</span>
-        <input name="client_email" type="email" required placeholder="exemple@mail.com">
-      </label>
-      <label>Téléphone
-        <input name="client_phone" type="tel" placeholder="+33 ...">
-      </label>
-      <label>Pack souhaité
-        <select name="pack">
-          <option>Site vitrine</option>
-          <option>Site vitrine + commandes en ligne</option>
-          <option>Site avec dashboard</option>
-        </select>
-      </label>
-      <label>Thème du site
-        <select name="theme">
-          <option>Restaurant / Food-truck</option>
-          <option>Artisan / Commerce</option>
-          <option>Mariage / Événement</option>
-          <option>Association</option>
-        </select>
-      </label>
-
-      <fieldset class="features">
-        <legend>Fonctionnalités à intégrer <small>(plusieurs choix)</small></legend>
-        <div class="pills">
-          <label class="pill"><input type="checkbox" value="Carte/menu"> <span>Carte/menu</span></label>
-          <label class="pill"><input type="checkbox" value="Commande"> <span>Formulaire commande</span></label>
-          <label class="pill"><input type="checkbox" value="Paiement"> <span>Paiement (Stripe)</span></label>
-          <label class="pill"><input type="checkbox" value="Horaires"> <span>Horaires dynamiques</span></label>
-          <label class="pill"><input type="checkbox" value="Maps"> <span>Google Maps</span></label>
-          <label class="pill"><input type="checkbox" value="Photos"> <span>Galerie photos</span></label>
-          <label class="pill"><input type="checkbox" value="Newsletter"> <span>Newsletter</span></label>
-          <label class="pill"><input type="checkbox" value="SEO"> <span>SEO local</span></label>
-          <label class="pill"><input type="checkbox" value="Auto"> <span>Décide pour moi</span></label>
-          <label class="pill pill-other"><input type="checkbox" value="Autre"> <span>Autre…</span><input type="text" class="other-input" placeholder="Précisez…"></label>
+      <div class="carousel" data-carousel>
+        <button class="c-arrow left" data-prev aria-label="Précédent">‹</button>
+        <div class="c-track" data-track>
+          <div class="c-item"><img src="Images/webresto.png" alt="Restauration"></div>
+          <div class="c-item"><img src="Images/hero-dark-office.png" alt="Professionnels"></div>
+          <div class="c-item"><img src="Images/pizz-amigo-cover.jpg" alt="Évènements"></div>
+          <div class="c-item"><img src="Images/wr-logo-red.png" alt="Associations"></div>
         </div>
-      </fieldset>
-
-      <label>Couleurs souhaitées
-        <input name="colors" placeholder="ex : rouge & noir">
-      </label>
-      <label>Nom de domaine souhaité
-        <input name="domain" placeholder="ex : mon-restaurant.fr">
-      </label>
-      <label>Contact à afficher (tél ou email)
-        <input name="display_contact" placeholder="+33 ... ou mail">
-      </label>
-      <label>Message
-        <textarea name="message" rows="3" placeholder="Détaillez votre demande..."></textarea>
-      </label>
-      <div class="form-actions">
-        <button class="btn btn-primary" type="submit">Envoyer</button>
-        <span id="formStatus" class="form-status"></span>
+        <button class="c-arrow right" data-next aria-label="Suivant">›</button>
       </div>
-    </form>
-  </section>
+    </section>
+    <!-- 🔒 FIN SECTION VERROUILLÉE -->
+
+    <!-- EXEMPLE (image de fond dans la bulle + BON LIEN) -->
+    <section id="exemple" class="wrap">
+      <h2>Exemple</h2>
+
+      <article class="card example-card with-cover" style="--cover:url('Images/webresto.png')">
+        <div class="card-body overlay">
+          <h3>Site réalisé par nous :<br/>PIZZ’AMIGO — Food truck au feu de bois</h3>
+          <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture), <strong>adresse & contact</strong>.</p>
+          <a class="btn btn-primary" href="https://pizz-amigo.netlify.app/" target="_blank" rel="noopener">Voir le site</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- OFFRES (inchangées ; badge en bas-droite) -->
+    <section id="offres" class="wrap">
+      <h2>Offres &amp; tarifs</h2>
+
+      <div class="offers">
+        <article class="card offer">
+          <h3>Site vitrine</h3>
+          <div class="price">200 à 299€</div>
+          <ul>
+            <li>Page moderne (photos, infos, horaires, contact)</li>
+            <li>Design personnalisé et responsive</li>
+            <li>Nom de domaine inclus la 1<sup>re</sup> année</li>
+            <li>HTTPS sécurisé (hébergement possible)</li>
+            <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
+          </ul>
+          <a href="#form" class="btn btn-outline">Choisir ce pack</a>
+        </article>
+
+        <article class="card offer">
+          <span class="badge badge-bottom">Le plus choisi</span>
+          <h3>Site vitrine + commandes en ligne</h3>
+          <div class="price">500€</div>
+          <ul>
+            <li>Formulaires (commande / contact) personnalisés</li>
+            <li>Intégration <strong>lien de paiement</strong> (Stripe/...)</li>
+            <li>Historique basique via e-mail/export</li>
+            <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
+          </ul>
+          <a href="#form" class="btn btn-outline">Choisir ce pack</a>
+        </article>
+
+        <article class="card offer">
+          <h3>Site avec dashboard</h3>
+          <ul>
+            <li>Vitrine + système de commande</li>
+            <li>Tableau de bord (gestion des commandes &amp; contenus)</li>
+            <li><strong>Login renforcé</strong> &amp; données stockées</li>
+            <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
+          </ul>
+          <a href="#form" class="btn btn-outline">Choisir ce pack</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 🔒 SECTION VERROUILLÉE - FORMULAIRE (NE PAS MODIFIER) -->
+    <section id="form" class="wrap">
+      <h2>Demander un site</h2>
+      <form id="orderForm" class="form">
+        <label>Nom / Société <span class="req">*</span>
+          <input name="client_name" required placeholder="votre nom ou enseigne">
+        </label>
+        <label>Email <span class="req">*</span>
+          <input name="client_email" type="email" required placeholder="exemple@mail.com">
+        </label>
+        <label>Téléphone
+          <input name="client_phone" type="tel" placeholder="+33 ...">
+        </label>
+        <label>Pack souhaité
+          <select name="pack">
+            <option>Site vitrine</option>
+            <option>Site vitrine + commandes en ligne</option>
+            <option>Site avec dashboard</option>
+          </select>
+        </label>
+        <label>Thème du site
+          <select name="theme">
+            <option>Restaurant / Food-truck</option>
+            <option>Artisan / Commerce</option>
+            <option>Mariage / Événement</option>
+            <option>Association</option>
+          </select>
+        </label>
+
+        <fieldset class="features">
+          <legend>Fonctionnalités à intégrer <small>(plusieurs choix)</small></legend>
+          <div class="pills">
+            <label class="pill"><input type="checkbox" name="features" value="Carte/menu"> <span>Carte/menu</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Formulaire commande"> <span>Formulaire commande</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Paiement (Stripe)"> <span>Paiement (Stripe)</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Horaires dynamiques"> <span>Horaires dynamiques</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Google Maps"> <span>Google Maps</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Galerie photos"> <span>Galerie photos</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Newsletter"> <span>Newsletter</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="SEO local"> <span>SEO local</span></label>
+            <label class="pill"><input type="checkbox" name="features" value="Décide pour moi"> <span>Décide pour moi</span></label>
+            <label class="pill pill-other">
+              <input type="checkbox" name="features" value="Autre">
+              <span>Autre…</span>
+              <input type="text" name="features_other" placeholder="précisez…" class="other-input">
+            </label>
+          </div>
+        </fieldset>
+
+        <label>Couleurs souhaitées
+          <input name="colors" placeholder="ex : rouge & noir">
+        </label>
+        <label>Nom de domaine souhaité
+          <input name="domain" placeholder="ex : mon-restaurant.fr">
+        </label>
+        <label>Contact à afficher (tél ou email)
+          <input name="display_contact" placeholder="+33 ... ou mail">
+        </label>
+        <label>Message
+          <textarea name="message" rows="3" placeholder="Détaillez votre demande..."></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Envoyer</button>
+          <span id="formStatus" class="form-status" aria-live="polite"></span>
+        </div>
+      </form>
+    </section>
+    <!-- 🔒 FIN SECTION VERROUILLÉE -->
+
+  </main>
 
   <footer class="footer">
     <p>© 2025 WebResto — Tous droits réservés</p>
   </footer>
 
-  <script src="js/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/app.js?v=4"></script>
 </body>
 </html>
