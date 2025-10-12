@@ -2,13 +2,11 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>WebResto — Sites modernes et sur mesure</title>
-  <!-- Mobile + anti-zoom -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-
-  <link rel="stylesheet" href="css/style.css?v=4" />
+  <title>WebResto — Sites modernes et sur mesure</title>
+  <link rel="stylesheet" href="css/style.css?v=5" />
 </head>
-<body>
+<body id="top">
 
   <!-- HEADER -->
   <header class="wr-header">
@@ -19,34 +17,33 @@
 
     <div class="wr-actions">
       <button id="callBtn" class="btn btn-primary">Appeler</button>
-      <!-- Burger à DROITE -->
-      <button id="menuBtn" class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="wr-menu">
+      <button id="menuBtn" class="burger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
 
-    <!-- Panneau menu (fermeture au clic lien/extérieur/ESC) -->
-    <nav id="wr-menu" class="menu-sheet" hidden>
+    <!-- MENU SLIDE -->
+    <nav id="wr-menu" class="menu-panel" hidden>
+      <button class="menu-close" id="menuClose">✕</button>
       <ul>
         <li><a href="#exemple" class="menu-link">Exemple</a></li>
         <li><a href="#offres" class="menu-link">Offres & tarifs</a></li>
         <li><a href="#form" class="menu-link">Demander un site</a></li>
       </ul>
-      <button class="menu-close" id="menuClose" aria-label="Fermer">×</button>
     </nav>
   </header>
 
-  <!-- MODALE APPELER (2 numéros, fluide) -->
+  <!-- DIALOG APPELER -->
   <dialog id="callDialog" class="call-dialog">
     <h3>Appeler</h3>
     <a class="btn btn-primary block" href="tel:+33784674767">Appeler le +33 7 84 67 47 67</a>
     <div class="alt-note">Si pas de réponse :</div>
     <a class="btn btn-ghost block" href="tel:+33788589812">Appeler le 07 88 58 98 12</a>
-    <button class="menu-close" id="callClose" aria-label="Fermer">×</button>
+    <button class="menu-close" id="callClose">✕</button>
   </dialog>
 
-  <!-- HERO (IMAGE D’ACCUEIL) -->
-  <section id="top" class="hero" style="--hero:url('Images/hero-dark-office.png')">
+  <!-- HERO (fond PC rouge + boutons côte à côte) -->
+  <section id="hero" class="hero" style="--hero:url('Images/hero-dark-office.png')">
     <div class="hero-inner">
       <h1>Des sites modernes,<br/>visibles et sur mesure.</h1>
       <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
@@ -58,42 +55,36 @@
   </section>
 
   <main>
-
-    <!-- 🔒 SECTION VERROUILLÉE - CARROUSEL (NE PAS MODIFIER) -->
+    <!-- 🔒 LOCKED START : CARROUSEL -->
     <section id="pour-qui" class="wrap">
       <h2>Pour qui ?</h2>
       <p>Je crée pour restaurants, artisans, mariages, associations…</p>
-
       <div class="carousel" data-carousel>
-        <button class="c-arrow left" data-prev aria-label="Précédent">‹</button>
+        <button class="c-arrow left" data-prev>‹</button>
         <div class="c-track" data-track>
-          <div class="c-item"><img src="Images/webresto.png" alt="Restauration"></div>
-          <div class="c-item"><img src="Images/hero-dark-office.png" alt="Professionnels"></div>
-          <div class="c-item"><img src="Images/pizz-amigo-cover.jpg" alt="Évènements"></div>
-          <div class="c-item"><img src="Images/wr-logo-red.png" alt="Associations"></div>
+          <div class="c-item"><img src="Images/webresto.png" alt=""></div>
+          <div class="c-item"><img src="Images/hero-dark-office.png" alt=""></div>
+          <div class="c-item"><img src="Images/pizz-amigo-cover.jpg" alt=""></div>
         </div>
-        <button class="c-arrow right" data-next aria-label="Suivant">›</button>
+        <button class="c-arrow right" data-next>›</button>
       </div>
     </section>
-    <!-- 🔒 FIN SECTION VERROUILLÉE -->
+    <!-- 🔒 LOCKED END -->
 
-    <!-- EXEMPLE (image de fond dans la bulle + BON LIEN) -->
     <section id="exemple" class="wrap">
       <h2>Exemple</h2>
-
       <article class="card example-card with-cover" style="--cover:url('Images/webresto.png')">
         <div class="card-body overlay">
           <h3>Site réalisé par nous :<br/>PIZZ’AMIGO — Food truck au feu de bois</h3>
-          <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture), <strong>adresse & contact</strong>.</p>
-          <a class="btn btn-primary" href="https://pizz-amigo.netlify.app/" target="_blank" rel="noopener">Voir le site</a>
+          <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong>, <strong>adresse & contact</strong>.</p>
+          <a class="btn btn-primary" href="https://pizz-amigo.netlify.app/" target="_blank">Voir le site</a>
         </div>
       </article>
     </section>
 
-    <!-- OFFRES (inchangées ; badge en bas-droite) -->
+    <!-- 🔒 LOCKED START : OFFRES sauf badge animé et bouton -->
     <section id="offres" class="wrap">
-      <h2>Offres &amp; tarifs</h2>
-
+      <h2>Offres & tarifs</h2>
       <div class="offers">
         <article class="card offer">
           <h3>Site vitrine</h3>
@@ -101,40 +92,41 @@
           <ul>
             <li>Page moderne (photos, infos, horaires, contact)</li>
             <li>Design personnalisé et responsive</li>
-            <li>Nom de domaine inclus la 1<sup>re</sup> année</li>
-            <li>HTTPS sécurisé (hébergement possible)</li>
-            <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
+            <li>Nom de domaine inclus la 1re année</li>
+            <li>HTTPS sécurisé</li>
+            <li>Site protégé</li>
           </ul>
-          <a href="#form" class="btn btn-outline">Choisir ce pack</a>
+          <a href="#form" class="btn btn-outline choose-pack" data-pack="Site vitrine">Choisir ce pack</a>
         </article>
 
         <article class="card offer">
-          <span class="badge badge-bottom">Le plus choisi</span>
+          <span class="badge badge-anim">Le plus choisi</span>
           <h3>Site vitrine + commandes en ligne</h3>
           <div class="price">500€</div>
           <ul>
-            <li>Formulaires (commande / contact) personnalisés</li>
-            <li>Intégration <strong>lien de paiement</strong> (Stripe/...)</li>
-            <li>Historique basique via e-mail/export</li>
-            <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
+            <li>Formulaires personnalisés</li>
+            <li>Intégration lien de paiement (Stripe/...)</li>
+            <li>Historique via mail/export</li>
+            <li>Site protégé</li>
           </ul>
-          <a href="#form" class="btn btn-outline">Choisir ce pack</a>
+          <a href="#form" class="btn btn-outline choose-pack" data-pack="Site vitrine + commandes en ligne">Choisir ce pack</a>
         </article>
 
         <article class="card offer">
           <h3>Site avec dashboard</h3>
           <ul>
             <li>Vitrine + système de commande</li>
-            <li>Tableau de bord (gestion des commandes &amp; contenus)</li>
-            <li><strong>Login renforcé</strong> &amp; données stockées</li>
-            <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
+            <li>Tableau de bord complet</li>
+            <li>Login renforcé</li>
+            <li>Site protégé</li>
           </ul>
-          <a href="#form" class="btn btn-outline">Choisir ce pack</a>
+          <a href="#form" class="btn btn-outline choose-pack" data-pack="Site avec dashboard">Choisir ce pack</a>
         </article>
       </div>
     </section>
+    <!-- 🔒 LOCKED END -->
 
-    <!-- 🔒 SECTION VERROUILLÉE - FORMULAIRE (NE PAS MODIFIER) -->
+    <!-- 🔒 LOCKED START (formulaire sauf fonctionnalités) -->
     <section id="form" class="wrap">
       <h2>Demander un site</h2>
       <form id="orderForm" class="form">
@@ -163,25 +155,25 @@
           </select>
         </label>
 
-        <fieldset class="features">
-          <legend>Fonctionnalités à intégrer <small>(plusieurs choix)</small></legend>
-          <div class="pills">
-            <label class="pill"><input type="checkbox" name="features" value="Carte/menu"> <span>Carte/menu</span></label>
-            <label class="pill"><input type="checkbox" name="features" value="Formulaire commande"> <span>Formulaire commande</span></label>
-            <label class="pill"><input type="checkbox" name="features" value="Paiement (Stripe)"> <span>Paiement (Stripe)</span></label>
-            <label class="pill"><input type="checkbox" name="features" value="Horaires dynamiques"> <span>Horaires dynamiques</span></label>
-            <label class="pill"><input type="checkbox" name="features" value="Google Maps"> <span>Google Maps</span></label>
-            <label class="pill"><input type="checkbox" name="features" value="Galerie photos"> <span>Galerie photos</span></label>
-            <label class="pill"><input type="checkbox" name="features" value="Newsletter"> <span>Newsletter</span></label>
-            <label class="pill"><input type="checkbox" name="features" value="SEO local"> <span>SEO local</span></label>
-            <label class="pill"><input type="checkbox" name="features" value="Décide pour moi"> <span>Décide pour moi</span></label>
-            <label class="pill pill-other">
-              <input type="checkbox" name="features" value="Autre">
-              <span>Autre…</span>
-              <input type="text" name="features_other" placeholder="précisez…" class="other-input">
-            </label>
-          </div>
-        </fieldset>
+        <!-- 👇 Partie modifiable -->
+        <label>Fonctionnalités à intégrer (plusieurs choix)
+          <select name="features" id="featuresSelect" multiple>
+            <option>Carte/menu</option>
+            <option>Formulaire commande</option>
+            <option>Paiement (Stripe)</option>
+            <option>Horaires dynamiques</option>
+            <option>Google Maps</option>
+            <option>Galerie photos</option>
+            <option>Newsletter</option>
+            <option>SEO local</option>
+            <option>Décide pour moi</option>
+            <option>Autre…</option>
+          </select>
+        </label>
+        <div id="otherFeatureField" style="display:none;">
+          <input type="text" name="features_other" placeholder="Précisez la fonctionnalité...">
+        </div>
+        <!-- 👆 -->
 
         <label>Couleurs souhaitées
           <input name="colors" placeholder="ex : rouge & noir">
@@ -189,7 +181,7 @@
         <label>Nom de domaine souhaité
           <input name="domain" placeholder="ex : mon-restaurant.fr">
         </label>
-        <label>Contact à afficher (tél ou email)
+        <label>Contact à afficher (tél ou e-mail)
           <input name="display_contact" placeholder="+33 ... ou mail">
         </label>
         <label>Message
@@ -198,12 +190,11 @@
 
         <div class="form-actions">
           <button class="btn btn-primary" type="submit">Envoyer</button>
-          <span id="formStatus" class="form-status" aria-live="polite"></span>
+          <span id="formStatus" class="form-status"></span>
         </div>
       </form>
     </section>
-    <!-- 🔒 FIN SECTION VERROUILLÉE -->
-
+    <!-- 🔒 LOCKED END -->
   </main>
 
   <footer class="footer">
@@ -211,6 +202,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="js/app.js?v=4"></script>
+  <script src="js/app.js?v=5"></script>
 </body>
 </html>
