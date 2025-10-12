@@ -1,51 +1,38 @@
-/* === Verrou global (ne rien modifier visuellement en dehors de ce qui suit) === */
+// Burger / Drawer
+const burger = document.getElementById('burger');
+const drawer = document.getElementById('drawer');
+const drawerClose = document.getElementById('drawerClose');
 
-/* Burger menu */
-const burgerBtn = document.getElementById('burgerBtn');
-const mobileNav = document.getElementById('mobileNav');
-const closeNav = document.getElementById('closeNav');
+function openDrawer(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); }
+function closeDrawer(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); }
 
-if (burgerBtn && mobileNav){
-  burgerBtn.addEventListener('click', () => {
-    mobileNav.classList.add('open');
-    mobileNav.setAttribute('aria-hidden','false');
-  });
-}
-if (closeNav){
-  closeNav.addEventListener('click', () => {
-    mobileNav.classList.remove('open');
-    mobileNav.setAttribute('aria-hidden','true');
-  });
-}
+burger.addEventListener('click', openDrawer);
+drawerClose.addEventListener('click', closeDrawer);
+drawer.addEventListener('click', (e)=>{ if(e.target.matches('.drawer__link')) closeDrawer(); });
 
-/* Call modal (verrouillé) */
-const callBtn = document.getElementById('callBtn');
-const callModal = document.getElementById('callModal');
-const closeCall = document.getElementById('closeCall');
-
-if (callBtn && callModal){
-  callBtn.addEventListener('click', () => callModal.showModal());
-}
-if (closeCall && callModal){
-  closeCall.addEventListener('click', () => callModal.close());
-}
-
-/* Carousel (verrouillé) – boutons prev/next */
-document.querySelectorAll('.carousel').forEach(carousel=>{
-  const prev = carousel.querySelector('.prev');
-  const next = carousel.querySelector('.next');
-  const step = () => carousel.clientWidth * 0.9;
-
-  prev?.addEventListener('click', ()=> carousel.scrollBy({left:-step(),behavior:'smooth'}));
-  next?.addEventListener('click', ()=> carousel.scrollBy({left: step(),behavior:'smooth'}));
+// Carrousel
+document.querySelectorAll('[data-carousel]').forEach(carousel=>{
+  const track = carousel.querySelector('[data-track]');
+  const prev  = carousel.querySelector('[data-prev]');
+  const next  = carousel.querySelector('[data-next]');
+  const step = ()=> Math.max(260, carousel.clientWidth*0.6);
+  prev.addEventListener('click', ()=> track.scrollBy({left:-step(), behavior:'smooth'}));
+  next.addEventListener('click', ()=> track.scrollBy({left: step(), behavior:'smooth'}));
 });
 
-/* “Choisir ce pack” -> pré-remplissage (respecte le verrouillage du formulaire) */
-document.querySelectorAll('.choose-pack').forEach(btn=>{
+// Choisir ce pack -> préremplit le formulaire
+document.querySelectorAll('[data-choose-pack]').forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    // Ici on n’ouvre/édite rien puisque le formulaire est verrouillé.
-    // On affiche juste un petit feedback discret.
-    btn.classList.add('chosen');
-    setTimeout(()=>btn.classList.remove('chosen'),700);
+    const v = btn.getAttribute('data-choose-pack');
+    const select = document.querySelector('#order-form select[name="pack"]');
+    if(select){
+      [...select.options].forEach(o=>{ if(o.textContent.startsWith(v)) o.selected=true; });
+      document.getElementById('demander').scrollIntoView({behavior:'smooth'});
+    }
   });
+});
+
+// Confort iOS : éviter zoom sur focus
+document.querySelectorAll('input,select,textarea').forEach(el=>{
+  el.addEventListener('touchstart', ()=>{ document.documentElement.style.fontSize='16px'; }, {passive:true});
 });
