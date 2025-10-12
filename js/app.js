@@ -1,117 +1,99 @@
-/* ===== Burger / Drawer ===== */
+// ===== Burger / Side menu =====
 const burger = document.getElementById('burger');
-const drawer = document.getElementById('drawer');
-const backdrop = document.getElementById('drawer-backdrop');
-const drawerClose = drawer.querySelector('.drawer-close');
+const menu = document.getElementById('sideMenu');
+const closeMenu = document.getElementById('closeMenu');
+const backdrop = document.getElementById('backdrop');
 
-function openDrawer() {
-  drawer.classList.add('open');
-  backdrop.classList.add('show');
+function openMenu() {
+  menu.classList.add('open');
+  menu.setAttribute('aria-hidden', 'false');
   burger.setAttribute('aria-expanded', 'true');
-  drawer.setAttribute('aria-hidden', 'false');
+  backdrop.hidden = false;
 }
-function closeDrawer() {
-  drawer.classList.remove('open');
-  backdrop.classList.remove('show');
+function closeMenuFn() {
+  menu.classList.remove('open');
+  menu.setAttribute('aria-hidden', 'true');
   burger.setAttribute('aria-expanded', 'false');
-  drawer.setAttribute('aria-hidden', 'true');
+  backdrop.hidden = true;
 }
-burger?.addEventListener('click', (e)=> {
-  const open = drawer.classList.contains('open');
-  open ? closeDrawer() : openDrawer();
-});
-drawerClose?.addEventListener('click', closeDrawer);
-backdrop?.addEventListener('click', closeDrawer);
+burger?.addEventListener('click', openMenu);
+closeMenu?.addEventListener('click', closeMenuFn);
+backdrop?.addEventListener('click', closeMenuFn);
 
-/* Fermer le drawer quand on clique un lien */
-drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+// ===== Carousel “Pour qui ?” (1 carte centrée) =====
+(function initCarousel(){
+  const viewport = document.getElementById('cViewport');
+  if(!viewport) return;
+  // wrap children inside inner flex (for smooth translate)
+  const inner = document.createElement('div');
+  inner.className = 'carousel__viewport-inner';
+  while (viewport.firstChild) inner.appendChild(viewport.firstChild);
+  viewport.appendChild(inner);
 
-/* ===== Carrousel “Pour qui ?” ===== */
-const track = document.getElementById('car-track');
-const leftBtn = document.querySelector('.car-arrow.left');
-const rightBtn = document.querySelector('.car-arrow.right');
+  const slides = [...inner.children];
+  let i = 0;
+  const prev = document.getElementById('cPrev');
+  const next = document.getElementById('cNext');
 
-function slideTo(index){
-  const w = track.clientWidth;
-  const slides = track.children.length;
-  if(index < 0) index = 0;
-  if(index > slides-1) index = slides-1;
-  track.dataset.index = index;
-  track.scrollTo({left: index * w, behavior:'smooth'});
-}
-leftBtn?.addEventListener('click', ()=> slideTo( Number(track.dataset.index||0) - 1 ));
-rightBtn?.addEventListener('click', ()=> slideTo( Number(track.dataset.index||0) + 1 ));
-window.addEventListener('resize', ()=> slideTo( Number(track.dataset.index||0) ));
+  function go(idx){
+    i = (idx + slides.length) % slides.length;
+    inner.style.transform = `translateX(-${i*100}%)`;
+  }
+  prev.addEventListener('click', ()=>go(i-1));
+  next.addEventListener('click', ()=>go(i+1));
+  // start centered at first slide
+  go(0);
+})();
 
-/* ===== Offres → pré-remplir le pack dans le formulaire ===== */
+// ===== Choisir pack -> remplit le select du formulaire =====
 document.querySelectorAll('.choose-pack').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const pack = btn.getAttribute('data-pack');
-    const select = document.querySelector('#wr-form select[name="pack"]');
-    if(select){
-      select.value = pack;
-      // Aller à la section formulaire
-      document.getElementById('demander').scrollIntoView({behavior:'smooth'});
+  btn.addEventListener('click', (e)=>{
+    const pack = btn.dataset.pack || '';
+    const sel = document.getElementById('packSelect');
+    if(sel){
+      [...sel.options].forEach(o=>{ if(o.textContent.includes(pack.split(' ')[1]||pack)) sel.value = o.textContent; });
     }
   });
 });
 
-/* ===== Formulaire (EmailJS si clés, sinon mailto) ===== */
-const form = document.getElementById('wr-form');
-const statusEl = document.getElementById('form-status');
+// ===== EmailJS (envoi formulaire) =====
+(function initEmail(){
+  if(!window.emailjs) return;
+  emailjs.init({ publicKey: 'XgRStV-domSnc8RgY' });
+})();
 
-function buildEmailBody(data){
-  return [
-    "Détaillez votre demande :",
-    "",
-    `Nom / Société : ${data.name}`,
-    `E-mail : ${data.email}`,
-    `Téléphone : ${data.phone}`,
-    ``,
-    `Pack souhaité : ${data.pack}`,
-    `Thème du site : ${data.theme}`,
-    `Couleurs souhaitées : ${data.colors || ""}`,
-    `Fonctionnalités à intégrer : ${data.features || ""}`,
-    `Nom de domaine souhaité : ${data.domain || ""}`,
-    `Contact à afficher : ${data.public_contact || ""}`,
-    ``,
-    `Message :`,
-    `${data.message || ""}`
-  ].join("\n");
-}
+const form = document.getElementById('orderForm');
+const statusEl = document.getElementById('formStatus');
 
 form?.addEventListener('submit', async (e)=>{
   e.preventDefault();
-  statusEl.textContent = "Envoi…";
+  if(!window.emailjs){ statusEl.textContent = "Erreur : EmailJS indisponible."; return; }
 
   const fd = new FormData(form);
-  const data = Object.fromEntries(fd.entries());
-  // récupère tous les features cochés
-  const features = [];
-  form.querySelectorAll('input[name="features"]:checked').forEach(c => features.push(c.value));
-  data.features = features.join(', ');
+  // Compose payload pour ton template:
+  const payload = {
+    name: fd.get('name'),
+    email: fd.get('email'),
+    phone: fd.get('phone'),
+    pack: fd.get('pack'),
+    theme: fd.get('theme'),
+    features: (fd.getAll('features') || fd.get('features') || []).toString(),
+    colors: fd.get('colors'),
+    domain: fd.get('domain'),
+    contact_display: fd.get('contact_display'),
+    message: fd.get('message')
+  };
 
+  statusEl.textContent = "Envoi en cours…";
   try{
-    // Envoi EmailJS si clés fournies
-    const keys = window._WR_KEYS;
-    if(keys && window.emailjs){ 
-      emailjs.init(keys.publicKey);
-      await emailjs.send(keys.serviceId, keys.templateId, data);
-      statusEl.textContent = "Message envoyé ✅";
-      form.reset();
-      return;
-    }
-
-    // Fallback : mailto (ouvre l'app Mail / Gmail)
-    const to = "smarttlelearning@gmail.com";
-    const subject = encodeURIComponent("Commandes Webresto");
-    const body = encodeURIComponent(buildEmailBody(data));
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-    statusEl.textContent = "App mail ouvert ✉️";
+    await emailjs.send('service_8bw61yj','template_9ok4wz8', payload);
+    statusEl.textContent = "Message envoyé ✅";
+    form.reset();
   }catch(err){
+    statusEl.textContent = "Envoi impossible. Vérifie la connexion / clés EmailJS.";
     console.error(err);
-    statusEl.textContent = "Erreur d’envoi. Réessaie.";
   }
 });
 
-/* ===== iOS : empêcher zoom sur focus (déjà géré par font-size>=16) ===== */
+// ===== iOS zoom fix (gesture) =====
+window.addEventListener('gesturestart', e => e.preventDefault(), { passive:false });
