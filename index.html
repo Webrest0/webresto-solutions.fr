@@ -1,134 +1,233 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>WebResto — Solutions</title>
+  <!-- Empêche le zoom -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel="preload" as="image" href="Images/hero-dark-office.png">
+
+  <link rel="preload" href="Images/hero-dark-office.png" as="image">
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
 <body>
 
-  <!-- ====== Header ====== -->
-  <header class="topbar">
-    <div class="brand">
-      <img src="Images/wr-logo-red.png" alt="WebResto" class="logo">
-      <span class="brand-name">WebResto</span>
+  <!-- Header -->
+  <header class="wr-header">
+    <div class="wr-header__left">
+      <img src="Images/wr-logo-red.png" alt="WebResto" class="wr-logo">
+      <span class="wr-brand">WebResto</span>
     </div>
 
-    <div class="nav-spacer"></div>
+    <div class="wr-header__right">
+      <button id="callBtn" class="btn btn-primary">Appeler</button>
+      <button id="menuBtn" class="hamburger" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 
-    <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-
-    <button class="btn btn-primary call-btn" id="openCall">Appeler</button>
-
-    <nav class="drawer" id="drawer" aria-hidden="true">
-      <a href="#accueil" class="nav-link">Accueil</a>
-      <a href="#exemple" class="nav-link">Exemple</a>
-      <a href="#offres" class="nav-link">Offres & tarifs</a>
-      <a href="#demander" class="nav-link">Demander un site</a>
+    <!-- Menu -->
+    <nav id="mainMenu" class="menu">
+      <a href="#home" class="menu__link">Accueil</a>
+      <a href="#example" class="menu__link">Exemple</a>
+      <a href="#pricing" class="menu__link">Offres & tarifs</a>
+      <a href="#order" class="menu__link">Demander un site</a>
     </nav>
   </header>
 
-  <!-- ====== Accueil (hero) — on ne change pas l’interface ====== -->
-  <section id="accueil" class="hero">
-    <div class="hero-bg" style="--bg: url('Images/hero-dark-office.png')"></div>
-    <div class="container hero-inner">
+  <!-- Pop-up Appeler -->
+  <div id="callModal" class="modal" aria-hidden="true">
+    <div class="modal__panel">
+      <button class="modal__close" aria-label="Fermer">×</button>
+      <h3>Appeler</h3>
+      <a class="btn btn-primary btn-lg" href="tel:+33784674767">Appeler le +33 7 84 67 47 67</a>
+      <div class="call-alt">
+        <div class="call-alt__label">Si pas de réponse :</div>
+        <a class="btn btn-ghost" href="tel:0788589812">Appeler le 07 88 58 98 12</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero / Accueil (inchangé) -->
+  <section id="home" class="hero">
+    <div class="hero__inner">
       <h1>Des sites modernes, visibles et sur mesure.</h1>
-      <p>Entreprises, artisans, mariages, restaurants, associations... je crée un site clair, rapide et beau sur téléphone.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#exemple">Voir un exemple</a>
-        <a class="btn btn-ghost" href="#demander">Demander un site</a>
+      <p>
+        Entreprises, artisans, mariages, restaurants, associations… je crée un site clair,
+        rapide et beau sur téléphone.
+      </p>
+      <div class="hero__cta">
+        <a href="#example" class="btn btn-primary">Voir un exemple</a>
+        <a href="#order" class="btn btn-ghost">Demander un site</a>
       </div>
     </div>
   </section>
 
-  <!-- ====== Exemple ====== -->
-  <section id="exemple" class="section container">
+  <!-- Exemple -->
+  <section id="example" class="block">
     <h2>Exemple</h2>
 
     <article class="card example-card">
-      <!-- image de fond dans la bulle -->
-      <div class="card-bg" style="--bg: url('Images/webresto.png')"></div>
+      <div class="example-card__media"
+           style="--bg:url('Images/webresto.png');"></div>
 
-      <div class="card-body">
-        <h3 class="card-title">Site réalisé par nous :<br> PIZZ’AMIGO — Food truck au feu de bois</h3>
-        <p class="card-text">
-          Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture),
-          <strong>adresse</strong> & <strong>contact</strong>.
+      <div class="card__body">
+        <h3>Site réalisé par nous :<br>PIZZ’AMIGO — Food truck au feu de bois</h3>
+        <p>
+          Site vitrine simple avec <strong>carte intégrée</strong>,
+          <strong>horaires</strong> (ouverture/fermeture), <strong>adresse & contact</strong>.
         </p>
-        <!-- lien direct, pas d’aperçu -->
-        <a class="btn btn-primary" href="https://pizz-amigo.netlify.app">Voir le site</a>
+        <a id="pizzLink" class="btn btn-primary" href="#" target="_blank" rel="noopener">Voir le site</a>
       </div>
     </article>
   </section>
 
-  <!-- ====== Offres & tarifs (badge en bas à droite uniquement ici) ====== -->
-  <section id="offres" class="section container">
+  <!-- Offres & tarifs (contenu inchangé) -->
+  <section id="pricing" class="block">
     <h2>Offres & tarifs</h2>
 
-    <div class="pricing-grid">
-
-      <article class="card pricing-card">
-        <div class="card-body">
-          <h3>Site vitrine</h3>
-          <p class="price">200 à 299€</p>
-          <ul class="list">
-            <li>Page moderne (photos, infos, horaires, contact)</li>
-            <li>Design personnalisé et responsive</li>
-            <li>Nom de domaine inclus la 1<sup>re</sup> année</li>
-            <li>HTTPS sécurisé (hébergement possible)</li>
-            <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
-          </ul>
-          <a class="btn btn-ghost" href="#demander">Choisir ce pack</a>
-        </div>
+    <div class="pricing">
+      <!-- Carte 1 -->
+      <article class="price-card">
+        <h3>Site vitrine</h3>
+        <div class="price">200 à 299€</div>
+        <ul>
+          <li>Page moderne (photos, infos, horaires, contact)</li>
+          <li>Design personnalisé et responsive</li>
+          <li>Nom de domaine inclus la 1<sup>re</sup> année</li>
+          <li>HTTPS sécurisé (hébergement possible)</li>
+          <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
+        </ul>
+        <a class="btn btn-ghost" href="#order">Choisir ce pack</a>
       </article>
 
-      <article class="card pricing-card most">
-        <div class="badge-most">Le plus choisi</div>
-        <div class="card-body">
-          <h3>Site vitrine + commandes en ligne</h3>
-          <p class="price">500€</p>
-          <ul class="list">
-            <li>Formulaires (commande / contact) personnalisés</li>
-            <li>Intégration <strong>lien de paiement</strong> (Stripe/...)</li>
-            <li>Historique basique via e-mail/export</li>
-            <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
-          </ul>
-          <a class="btn btn-ghost" href="#demander">Choisir ce pack</a>
-        </div>
+      <!-- Carte 2 (badge animé en bas à droite) -->
+      <article class="price-card price-card--featured">
+        <h3>Site vitrine + commandes en ligne</h3>
+        <div class="price">500€</div>
+        <ul>
+          <li>Formulaires (commande / contact) personnalisés</li>
+          <li>Intégration <strong>lien de paiement</strong> (Stripe/...)</li>
+          <li>Historique basique via e-mail/export</li>
+          <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
+        </ul>
+        <a class="btn btn-ghost" href="#order">Choisir ce pack</a>
+
+        <div class="badge-best">Le plus choisi</div>
       </article>
 
-      <article class="card pricing-card">
-        <div class="card-body">
-          <h3>Site avec dashboard</h3>
-          <p class="price">Sur devis</p>
-          <ul class="list">
-            <li>Vitrine + système de commande</li>
-            <li>Tableau de bord (gestion des commandes & contenu)</li>
-            <li><strong>Login renforcé</strong> & données stockées en base</li>
-            <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
-          </ul>
-          <a class="btn btn-ghost" href="#demander">Choisir ce pack</a>
-        </div>
+      <!-- Carte 3 -->
+      <article class="price-card">
+        <h3>Site avec dashboard</h3>
+        <div class="price">Sur devis</div>
+        <ul>
+          <li>Vitrine + système de commande</li>
+          <li>Tableau de bord (gestion des commandes & contenu)</li>
+          <li><strong>Login renforcé</strong> & données stockées en base</li>
+          <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
+        </ul>
+        <a class="btn btn-ghost" href="#order">Choisir ce pack</a>
       </article>
-
     </div>
   </section>
 
-  <!-- ====== Formulaire (on ne touche pas l’interface) ====== -->
-  <section id="demander" class="section container">
+  <!-- Carrousel (inchangé – placeholder pour tes slides existants) -->
+  <section class="block">
+    <div id="carousel" class="carousel">
+      <!-- Laisse ton HTML de carrousel existant ici -->
+    </div>
+  </section>
+
+  <!-- Formulaire -->
+  <section id="order" class="block">
     <h2>Demander un site</h2>
-    <!-- Ton formulaire existant ici, inchangé -->
-    <form id="orderForm" novalidate>
-      <!-- … garde exactement tes champs/markup existants … -->
+
+    <form id="orderForm" class="form">
+      <div class="grid">
+        <label class="field">
+          <span>Nom / Société <b>*</b></span>
+          <input type="text" name="name" required placeholder="votre nom ou celui de l’entreprise">
+        </label>
+
+        <label class="field">
+          <span>E-mail <b>*</b></span>
+          <input type="email" name="email" required placeholder="ex : exemple@mail.com">
+        </label>
+
+        <label class="field">
+          <span>Téléphone <b>*</b></span>
+          <input type="tel" name="phone" required placeholder="+33 ...">
+        </label>
+
+        <label class="field">
+          <span>Pack souhaité <b>*</b></span>
+          <select name="pack" required>
+            <option value="Site vitrine">Site vitrine</option>
+            <option value="Site vitrine + commandes en ligne">Site vitrine + commandes en ligne</option>
+            <option value="Site avec dashboard">Site avec dashboard</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Thème du site <b>*</b></span>
+          <select name="theme" required>
+            <option value="Restaurant / Food-truck">Restaurant / Food-truck</option>
+            <option value="Événement / Mariage">Événement / Mariage</option>
+            <option value="Artisan / Service">Artisan / Service</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Couleurs souhaitées</span>
+          <input type="text" name="colors" placeholder="ex : rouge & noir">
+        </label>
+
+        <!-- Fonctionnalités : même style que ‘Thème’, multi-sélection -->
+        <label class="field field--full">
+          <span>Fonctionnalités à intégrer <small>(plusieurs choix)</small></span>
+          <select name="features" id="features" multiple>
+            <option value="Carte/menu">Carte/menu</option>
+            <option value="Formulaire commande">Formulaire commande</option>
+            <option value="Paiement (Stripe)">Paiement (Stripe)</option>
+            <option value="Horaires dynamiques">Horaires dynamiques</option>
+            <option value="Google Maps">Google Maps</option>
+            <option value="Galerie photos">Galerie photos</option>
+            <option value="Newsletter">Newsletter</option>
+            <option value="SEO local">SEO local</option>
+            <option value="Décide pour moi">Décide pour moi</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Nom de domaine souhaité</span>
+          <input type="text" name="domain" placeholder="ex : mon-restaurant.fr">
+        </label>
+
+        <label class="field">
+          <span>Contact à afficher (tél ou e-mail)</span>
+          <input type="text" name="public_contact" placeholder="+33 ... ou mail">
+        </label>
+
+        <label class="field field--full">
+          <span>Message (détails utiles)</span>
+          <textarea name="message" rows="4" placeholder="Détaillez votre demande..."></textarea>
+        </label>
+      </div>
+
+      <div class="form__actions">
+        <button class="btn btn-primary" type="submit" id="sendBtn">Envoyer</button>
+        <span id="formStatus" class="form-status" aria-live="polite"></span>
+      </div>
     </form>
   </section>
 
-  <!-- ====== Modal “Appeler” (injection via JS) ====== -->
+  <footer class="footer">
+    © <span id="year"></span> WebResto — Tous droits réservés
+  </footer>
 
-  <script src="js/app.js" defer></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
