@@ -1,4 +1,4 @@
-// Smooth anchors
+/* Liens d’ancrage en smooth */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{
     const id = a.getAttribute('href');
@@ -9,15 +9,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-// Menu (placeholder – juste visuel)
+/* Menu (visuel uniquement) */
 const menuBtn = document.getElementById('menuBtn');
-if (menuBtn){
-  menuBtn.addEventListener('click', ()=> {
-    menuBtn.classList.toggle('open');
-  });
-}
+menuBtn?.addEventListener('click', ()=> menuBtn.classList.toggle('open'));
 
-// Modale Appeler
+/* Modale "Appeler" */
 const callBtn   = document.getElementById('callBtn');
 const callModal = document.getElementById('callModal');
 
@@ -26,12 +22,12 @@ function closeModal(){ if (callModal && callModal.open) callModal.close(); }
 
 callBtn?.addEventListener('click', openModal);
 callModal?.querySelector('.close')?.addEventListener('click', closeModal);
-callModal?.addEventListener('click', (e)=>{ // clic hors carte -> fermer
+callModal?.addEventListener('click', (e)=>{
   const card = callModal.querySelector('.modal-card');
   if (card && !card.contains(e.target)) closeModal();
 });
 
-// Carrousel boutons
+/* Carrousel */
 const track = document.getElementById('carTrack');
 document.querySelector('.car-btn.left')?.addEventListener('click', ()=> track?.scrollBy({left:-300,behavior:'smooth'}));
 document.querySelector('.car-btn.right')?.addEventListener('click', ()=> track?.scrollBy({left:300,behavior:'smooth'}));
