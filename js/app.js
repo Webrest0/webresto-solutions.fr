@@ -1,157 +1,162 @@
-:root{
-  --bg:#0c0c0c;
-  --bg-elev:#151515;
-  --txt:#f2f2f2;
-  --muted:#bdbdbd;
-  --accent:#ff2d2d;
-  --ring:#ff5252;
-  --shadow:rgba(0,0,0,.5);
+// ===== Drawer (menu)
+const drawer = document.getElementById('nav-drawer');
+const toggleBtn = document.getElementById('menu-toggle');
+const backdrop = document.getElementById('drawer-backdrop');
+
+function openDrawer() {
+  drawer.classList.add('open');
+  drawer.setAttribute('aria-hidden', 'false');
+  backdrop.classList.add('show');
+}
+function closeDrawer() {
+  drawer.classList.remove('open');
+  drawer.setAttribute('aria-hidden', 'true');
+  backdrop.classList.remove('show');
+}
+toggleBtn?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (drawer.classList.contains('open')) closeDrawer();
+  else openDrawer();
+});
+backdrop?.addEventListener('click', closeDrawer);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+document.querySelectorAll('.drawer-link').forEach(a => a.addEventListener('click', closeDrawer));
+
+// ===== Carousel (Pour qui ?)
+const slides = [
+  {
+    title: 'Restaurant / Food-truck',
+    img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1480&auto=format&fit=crop'
+  },
+  {
+    title: 'Entreprise & services',
+    img: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1480&auto=format&fit=crop'
+  },
+  {
+    title: 'Mariage / Événement',
+    img: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1480&auto=format&fit=crop'
+  },
+  {
+    title: 'Groupes de musique',
+    img: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1480&auto=format&fit=crop'
+  }
+];
+
+const track = document.getElementById('car-track');
+const dotsWrap = document.getElementById('car-dots');
+let index = 0;
+
+function renderSlides() {
+  track.innerHTML = slides.map(s => `
+    <div class="slide" style="background-image:url('${s.img}')">
+      <div class="label">${s.title}</div>
+    </div>
+  `).join('');
+  dotsWrap.innerHTML = slides.map((_,i)=>`<button data-i="${i}" aria-label="Aller au slide ${i+1}"></button>`).join('');
+  update();
+}
+function update() {
+  track.style.transform = `translateX(${-index*100}%)`;
+  [...dotsWrap.children].forEach((d,i)=> d.classList.toggle('active', i===index));
+}
+function move(step){ index=(index+step+slides.length)%slides.length; update(); }
+
+document.querySelector('.car-arrow.left')?.addEventListener('click', ()=>move(-1));
+document.querySelector('.car-arrow.right')?.addEventListener('click', ()=>move(1));
+dotsWrap?.addEventListener('click', (e)=>{
+  if(e.target.tagName==='BUTTON'){ index=parseInt(e.target.dataset.i,10); update(); }
+});
+renderSlides();
+
+// ===== Email deep link (Gmail d’abord, fallback Mailto)
+const EMAIL = 'smarttlelearning@gmail.com';
+function openEmail(subject, body) {
+  const gmailApp = `googlegmail://co?to=${encodeURIComponent(EMAIL)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const gmailWeb = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  const win = window.open(gmailApp, '_blank');
+  setTimeout(() => {
+    try { if (!win || win.closed || typeof win.closed === 'undefined') { window.open(gmailWeb, '_blank'); } }
+    catch { window.location.href = mailto; }
+  }, 350);
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;background:var(--bg);color:var(--txt);
-  font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;
-}
+// Bouton “écrire”
+document.getElementById('writeEmail')?.addEventListener('click', () => {
+  openEmail('Commande', 'Détaillez votre demande…');
+});
 
-/* ===== Header */
-.navbar{
-  position:sticky;top:0;z-index:50;
-  display:flex;align-items:center;gap:16px;padding:14px 18px;
-  background:linear-gradient(180deg,#111, #0d0d0d);
-  border-bottom:1px solid #1d1d1d;
-}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800}
-.logo img{width:28px;height:28px;display:block}
-.nav-actions{display:flex;align-items:center;gap:12px;margin-left:auto}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:14px 20px;border-radius:14px;font-weight:700;border:0;cursor:pointer;text-decoration:none}
-.btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 30px rgba(255,45,45,.25)}
-.btn-ghost{background:#161616;border:1px solid #2a2a2a;color:#ddd}
-.btn-outline{background:#121212;border:2px solid #333;color:#ddd}
-.btn-call{background:var(--accent);color:#fff}
+// ===== “Choisir ce pack” → ouvre e-mail prérempli
+document.querySelectorAll('.choose-pack').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const pack = btn.dataset.pack || 'Site';
+    const tmpl =
+`Détaillez votre demande :
 
-.menu-toggle{
-  width:48px;height:48px;border-radius:12px;background:#191919;border:1px solid #2a2a2a;display:inline-flex;flex-direction:column;justify-content:center;align-items:center;gap:4px
-}
-.menu-toggle span{width:22px;height:2px;background:#e6e6e6;border-radius:2px}
+• Thème du site : (restaurant, mariage, entreprise, musique, autre…)
+• Couleurs voulues :
+• Nom de domaine souhaité :
+• Contact public (tel ou e-mail) :
+• Fonctionnalités à intégrer (carte/menu, paiement, réservations, horaires, Google Maps, réseaux sociaux, mentions…) :
+• Contenus fournis (logo, photos, textes) :
+• Exemples de sites que vous aimez :
+• Contraintes / remarques :
 
-.drawer{
-  position:fixed;right:12px;top:68px;width:220px;
-  background:#121212;border:1px solid #2a2a2a;border-radius:12px;padding:10px;
-  display:none;z-index:45
-}
-.drawer.open{display:block}
-.drawer-link{display:block;padding:10px 12px;border-radius:10px;color:#e9e9e9;text-decoration:none}
-.drawer-link:hover{background:#1a1a1a}
-.drawer-backdrop{position:fixed;inset:0;background:transparent;display:none;z-index:40}
-.drawer-backdrop.show{display:block}
+⚑ Délai indicatif : minimum 2 semaines (souvent plus rapide).`;
+    openEmail(`Commande — ${pack}`, tmpl);
+  });
+});
 
-/* ===== Hero with animated LED red background */
-.hero{
-  position:relative;isolation:isolate;min-height:64svh;display:grid;place-items:center;
-  background:#0a0a0a;overflow:hidden
-}
-.hero::before{
-  content:"";position:absolute;inset:0;z-index:-2;
-  background:url("../Images/hero-dark-office.png") center/cover no-repeat fixed;
-  opacity:.55;filter:saturate(1.2) contrast(1.05);
-}
-.hero::after{
-  content:"";position:absolute;inset:-20% -10% 0 -10%;z-index:-1;
-  background:
-    radial-gradient(700px 280px at 15% -10%, rgba(255,0,0,.28), transparent 60%),
-    radial-gradient(520px 220px at 85% 10%, rgba(255,70,70,.22), transparent 60%);
-  animation:ledMove 12s linear infinite alternate;
-}
-@keyframes ledMove{
-  from{transform:translateX(-2%) translateY(0)}
-  to  {transform:translateX(2%) translateY(4%)}
-}
-.hero-inner{width:min(1100px,92%);padding:48px 0}
-.hero h1{font-size:clamp(28px,6vw,52px);line-height:1.05;margin:0 0 16px}
-.hero p{color:var(--muted);margin:0 0 22px}
-.hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
+// ===== Form → e-mail prérempli (objet = Commande)
+const brief = document.getElementById('briefForm');
+const themeSelect = document.getElementById('themeSelect');
+const themeOtherWrap = document.getElementById('themeOtherWrap');
+const themeOther = document.getElementById('themeOther');
 
-.br-md{display:none}
-@media (min-width:760px){.br-md{display:inline}}
+const featuresSelect = document.getElementById('featuresSelect');
+const featuresOtherWrap = document.getElementById('featuresOtherWrap');
+const featuresOther = document.getElementById('featuresOther');
 
-/* ===== Common blocks */
-.container{width:min(1100px,92%);margin:40px auto}
-h2{font-size:clamp(22px,4.6vw,34px);margin:0 0 16px}
-.muted{color:var(--muted);margin-top:-4px}
+themeSelect?.addEventListener('change', ()=>{
+  themeOtherWrap.classList.toggle('hidden', themeSelect.value !== 'Autre');
+});
+featuresSelect?.addEventListener('change', ()=>{
+  const values = [...featuresSelect.selectedOptions].map(o=>o.value);
+  featuresOtherWrap.classList.toggle('hidden', !values.includes('Autre'));
+});
 
-/* ===== Cards */
-.card{position:relative;background:var(--bg-elev);border:1px solid #222;border-radius:24px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.25)}
-.card-body{padding:22px}
-.card .btn{margin-top:10px}
+brief?.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const fd = new FormData(brief);
+  let themeVal = fd.get('theme');
+  if (themeVal === 'Autre') themeVal = themeOther.value || 'Autre';
 
-/* Showcase background image behind content */
-.showcase{overflow:hidden}
-.card-bg{
-  position:absolute;inset:0;z-index:0;background:var(--bg) center/cover no-repeat;
-  background-image:var(--bg);filter:brightness(.65) saturate(1.1);
-  transform:scale(1.02);opacity:0;animation:showIn .6s ease-out .1s forwards
-}
-.showcase .card-body{position:relative;z-index:1;text-shadow:0 6px 30px rgba(0,0,0,.6)}
-@keyframes showIn{to{opacity:1;transform:scale(1)}}
+  const features = [...featuresSelect.selectedOptions].map(o=>o.value).filter(v=>v!=='Autre');
+  if (featuresOther.value) features.push(featuresOther.value);
 
-/* ===== Carousel */
-.carousel{position:relative;margin-top:14px}
-.car-track{display:grid;grid-auto-flow:column;grid-auto-columns:100%;overflow:hidden;border-radius:22px;transition:transform .45s ease}
-.slide{
-  position:relative;min-height:260px;background:#0f0f0f;display:grid;place-items:end;
-  background-position:center;background-size:cover;border:1px solid #222;border-radius:22px;overflow:hidden
-}
-.slide::after{
-  content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.6) 70%);
-}
-.slide .label{
-  position:relative;margin:18px;z-index:1;
-  background:rgba(20,20,20,.55);backdrop-filter:blur(6px);
-  border:1px solid #2a2a2a;border-radius:16px;padding:10px 14px;font-weight:700
-}
+  const data = Object.fromEntries(fd.entries());
+  const subject = 'Commande';
+  const body =
+`Détaillez votre demande :
 
-.car-arrow{
-  position:absolute;top:50%;transform:translateY(-50%);z-index:5;
-  width:54px;height:54px;border-radius:50%;border:1px solid #3a3a3a;background:#181818;color:#eee;
-  display:grid;place-items:center;font-size:26px;cursor:pointer;box-shadow:0 6px 22px var(--shadow)
-}
-.car-arrow.left{left:-8px}
-.car-arrow.right{right:-8px}
-.car-dots{display:flex;gap:8px;justify-content:center;margin:12px 0 4px}
-.car-dots button{width:8px;height:8px;border-radius:50%;border:0;background:#4a4a4a}
-.car-dots button.active{background:var(--accent)}
+Nom : ${data.name || ''}
+Email : ${data.email || ''}
+Téléphone : ${data.phone || ''}
 
-/* ===== Pricing */
-.grid-cards{display:grid;gap:18px}
-@media (min-width:900px){.grid-cards{grid-template-columns:repeat(3,1fr)}}
-.price .price-tag{font-size:28px;font-weight:800;color:var(--accent);margin:8px 0 6px}
-.list{margin:10px 0 0 18px}
-.list li{margin:8px 0}
-.featured{outline:1px solid #2a2a2a;position:relative}
-.badge-pulse{
-  position:absolute;right:12px;bottom:12px;z-index:2;
-  background:var(--accent);color:white;font-weight:800;padding:8px 12px;border-radius:999px;
-  box-shadow:0 0 0 0 rgba(255,45,45,.5);animation:pulse 1.8s ease-out infinite
-}
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(255,45,45,.55)}
-  70%{box-shadow:0 0 0 12px rgba(255,45,45,0)}
-  100%{box-shadow:0 0 0 0 rgba(255,45,45,0)}
-}
+Thème : ${themeVal}
+Couleurs : ${data.colors || ''}
 
-/* ===== Forms */
-.form{background:var(--bg-elev);border:1px solid #222;border-radius:22px;padding:18px}
-.form h3{margin:0 0 10px}
-.fields{display:grid;gap:12px}
-label{display:grid;gap:6px}
-input,select,textarea{
-  width:100%;padding:12px 14px;border-radius:12px;border:1px solid #2a2a2a;background:#101010;color:#e9e9e9
-}
-.hidden{display:none}
-.fine-print{color:var(--muted);margin-top:10px}
+Nom de domaine : ${data.domain || ''}
+Contact public : ${data.publicContact || ''}
 
-/* ===== Footer */
-.footer{padding:50px 18px;color:#a9a9a9;text-align:center;border-top:1px solid #1b1b1b;margin-top:40px}
+Fonctionnalités : ${features.join(', ') || ''}
+Contenus/contraintes : ${data.content || ''}
+
+Message :
+${data.message || ''}
+
+⚑ Délai indicatif : minimum 2 semaines (souvent plus rapide).`;
+
+  openEmail(subject, body);
+});
