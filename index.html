@@ -1,108 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WebResto — Sites modernes</title>
-  <link rel="icon" href="Images/wr-logo-red.png">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="Images/wr-logo-red.png" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="nav">
-      <a class="brand" href="#top">
-        <img src="Images/wr-logo-red.png" alt="WR" class="brand-logo">
-        <span>WebResto</span>
-      </a>
 
-      <div class="nav-actions">
-        <button id="callBtn" class="btn btn-primary">Appeler</button>
-        <button id="menuBtn" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+  <!-- HEADER (verrouillé) -->
+  <header class="site-header">
+    <div class="brand">
+      <img src="Images/wr-logo-red.png" alt="WebResto" class="logo">
+      <span class="brand-name">WebResto</span>
     </div>
 
-    <!-- Hero (image de fond existante — on n’y touche pas) -->
-    <section class="hero" id="top">
-      <div class="hero-content">
-        <h1>Des sites modernes,<br> visibles et sur mesure.</h1>
-        <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
+    <div class="header-actions">
+      <button id="callBtn" class="btn btn-primary">Appeler</button>
+      <button id="burgerBtn" class="burger" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 
-        <div class="hero-ctas">
-          <a href="#exemple" class="btn btn-primary">Voir un exemple</a>
-          <a href="#form" class="btn btn-ghost">Demander un site</a>
-        </div>
-      </div>
-    </section>
+    <nav id="mobileNav" class="mobile-nav" aria-hidden="true">
+      <button id="closeNav" class="close-nav" aria-label="Fermer">✕</button>
+      <a href="#exemple">Exemple</a>
+      <a href="#pour-qui">Pour qui ?</a>
+      <a href="#offres">Offres & tarifs</a>
+      <a href="#demander">Demander un site</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <!-- Drawer menu -->
-  <nav id="drawer" class="drawer" aria-hidden="true">
-    <div class="drawer-head">
-      <span>Menu</span>
-      <button id="drawerClose" class="drawer-close" aria-label="Fermer">✕</button>
-    </div>
-    <a href="#exemple" class="drawer-link">Exemple</a>
-    <a href="#offers" class="drawer-link">Offres & tarifs</a>
-    <a href="#form" class="drawer-link">Demander un site</a>
-    <a href="#contact" class="drawer-link">Contact</a>
-  </nav>
-  <div id="backdrop" class="backdrop" hidden></div>
-
-  <!-- Exemple -->
-  <main class="container">
-    <section id="exemple" class="card example-card">
-      <div class="example-media">
-        <!-- IMPORTANT : nom & dossier exacts -->
-        <img src="Images/pizz-amigo-cover.jpg" alt="PIZZ'AMIGO — Food truck au feu de bois" />
+  <!-- HERO (fond d'écran conservé, verrouillé) -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Des sites modernes,<br/>visibles et sur mesure.</h1>
+      <p>
+        Entreprises, artisans, mariages, restaurants, associations…
+        je crée un site clair, rapide et beau sur téléphone.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#exemple">Voir un exemple</a>
+        <a class="btn btn-ghost" href="#demander">Demander un site</a>
       </div>
-      <div class="example-body">
-        <h2>Site réalisé par nous :<br> PIZZ’AMIGO — Food truck au feu de bois</h2>
-        <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture), <strong>adresse & contact</strong>.</p>
+    </div>
+    <div class="hero-bg">
+      <img src="Images/hero-dark-office.png" alt="">
+    </div>
+  </section>
+
+  <!-- EXEMPLE (verrouillé, image = webresto.png + bulle compacte) -->
+  <section id="exemple" class="section">
+    <h2>Exemple</h2>
+
+    <article class="card example-card">
+      <div class="example-media" role="img" aria-label="PIZZ'AMIGO — Food truck au feu de bois"></div>
+
+      <div class="card-body">
+        <h3>Site réalisé par nous :<br/>PIZZ’AMIGO — Food truck au feu de bois</h3>
+        <p>
+          Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture),
+          <strong>adresse & contact</strong>.
+        </p>
         <a class="btn btn-primary" href="https://pizz-amigo.netlify.app/" target="_blank" rel="noopener">Voir le site</a>
       </div>
-    </section>
+    </article>
+  </section>
 
-    <!-- Carrousel POUR QUI ? (verrouillé visuellement) -->
-    <section class="carousel-wrap">
-      <h2>Pour qui ?</h2>
+  <!-- POUR QUI ?  (carousel verrouillé, remplace les images par tes nouvelles) -->
+  <section id="pour-qui" class="section">
+    <h2>Pour qui ?</h2>
 
-      <div class="carousel" id="forWhoCarousel" aria-roledescription="carousel">
-        <!-- Slide 1 -->
-        <figure class="slide active">
-          <img src="Images/restaurant.PNG" alt="Restaurant" />
-          <figcaption class="tag">Restaurant</figcaption>
-        </figure>
-        <!-- Slide 2 -->
-        <figure class="slide">
-          <img src="Images/mariage.PNG" alt="Mariage / Événement" />
-          <figcaption class="tag">Mariage / Événement</figcaption>
-        </figure>
-        <!-- Slide 3 -->
-        <figure class="slide">
-          <img src="Images/artisan.PNG" alt="Artisan / Service" />
-          <figcaption class="tag">Artisan / Service</figcaption>
-        </figure>
-        <!-- Slide 4 -->
-        <figure class="slide">
-          <img src="Images/association.PNG" alt="Association" />
-          <figcaption class="tag">Association</figcaption>
-        </figure>
+    <div class="carousel" data-locked="true">
+      <!-- Slide 1 -->
+      <figure class="slide">
+        <img src="Images/restaurant.PNG" alt="Restaurant / Food-truck" />
+        <figcaption class="tag">Restaurant / Food-truck</figcaption>
+      </figure>
+      <!-- Slide 2 -->
+      <figure class="slide">
+        <img src="Images/mariage.PNG" alt="Mariage / Événement" />
+        <figcaption class="tag">Mariage / Événement</figcaption>
+      </figure>
+      <!-- Slide 3 -->
+      <figure class="slide">
+        <img src="Images/artisan.PNG" alt="Artisan / Service" />
+        <figcaption class="tag">Artisan / Service</figcaption>
+      </figure>
+      <!-- Slide 4 -->
+      <figure class="slide">
+        <img src="Images/association.PNG" alt="Association" />
+        <figcaption class="tag">Association</figcaption>
+      </figure>
 
-        <button class="nav prev" id="cPrev" aria-label="Précédent">‹</button>
-        <button class="nav next" id="cNext" aria-label="Suivant">›</button>
-      </div>
-    </section>
+      <button class="nav prev" aria-label="Précédent">‹</button>
+      <button class="nav next" aria-label="Suivant">›</button>
+    </div>
+  </section>
 
-    <!-- Offres & tarifs (affichage seulement) -->
-    <section id="offers" class="offers">
-      <h2>Offres & tarifs</h2>
+  <!-- OFFRES & TARIFS (verrouillé; prix restaurés) -->
+  <section id="offres" class="section">
+    <h2>Offres & tarifs</h2>
 
-      <article class="offer">
+    <div class="offers">
+      <!-- Vitrine -->
+      <article class="card offer" data-locked="true">
         <h3>Site vitrine</h3>
-        <p class="price">200 à 299€</p>
+        <p class="price">299,99€</p>
         <ul>
           <li>Page moderne (photos, infos, horaires, contact)</li>
           <li>Design personnalisé et responsive</li>
@@ -110,64 +116,65 @@
           <li>HTTPS sécurisé (hébergement possible)</li>
           <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
         </ul>
-        <button class="btn btn-ghost" disabled>Choisir ce pack</button>
+        <button class="btn btn-ghost choose-pack" data-pack="Site vitrine">Choisir ce pack</button>
       </article>
 
-      <article class="offer">
+      <!-- Vitrine + commandes -->
+      <article class="card offer best" data-locked="true">
         <div class="badge">Le plus choisi</div>
         <h3>Site vitrine + commandes en ligne</h3>
-        <p class="price">500€</p>
+        <p class="price">499,99€</p>
         <ul>
           <li>Formulaires (commande / contact) personnalisés</li>
-          <li>Intégration lien de paiement (Stripe/...)</li>
+          <li>Intégration <strong>système de paiement</strong> (préciser dans détails)</li>
           <li>Historique basique via e-mail/export</li>
           <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
         </ul>
-        <button class="btn btn-ghost" disabled>Choisir ce pack</button>
+        <button class="btn btn-ghost choose-pack" data-pack="Site vitrine + commandes">Choisir ce pack</button>
       </article>
 
-      <article class="offer">
+      <!-- Dashboard -->
+      <article class="card offer" data-locked="true">
         <h3>Site avec dashboard</h3>
-        <p class="price"><span class="muted">Sur devis</span></p>
+        <p class="price">799,99€</p>
         <ul>
           <li>Vitrine + système de commande</li>
           <li>Tableau de bord (gestion des commandes & contenu)</li>
-          <li><strong>Login renforcé</strong> & données stockées en base</li>
+          <li>Login renforcé & données stockées en base</li>
           <li><strong>Site protégé</strong> (meilleures pratiques de sécurité)</li>
         </ul>
-        <button class="btn btn-ghost" disabled>Choisir ce pack</button>
+        <button class="btn btn-ghost choose-pack" data-pack="Site avec dashboard">Choisir ce pack</button>
       </article>
-    </section>
-
-    <!-- Formulaire (verrouillé – juste présent) -->
-    <section id="form" class="form-wrap">
-      <h2>Demander un site</h2>
-      <!-- Présent pour continuité ; pas modifié ici -->
-      <p class="muted">Formulaire verrouillé (non modifié).</p>
-    </section>
-  </main>
-
-  <!-- Contact -->
-  <footer id="contact" class="footer">
-    <div class="contact">
-      <h3>Contact</h3>
-      <p>📞 07 84 67 47 67</p>
-      <p>📞 07 88 58 98 12</p>
-      <p>✉️ smarttlelearning@gmail.com</p>
     </div>
-    <p class="copy">© WebResto</p>
+  </section>
+
+  <!-- DEMANDER UN SITE (présent mais verrouillé) -->
+  <section id="demander" class="section">
+    <h2>Demander un site</h2>
+    <p class="locked-note">Formulaire verrouillé (non modifié).</p>
+  </section>
+
+  <!-- CONTACT (ajout des 2 numéros et du mail) -->
+  <footer id="contact" class="section footer">
+    <h2>Contact</h2>
+    <ul class="contact-list">
+      <li>📞 07 84 67 47 67</li>
+      <li>📞 07 88 58 98 12</li>
+      <li>✉️ smarttlelearning@gmail.com</li>
+    </ul>
+    <p class="copyright">© WebResto</p>
   </footer>
 
-  <!-- Modale Appeler -->
-  <dialog id="callModal" class="modal">
-    <div class="modal-head">
-      <h3>Appeler</h3>
-      <button id="closeCall" class="drawer-close" aria-label="Fermer">✕</button>
-    </div>
-    <div class="modal-body">
-      <a class="btn btn-primary btn-block" href="tel:+33784674767">Appeler le +33 7 84 67 47 67</a>
-      <p class="muted">Si pas de réponse :</p>
-      <a class="btn btn-ghost btn-block" href="tel:+33788589812">Appeler le 07 88 58 98 12</a>
+  <!-- Modal Appeler (verrouillé) -->
+  <dialog id="callModal" class="call-modal">
+    <div class="call-card">
+      <div class="call-head">
+        <h3>Appeler</h3>
+        <button id="closeCall" class="close-nav" aria-label="Fermer">✕</button>
+      </div>
+      <a class="call-main" href="tel:+33784674767">Appeler le +33 7 84 67 47 67</a>
+      <p class="call-note">Si pas de réponse :</p>
+      <a class="call-alt" href="tel:+33788589812">Appeler le 07 88 58 98 12</a>
     </div>
   </dialog>
 
