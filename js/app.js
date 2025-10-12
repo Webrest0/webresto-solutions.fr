@@ -1,96 +1,101 @@
-// ========== NAV BURGER ==========
-const burger = document.getElementById('btn-burger');
-const menu   = document.getElementById('main-menu');
-const backdrop = document.getElementById('menu-backdrop');
+// ===== Mobile menu =====
+const menuBtn = document.getElementById('menuBtn');
+const mobileNav = document.getElementById('mobileNav');
+menuBtn.addEventListener('click', () => mobileNav.classList.toggle('open'));
+mobileNav.querySelectorAll('.navlink').forEach(a=>{
+  a.addEventListener('click', ()=> mobileNav.classList.remove('open'));
+});
 
-function closeMenu(){
-  menu.classList.remove('open');
-  backdrop.classList.remove('open');
-  burger.setAttribute('aria-expanded', 'false');
+// ===== Modal appeler =====
+const callBtn = document.getElementById('callBtn');
+const callModal = document.getElementById('callModal');
+const closeCall = document.getElementById('closeCall');
+callBtn.addEventListener('click', ()=> callModal.showModal());
+closeCall.addEventListener('click', ()=> callModal.close());
+callModal.addEventListener('click', (e)=>{
+  // Ferme si clic hors carte
+  const card = e.target.closest('.modal-card');
+  if(!card) callModal.close();
+});
+
+// ===== Slider (garde le visuel existant) =====
+const slider = document.querySelector('[data-slider]');
+if (slider){
+  const track = slider.querySelector('[data-slides]');
+  const dots = slider.querySelector('[data-dots]');
+  const slides = [...track.children];
+
+  slides.forEach((_,i)=>{
+    const b = document.createElement('button');
+    if(i===0) b.classList.add('active');
+    b.addEventListener('click', ()=> {
+      track.scrollTo({left: slides[i].offsetLeft - track.offsetLeft, behavior:'smooth'});
+      dots.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+    });
+    dots.appendChild(b);
+  });
+
+  slider.querySelector('[data-prev]').addEventListener('click', ()=>{
+    track.scrollBy({left: -track.clientWidth*0.9, behavior:'smooth'});
+  });
+  slider.querySelector('[data-next]').addEventListener('click', ()=>{
+    track.scrollBy({left: track.clientWidth*0.9, behavior:'smooth'});
+  });
 }
-function openMenu(){
-  menu.classList.add('open');
-  backdrop.classList.add('open');
-  burger.setAttribute('aria-expanded', 'true');
-}
-burger.addEventListener('click', ()=> menu.classList.contains('open') ? closeMenu() : openMenu());
-backdrop.addEventListener('click', closeMenu);
-menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-// ========== APPELER (2 numéros) ==========
-const callDialog = document.getElementById('callDialog');
-document.getElementById('btn-call').addEventListener('click', ()=> callDialog.showModal());
-callDialog.querySelectorAll('[data-close]').forEach(btn=> btn.addEventListener('click', ()=> callDialog.close()));
+// ===== EmailJS (IDs que tu m’as montrés) =====
+const EMAILJS_PUBLIC = 'XgRStV-domSnc8RgY';
+const EMAILJS_SERVICE = 'service_8bw61yj';
+const EMAILJS_TEMPLATE = 'template_9ok4wz8';
 
-// ========== APERÇU DU SITE (restons sur la page) ==========
-const siteDialog = document.getElementById('siteDialog');
-const siteFrame  = document.getElementById('siteFrame');
-document.querySelectorAll('[data-open-site]').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    siteFrame.src = btn.getAttribute('data-open-site');
-    siteDialog.showModal();
-  })
-});
-siteDialog.querySelectorAll('[data-close]').forEach(btn=> btn.addEventListener('click', ()=> {
-  siteFrame.src = 'about:blank';
-  siteDialog.close();
-}));
-
-// ========== SELECT "Autre" logique ==========
-const theme = document.getElementById('theme');
-const themeOther = document.getElementById('themeOther');
-theme.addEventListener('change', ()=>{
-  const isOther = theme.value === 'autre';
-  themeOther.classList.toggle('dn', !isOther);
-  if(!isOther) themeOther.value='';
-});
-
-const features = document.getElementById('features');
-const featuresOther = document.getElementById('featuresOther');
-features.addEventListener('change', ()=>{
-  const isOther = Array.from(features.selectedOptions).some(o => o.value === 'autre');
-  featuresOther.classList.toggle('dn', !isOther);
-  if(!isOther) featuresOther.value='';
-});
-
-// ========== EMAILJS ==========
-(function(){ emailjs.init({ publicKey: 'XgRStV-domSnc8RgY' }); })();
+emailjs.init({ publicKey: EMAILJS_PUBLIC });
 
 const form = document.getElementById('orderForm');
-const statusBox = document.getElementById('formStatus');
+const statusEl = document.getElementById('formStatus');
 
-form.addEventListener('submit', async (e)=>{
+function collectFeatures() {
+  const values = [];
+  document.querySelectorAll('input[name="features"]:checked').forEach(chk => values.push(chk.value));
+  const other = (form.feature_other && form.feature_other.value || '').trim();
+  if (other) values.push('Autre : ' + other);
+  return values.join(', ');
+}
+
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  statusBox.classList.remove('error');
-  statusBox.textContent = 'Envoi en cours…';
+  statusEl.className = 'form-status';
+  statusEl.textContent = 'Envoi…';
 
-  // construire le payload attendu par ton template
-  const fd = new FormData(form);
-  const selectedFeatures = Array.from(features.selectedOptions).map(o=>o.value).join(', ');
-
-  const data = {
-    // champs côté template EmailJS
-    customer_name: fd.get('customer_name'),
-    customer_email: fd.get('customer_email'),
-    customer_phone: fd.get('customer_phone'),
-    pack: fd.get('pack'),
-    theme: fd.get('theme') === 'autre' ? (fd.get('theme_other')||'Autre') : fd.get('theme'),
-    colors: fd.get('colors'),
-    features: selectedFeatures + (featuresOther.classList.contains('dn') ? '' : `, ${fd.get('features_other')||''}`),
-    domain: fd.get('domain'),
-    public_contact: fd.get('public_contact'),
-    message: fd.get('message') || '(aucun)'
+  // Champs nécessaires pour le template EmailJS
+  const templateParams = {
+    user_name: form.user_name.value.trim(),
+    user_email: form.user_email.value.trim(),
+    user_phone: form.user_phone.value.trim(),
+    pack: form.pack.value,
+    theme: form.theme.value,
+    colors: form.colors.value.trim(),
+    features: collectFeatures(),
+    domain: form.domain.value.trim(),
+    public_contact: form.public_contact.value.trim(),
+    message: form.message.value.trim()
   };
 
+  // contrôle minimal (affichage Nom/Email/Tel manquants résolu)
+  if (!templateParams.user_name || !templateParams.user_email || !templateParams.user_phone){
+    statusEl.classList.add('err');
+    statusEl.textContent = 'Veuillez remplir Nom, E-mail et Téléphone.';
+    return;
+  }
+
   try{
-    await emailjs.send('service_8bw61yj','template_9ok4wz8', data);
-    statusBox.textContent = '✅ Votre demande a bien été envoyée.';
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, templateParams);
+    statusEl.classList.add('ok');
+    statusEl.textContent = 'Message envoyé ✅';
     form.reset();
-    themeOther.classList.add('dn');
-    featuresOther.classList.add('dn');
   }catch(err){
-    statusBox.classList.add('error');
-    statusBox.textContent = '❌ Échec de l’envoi. Réessayez plus tard.';
+    statusEl.classList.add('err');
+    statusEl.textContent = 'Échec de l’envoi. Réessaie plus tard.';
     console.error(err);
   }
 });
