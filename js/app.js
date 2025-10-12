@@ -1,34 +1,53 @@
-// ====== MENU (trois traits) ======
-const menuBtn = document.getElementById('hamburger');
-const sideMenu = document.getElementById('side-menu');
+// === Drawer ===
+const drawer = document.getElementById('drawer');
+const menuBtn = document.getElementById('menuBtn');
+const drawerClose = document.getElementById('drawerClose');
 const backdrop = document.getElementById('backdrop');
-const closeMenuBtn = document.getElementById('close-menu');
 
-function openMenu(){
-  sideMenu.classList.add('open');
-  backdrop.classList.add('show');
-  menuBtn.classList.add('is-open');
-  menuBtn.setAttribute('aria-expanded','true');
-  sideMenu.setAttribute('aria-hidden','false');
+function openDrawer() {
+  drawer.classList.add('open');
+  backdrop.hidden = false;
+  menuBtn.setAttribute('aria-expanded', 'true');
 }
-function closeMenu(){
-  sideMenu.classList.remove('open');
-  backdrop.classList.remove('show');
-  menuBtn.classList.remove('is-open');
-  menuBtn.setAttribute('aria-expanded','false');
-  sideMenu.setAttribute('aria-hidden','true');
+function closeDrawer() {
+  drawer.classList.remove('open');
+  backdrop.hidden = true;
+  menuBtn.setAttribute('aria-expanded', 'false');
 }
 
 menuBtn?.addEventListener('click', () => {
-  const isOpen = sideMenu.classList.contains('open');
-  isOpen ? closeMenu() : openMenu();
+  if (drawer.classList.contains('open')) closeDrawer(); else openDrawer();
 });
-closeMenuBtn?.addEventListener('click', closeMenu);
-backdrop?.addEventListener('click', closeMenu);
+drawerClose?.addEventListener('click', closeDrawer);
+backdrop?.addEventListener('click', closeDrawer);
+drawer.querySelectorAll('.drawer-link').forEach(a => a.addEventListener('click', closeDrawer));
 
-// Empêche le zoom iOS au focus (pour inputs si un jour on les réactive)
-document.addEventListener('touchstart', function(e){
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA'){
-    e.target.style.fontSize = '16px';
-  }
-}, {passive:true});
+// === Call modal ===
+const callBtn = document.getElementById('callBtn');
+const callModal = document.getElementById('callModal');
+const closeCall = document.getElementById('closeCall');
+
+callBtn?.addEventListener('click', () => callModal.showModal());
+closeCall?.addEventListener('click', () => callModal.close());
+
+// === Carousel (verrouillé au niveau contenu) ===
+const slides = [...document.querySelectorAll('#forWhoCarousel .slide')];
+const prev = document.getElementById('cPrev');
+const next = document.getElementById('cNext');
+let idx = 0;
+
+function show(i){
+  slides.forEach((s,k)=> s.classList.toggle('active', k===i));
+}
+prev?.addEventListener('click', ()=>{ idx = (idx - 1 + slides.length) % slides.length; show(idx); });
+next?.addEventListener('click', ()=>{ idx = (idx + 1) % slides.length; show(idx); });
+
+// (Optionnel) glissement tactile
+let startX=null;
+document.getElementById('forWhoCarousel')?.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+document.getElementById('forWhoCarousel')?.addEventListener('touchend',e=>{
+  if(startX==null) return;
+  const dx = e.changedTouches[0].clientX - startX;
+  if(Math.abs(dx)>40){ dx>0 ? prev.click() : next.click(); }
+  startX=null;
+},{passive:true});
