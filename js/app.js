@@ -1,98 +1,120 @@
-/* ===== Drawer (3 traits) ===== */
-const burgerBtn = document.getElementById('burgerBtn');
-const drawer = document.getElementById('drawer');
-burgerBtn?.addEventListener('click', ()=> drawer.classList.toggle('show'));
-document.addEventListener('click', (e)=>{
-  if(!drawer.contains(e.target) && !burgerBtn.contains(e.target)){ drawer.classList.remove('show'); }
-});
-document.querySelectorAll('.navlink').forEach(a=>a.addEventListener('click', ()=>drawer.classList.remove('show')));
+/* =====================
+   CONFIG EmailJS (tes IDs)
+   ===================== */
+const EMAILJS_PUBLIC_KEY   = 'XgRSTv-domSnc8RgY';     // clé publique
+const EMAILJS_SERVICE_ID   = 'service_8bw61yj';        // service Gmail (ton compte)
+const EMAILJS_TEMPLATE_ID  = 'template_9ok4wz8';       // modèle “Contactez-nous”
 
-/* ===== Modal Appeler ===== */
-const callBtn = document.getElementById('callBtn');
-const callModal = document.getElementById('callModal');
-const modalClose = document.getElementById('modalClose');
-callBtn?.addEventListener('click', ()=> callModal.classList.add('show'));
-modalClose?.addEventListener('click', ()=> callModal.classList.remove('show'));
-callModal?.addEventListener('click', (e)=>{ if(e.target===callModal){ callModal.classList.remove('show'); }});
+// IMPORTANT : dans ton modèle EmailJS, assure-toi d’avoir ces variables :
+// name, email, phone, pack, theme, colors, features, domain, contact, message
 
-/* ===== Année footer ===== */
-document.getElementById('year').textContent = new Date().getFullYear();
+/* ============ Utils ============ */
+const $ = (sel, root=document) => root.querySelector(sel);
+const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
 
-/* ===== Champs "Autre…" (thème + fonctionnalités) ===== */
-const theme = document.getElementById('theme');
-const themeOther = document.getElementById('theme-other');
-theme?.addEventListener('change', ()=>{
-  themeOther.style.display = theme.value === 'Autre' ? 'block' : 'none';
-});
-
-const featuresSel = document.getElementById('features');
-const featuresOther = document.getElementById('features-other');
-featuresSel?.addEventListener('change', ()=>{
-  const hasOther = [...featuresSel.selectedOptions].some(o=>o.value==='Autre');
-  featuresOther.style.display = hasOther ? 'block' : 'none';
+/* ============ Menu burger ============ */
+const menuBtn = $('#menuBtn');
+const drawer  = $('#drawer');
+$$('.drawer-link', drawer).forEach(a => a.addEventListener('click', () => {
+  drawer.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded','false');
+}));
+menuBtn.addEventListener('click', () => {
+  const open = drawer.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', String(open));
 });
 
-function collectFeatures(){
-  if(!featuresSel) return '';
-  const list = [...featuresSel.selectedOptions].map(o=>o.value);
-  const hasOther = list.includes('Autre');
-  const otherTxt = (featuresOther?.value || '').trim();
-  const base = list.filter(v=>v!=='Autre');
-  return (hasOther && otherTxt) ? [...base, otherTxt].join(', ') : base.join(', ');
-}
+/* ============ Modal Appel ============ */
+const callBtn = $('#callBtn');
+const callModal = $('#callModal');
+callBtn.addEventListener('click', () => callModal.showModal());
+$$('[data-close]', callModal).forEach(b => b.addEventListener('click', ()=> callModal.close()));
 
-/* ===== EmailJS (envoi direct) ===== */
-(() => { try{
-  emailjs.init({ publicKey: 'XgRSTv-domSnc8RgY' }); // ta clé publique
-}catch(e){} })();
+/* ============ Aperçu “Voir le site” ============ */
+const previewModal = $('#previewModal');
+const previewFrame = $('#previewFrame');
+$$('[data-preview]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    previewFrame.src = btn.getAttribute('data-preview');
+    previewModal.showModal();
+  });
+});
+$$('[data-close]', previewModal).forEach(b => b.addEventListener('click', ()=>{
+  previewFrame.src = 'about:blank';
+  previewModal.close();
+}));
 
-const SERVICE_ID = 'service_8bw61yj';
-const TEMPLATE_ID = 'template_9ok4wz8';
+/* ============ Année footer ============ */
+$('#year').textContent = new Date().getFullYear();
 
-const form = document.getElementById('orderForm');
-const statusEl = document.getElementById('formStatus');
-const sendBtn = document.getElementById('sendBtn');
+/* ============ Features multi-select ============ */
+const FEATURES = [
+  'Carte/menu','Formulaire commande','Paiement (Stripe)',
+  'Horaires dynamiques','Google Maps','Galerie photos',
+  'Newsletter','SEO local','Décide pour moi','Autre...'
+];
+const chipsWrap = $('#featuresChips');
+const selectedFeatures = new Set();
+FEATURES.forEach(label=>{
+  const chip = document.createElement('button');
+  chip.type = 'button';
+  chip.className = 'chip';
+  chip.textContent = label;
+  chip.addEventListener('click', ()=>{
+    if (selectedFeatures.has(label)) {
+      selectedFeatures.delete(label);
+      chip.classList.remove('active');
+    } else {
+      selectedFeatures.add(label);
+      chip.classList.add('active');
+    }
+  });
+  chipsWrap.appendChild(chip);
+});
 
-function setStatus(msg, ok){
-  statusEl.textContent = msg;
-  statusEl.style.color = ok ? '#34c759' : '#ff453a';
-}
+/* ============ EmailJS ============ */
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
-form?.addEventListener('submit', async (e)=>{
+const form = $('#orderForm');
+const sendBtn = $('#sendBtn');
+const formStatus = $('#formStatus');
+
+form.addEventListener('submit', async (e)=>{
   e.preventDefault();
-  setStatus('', true);
+  formStatus.textContent = '';
+  sendBtn.disabled = true;
 
-  // validations simples
-  if(!form.checkValidity()){
-    setStatus('Merci de remplir les champs requis (*).', false);
+  // payload → DOIT matcher les variables du template
+  const data = {
+    name:   form.name.value.trim(),
+    email:  form.email.value.trim(),
+    phone:  form.phone.value.trim(),
+    pack:   form.pack.value,
+    theme:  form.theme.value,
+    colors: form.colors.value.trim(),
+    features: Array.from(selectedFeatures).join(', '),
+    domain: form.domain.value.trim(),
+    contact: form.contact.value.trim(),
+    message: form.message.value.trim() || '(aucun)'
+  };
+
+  // mini-validation (champs obligatoires)
+  if(!data.name || !data.email || !data.phone){
+    formStatus.textContent = 'Veuillez remplir nom, e-mail et téléphone.';
+    sendBtn.disabled = false;
     return;
   }
 
-  const payload = {
-    user_name: document.getElementById('name').value.trim(),
-    user_email: document.getElementById('email').value.trim(),
-    user_phone: document.getElementById('phone').value.trim(),
-    pack: document.getElementById('pack').value,
-    theme: theme.value === 'Autre' ? (themeOther.value.trim() || 'Autre') : theme.value,
-    colors: document.getElementById('colors').value.trim(),
-    features: collectFeatures(),
-    domain: document.getElementById('domain').value.trim(),
-    contact_display: document.getElementById('contactDisplay').value.trim(),
-    message: document.getElementById('message').value.trim()
-  };
-
-  sendBtn.disabled = true;
-
-  try{
-    await emailjs.send(SERVICE_ID, TEMPLATE_ID, payload);
-    setStatus('✅ Mail envoyé. Merci !', true);
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, data);
     form.reset();
-    themeOther.style.display = 'none';
-    featuresOther.style.display = 'none';
-  }catch(err){
+    selectedFeatures.clear();
+    $$('.chip.active').forEach(c=>c.classList.remove('active'));
+    formStatus.textContent = '✅ Message envoyé. Je vous réponds vite !';
+  } catch (err) {
     console.error(err);
-    setStatus('❌ Échec de l’envoi. Réessaie plus tard.', false);
-  }finally{
+    formStatus.textContent = '❌ Échec de l’envoi. Réessayez.';
+  } finally {
     sendBtn.disabled = false;
   }
 });
