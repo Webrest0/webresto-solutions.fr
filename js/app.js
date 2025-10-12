@@ -1,101 +1,98 @@
-// ===== Mobile menu =====
-const menuBtn = document.getElementById('menuBtn');
-const mobileNav = document.getElementById('mobileNav');
-menuBtn.addEventListener('click', () => mobileNav.classList.toggle('open'));
-mobileNav.querySelectorAll('.navlink').forEach(a=>{
-  a.addEventListener('click', ()=> mobileNav.classList.remove('open'));
+/* ===== Drawer (3 traits) ===== */
+const burgerBtn = document.getElementById('burgerBtn');
+const drawer = document.getElementById('drawer');
+burgerBtn?.addEventListener('click', ()=> drawer.classList.toggle('show'));
+document.addEventListener('click', (e)=>{
+  if(!drawer.contains(e.target) && !burgerBtn.contains(e.target)){ drawer.classList.remove('show'); }
 });
+document.querySelectorAll('.navlink').forEach(a=>a.addEventListener('click', ()=>drawer.classList.remove('show')));
 
-// ===== Modal appeler =====
+/* ===== Modal Appeler ===== */
 const callBtn = document.getElementById('callBtn');
 const callModal = document.getElementById('callModal');
-const closeCall = document.getElementById('closeCall');
-callBtn.addEventListener('click', ()=> callModal.showModal());
-closeCall.addEventListener('click', ()=> callModal.close());
-callModal.addEventListener('click', (e)=>{
-  // Ferme si clic hors carte
-  const card = e.target.closest('.modal-card');
-  if(!card) callModal.close();
+const modalClose = document.getElementById('modalClose');
+callBtn?.addEventListener('click', ()=> callModal.classList.add('show'));
+modalClose?.addEventListener('click', ()=> callModal.classList.remove('show'));
+callModal?.addEventListener('click', (e)=>{ if(e.target===callModal){ callModal.classList.remove('show'); }});
+
+/* ===== Année footer ===== */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ===== Champs "Autre…" (thème + fonctionnalités) ===== */
+const theme = document.getElementById('theme');
+const themeOther = document.getElementById('theme-other');
+theme?.addEventListener('change', ()=>{
+  themeOther.style.display = theme.value === 'Autre' ? 'block' : 'none';
 });
 
-// ===== Slider (garde le visuel existant) =====
-const slider = document.querySelector('[data-slider]');
-if (slider){
-  const track = slider.querySelector('[data-slides]');
-  const dots = slider.querySelector('[data-dots]');
-  const slides = [...track.children];
+const featuresSel = document.getElementById('features');
+const featuresOther = document.getElementById('features-other');
+featuresSel?.addEventListener('change', ()=>{
+  const hasOther = [...featuresSel.selectedOptions].some(o=>o.value==='Autre');
+  featuresOther.style.display = hasOther ? 'block' : 'none';
+});
 
-  slides.forEach((_,i)=>{
-    const b = document.createElement('button');
-    if(i===0) b.classList.add('active');
-    b.addEventListener('click', ()=> {
-      track.scrollTo({left: slides[i].offsetLeft - track.offsetLeft, behavior:'smooth'});
-      dots.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
-      b.classList.add('active');
-    });
-    dots.appendChild(b);
-  });
-
-  slider.querySelector('[data-prev]').addEventListener('click', ()=>{
-    track.scrollBy({left: -track.clientWidth*0.9, behavior:'smooth'});
-  });
-  slider.querySelector('[data-next]').addEventListener('click', ()=>{
-    track.scrollBy({left: track.clientWidth*0.9, behavior:'smooth'});
-  });
+function collectFeatures(){
+  if(!featuresSel) return '';
+  const list = [...featuresSel.selectedOptions].map(o=>o.value);
+  const hasOther = list.includes('Autre');
+  const otherTxt = (featuresOther?.value || '').trim();
+  const base = list.filter(v=>v!=='Autre');
+  return (hasOther && otherTxt) ? [...base, otherTxt].join(', ') : base.join(', ');
 }
 
-// ===== EmailJS (IDs que tu m’as montrés) =====
-const EMAILJS_PUBLIC = 'XgRStV-domSnc8RgY';
-const EMAILJS_SERVICE = 'service_8bw61yj';
-const EMAILJS_TEMPLATE = 'template_9ok4wz8';
+/* ===== EmailJS (envoi direct) ===== */
+(() => { try{
+  emailjs.init({ publicKey: 'XgRSTv-domSnc8RgY' }); // ta clé publique
+}catch(e){} })();
 
-emailjs.init({ publicKey: EMAILJS_PUBLIC });
+const SERVICE_ID = 'service_8bw61yj';
+const TEMPLATE_ID = 'template_9ok4wz8';
 
 const form = document.getElementById('orderForm');
 const statusEl = document.getElementById('formStatus');
+const sendBtn = document.getElementById('sendBtn');
 
-function collectFeatures() {
-  const values = [];
-  document.querySelectorAll('input[name="features"]:checked').forEach(chk => values.push(chk.value));
-  const other = (form.feature_other && form.feature_other.value || '').trim();
-  if (other) values.push('Autre : ' + other);
-  return values.join(', ');
+function setStatus(msg, ok){
+  statusEl.textContent = msg;
+  statusEl.style.color = ok ? '#34c759' : '#ff453a';
 }
 
-form.addEventListener('submit', async (e) => {
+form?.addEventListener('submit', async (e)=>{
   e.preventDefault();
-  statusEl.className = 'form-status';
-  statusEl.textContent = 'Envoi…';
+  setStatus('', true);
 
-  // Champs nécessaires pour le template EmailJS
-  const templateParams = {
-    user_name: form.user_name.value.trim(),
-    user_email: form.user_email.value.trim(),
-    user_phone: form.user_phone.value.trim(),
-    pack: form.pack.value,
-    theme: form.theme.value,
-    colors: form.colors.value.trim(),
-    features: collectFeatures(),
-    domain: form.domain.value.trim(),
-    public_contact: form.public_contact.value.trim(),
-    message: form.message.value.trim()
-  };
-
-  // contrôle minimal (affichage Nom/Email/Tel manquants résolu)
-  if (!templateParams.user_name || !templateParams.user_email || !templateParams.user_phone){
-    statusEl.classList.add('err');
-    statusEl.textContent = 'Veuillez remplir Nom, E-mail et Téléphone.';
+  // validations simples
+  if(!form.checkValidity()){
+    setStatus('Merci de remplir les champs requis (*).', false);
     return;
   }
 
+  const payload = {
+    user_name: document.getElementById('name').value.trim(),
+    user_email: document.getElementById('email').value.trim(),
+    user_phone: document.getElementById('phone').value.trim(),
+    pack: document.getElementById('pack').value,
+    theme: theme.value === 'Autre' ? (themeOther.value.trim() || 'Autre') : theme.value,
+    colors: document.getElementById('colors').value.trim(),
+    features: collectFeatures(),
+    domain: document.getElementById('domain').value.trim(),
+    contact_display: document.getElementById('contactDisplay').value.trim(),
+    message: document.getElementById('message').value.trim()
+  };
+
+  sendBtn.disabled = true;
+
   try{
-    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, templateParams);
-    statusEl.classList.add('ok');
-    statusEl.textContent = 'Message envoyé ✅';
+    await emailjs.send(SERVICE_ID, TEMPLATE_ID, payload);
+    setStatus('✅ Mail envoyé. Merci !', true);
     form.reset();
+    themeOther.style.display = 'none';
+    featuresOther.style.display = 'none';
   }catch(err){
-    statusEl.classList.add('err');
-    statusEl.textContent = 'Échec de l’envoi. Réessaie plus tard.';
     console.error(err);
+    setStatus('❌ Échec de l’envoi. Réessaie plus tard.', false);
+  }finally{
+    sendBtn.disabled = false;
   }
 });
