@@ -1,93 +1,81 @@
 :root{
-  --bg:#0b0b0b;
-  --bg-soft:#111;
-  --card:#141414;
-  --text:#fff;
-  --muted:#cfcfcf;
-  --primary:#ff3b30;        /* Rouge principal */
-  --ring: rgba(255,59,48,.35);
-  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --bg:#0b0b0b; --card:#141414; --text:#fff; --muted:#cfcfcf;
+  --primary:#ff3b30; --ring:rgba(255,59,48,.35);
+  --shadow:0 10px 30px rgba(0,0,0,.35);
 }
-
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
 img{max-width:100%;display:block}
 
-.wrap{padding:48px 20px;max-width:1100px;margin:0 auto}
-h1,h2,h3{margin:0 0 14px}
-h2{font-size:34px}
-p{color:var(--muted);line-height:1.6}
-
-.btn{
-  display:inline-block;border-radius:18px;padding:16px 22px;
-  border:1px solid #2a2a2a;color:var(--text);text-decoration:none;
-  transition:.2s; box-shadow:none
-}
-.btn:hover{transform:translateY(-1px)}
-.btn-primary{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 0 28px var(--ring)}
-.btn-primary-outline{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 0 28px var(--ring)}
-.btn-ghost{background:transparent}
-
-/* NAVBAR */
-.nav{
-  position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0b0b0bcc,#0b0b0b00);
-  backdrop-filter:saturate(1.3) blur(6px);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 16px 10px; border-bottom:1px solid #191919;
-}
-.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:700}
-.logo{width:28px;height:28px;object-fit:contain;filter: drop-shadow(0 0 6px rgba(255,59,48,.5))}
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+     padding:14px 16px;border-bottom:1px solid #191919;background:#0b0b0b}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800}
+.logo{width:28px;height:28px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(255,59,48,.4))}
 .nav-actions{display:flex;align-items:center;gap:12px}
-.hamburger{width:56px;height:46px;border-radius:12px;border:1px solid #2a2a2a;background:#121212;display:flex;align-items:center;justify-content:center}
-.hamburger span{display:block;width:22px;height:2px;background:#e8e8e8;border-radius:2px;margin:3px 0}
-.hamburger:active{transform:scale(.98)}
+.hamburger{width:56px;height:46px;border-radius:12px;border:1px solid #2a2a2a;background:#121212;
+           display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hamburger span{display:block;width:22px;height:2px;background:#eaeaea;border-radius:2px}
+.hamburger span+span{margin-top:6px}
 
-/* HERO */
+/* BOUTONS */
+.btn{display:inline-block;border-radius:18px;padding:14px 20px;border:1px solid #2a2a2a;
+     color:#fff;text-decoration:none;transition:.2s}
+.btn-primary{background:var(--primary);border-color:var(--primary);box-shadow:0 0 26px var(--ring)}
+.btn-ghost{background:transparent}
+.btn-primary-outline{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 0 26px var(--ring)}
+
+/* HERO (fond INCHANGÉ) */
 .hero{
   min-height:520px;display:flex;align-items:flex-end;
-  background: radial-gradient(1200px 400px at 50% 10%, rgba(255,59,48,.25), transparent 60%),
-              linear-gradient(0deg, #0b0b0b 15%, rgba(0,0,0,.15) 60%),
-              url("../Images/hero-dark-office.png") center/cover no-repeat;
+  background:
+    radial-gradient(1100px 380px at 30% 0%, rgba(255,59,48,.25), transparent 60%),
+    linear-gradient(0deg,#0b0b0b 15%, rgba(0,0,0,.08) 60%),
+    url("../Images/hero-dark-office.png") center/cover no-repeat;
 }
 .hero-inner{max-width:1100px;margin:0 auto;padding:80px 20px}
-.hero h1{font-size:44px;letter-spacing:.3px;margin-bottom:12px}
-.hero p{max-width:720px}
-.hero-cta{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
+.hero h1{font-size:44px;line-height:1.05;margin:0 0 12px}
+.hero p{max-width:720px;color:#e9e9e9}
+.hero-cta{display:flex;gap:12px;flex-wrap:nowrap}
+.hero-cta .btn{flex:0 0 auto}
+@media (max-width:380px){.hero-cta{flex-wrap:wrap}}
+
+/* SECTIONS */
+.wrap{padding:48px 20px;max-width:1100px;margin:0 auto}
+h2{font-size:34px;margin:0 0 14px}
+p{color:#cfcfcf;line-height:1.65}
 
 /* CARROUSEL */
 .carousel{position:relative}
 .car-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 2px}
-.card{
-  scroll-snap-align:center; min-width:270px; height:180px; border-radius:18px;
-  background: var(--card) center/cover no-repeat; background-image:var(--bg);
-  position:relative; box-shadow: var(--shadow);
-}
-.card::before{
-  content:""; position:absolute; inset:0; border-radius:inherit;
-  background:linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.55));
-}
-.card .badge{
-  position:absolute; left:12px; bottom:12px; background:#000c; color:#fff; padding:8px 12px;
-  border-radius:12px; font-weight:600; border:1px solid #2a2a2a
-}
-.car-btn{
-  position:absolute; top:50%; transform:translateY(-50%); width:42px;height:42px;border-radius:50%;
-  border:1px solid #2a2a2a;background:#141414;color:#fff;display:grid;place-items:center
-}
-.car-btn.left{left:-6px}
-.car-btn.right{right:-6px}
+.card{scroll-snap-align:center;min-width:270px;height:180px;border-radius:18px;
+      background:var(--card) center/cover no-repeat;background-image:var(--bg);position:relative;box-shadow:var(--shadow)}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(0,0,0,.0),rgba(0,0,0,.55))}
+.badge{position:absolute;left:12px;bottom:12px;background:#000c;color:#fff;padding:8px 12px;border-radius:12px;border:1px solid #2a2a2a;font-weight:600}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
+         border:1px solid #2a2a2a;background:#141414;color:#fff;display:grid;place-items:center}
+.car-btn.left{left:-6px} .car-btn.right{right:-6px}
 
-/* EXEMPLE */
+/* EXEMPLE — image plein fond derrière le texte */
 .example-card{
-  background:var(--card);border:1px solid #222;border-radius:22px;overflow:hidden;
-  display:grid;grid-template-columns:1.1fr 1fr;gap:0;box-shadow:var(--shadow)
+  position:relative;border-radius:22px;overflow:hidden;border:1px solid #222;box-shadow:var(--shadow);
+  background:var(--card) center/cover no-repeat;background-image:var(--img);
 }
-@media (max-width: 900px){.example-card{grid-template-columns:1fr}}
-.example-media{
-  min-height:260px;background:var(--card) center/cover no-repeat;background-image:var(--img);
-}
-.example-body{padding:22px}
-.example-body h3{margin-bottom:10px}
+.example-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.7))}
+.example-body{position:relative;padding:26px}
+.example-body h3{margin:0 0 10px}
+
+/* FORM */
+.form{display:grid;gap:18px}
+.grid{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media (max-width:850px){.grid{grid-template-columns:1fr}}
+label{display:grid;gap:8px;font-weight:600}
+input,select,textarea{background:#121212;border:1px solid #2a2a2a;border-radius:12px;color:#fff;padding:12px}
+.req{color:#ff7a74}
+.feat{border:1px dashed #2a2a2a;border-radius:16px;padding:14px;display:grid;gap:10px}
+.feat label{font-weight:500;grid-template-columns:auto 1fr;align-items:center}
+.form-actions{display:flex;align-items:center;gap:12px}
+.form-msg{min-height:1em}
 
 /* FOOTER */
 .footer{padding:30px 16px;text-align:center;border-top:1px solid #191919;color:#bdbdbd}
@@ -95,9 +83,7 @@ p{color:var(--muted);line-height:1.6}
 /* MODALE APPELER */
 .modal{border:none;padding:0;background:transparent}
 .modal::backdrop{background:rgba(0,0,0,.6)}
-.modal-card{
-  width:min(560px,92vw);background:#121212;border:1px solid #2a2a2a;border-radius:18px;box-shadow:var(--shadow);
-}
+.modal-card{width:min(560px,92vw);background:#121212;border:1px solid #2a2a2a;border-radius:18px;box-shadow:var(--shadow)}
 .modal-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid #1e1e1e}
 .modal-head h4{margin:0}
 .close{background:#1b1b1b;border:1px solid #2a2a2a;color:#fff;border-radius:10px;width:38px;height:38px;font-size:22px;line-height:0}
