@@ -1,62 +1,49 @@
-// ===== Burger / Side menu =====
+// ===== Burger / Side menu (verrouillé) =====
 const burger = document.getElementById('burger');
 const menu = document.getElementById('sideMenu');
 const closeMenu = document.getElementById('closeMenu');
 const backdrop = document.getElementById('backdrop');
 
-function openMenu() {
-  menu.classList.add('open');
-  menu.setAttribute('aria-hidden', 'false');
-  burger.setAttribute('aria-expanded', 'true');
-  backdrop.hidden = false;
-}
-function closeMenuFn() {
-  menu.classList.remove('open');
-  menu.setAttribute('aria-hidden', 'true');
-  burger.setAttribute('aria-expanded', 'false');
-  backdrop.hidden = true;
-}
+function openMenu(){ menu.classList.add('open'); menu.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); backdrop.hidden=false; }
+function closeMenuFn(){ menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); backdrop.hidden=true; }
+
 burger?.addEventListener('click', openMenu);
 closeMenu?.addEventListener('click', closeMenuFn);
 backdrop?.addEventListener('click', closeMenuFn);
 
-// ===== Carousel “Pour qui ?” (1 carte centrée) =====
-(function initCarousel(){
+// ===== Carousel “Pour qui ?” corrigé =====
+(function(){
   const viewport = document.getElementById('cViewport');
   if(!viewport) return;
-  // wrap children inside inner flex (for smooth translate)
-  const inner = document.createElement('div');
-  inner.className = 'carousel__viewport-inner';
-  while (viewport.firstChild) inner.appendChild(viewport.firstChild);
-  viewport.appendChild(inner);
-
-  const slides = [...inner.children];
+  const track = viewport.querySelector('.carousel__track');
+  const slides = [...track.children];
   let i = 0;
+
   const prev = document.getElementById('cPrev');
   const next = document.getElementById('cNext');
 
   function go(idx){
     i = (idx + slides.length) % slides.length;
-    inner.style.transform = `translateX(-${i*100}%)`;
+    track.style.transform = `translateX(-${i*100}%)`;
   }
   prev.addEventListener('click', ()=>go(i-1));
   next.addEventListener('click', ()=>go(i+1));
-  // start centered at first slide
   go(0);
 })();
 
-// ===== Choisir pack -> remplit le select du formulaire =====
+// ===== Choisir pack -> pré-remplit le select (verrou) =====
 document.querySelectorAll('.choose-pack').forEach(btn=>{
-  btn.addEventListener('click', (e)=>{
-    const pack = btn.dataset.pack || '';
+  btn.addEventListener('click', ()=>{
     const sel = document.getElementById('packSelect');
-    if(sel){
-      [...sel.options].forEach(o=>{ if(o.textContent.includes(pack.split(' ')[1]||pack)) sel.value = o.textContent; });
-    }
+    if(!sel) return;
+    const label = btn.dataset.pack || '';
+    if(label.includes('dashboard')) sel.value = 'Site avec dashboard';
+    else if(label.includes('commandes')) sel.value = 'Site vitrine + commandes en ligne';
+    else sel.value = 'Site vitrine';
   });
 });
 
-// ===== EmailJS (envoi formulaire) =====
+// ===== EmailJS (verrou : envoi seulement) =====
 (function initEmail(){
   if(!window.emailjs) return;
   emailjs.init({ publicKey: 'XgRStV-domSnc8RgY' });
@@ -70,17 +57,20 @@ form?.addEventListener('submit', async (e)=>{
   if(!window.emailjs){ statusEl.textContent = "Erreur : EmailJS indisponible."; return; }
 
   const fd = new FormData(form);
-  // Compose payload pour ton template:
+  // Multi-select features (compatible mobile)
+  let features = fd.getAll('features');
+  if(!features.length && fd.get('features')) features = [fd.get('features')];
+
   const payload = {
     name: fd.get('name'),
     email: fd.get('email'),
     phone: fd.get('phone'),
     pack: fd.get('pack'),
     theme: fd.get('theme'),
-    features: (fd.getAll('features') || fd.get('features') || []).toString(),
+    features: (features||[]).filter(Boolean).join(', '),
     colors: fd.get('colors'),
     domain: fd.get('domain'),
-    contact_display: fd.get('contact_display'),
+    contact: fd.get('contact_display'), // le template EmailJS doit utiliser {{contact}}
     message: fd.get('message')
   };
 
@@ -95,5 +85,5 @@ form?.addEventListener('submit', async (e)=>{
   }
 });
 
-// ===== iOS zoom fix (gesture) =====
+// ===== Empêche le zoom iOS lors de la saisie =====
 window.addEventListener('gesturestart', e => e.preventDefault(), { passive:false });
