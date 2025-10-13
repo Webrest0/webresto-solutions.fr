@@ -8,13 +8,12 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- HEADER (verrouillé visuel) -->
+  <!-- NAV (verrouillée) -->
   <header class="wr-nav">
     <div class="wr-nav__left">
-      <img class="wr-logo" src="Images/wr-logo-red.png" alt="WebResto logo">
+      <img class="wr-logo" src="Images/wr-logo-red.png" alt="WebResto logo" />
       <span class="wr-brand">WebResto</span>
     </div>
-
     <div class="wr-nav__right">
       <a class="btn btn-call" href="tel:+33784674767">Appeler</a>
       <button id="burger" class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -33,7 +32,7 @@
     <div id="backdrop" class="backdrop" hidden></div>
   </header>
 
-  <!-- HERO (verrouillé : texte + image de fond existante) -->
+  <!-- HERO (verrouillée) -->
   <section class="hero">
     <div class="hero__content">
       <h1>Des sites<br> modernes, visibles et sur mesure.</h1>
@@ -46,12 +45,11 @@
     <img class="hero__bg" src="Images/hero-dark-office.png" alt="" aria-hidden="true">
   </section>
 
-  <!-- EXEMPLE (verrouillé contenu) -->
+  <!-- EXEMPLE (verrouillée) -->
   <section id="exemple" class="section">
     <h2>Exemple</h2>
     <article class="ex-card">
       <div class="ex-card__media">
-        <!-- image validée -->
         <img src="Images/webresto.png" alt="PIZZ'AMIGO × WebResto">
       </div>
       <div class="ex-card__body">
@@ -62,7 +60,7 @@
     </article>
   </section>
 
-  <!-- POUR QUI ? carrousel corrigé -->
+  <!-- POUR QUI ? (carousel corrigé) -->
   <section id="pour-qui" class="section">
     <h2>Pour qui ?</h2>
 
@@ -70,33 +68,27 @@
       <button class="carousel__arrow left" id="cPrev" aria-label="Précédent">‹</button>
 
       <div class="carousel__viewport" id="cViewport">
-        <!-- Slide 1 -->
-        <figure class="card">
-          <img src="Images/restaurant.PNG" alt="Restaurant / Food-truck">
-          <figcaption class="card__chip">Restaurant / Food-truck</figcaption>
-        </figure>
-        <!-- Slide 2 -->
-        <figure class="card">
-          <img src="Images/mariage.PNG" alt="Mariage / Événement">
-          <figcaption class="card__chip">Mariage / Événement</figcaption>
-        </figure>
-        <!-- Slide 3 -->
-        <figure class="card">
-          <img src="Images/artisan.PNG" alt="Artisan / Service">
-          <figcaption class="card__chip">Artisan / Service</figcaption>
-        </figure>
-        <!-- Slide 4 -->
-        <figure class="card">
-          <img src="Images/association.PNG" alt="Association">
-          <figcaption class="card__chip">Association</figcaption>
-        </figure>
+        <div class="carousel__track">
+          <figure class="card">
+            <img src="Images/restaurant.PNG" alt="Restaurant / Food-truck">
+          </figure>
+          <figure class="card">
+            <img src="Images/mariage.PNG" alt="Mariage / Événement">
+          </figure>
+          <figure class="card">
+            <img src="Images/artisan.PNG" alt="Artisan / Service">
+          </figure>
+          <figure class="card">
+            <img src="Images/association.PNG" alt="Association">
+          </figure>
+        </div>
       </div>
 
       <button class="carousel__arrow right" id="cNext" aria-label="Suivant">›</button>
     </div>
   </section>
 
-  <!-- OFFRES (verrouillé contenu/prix) -->
+  <!-- OFFRES (verrouillée sauf badge déplacé) -->
   <section id="offres" class="section">
     <h2>Offres & tarifs</h2>
 
@@ -123,7 +115,7 @@
         <li>Historique basique via e-mail/export</li>
         <li>Site protégé (meilleures pratiques de sécurité)</li>
       </ul>
-      <a href="#commande" class="btn btn-outline choose-pack" data-pack="Site vitrine + commandes">Choisir ce pack</a>
+      <a href="#commande" class="btn btn-outline choose-pack" data-pack="Site vitrine + commandes en ligne">Choisir ce pack</a>
     </div>
 
     <div class="pack">
@@ -139,7 +131,7 @@
     </div>
   </section>
 
-  <!-- FORMULAIRE (verrouillé sauf sélecteurs) -->
+  <!-- FORMULAIRE + CONTACT (verrouillés) -->
   <section id="commande" class="section">
     <h2>Demander un site</h2>
     <form id="orderForm" novalidate>
@@ -148,17 +140,14 @@
           <label>Nom / Société <span>*</span></label>
           <input type="text" name="name" placeholder="votre nom..." required>
         </div>
-
         <div class="field">
           <label>E-mail <span>*</span></label>
           <input type="email" name="email" placeholder="ex : contact@exemple.com" required inputmode="email">
         </div>
-
         <div class="field">
           <label>Téléphone</label>
           <input type="tel" name="phone" placeholder="+33 ..." inputmode="tel" pattern="^[0-9+ ]{6,}$">
         </div>
-
         <div class="field">
           <label>Pack souhaité</label>
           <select name="pack" id="packSelect">
@@ -167,7 +156,6 @@
             <option>Site avec dashboard</option>
           </select>
         </div>
-
         <div class="field">
           <label>Thème du site</label>
           <select name="theme">
@@ -178,8 +166,6 @@
             <option>Autre…</option>
           </select>
         </div>
-
-        <!-- Remplacement : même mode que “Thème du site” -->
         <div class="field">
           <label>Fonctionnalités à intégrer <small>(plusieurs choix)</small></label>
           <select name="features" id="featuresSelect" multiple>
@@ -192,36 +178,29 @@
             <option>Décide pour moi</option>
             <option>Autre…</option>
           </select>
-          <small class="hint">Astuce : sur mobile, touchez pour ouvrir, puis validez.</small>
         </div>
-
         <div class="field">
           <label>Couleurs souhaitées</label>
           <input type="text" name="colors" placeholder="ex : rouge & noir">
         </div>
-
         <div class="field">
           <label>Nom de domaine souhaité</label>
           <input type="text" name="domain" placeholder="ex : mon-restaurant.fr">
         </div>
-
         <div class="field">
           <label>Contact à afficher (tél ou e-mail)</label>
           <input type="text" name="contact_display" placeholder="ex : 07 84 67 47 67 / contact@...">
         </div>
-
         <div class="field full">
           <label>Message</label>
           <textarea name="message" rows="4" placeholder="Votre projet en quelques lignes…"></textarea>
         </div>
       </div>
-
       <button class="btn btn-primary" type="submit">Envoyer</button>
       <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
     </form>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="section contact">
     <h2>Contact</h2>
     <div class="contact__buttons">
