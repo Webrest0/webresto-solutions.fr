@@ -11,6 +11,13 @@ burger?.addEventListener('click', openMenu);
 closeMenu?.addEventListener('click', closeMenuFn);
 backdrop?.addEventListener('click', closeMenuFn);
 
+// NEW: fermer le menu quand on clique un lien du menu
+document.querySelectorAll('.side-menu a').forEach(a=>{
+  a.addEventListener('click', closeMenuFn);
+});
+// NEW: fermer aussi si l’URL change d’ancre (navigation interne)
+window.addEventListener('hashchange', closeMenuFn);
+
 // ===== Carousel “Pour qui ?” corrigé (1 slide plein écran) =====
 (function(){
   const viewport = document.getElementById('cViewport');
@@ -61,7 +68,7 @@ form?.addEventListener('submit', async (e)=>{
   let features = fd.getAll('features');
   if(!features.length && fd.get('features')) features = [fd.get('features')];
 
-  // IMPORTANT : on envoie bien la clé 'public_contact' attendue par le template EmailJS {{public_contact}}
+  // IMPORTANT : le template EmailJS attend {{public_contact}}
   const payload = {
     name: fd.get('name') || '',
     email: fd.get('email') || '',
@@ -71,7 +78,7 @@ form?.addEventListener('submit', async (e)=>{
     features: (features||[]).filter(Boolean).join(', '),
     colors: fd.get('colors') || '',
     domain: fd.get('domain') || '',
-    public_contact: fd.get('contact_display') || '', // <-- CORRIGÉ
+    public_contact: fd.get('contact_display') || '',
     message: fd.get('message') || ''
   };
 
