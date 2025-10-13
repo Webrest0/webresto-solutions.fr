@@ -2,57 +2,60 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>WebResto</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="Images/wr-logo-red.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>WebResto — Solutions</title>
+  <link rel="icon" href="Images/wr-logo-red.png">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-  <!-- HEADER -->
-  <header class="site-header">
-    <a href="#" class="brand">
-      <img src="Images/wr-logo-red.png" alt="WR" class="brand__logo">
-      <span class="brand__name">WebResto</span>
-    </a>
-
-    <nav class="header-actions">
+  <!-- NAV -->
+  <header class="wr-nav">
+    <div class="wr-nav__left">
+      <img class="wr-logo" src="Images/wr-logo-red.png" alt="WebResto logo" />
+      <span class="wr-brand">WebResto</span>
+    </div>
+    <div class="wr-nav__right">
       <a class="btn btn-call" href="tel:+33784674767">Appeler</a>
-      <button class="burger" id="burgerBtn" aria-expanded="false">
+      <button id="burger" class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <div class="mobile-menu" id="mobileMenu" hidden>
-        <a href="#exemple">Exemple</a>
-        <a href="#pour-qui">Pour qui ?</a>
-        <a href="#offres">Offres & tarifs</a>
-        <a href="#commande">Demander un site</a>
-        <a href="#contact">Contact</a>
-      </div>
+    </div>
+
+    <nav id="sideMenu" class="side-menu" aria-hidden="true">
+      <button id="closeMenu" class="side-menu__close" aria-label="Fermer">×</button>
+      <a href="#exemple">Exemple</a>
+      <a href="#pour-qui">Pour qui ?</a>
+      <a href="#offres">Offres & tarifs</a>
+      <a href="#commande">Demander un site</a>
+      <a href="#contact">Contact</a>
     </nav>
+    <div id="backdrop" class="backdrop" hidden></div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <img class="hero__bg" src="Images/hero-dark-office.png" alt="">
-    <div class="hero__inner">
-      <h1>Des sites modernes,<br> visibles et sur mesure.</h1>
+    <div class="hero__content">
+      <h1>Des sites<br> modernes, visibles et sur mesure.</h1>
       <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
       <div class="hero__cta">
         <a href="#exemple" class="btn btn-primary">Voir un exemple</a>
         <a href="#commande" class="btn btn-ghost">Demander un site</a>
       </div>
     </div>
+    <img class="hero__bg" src="Images/hero-dark-office.png" alt="" aria-hidden="true">
   </section>
 
   <!-- EXEMPLE -->
   <section id="exemple" class="section">
     <h2>Exemple</h2>
-    <article class="card example">
-      <img src="Images/webresto.png" alt="Exemple WebResto" class="card__img">
-      <div class="card__body">
-        <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
-        <p>Site vitrine clair et rapide, avec carte, contact et horaires intégrés.</p>
-        <a href="https://pizz-amigo.netlify.app/" class="btn btn-primary" target="_blank">Voir le site</a>
+    <article class="ex-card">
+      <div class="ex-card__media">
+        <img src="Images/webresto.png" alt="PIZZ'AMIGO × WebResto">
+      </div>
+      <div class="ex-card__body">
+        <h3>Site réalisé par nous :<br> PIZZ’AMIGO — Food truck au feu de bois</h3>
+        <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong>, <strong>adresse</strong> & <strong>contact</strong>.</p>
+        <a class="btn btn-primary" href="https://pizz-amigo.netlify.app/" target="_blank" rel="noopener">Voir le site</a>
       </div>
     </article>
   </section>
@@ -60,88 +63,115 @@
   <!-- POUR QUI -->
   <section id="pour-qui" class="section">
     <h2>Pour qui ?</h2>
+
     <div class="carousel">
-      <button class="carousel__nav prev">‹</button>
-      <div class="carousel__viewport">
+      <button class="carousel__arrow left" id="cPrev" aria-label="Précédent">‹</button>
+
+      <div class="carousel__viewport" id="cViewport">
         <div class="carousel__track">
-          <figure class="slide"><img src="Images/restaurant.PNG" alt="Restaurant"><figcaption>Restaurant / Food-truck</figcaption></figure>
-          <figure class="slide"><img src="Images/mariage.PNG" alt="Mariage"><figcaption>Mariage / Événement</figcaption></figure>
-          <figure class="slide"><img src="Images/artisan.PNG" alt="Artisan"><figcaption>Artisan / Service</figcaption></figure>
-          <figure class="slide"><img src="Images/association.PNG" alt="Association"><figcaption>Association</figcaption></figure>
+          <figure class="card"><img src="Images/restaurant.PNG" alt="Restaurant / Food-truck"></figure>
+          <figure class="card"><img src="Images/mariage.PNG" alt="Mariage / Événement"></figure>
+          <figure class="card"><img src="Images/artisan.PNG" alt="Artisan / Service"></figure>
+          <figure class="card"><img src="Images/association.PNG" alt="Association"></figure>
         </div>
       </div>
-      <button class="carousel__nav next">›</button>
+
+      <button class="carousel__arrow right" id="cNext" aria-label="Suivant">›</button>
     </div>
   </section>
 
   <!-- OFFRES -->
   <section id="offres" class="section">
     <h2>Offres & tarifs</h2>
-    <div class="offers">
-      <div class="offer">
-        <h3>Site vitrine</h3>
-        <p class="price">299,99€</p>
-        <ul>
-          <li>Page moderne (infos, photos, contact)</li>
-          <li>Nom de domaine inclus</li>
-          <li>HTTPS sécurisé</li>
-          <li>Site protégé</li>
-        </ul>
-      </div>
-      <div class="offer highlight">
-        <span class="badge">Le plus choisi</span>
-        <h3>Vitrine + commandes</h3>
-        <p class="price">499,99€</p>
-        <ul>
-          <li>Formulaires personnalisés</li>
-          <li>Paiement intégré</li>
-          <li>Historique par mail</li>
-          <li>Site protégé</li>
-        </ul>
-      </div>
-      <div class="offer">
-        <h3>Site avec dashboard</h3>
-        <p class="price">799,99€</p>
-        <ul>
-          <li>Vitrine + gestion commandes</li>
-          <li>Dashboard admin</li>
-          <li>Login renforcé</li>
-          <li>Site protégé</li>
-        </ul>
-      </div>
+
+    <div class="pack">
+      <h3>Site vitrine</h3>
+      <p class="price">299,99€</p>
+      <ul>
+        <li>Page moderne (photos, infos, horaires, contact)</li>
+        <li>Design personnalisé et responsive</li>
+        <li>Nom de domaine inclus la 1<sup>re</sup> année</li>
+        <li>HTTPS sécurisé</li>
+        <li>Site protégé</li>
+      </ul>
+      <a href="#commande" class="btn btn-outline choose-pack" data-pack="Site vitrine">Choisir ce pack</a>
+    </div>
+
+    <div class="pack">
+      <div class="badge">Le plus choisi</div>
+      <h3>Site vitrine + commandes en ligne</h3>
+      <p class="price">499,99€</p>
+      <ul>
+        <li>Formulaires personnalisés</li>
+        <li>Intégration système de paiement</li>
+        <li>Historique basique via e-mail/export</li>
+        <li>Site protégé</li>
+      </ul>
+      <a href="#commande" class="btn btn-outline choose-pack" data-pack="Site vitrine + commandes en ligne">Choisir ce pack</a>
+    </div>
+
+    <div class="pack">
+      <h3>Site avec dashboard</h3>
+      <p class="price">799,99€</p>
+      <ul>
+        <li>Vitrine + système de commande</li>
+        <li>Tableau de bord (gestion complète)</li>
+        <li>Login renforcé</li>
+        <li>Site protégé</li>
+      </ul>
+      <a href="#commande" class="btn btn-outline choose-pack" data-pack="Site avec dashboard">Choisir ce pack</a>
     </div>
   </section>
 
-  <!-- FORMULAIRE -->
+  <!-- COMMANDE -->
   <section id="commande" class="section">
     <h2>Demander un site</h2>
-    <form id="orderForm">
-      <label>Nom / Société* <input name="name" required></label>
-      <label>Email* <input type="email" name="email" required></label>
-      <label>Téléphone <input name="phone"></label>
-      <label>Pack <select name="pack">
-        <option>Site vitrine</option>
-        <option>Vitrine + commandes</option>
-        <option>Dashboard complet</option>
-      </select></label>
-      <label>Contact à afficher <input name="public_contact"></label>
-      <label>Message <textarea name="message"></textarea></label>
+    <form id="orderForm" novalidate>
+      <div class="grid-2">
+        <div class="field"><label>Nom / Société *</label><input type="text" name="name" required></div>
+        <div class="field"><label>Email *</label><input type="email" name="email" required></div>
+        <div class="field"><label>Téléphone</label><input type="tel" name="phone"></div>
+        <div class="field"><label>Pack souhaité</label>
+          <select name="pack" id="packSelect">
+            <option>Site vitrine</option>
+            <option>Site vitrine + commandes en ligne</option>
+            <option>Site avec dashboard</option>
+          </select></div>
+        <div class="field"><label>Thème du site</label>
+          <select name="theme">
+            <option>Restaurant / Food-truck</option>
+            <option>Mariage / Événement</option>
+            <option>Artisan / Service</option>
+            <option>Association</option>
+          </select></div>
+        <div class="field"><label>Fonctionnalités à intégrer</label>
+          <select name="features" id="featuresSelect" multiple>
+            <option>Carte/menu</option><option>Formulaire commande</option>
+            <option>Système de paiement</option><option>Horaires dynamiques</option>
+            <option>Google Maps</option><option>Galerie photos</option>
+          </select></div>
+        <div class="field"><label>Couleurs souhaitées</label><input type="text" name="colors"></div>
+        <div class="field"><label>Nom de domaine souhaité</label><input type="text" name="domain"></div>
+        <div class="field"><label>Contact à afficher</label><input type="text" name="contact_display"></div>
+        <div class="field full"><label>Message</label><textarea name="message" rows="4"></textarea></div>
+      </div>
       <button class="btn btn-primary" type="submit">Envoyer</button>
-      <p id="formStatus"></p>
+      <p id="formStatus" class="form-status"></p>
     </form>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="section">
+  <section id="contact" class="section contact">
     <h2>Contact</h2>
-    <div class="contact__grid">
-      <a href="tel:+33784674767" class="btn btn-ghost">07 84 67 47 67</a>
-      <a href="tel:+33788589812" class="btn btn-ghost">07 88 58 98 12</a>
-      <a href="mailto:smarttlelearning@gmail.com" class="btn btn-ghost">smarttlelearning@gmail.com</a>
+    <div class="contact__buttons">
+      <a class="btn btn-outline" href="tel:+33784674767">📞 07 84 67 47 67</a>
+      <a class="btn btn-outline" href="mailto:smarttlelearning@gmail.com">✉️ smarttlelearning@gmail.com</a>
     </div>
   </section>
 
-  <footer class="footer">© webrest0–2025</footer>
+  <footer class="footer">© webrest0-2025</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
