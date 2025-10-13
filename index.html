@@ -1,123 +1,147 @@
-/* ===========================
-   CONFIG — EmailJS (remplis tes vrais IDs)
-   =========================== */
-const EMAILJS_PUBLIC_KEY  = "XgRStV-domSnc8RgY";      // clé publique
-const EMAILJS_SERVICE_ID  = "service_8bw61yj";         // service id
-const EMAILJS_TEMPLATE_ID = "template_9ok4wz8";        // template id
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>WebResto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="Images/wr-logo-red.png" />
+</head>
+<body>
 
-// Init EmailJS
-if (window.emailjs) {
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-}
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="#" class="brand">
+      <img src="Images/wr-logo-red.png" alt="WR" class="brand__logo">
+      <span class="brand__name">WebResto</span>
+    </a>
 
-/* ===== Burger ===== */
-const burgerBtn  = document.getElementById('burgerBtn');
-const mobileMenu = document.getElementById('mobileMenu');
+    <nav class="header-actions">
+      <a class="btn btn-call" href="tel:+33784674767">Appeler</a>
+      <button class="burger" id="burgerBtn" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="mobile-menu" id="mobileMenu" hidden>
+        <a href="#exemple">Exemple</a>
+        <a href="#pour-qui">Pour qui ?</a>
+        <a href="#offres">Offres & tarifs</a>
+        <a href="#commande">Demander un site</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
 
-burgerBtn.addEventListener('click', () => {
-  const open = mobileMenu.hasAttribute('hidden') ? false : true;
-  if (open) {
-    mobileMenu.setAttribute('hidden', '');
-    burgerBtn.setAttribute('aria-expanded', 'false');
-  } else {
-    mobileMenu.removeAttribute('hidden');
-    burgerBtn.setAttribute('aria-expanded', 'true');
-  }
-});
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero__bg" src="Images/hero-dark-office.png" alt="">
+    <div class="hero__inner">
+      <h1>Des sites modernes,<br> visibles et sur mesure.</h1>
+      <p>Entreprises, artisans, mariages, restaurants, associations… je crée un site clair, rapide et beau sur téléphone.</p>
+      <div class="hero__cta">
+        <a href="#exemple" class="btn btn-primary">Voir un exemple</a>
+        <a href="#commande" class="btn btn-ghost">Demander un site</a>
+      </div>
+    </div>
+  </section>
 
-// Ferme le menu quand on clique un lien
-document.querySelectorAll('.menu-link').forEach(a=>{
-  a.addEventListener('click', ()=>{
-    mobileMenu.setAttribute('hidden','');
-    burgerBtn.setAttribute('aria-expanded','false');
-  });
-});
+  <!-- EXEMPLE -->
+  <section id="exemple" class="section">
+    <h2>Exemple</h2>
+    <article class="card example">
+      <img src="Images/webresto.png" alt="Exemple WebResto" class="card__img">
+      <div class="card__body">
+        <h3>PIZZ’AMIGO — Food truck au feu de bois</h3>
+        <p>Site vitrine clair et rapide, avec carte, contact et horaires intégrés.</p>
+        <a href="https://pizz-amigo.netlify.app/" class="btn btn-primary" target="_blank">Voir le site</a>
+      </div>
+    </article>
+  </section>
 
-/* ===== Smooth scroll ===== */
-document.querySelectorAll('a[href^="#"]').forEach(link=>{
-  link.addEventListener('click', e=>{
-    const id = link.getAttribute('href');
-    if (id.length>1) {
-      const el = document.querySelector(id);
-      if (el) {
-        e.preventDefault();
-        el.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-    }
-  });
-});
+  <!-- POUR QUI -->
+  <section id="pour-qui" class="section">
+    <h2>Pour qui ?</h2>
+    <div class="carousel">
+      <button class="carousel__nav prev">‹</button>
+      <div class="carousel__viewport">
+        <div class="carousel__track">
+          <figure class="slide"><img src="Images/restaurant.PNG" alt="Restaurant"><figcaption>Restaurant / Food-truck</figcaption></figure>
+          <figure class="slide"><img src="Images/mariage.PNG" alt="Mariage"><figcaption>Mariage / Événement</figcaption></figure>
+          <figure class="slide"><img src="Images/artisan.PNG" alt="Artisan"><figcaption>Artisan / Service</figcaption></figure>
+          <figure class="slide"><img src="Images/association.PNG" alt="Association"><figcaption>Association</figcaption></figure>
+        </div>
+      </div>
+      <button class="carousel__nav next">›</button>
+    </div>
+  </section>
 
-/* ===== Carousel (1 slide visible, centré) ===== */
-const track = document.querySelector('.carousel__track');
-const slides = Array.from(document.querySelectorAll('.slide'));
-const prev = document.querySelector('.carousel .prev');
-const next = document.querySelector('.carousel .next');
-let index = 0;
+  <!-- OFFRES -->
+  <section id="offres" class="section">
+    <h2>Offres & tarifs</h2>
+    <div class="offers">
+      <div class="offer">
+        <h3>Site vitrine</h3>
+        <p class="price">299,99€</p>
+        <ul>
+          <li>Page moderne (infos, photos, contact)</li>
+          <li>Nom de domaine inclus</li>
+          <li>HTTPS sécurisé</li>
+          <li>Site protégé</li>
+        </ul>
+      </div>
+      <div class="offer highlight">
+        <span class="badge">Le plus choisi</span>
+        <h3>Vitrine + commandes</h3>
+        <p class="price">499,99€</p>
+        <ul>
+          <li>Formulaires personnalisés</li>
+          <li>Paiement intégré</li>
+          <li>Historique par mail</li>
+          <li>Site protégé</li>
+        </ul>
+      </div>
+      <div class="offer">
+        <h3>Site avec dashboard</h3>
+        <p class="price">799,99€</p>
+        <ul>
+          <li>Vitrine + gestion commandes</li>
+          <li>Dashboard admin</li>
+          <li>Login renforcé</li>
+          <li>Site protégé</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-function updateCarousel(){
-  const width = track.clientWidth || track.getBoundingClientRect().width;
-  const offset = -index * width;
-  track.style.transform = `translateX(${offset}px)`;
-}
+  <!-- FORMULAIRE -->
+  <section id="commande" class="section">
+    <h2>Demander un site</h2>
+    <form id="orderForm">
+      <label>Nom / Société* <input name="name" required></label>
+      <label>Email* <input type="email" name="email" required></label>
+      <label>Téléphone <input name="phone"></label>
+      <label>Pack <select name="pack">
+        <option>Site vitrine</option>
+        <option>Vitrine + commandes</option>
+        <option>Dashboard complet</option>
+      </select></label>
+      <label>Contact à afficher <input name="public_contact"></label>
+      <label>Message <textarea name="message"></textarea></label>
+      <button class="btn btn-primary" type="submit">Envoyer</button>
+      <p id="formStatus"></p>
+    </form>
+  </section>
 
-function go(dir){
-  index += dir;
-  if (index < 0) index = slides.length - 1;
-  if (index > slides.length - 1) index = 0;
-  updateCarousel();
-}
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <div class="contact__grid">
+      <a href="tel:+33784674767" class="btn btn-ghost">07 84 67 47 67</a>
+      <a href="tel:+33788589812" class="btn btn-ghost">07 88 58 98 12</a>
+      <a href="mailto:smarttlelearning@gmail.com" class="btn btn-ghost">smarttlelearning@gmail.com</a>
+    </div>
+  </section>
 
-window.addEventListener('resize', updateCarousel);
-prev.addEventListener('click', ()=>go(-1));
-next.addEventListener('click', ()=>go(1));
-updateCarousel();
-
-/* ===== “Choisir ce pack” => remplit le champ + scroll au formulaire ===== */
-document.querySelectorAll('.choose-pack').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const pack = btn.dataset.pack || 'Site vitrine';
-    const select = document.querySelector('#orderForm select[name="pack"]');
-    if (select){
-      Array.from(select.options).forEach(o=>{
-        if (o.textContent.toLowerCase().includes(pack.toLowerCase())) o.selected = true;
-      });
-    }
-    document.querySelector('#commande').scrollIntoView({behavior:'smooth'});
-  });
-});
-
-/* ===== Formulaire EmailJS ===== */
-const form = document.getElementById('orderForm');
-const statusEl = document.getElementById('formStatus');
-
-form.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  statusEl.textContent = 'Envoi…';
-
-  // Récupère “features” multiple sous forme de liste lisible
-  const formData = new FormData(form);
-  const features = formData.getAll('features').join(', ');
-
-  const payload = {
-    name:  formData.get('name') || '',
-    email: formData.get('email') || '',
-    phone: formData.get('phone') || '',
-    pack:  formData.get('pack') || '',
-    theme: formData.get('theme') || '',
-    colors:formData.get('colors') || '',
-    features, // <= joint
-    domain: formData.get('domain') || '',
-    public_contact: formData.get('public_contact') || '', // <= CORRIGÉ : bien transmis
-    message: formData.get('message') || ''
-  };
-
-  try{
-    if (!window.emailjs) throw new Error('EmailJS non chargé');
-    const res = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, payload);
-    statusEl.textContent = 'Message envoyé ✅';
-    form.reset();
-  }catch(err){
-    console.error(err);
-    statusEl.textContent = 'Erreur lors de l’envoi. Vérifie tes clés EmailJS.';
-  }
-});
+  <footer class="footer">© webrest0–2025</footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
