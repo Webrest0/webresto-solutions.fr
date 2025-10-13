@@ -1,24 +1,36 @@
-// ===== Burger / Side menu (verrouillé) =====
+/* =========================
+   Burger / Side menu
+   (verrouillé)
+========================= */
 const burger = document.getElementById('burger');
 const menu = document.getElementById('sideMenu');
 const closeMenu = document.getElementById('closeMenu');
 const backdrop = document.getElementById('backdrop');
 
-function openMenu(){ menu.classList.add('open'); menu.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); backdrop.hidden=false; }
-function closeMenuFn(){ menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); backdrop.hidden=true; }
-
+function openMenu(){
+  menu.classList.add('open');
+  menu.setAttribute('aria-hidden','false');
+  burger.setAttribute('aria-expanded','true');
+  backdrop.hidden = false;
+}
+function closeMenuFn(){
+  menu.classList.remove('open');
+  menu.setAttribute('aria-hidden','true');
+  burger.setAttribute('aria-expanded','false');
+  backdrop.hidden = true;
+}
 burger?.addEventListener('click', openMenu);
 closeMenu?.addEventListener('click', closeMenuFn);
 backdrop?.addEventListener('click', closeMenuFn);
-
-// NEW: fermer le menu quand on clique un lien du menu
-document.querySelectorAll('.side-menu a').forEach(a=>{
+// Ferme le menu quand on clique un lien
+document.querySelectorAll('.menu-link').forEach(a=>{
   a.addEventListener('click', closeMenuFn);
 });
-// NEW: fermer aussi si l’URL change d’ancre (navigation interne)
-window.addEventListener('hashchange', closeMenuFn);
 
-// ===== Carousel “Pour qui ?” corrigé (1 slide plein écran) =====
+/* =========================
+   Carousel “Pour qui ?”
+   (1 slide plein écran)
+========================= */
 (function(){
   const viewport = document.getElementById('cViewport');
   if(!viewport) return;
@@ -38,7 +50,9 @@ window.addEventListener('hashchange', closeMenuFn);
   go(0);
 })();
 
-// ===== Choisir pack -> pré-remplit le select (verrou) =====
+/* =========================
+   Choisir pack -> préremplit (verrou)
+========================= */
 document.querySelectorAll('.choose-pack').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     const sel = document.getElementById('packSelect');
@@ -50,7 +64,9 @@ document.querySelectorAll('.choose-pack').forEach(btn=>{
   });
 });
 
-// ===== EmailJS (verrou : envoi seulement) =====
+/* =========================
+   EmailJS (envoi seulement)
+========================= */
 (function initEmail(){
   if(!window.emailjs) return;
   emailjs.init({ publicKey: 'XgRStV-domSnc8RgY' });
@@ -61,25 +77,27 @@ const statusEl = document.getElementById('formStatus');
 
 form?.addEventListener('submit', async (e)=>{
   e.preventDefault();
-  if(!window.emailjs){ statusEl.textContent = "Erreur : EmailJS indisponible."; return; }
+  if(!window.emailjs){
+    statusEl.textContent = "Erreur : EmailJS indisponible.";
+    return;
+  }
 
   const fd = new FormData(form);
-  // Multi-select features (compatible mobile)
   let features = fd.getAll('features');
   if(!features.length && fd.get('features')) features = [fd.get('features')];
 
-  // IMPORTANT : le template EmailJS attend {{public_contact}}
+  // IMPORTANT : "contact" correspond à {{contact}} dans ton modèle EmailJS
   const payload = {
-    name: fd.get('name') || '',
-    email: fd.get('email') || '',
-    phone: fd.get('phone') || '',
-    pack: fd.get('pack') || '',
-    theme: fd.get('theme') || '',
+    name: fd.get('name'),
+    email: fd.get('email'),
+    phone: fd.get('phone'),
+    pack: fd.get('pack'),
+    theme: fd.get('theme'),
     features: (features||[]).filter(Boolean).join(', '),
-    colors: fd.get('colors') || '',
-    domain: fd.get('domain') || '',
-    public_contact: fd.get('contact_display') || '',
-    message: fd.get('message') || ''
+    colors: fd.get('colors'),
+    domain: fd.get('domain'),
+    contact: fd.get('contact_display'),
+    message: fd.get('message')
   };
 
   statusEl.textContent = "Envoi en cours…";
@@ -93,5 +111,5 @@ form?.addEventListener('submit', async (e)=>{
   }
 });
 
-// ===== Empêche le zoom iOS lors de la saisie =====
+/* Empêche le zoom iOS lors de la saisie */
 window.addEventListener('gesturestart', e => e.preventDefault(), { passive:false });
