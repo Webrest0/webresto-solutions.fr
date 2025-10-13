@@ -1,127 +1,90 @@
-/* ============================
-   CONFIG — EmailJS (remplis tes vrais IDs)
-============================ */
-const EMAILJS_PUBLIC_KEY   = "XgRStV-domSnc8RgY";   // clé publique
-const EMAILJS_SERVICE_ID   = "service_8bw61yj";    // service id
-const EMAILJS_TEMPLATE_ID  = "template_9ok4wz8";   // template id
+// ===== Burger / Side menu (verrouillé) =====
+const burger = document.getElementById('burger');
+const menu = document.getElementById('sideMenu');
+const closeMenu = document.getElementById('closeMenu');
+const backdrop = document.getElementById('backdrop');
 
-if (window.emailjs) {
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-}
+function openMenu(){ menu.classList.add('open'); menu.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); backdrop.hidden=false; }
+function closeMenuFn(){ menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); backdrop.hidden=true; }
 
-/* ============================
-   Burger
-============================ */
-const burgerBtn  = document.getElementById('burgerBtn');
-const mobileMenu = document.getElementById('mobileMenu');
+burger?.addEventListener('click', openMenu);
+closeMenu?.addEventListener('click', closeMenuFn);
+backdrop?.addEventListener('click', closeMenuFn);
 
-burgerBtn.addEventListener('click', () => {
-  const open = !mobileMenu.hasAttribute('hidden');
-  if (open) {
-    mobileMenu.setAttribute('hidden', '');
-    burgerBtn.setAttribute('aria-expanded', 'false');
-  } else {
-    mobileMenu.removeAttribute('hidden');
-    burgerBtn.setAttribute('aria-expanded', 'true');
-  }
-});
-// Ferme le menu quand on clique un lien
-document.querySelectorAll('.mobile-nav .m-link').forEach(a=>{
-  a.addEventListener('click', () => {
-    mobileMenu.setAttribute('hidden', '');
-    burgerBtn.setAttribute('aria-expanded','false');
-  });
-});
-// Smooth scroll (ancre)
-document.querySelectorAll('a[href^="#"]').forEach(link=>{
-  link.addEventListener('click', e=>{
-    const id = link.getAttribute('href');
-    if (id.length > 1) {
-      const el = document.querySelector(id);
-      if (el) { e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
-    }
-  });
-});
-
-/* ============================
-   Carousel “Pour qui ?” — 1 slide centrée
-============================ */
-const track  = document.getElementById('carousel_track');
-const prev   = document.getElementById('carousel_prev');
-const next   = document.getElementById('carousel_next');
-
-function centerTo(index){
-  const slide = track.children[index];
-  const left  = slide.offsetLeft - (track.clientWidth - slide.clientWidth)/2;
-  track.scrollTo({ left, behavior:'smooth' });
-}
-function currentIndex(){
+// ===== Carousel “Pour qui ?” corrigé (1 slide plein écran) =====
+(function(){
+  const viewport = document.getElementById('cViewport');
+  if(!viewport) return;
+  const track = viewport.querySelector('.carousel__track');
   const slides = [...track.children];
-  const mid = track.scrollLeft + track.clientWidth/2;
-  return slides.reduce((idx, el, i) => {
-    const center = el.offsetLeft + el.clientWidth/2;
-    return Math.abs(center - mid) < Math.abs(slides[idx].offsetLeft + slides[idx].clientWidth/2 - mid) ? i : idx;
-  }, 0);
-}
-prev.addEventListener('click', ()=> centerTo(Math.max(0, currentIndex()-1)));
-next.addEventListener('click', ()=> centerTo(Math.min(track.children.length-1, currentIndex()+1)));
-window.addEventListener('resize', ()=> centerTo(currentIndex()));
-// au chargement
-window.addEventListener('load', ()=> centerTo(0));
+  let i = 0;
 
-/* ============================
-   Choisir un pack -> préremplir le formulaire (verrouillé visuel)
-============================ */
-document.querySelectorAll('.link-pack').forEach(btn=>{
+  const prev = document.getElementById('cPrev');
+  const next = document.getElementById('cNext');
+
+  function go(idx){
+    i = (idx + slides.length) % slides.length;
+    track.style.transform = `translateX(-${i*100}%)`;
+  }
+  prev.addEventListener('click', ()=>go(i-1));
+  next.addEventListener('click', ()=>go(i+1));
+  go(0);
+})();
+
+// ===== Choisir pack -> pré-remplit le select (verrou) =====
+document.querySelectorAll('.choose-pack').forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    const select = document.getElementById('pack');
-    if (select){ select.value = btn.dataset.pack; }
+    const sel = document.getElementById('packSelect');
+    if(!sel) return;
+    const label = btn.dataset.pack || '';
+    if(label.includes('dashboard')) sel.value = 'Site avec dashboard';
+    else if(label.includes('commandes')) sel.value = 'Site vitrine + commandes en ligne';
+    else sel.value = 'Site vitrine';
   });
 });
 
-/* ============================
-   Formulaire -> EmailJS
-   (Uniquement la partie “public_contact” corrigée)
-============================ */
+// ===== EmailJS (verrou : envoi seulement) =====
+(function initEmail(){
+  if(!window.emailjs) return;
+  emailjs.init({ publicKey: 'XgRStV-domSnc8RgY' });
+})();
+
 const form = document.getElementById('orderForm');
 const statusEl = document.getElementById('formStatus');
 
-form.addEventListener('submit', async (e) => {
+form?.addEventListener('submit', async (e)=>{
   e.preventDefault();
-  statusEl.textContent = 'Envoi…';
+  if(!window.emailjs){ statusEl.textContent = "Erreur : EmailJS indisponible."; return; }
 
-  const formData = new FormData(form);
+  const fd = new FormData(form);
+  // Multi-select features (compatible mobile)
+  let features = fd.getAll('features');
+  if(!features.length && fd.get('features')) features = [fd.get('features')];
 
-  // Récupérer les features multiples
-  const features = formData.getAll('features').join(', ');
-
-  // Tolérance sur le champ de contact public
-  const publicContact =
-    formData.get('public_contact') ||
-    formData.get('public_contact[]') ||
-    formData.get('contact') || '';
-
-  // Payload EXACTEMENT comme les variables EmailJS
+  // IMPORTANT : on envoie bien la clé 'public_contact' attendue par le template EmailJS {{public_contact}}
   const payload = {
-    name:   formData.get('name')   || '',
-    email:  formData.get('email')  || '',
-    phone:  formData.get('phone')  || '',
-    pack:   formData.get('pack')   || '',
-    theme:  formData.get('theme')  || '',
-    colors: formData.get('colors') || '',
-    features,
-    domain: formData.get('domain') || '',
-    public_contact: publicContact,    // <<<<<< correspond à {{public_contact}}
-    message: formData.get('message') || ''
+    name: fd.get('name') || '',
+    email: fd.get('email') || '',
+    phone: fd.get('phone') || '',
+    pack: fd.get('pack') || '',
+    theme: fd.get('theme') || '',
+    features: (features||[]).filter(Boolean).join(', '),
+    colors: fd.get('colors') || '',
+    domain: fd.get('domain') || '',
+    public_contact: fd.get('contact_display') || '', // <-- CORRIGÉ
+    message: fd.get('message') || ''
   };
 
-  try {
-    if (!window.emailjs) throw new Error('EmailJS non chargé');
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, payload);
-    statusEl.textContent = 'Message envoyé ✅';
+  statusEl.textContent = "Envoi en cours…";
+  try{
+    await emailjs.send('service_8bw61yj','template_9ok4wz8', payload);
+    statusEl.textContent = "Message envoyé ✅";
     form.reset();
-  } catch (err) {
+  }catch(err){
+    statusEl.textContent = "Envoi impossible. Vérifie la connexion / clés EmailJS.";
     console.error(err);
-    statusEl.textContent = 'Erreur lors de l’envoi. Vérifie tes clés EmailJS.';
   }
 });
+
+// ===== Empêche le zoom iOS lors de la saisie =====
+window.addEventListener('gesturestart', e => e.preventDefault(), { passive:false });
