@@ -23,11 +23,11 @@
 
     <nav id="sideMenu" class="side-menu" aria-hidden="true">
       <button id="closeMenu" class="side-menu__close" aria-label="Fermer">×</button>
-      <a href="#exemple">Exemple</a>
-      <a href="#pour-qui">Pour qui ?</a>
-      <a href="#offres">Offres & tarifs</a>
-      <a href="#commande">Demander un site</a>
-      <a href="#contact">Contact</a>
+      <a class="menu-link" href="#exemple">Exemple</a>
+      <a class="menu-link" href="#pour-qui">Pour qui ?</a>
+      <a class="menu-link" href="#offres">Offres & tarifs</a>
+      <a class="menu-link" href="#commande">Demander un site</a>
+      <a class="menu-link" href="#contact">Contact</a>
     </nav>
     <div id="backdrop" class="backdrop" hidden></div>
   </header>
@@ -60,7 +60,7 @@
     </article>
   </section>
 
-  <!-- POUR QUI ? (carousel corrigé) -->
+  <!-- POUR QUI ? (carrousel + bulle flottante) -->
   <section id="pour-qui" class="section">
     <h2>Pour qui ?</h2>
 
@@ -70,16 +70,20 @@
       <div class="carousel__viewport" id="cViewport">
         <div class="carousel__track">
           <figure class="card">
-            <img src="Images/restaurant.PNG" alt="Restaurant / Food-truck">
+            <img src="Images/restaurant.PNG" alt="">
+            <figcaption class="card__label">Restaurant / Food-truck</figcaption>
           </figure>
           <figure class="card">
-            <img src="Images/mariage.PNG" alt="Mariage / Événement">
+            <img src="Images/mariage.PNG" alt="">
+            <figcaption class="card__label">Mariage / Événement</figcaption>
           </figure>
           <figure class="card">
-            <img src="Images/artisan.PNG" alt="Artisan / Service">
+            <img src="Images/artisan.PNG" alt="">
+            <figcaption class="card__label">Artisan / Service</figcaption>
           </figure>
           <figure class="card">
-            <img src="Images/association.PNG" alt="Association">
+            <img src="Images/association.PNG" alt="">
+            <figcaption class="card__label">Association</figcaption>
           </figure>
         </div>
       </div>
@@ -88,7 +92,7 @@
     </div>
   </section>
 
-  <!-- OFFRES (verrouillée) -->
+  <!-- OFFRES (verrouillée, badge bas-droite) -->
   <section id="offres" class="section">
     <h2>Offres & tarifs</h2>
 
