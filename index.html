@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- NAV -->
+  <!-- NAV (verrouillée) -->
   <header class="wr-nav">
     <div class="wr-nav__left">
       <img class="wr-logo" src="Images/wr-logo-red.png" alt="WebResto logo" />
@@ -63,10 +63,8 @@
   <!-- POUR QUI -->
   <section id="pour-qui" class="section">
     <h2>Pour qui ?</h2>
-
     <div class="carousel">
-      <button class="carousel__arrow left" id="cPrev" aria-label="Précédent">‹</button>
-
+      <button class="carousel__arrow left" id="cPrev">‹</button>
       <div class="carousel__viewport" id="cViewport">
         <div class="carousel__track">
           <figure class="card"><img src="Images/restaurant.PNG" alt="Restaurant / Food-truck"></figure>
@@ -75,22 +73,20 @@
           <figure class="card"><img src="Images/association.PNG" alt="Association"></figure>
         </div>
       </div>
-
-      <button class="carousel__arrow right" id="cNext" aria-label="Suivant">›</button>
+      <button class="carousel__arrow right" id="cNext">›</button>
     </div>
   </section>
 
   <!-- OFFRES -->
   <section id="offres" class="section">
     <h2>Offres & tarifs</h2>
-
     <div class="pack">
       <h3>Site vitrine</h3>
       <p class="price">299,99€</p>
       <ul>
         <li>Page moderne (photos, infos, horaires, contact)</li>
         <li>Design personnalisé et responsive</li>
-        <li>Nom de domaine inclus la 1<sup>re</sup> année</li>
+        <li>Nom de domaine inclus</li>
         <li>HTTPS sécurisé</li>
         <li>Site protégé</li>
       </ul>
@@ -103,8 +99,8 @@
       <p class="price">499,99€</p>
       <ul>
         <li>Formulaires personnalisés</li>
-        <li>Intégration système de paiement</li>
-        <li>Historique basique via e-mail/export</li>
+        <li>Intégration paiement (Stripe/…)</li>
+        <li>Historique par mail/export</li>
         <li>Site protégé</li>
       </ul>
       <a href="#commande" class="btn btn-outline choose-pack" data-pack="Site vitrine + commandes en ligne">Choisir ce pack</a>
@@ -115,7 +111,7 @@
       <p class="price">799,99€</p>
       <ul>
         <li>Vitrine + système de commande</li>
-        <li>Tableau de bord (gestion complète)</li>
+        <li>Tableau de bord</li>
         <li>Login renforcé</li>
         <li>Site protégé</li>
       </ul>
@@ -123,7 +119,7 @@
     </div>
   </section>
 
-  <!-- COMMANDE -->
+  <!-- FORMULAIRE -->
   <section id="commande" class="section">
     <h2>Demander un site</h2>
     <form id="orderForm" novalidate>
@@ -136,24 +132,28 @@
             <option>Site vitrine</option>
             <option>Site vitrine + commandes en ligne</option>
             <option>Site avec dashboard</option>
-          </select></div>
+          </select>
+        </div>
         <div class="field"><label>Thème du site</label>
           <select name="theme">
             <option>Restaurant / Food-truck</option>
             <option>Mariage / Événement</option>
             <option>Artisan / Service</option>
             <option>Association</option>
-          </select></div>
+          </select>
+        </div>
         <div class="field"><label>Fonctionnalités à intégrer</label>
-          <select name="features" id="featuresSelect" multiple>
-            <option>Carte/menu</option><option>Formulaire commande</option>
-            <option>Système de paiement</option><option>Horaires dynamiques</option>
-            <option>Google Maps</option><option>Galerie photos</option>
-          </select></div>
+          <select name="features" multiple>
+            <option>Carte/menu</option>
+            <option>Formulaire commande</option>
+            <option>Système de paiement</option>
+            <option>Galerie photos</option>
+          </select>
+        </div>
         <div class="field"><label>Couleurs souhaitées</label><input type="text" name="colors"></div>
         <div class="field"><label>Nom de domaine souhaité</label><input type="text" name="domain"></div>
         <div class="field"><label>Contact à afficher</label><input type="text" name="contact_display"></div>
-        <div class="field full"><label>Message</label><textarea name="message" rows="4"></textarea></div>
+        <div class="field full"><label>Message</label><textarea name="message"></textarea></div>
       </div>
       <button class="btn btn-primary" type="submit">Envoyer</button>
       <p id="formStatus" class="form-status"></p>
@@ -165,6 +165,7 @@
     <h2>Contact</h2>
     <div class="contact__buttons">
       <a class="btn btn-outline" href="tel:+33784674767">📞 07 84 67 47 67</a>
+      <a class="btn btn-outline" href="tel:+33788589812">📞 07 88 58 98 12</a>
       <a class="btn btn-outline" href="mailto:smarttlelearning@gmail.com">✉️ smarttlelearning@gmail.com</a>
     </div>
   </section>
