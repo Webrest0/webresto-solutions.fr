@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- NAV -->
+  <!-- NAV (verrouillée) -->
   <header class="wr-nav">
     <div class="wr-nav__left">
       <img class="wr-logo" src="Images/wr-logo-red.png" alt="WebResto logo" />
@@ -32,7 +32,7 @@
     <div id="backdrop" class="backdrop" hidden></div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO (verrouillée) -->
   <section class="hero">
     <div class="hero__content">
       <h1>Des sites<br> modernes, visibles et sur mesure.</h1>
@@ -45,7 +45,7 @@
     <img class="hero__bg" src="Images/hero-dark-office.png" alt="" aria-hidden="true">
   </section>
 
-  <!-- EXEMPLE -->
+  <!-- EXEMPLE (verrouillée) -->
   <section id="exemple" class="section">
     <h2>Exemple</h2>
     <article class="ex-card">
@@ -54,13 +54,13 @@
       </div>
       <div class="ex-card__body">
         <h3>Site réalisé par nous :<br> PIZZ’AMIGO — Food truck au feu de bois</h3>
-        <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong>, <strong>adresse</strong> & <strong>contact</strong>.</p>
+        <p>Site vitrine simple avec <strong>carte intégrée</strong>, <strong>horaires</strong> (ouverture/fermeture), <strong>adresse</strong> & <strong>contact</strong>.</p>
         <a class="btn btn-primary" href="https://pizz-amigo.netlify.app/" target="_blank" rel="noopener">Voir le site</a>
       </div>
     </article>
   </section>
 
-  <!-- POUR QUI -->
+  <!-- POUR QUI ? (carousel corrigé) -->
   <section id="pour-qui" class="section">
     <h2>Pour qui ?</h2>
 
@@ -69,10 +69,18 @@
 
       <div class="carousel__viewport" id="cViewport">
         <div class="carousel__track">
-          <figure class="card"><img src="Images/restaurant.PNG" alt="Restaurant / Food-truck"></figure>
-          <figure class="card"><img src="Images/mariage.PNG" alt="Mariage / Événement"></figure>
-          <figure class="card"><img src="Images/artisan.PNG" alt="Artisan / Service"></figure>
-          <figure class="card"><img src="Images/association.PNG" alt="Association"></figure>
+          <figure class="card">
+            <img src="Images/restaurant.PNG" alt="Restaurant / Food-truck">
+          </figure>
+          <figure class="card">
+            <img src="Images/mariage.PNG" alt="Mariage / Événement">
+          </figure>
+          <figure class="card">
+            <img src="Images/artisan.PNG" alt="Artisan / Service">
+          </figure>
+          <figure class="card">
+            <img src="Images/association.PNG" alt="Association">
+          </figure>
         </div>
       </div>
 
@@ -80,7 +88,7 @@
     </div>
   </section>
 
-  <!-- OFFRES -->
+  <!-- OFFRES (verrouillée sauf badge déplacé) -->
   <section id="offres" class="section">
     <h2>Offres & tarifs</h2>
 
@@ -91,8 +99,8 @@
         <li>Page moderne (photos, infos, horaires, contact)</li>
         <li>Design personnalisé et responsive</li>
         <li>Nom de domaine inclus la 1<sup>re</sup> année</li>
-        <li>HTTPS sécurisé</li>
-        <li>Site protégé</li>
+        <li>HTTPS sécurisé (hébergement possible)</li>
+        <li>Site protégé (meilleures pratiques de sécurité)</li>
       </ul>
       <a href="#commande" class="btn btn-outline choose-pack" data-pack="Site vitrine">Choisir ce pack</a>
     </div>
@@ -102,10 +110,10 @@
       <h3>Site vitrine + commandes en ligne</h3>
       <p class="price">499,99€</p>
       <ul>
-        <li>Formulaires personnalisés</li>
-        <li>Intégration système de paiement</li>
+        <li>Formulaires (commande / contact) personnalisés</li>
+        <li>Intégration <strong>système de paiement</strong> (préciser dans détails)</li>
         <li>Historique basique via e-mail/export</li>
-        <li>Site protégé</li>
+        <li>Site protégé (meilleures pratiques de sécurité)</li>
       </ul>
       <a href="#commande" class="btn btn-outline choose-pack" data-pack="Site vitrine + commandes en ligne">Choisir ce pack</a>
     </div>
@@ -115,56 +123,89 @@
       <p class="price">799,99€</p>
       <ul>
         <li>Vitrine + système de commande</li>
-        <li>Tableau de bord (gestion complète)</li>
-        <li>Login renforcé</li>
-        <li>Site protégé</li>
+        <li>Tableau de bord (gestion des commandes & contenu)</li>
+        <li>Login renforcé & données stockées en base</li>
+        <li>Site protégé (meilleures pratiques de sécurité)</li>
       </ul>
       <a href="#commande" class="btn btn-outline choose-pack" data-pack="Site avec dashboard">Choisir ce pack</a>
     </div>
   </section>
 
-  <!-- COMMANDE -->
+  <!-- FORMULAIRE + CONTACT (verrouillés) -->
   <section id="commande" class="section">
     <h2>Demander un site</h2>
     <form id="orderForm" novalidate>
       <div class="grid-2">
-        <div class="field"><label>Nom / Société *</label><input type="text" name="name" required></div>
-        <div class="field"><label>Email *</label><input type="email" name="email" required></div>
-        <div class="field"><label>Téléphone</label><input type="tel" name="phone"></div>
-        <div class="field"><label>Pack souhaité</label>
+        <div class="field">
+          <label>Nom / Société <span>*</span></label>
+          <input type="text" name="name" placeholder="votre nom..." required>
+        </div>
+        <div class="field">
+          <label>E-mail <span>*</span></label>
+          <input type="email" name="email" placeholder="ex : contact@exemple.com" required inputmode="email">
+        </div>
+        <div class="field">
+          <label>Téléphone</label>
+          <input type="tel" name="phone" placeholder="+33 ..." inputmode="tel" pattern="^[0-9+ ]{6,}$">
+        </div>
+        <div class="field">
+          <label>Pack souhaité</label>
           <select name="pack" id="packSelect">
             <option>Site vitrine</option>
             <option>Site vitrine + commandes en ligne</option>
             <option>Site avec dashboard</option>
-          </select></div>
-        <div class="field"><label>Thème du site</label>
+          </select>
+        </div>
+        <div class="field">
+          <label>Thème du site</label>
           <select name="theme">
             <option>Restaurant / Food-truck</option>
             <option>Mariage / Événement</option>
             <option>Artisan / Service</option>
             <option>Association</option>
-          </select></div>
-        <div class="field"><label>Fonctionnalités à intégrer</label>
+            <option>Autre…</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Fonctionnalités à intégrer <small>(plusieurs choix)</small></label>
           <select name="features" id="featuresSelect" multiple>
-            <option>Carte/menu</option><option>Formulaire commande</option>
-            <option>Système de paiement</option><option>Horaires dynamiques</option>
-            <option>Google Maps</option><option>Galerie photos</option>
-          </select></div>
-        <div class="field"><label>Couleurs souhaitées</label><input type="text" name="colors"></div>
-        <div class="field"><label>Nom de domaine souhaité</label><input type="text" name="domain"></div>
-        <div class="field"><label>Contact à afficher</label><input type="text" name="contact_display"></div>
-        <div class="field full"><label>Message</label><textarea name="message" rows="4"></textarea></div>
+            <option>Carte/menu</option>
+            <option>Formulaire commande</option>
+            <option>Système de paiement (préciser dans détails)</option>
+            <option>Horaires dynamiques</option>
+            <option>Google Maps</option>
+            <option>Galerie photos</option>
+            <option>Décide pour moi</option>
+            <option>Autre…</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Couleurs souhaitées</label>
+          <input type="text" name="colors" placeholder="ex : rouge & noir">
+        </div>
+        <div class="field">
+          <label>Nom de domaine souhaité</label>
+          <input type="text" name="domain" placeholder="ex : mon-restaurant.fr">
+        </div>
+        <div class="field">
+          <label>Contact à afficher (tél ou e-mail)</label>
+          <input type="text" name="contact_display" placeholder="ex : 07 84 67 47 67 / contact@...">
+        </div>
+        <div class="field full">
+          <label>Message</label>
+          <textarea name="message" rows="4" placeholder="Votre projet en quelques lignes…"></textarea>
+        </div>
       </div>
       <button class="btn btn-primary" type="submit">Envoyer</button>
-      <p id="formStatus" class="form-status"></p>
+      <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
     </form>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="section contact">
     <h2>Contact</h2>
     <div class="contact__buttons">
       <a class="btn btn-outline" href="tel:+33784674767">📞 07 84 67 47 67</a>
+      <a class="btn btn-outline" href="tel:+33788589812">📞 07 88 58 98 12</a>
       <a class="btn btn-outline" href="mailto:smarttlelearning@gmail.com">✉️ smarttlelearning@gmail.com</a>
     </div>
   </section>
